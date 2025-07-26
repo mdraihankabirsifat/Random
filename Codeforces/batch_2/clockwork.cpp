@@ -7,7 +7,8 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, temp = 1;
+        ll n;
+        int temp = 1;
         cin >> n;
         vector<ll> v(n);
         for (ll i = 0; i < n; i++)
