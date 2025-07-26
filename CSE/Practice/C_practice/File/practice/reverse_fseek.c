@@ -9,7 +9,7 @@ int main()
     }
     // Move to end
     fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
+    long size = ftell(fp); // ftell for current position
     // Read backwards
     for (long i = 1; i <= size; i++)
     {
