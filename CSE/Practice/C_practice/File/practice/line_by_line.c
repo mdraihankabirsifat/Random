@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
         char_count++;
         printf("character %d: %c\n", char_count, ch);
     }
-
     //fseek(fp, 0, SEEK_SET);  // Same as rewind(fp)
     rewind(fp);
     printf("String by string:\n");
