@@ -6,9 +6,17 @@ int main()
     cin >> t;
     while (t--)
     {
-        int x, y, a;
+        long long x, y, a;
         cin >> x >> y >> a;
-        
+        long long s = a % (x + y);
+        if (s < x)
+        {
+            cout << "NO" << endl;
+        }
+        else
+        {
+            cout << "YES" << endl;
+        }
     }
     return 0;
 }
