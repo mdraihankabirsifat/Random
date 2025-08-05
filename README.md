@@ -10,18 +10,10 @@ This repository serves as:
 - A tracker for my progress and learning in competitive programming
 - A reference for revisiting problem-solving techniques and patterns
 
-## 📂 Structure
-
-The folder structure is typically organized as follows:
-
-Some folders may also contain:
-- `README.md` for notes
-- `input.txt` / `output.txt` for testing
-
 ## 🛠️ Tools and Languages
 
-- **Language:** Primarily C++
-- **Editor:** VS Code / Sublime Text
+- **Language:** Primarily C/C++
+- **Editor:** VS Code
 - **Compiler:** g++ with C++17/C++20 support
 - **Testing:** Manual test cases or input/output files
 
