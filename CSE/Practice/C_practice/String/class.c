@@ -7,6 +7,8 @@ int main()
     bcountry = acountry;
     printf("%s\n", bcountry);
     bcountry = ccountry;
-    printf("%s", bcountry);
+    printf("%s\n", bcountry);
+    char *s = "I Love you";
+    printf("%s", s);
     return 0;
 }

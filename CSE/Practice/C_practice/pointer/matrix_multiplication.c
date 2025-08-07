@@ -42,8 +42,6 @@ int main()
             }
         }
     }
-    // Print the size of matrix C
-    printf("%d %d\n", m, q);
     // Print matrix C
     for (int i = 0; i < m; i++)
     {
