@@ -11,7 +11,7 @@ int Minbits(int n)
         }
         m = m >> 1;
     }
-    return 0; // Return 0 when n is 0 (no bits set)
+    return 0;
 }
 int main()
 {
