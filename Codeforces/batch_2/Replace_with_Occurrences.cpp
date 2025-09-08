@@ -16,7 +16,7 @@ int main()
         }
         for (int i = 1; i <= n; i++)
         {
-            if (p[i] != i && p[i] != 0)
+            if (p[i] % i != 0 && p[i] != 0)
             {
                 cout << -1 << endl;
                 f = 1;
@@ -25,9 +25,14 @@ int main()
         }
         if (f == 0)
         {
+            int j;
             for (int i = 0; i < n; i++)
             {
-                cout << v[i] << " ";
+                for (j = 0; j < v[i]; j++)
+                {
+                    cout << i + 1 << " ";
+                }
+                i = i + j - 1;
             }
             cout << endl;
         }
