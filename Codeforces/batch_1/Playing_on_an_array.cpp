@@ -8,26 +8,24 @@ int main()
     cin >> t;
     while (t--)
     {
-        long long n, a = 0, b = 0, f = 1;
+        int n, a = 0, b = 0, f = 1;
         cin >> n;
-        vector<long long> v(n);
-        unordered_map<long long, long long> f1;
+        vector<int> v(n);
+        map<int, int> m;
+        vector<pair<int, int>> p;
         for (int i = 0; i < n; i++)
         {
             cin >> v[i];
-            f1[v[i]]++;
+            m[v[i]]++;
         }
-        vector<pair<long long, long long>> p;
-        p.reserve(f1.size());
-        for (auto &x : f1)
+        for (auto x : m)
         {
-            p.push_back({x.first, x.second});
+            p.push_back({x.second, x.first});
         }
-        sort(p.begin(), p.end(), [](const pair<long long, long long> &a, const pair<long long, long long> &b)
-             { return a.second > b.second; });
+        sort(p.rbegin(), p.rend());
         for (int i = 0; i < p.size(); i++)
         {
-            long long p1 = p[i].first, p2 = p[i].second;
+            int p2 = p[i].first, p1 = p[i].second;
             if (f)
             {
                 a = a + p2 * ((p1 + 1) / 2);
