@@ -8,14 +8,26 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
+        int n, s = 0, m = 0;
         cin >> n;
         vector<int> v(n);
         for (int i = 0; i < n; i++)
         {
             cin >> v[i];
+            if (v[i] == 0)
+            {
+                s++;
+            }
+            if (v[i] == -1)
+            {
+                m++;
+            }
         }
-    
+        if (m % 2 != 0)
+        {
+            s = s + 2;
+        }
+        cout << s << "\n";
     }
     return 0;
 }

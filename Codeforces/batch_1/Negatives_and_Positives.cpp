@@ -8,14 +8,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
+        long long n, s = 0, c = 0;
         cin >> n;
         vector<int> v(n);
         for (int i = 0; i < n; i++)
         {
             cin >> v[i];
+            if (v[i] < 0)
+            {
+                v[i] = v[i] * -1;
+                c++;
+            }
+            s = s + v[i];
         }
-    
+        sort(v.begin(), v.end());
+        if (c % 2)
+        {
+            s = s - 2 * v[0];
+        }
+        cout << s << "\n";
     }
     return 0;
 }

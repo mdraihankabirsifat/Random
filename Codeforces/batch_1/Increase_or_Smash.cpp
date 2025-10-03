@@ -8,14 +8,19 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
+        int n, c = 0;
         cin >> n;
-        vector<int> v(n);
+        vector<int> v(n), p(101);
         for (int i = 0; i < n; i++)
         {
             cin >> v[i];
+            if (!p[v[i]])
+            {
+                c++;
+                p[v[i]] = 1;
+            }
         }
-    
+        cout << 2 * c - 1 << "\n";
     }
     return 0;
 }
