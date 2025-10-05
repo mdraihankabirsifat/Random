@@ -6,7 +6,7 @@ This is a private collection of my practice and contest codes, covering a wide r
 ## 📌 Purpose
 
 This repository serves as:
-- A personal archive of solved problems from online judges (Codeforces, AtCoder, LeetCode, etc.)
+- A personal archive of solved problems from online judges (Codeforces, AtCoder, LeetCode, Vjudge etc.)
 - A tracker for my progress and learning in competitive programming
 - A reference for revisiting problem-solving techniques and patterns
 
@@ -20,13 +20,13 @@ This repository serves as:
 ## 📚 Topics Covered
 
 - Sorting & Searching  
-- Graph Algorithms (DFS, BFS, Dijkstra, etc.)  
+- Graph Algorithms (DFS, BFS etc.)  
 - Dynamic Programming  
 - Number Theory  
 - Binary Search  
 - Bitmasking  
 - Greedy Algorithms  
-- Segment Trees & Fenwick Trees  
+- Segment Trees  
 - Geometry and more...
 
 ## 🚧 Notes
