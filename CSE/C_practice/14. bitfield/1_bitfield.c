@@ -27,10 +27,10 @@ int main()
     // Demonstrate bitfield usage
     struct personType person1;
     // Blood groups: 0=O, 1=A, 2=B, 3=AB
-    person1.bloodgroup = 1; // A type
+    person1.bloodgroup = 2; // A type
     person1.rhfactor = 1;   // Positive (Rh+)
     person1.haircolor = 2;  // Brown
-    person1.eyecolor = 0;   // Black
+    person1.eyecolor = 2;   // Black
 
     printf("Person Details:\n");
     printf("Blood Group: %u\n", person1.bloodgroup);
@@ -40,8 +40,8 @@ int main()
 
     // Memory comparison
     printf("\nMemory Usage:\n");
-    printf("Regular struct size: %zu bytes\n", sizeof(struct personRegular));
-    printf("Bitfield struct size: %zu bytes\n", sizeof(struct personType));
+    printf("Regular struct size: %d bytes\n", sizeof(struct personRegular));
+    printf("Bitfield struct size: %d bytes\n", sizeof(struct personType));
 
     // Array of structures example
     struct student students[5];
