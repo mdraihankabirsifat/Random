@@ -2,7 +2,7 @@
 int main()
 {
     FILE *fp;
-    fp = fopen("myfile.txt", "w");
+    fp = fopen("myfile.txt", "a+");
     if (fp == NULL)
     {
         printf("ERROR");
@@ -11,7 +11,7 @@ int main()
     int a = 2;
     float f = 5.2;
     char c = 'p';
-    fprintf(fp, "%d\n%f\n%c\n", a, f, c);
+    fprintf(fp, "Num: %d\nFloat: %f\nCharacter: %c", a, f, c);
     fclose(fp);
     return 0;
 }

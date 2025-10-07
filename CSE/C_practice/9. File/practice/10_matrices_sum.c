@@ -29,7 +29,9 @@ int main()
     {
         int sum = 0;
         for (int i = 0; i < rows; i++)
-            sum += matrix[i][j];
+        {
+            sum = sum + matrix[i][j];
+        }
         fprintf(out, "%d ", sum);
     }
     fclose(out);

@@ -39,7 +39,6 @@ char *strtoks(char *str, char *delims)
         return NULL;
     return rtoken;
 }
-
 int main()
 {
     char *str = (char *)malloc(100);

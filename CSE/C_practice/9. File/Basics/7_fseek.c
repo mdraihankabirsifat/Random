@@ -11,6 +11,7 @@ int main()
     for (char c = 'A'; c <= 'Z'; c++)
     {
         fputc(c, fp);
+        //fprintf(fp,"\n");
     }
     // Read 5th character using SEEK_SET
     fseek(fp, 4, SEEK_SET);

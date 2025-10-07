@@ -10,9 +10,9 @@ int main()
     }
     int a;
     float f;
-    char c;
-    fscanf(fp, "%d %f %c", &a, &f, &c);
-    printf("%d %f %c", a, f, c);
+    char c[10];
+    fscanf(fp, "%d %f %s", &a, &f, c);
+    printf("%d %f %s", a, f, c);
     fclose(fp);
     return 0;
 }

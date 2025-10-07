@@ -8,12 +8,11 @@ int main()
         return 1;
     }
     int num = 0, sum = 0;
-    for (int i = 0; i < 10; i++)
+    while (fscanf(fp, "%d", &num) == 1)
     {
-        fscanf(fp, "%d", &num);
         sum = sum + num;
     }
-    //fseek(fp, 0, SEEK_END);  // Move to end of file
     fprintf(fp, "\n%d", sum);
     fclose(fp);
+    return 0;
 }

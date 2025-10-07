@@ -2,9 +2,9 @@
 #include <string.h>
 int main(int argc, char *argv[])
 {
-    if(argc!=2)
+    if (argc != 2)
     {
-        printf("Parameter: %s <filename>\n",argv[0]);
+        printf("Parameter: %s <filename>\n", argv[0]);
         return 1;
     }
     int s = 0, num;

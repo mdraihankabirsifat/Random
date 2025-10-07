@@ -10,7 +10,6 @@ int main(int argc, char *argv[])
     FILE *f1 = fopen(argv[1], "r");
     FILE *f2 = fopen(argv[2], "r");
     FILE *out = fopen(argv[3], "w");
-    // Check if files opened successfully
     if (f1 == NULL)
     {
         fprintf(stderr, "ERROR: Cannot open file '%s'\n", argv[1]);
@@ -32,11 +31,13 @@ int main(int argc, char *argv[])
     char buffer[1024]; // Larger buffer for better performance
     while (fgets(buffer, sizeof(buffer), f1) != NULL)
     {
-        fputs(buffer, out);
+        //fputs(buffer, out);
+        fprintf(out,"%s",buffer);
     }
     while (fgets(buffer, sizeof(buffer), f2) != NULL)
     {
-        fputs(buffer, out);
+        //fputs(buffer, out);
+        fprintf(out,"%s",buffer);
     }
     fclose(f1);
     fclose(f2);
