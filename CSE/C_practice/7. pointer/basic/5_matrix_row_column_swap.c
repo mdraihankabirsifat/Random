@@ -17,20 +17,8 @@ int main()
             scanf("%d", (*(p + i) + j));
         }
     }
-    int min = **p, max = **p;
-
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (*(*(p + i) + j) > max)
-                max = *(*(p + i) + j);
-            if (*(*(p + i) + j) < min)
-                min = *(*(p + i) + j);
-        }
-    }
-    printf("%d %d\n", min, max);
     int idx1, idx2;
+    // Row Swapping
     scanf("%d %d", &idx1, &idx2);
     idx1--;
     idx2--;
@@ -46,6 +34,7 @@ int main()
         }
         printf("\n");
     }
+    // Column Swapping
     scanf("%d %d", &idx1, &idx2);
     idx1--;
     idx2--;

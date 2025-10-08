@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 int main()
 {
     int x, y, z;
@@ -10,14 +9,14 @@ int main()
     arr1 = malloc(x * sizeof(int **));
     for (int i = 0; i < x; i++)
     {
-        arr1[i] = malloc(y * sizeof(int *));
+        *(arr1 + i) = malloc(y * sizeof(int *));
         for (int j = 0; j < y; j++)
         {
-            arr1[i][j] = malloc(z * sizeof(int));
+            *(*(arr1 + i) + j) = malloc(z * sizeof(int));
             for (int k = 0; k < z; k++)
             {
                 printf("array2[%d][%d][%d]: ", i, j, k);
-                scanf("%d", &arr1[i][j][k]);
+                scanf("%d", (*(*(arr1 + i) + j) + k));
             }
         }
     }
@@ -26,33 +25,34 @@ int main()
     {
         for (int j = 0; j < y; j++)
         {
-            free(arr1[i][j]);
+            free(*(*(arr1 + i) + j));
         }
-        free(arr1[i]);
+        free(*(arr1 + i));
     }
     free(arr1);
     // Pointer-based 3D array using single malloc
-    int ***ptr = (int ***)malloc(x * y * z * sizeof(int **));
+    int *ptr = (int *)malloc(x * y * z * sizeof(int));
     // Input values using pointer arithmetic
     for (int i = 0; i < x; i++)
     {
-        **(ptr + i) = (int **)malloc(x * y * z * sizeof(int *));
         for (int j = 0; j < y; j++)
         {
             for (int k = 0; k < z; k++)
             {
-                *(ptr + i) = (int *)malloc(x * y * z * sizeof(int));
-                scanf("%d", *(*(*(ptr + i) + j) + k));
+                scanf("%d", (ptr + i * (y * z) + j * z + k));
             }
         }
     }
-    for(int i = 0; i < y; i++)
+    // Print using pointer arithmetic
+    for (int i = 0; i < x; i++)
     {
-        for(int j = 0; j < z; j++)
+        for (int j = 0; j < y; j++)
         {
-            free(**(ptr+j));
+            for (int k = 0; k < z; k++)
+            {
+                printf("%d ", *(ptr + i * (y * z) + j * z + k));
+            }
         }
-        free(*(ptr+i));
     }
     free(ptr);
     return 0;

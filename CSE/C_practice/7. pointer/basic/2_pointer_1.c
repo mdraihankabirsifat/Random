@@ -11,7 +11,7 @@ int main()
     printf("number: %d & memory allocation: %d\n", *q, q);
     int r = *p * *q;
     printf("%d\n", r);
-
+    
     int *h;
     h = p;
     printf("%d\n", *h);

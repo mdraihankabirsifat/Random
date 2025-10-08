@@ -67,11 +67,16 @@ void freearray(int m, int **a)
 }
 int main()
 {
-    int **a = take_input(4, 3);
-    int **b = take_input(3, 4);
-    int **c = multiply(4, 3, 4, a, b);
-    print(c, 4, 4);
-    freearray(4, a);
-    freearray(3, b);
-    freearray(4, c);
+    int a1, b1, c1, d1;
+    printf("First Matrix Row Column: ");
+    scanf("%d %d", &a1, &b1);
+    printf("Second Matrix Row Column: ");
+    scanf("%d %d", &c1, &d1);
+    int **a = take_input(a1, b1);
+    int **b = take_input(c1, d1);
+    int **c = multiply(a1, b1, d1, a, b);
+    print(c, a1, d1);
+    freearray(a1, a);
+    freearray(b1, b);
+    freearray(a1, c);
 }
