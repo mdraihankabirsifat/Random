@@ -1,4 +1,5 @@
 #include <stdio.h>
+//A union is a user-defined data type that allows you to store different data types in the same memory location
 union abc
 {
     int a;
