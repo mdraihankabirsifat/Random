@@ -1,42 +1,37 @@
 #include <stdio.h>
 #include <string.h>
-static char *next_token = NULL;
-char *my_strtok(char *str, const char *delimiters)
+#include <stdio.h>
+char *my_strtok(char *str, char *delim)
 {
+    static char *current; // remembers position between calls
     if (str != NULL)
-        next_token = str;
-    if (next_token == NULL)
+        current = str;
+    if (current == NULL)
         return NULL;
     // Skip leading delimiters
-    while (*next_token && strchr(delimiters, *next_token))
-        next_token++;
-    if (*next_token == '\0')
-    {
-        next_token = NULL;
+    while (*current && strchr(delim, *current))
+        current++;
+    if (*current == '\0')
         return NULL;
-    }
-    char *token_start = next_token;
-    // Find end of token
-    while (*next_token && !strchr(delimiters, *next_token))
-        next_token++;
-
-    if (*next_token)
+    char *token_start = current;
+    // Move until next delimiter or end of string
+    while (*current && !strchr(delim, *current))
+        current++;
+    if (*current)
     {
-        *next_token = '\0';
-        next_token++;
+        *current = '\0';
+        current++;
     }
     else
     {
-        next_token = NULL;
+        current = NULL;
     }
     return token_start;
 }
-
 int main()
 {
     char str[] = "Hello,world;test:string";
     char *token = my_strtok(str, ",;:");
-
     while (token != NULL)
     {
         printf("%s\n", token);
