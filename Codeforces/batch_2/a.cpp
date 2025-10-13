@@ -8,16 +8,14 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n, c = 0;
+        int n;
         cin >> n;
-        set<int> s;
+        vector<int> v(n);
         for (int i = 0; i < n; i++)
         {
-            int x;
-            cin >> x;
-            s.insert(x);
+            cin >> v[i];
         }
-        cout << s.size() << "\n";
+        
     }
     return 0;
 }
