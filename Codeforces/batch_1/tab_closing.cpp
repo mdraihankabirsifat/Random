@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 int main()
 {
@@ -8,14 +9,16 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
-        cin >> n;
-        vector<int> v(n);
-        for (int i = 0; i < n; i++)
+        ll a, b, n;
+        cin >> a >> b >> n;
+        if ((b * n <= a) || (a == b))
         {
-            cin >> v[i];
+            cout << 1 << "\n";
         }
-        
+        else
+        {
+            cout << 2 << "\n";
+        }
     }
     return 0;
 }
