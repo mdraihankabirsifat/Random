@@ -8,6 +8,8 @@
 #define loop(i, n) for (ll i = 0; i < n; i++)
 #define in(v) loop(i, v.size()) cin >> v[i]
 #define out(v) loop(i, v.size()) cout << v[i] << " "
+#define yes cout << "YES" << endl
+#define no cout << "NO" << endl
 using namespace std;
 
 int main()
@@ -22,7 +24,6 @@ int main()
         cin >> n;
         vector<int> v(n);
         in(v);
-        
-    }
+        }
     return 0;
 }
