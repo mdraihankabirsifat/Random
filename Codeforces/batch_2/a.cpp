@@ -4,12 +4,12 @@
 #define jora(p, n) pair<ll, ll> p(n)
 #define sajai(x) sort(x.begin(), x.end())
 #define arr(v, x, y) vector<vector<ll>> v(x, vector<int>(y))
-#define tata '\n'
-#define loop(i, n) for (ll i = 0; i < n; i++)
-#define in(v) loop(i, v.size()) cin >> v[i]
-#define out(v) loop(i, v.size()) cout << v[i] << " "
+#define loop(i, j, n) for (ll i = j; i < n; i++)
+#define in(v) loop(i, 0, v.size()) cin >> v[i]
+#define out(v) loop(i, 0, v.size()) cout << v[i] << " "
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
+#define tata '\n'
 using namespace std;
 
 int main()
@@ -24,6 +24,7 @@ int main()
         cin >> n;
         vector<int> v(n);
         in(v);
-        }
+        
+    }
     return 0;
 }
