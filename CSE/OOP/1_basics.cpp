@@ -38,6 +38,8 @@ public: // access modifier
 
 class Student
 {
+    string name;
+    int id;
 };
 
 int main()
