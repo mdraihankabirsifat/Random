@@ -1,25 +1,31 @@
 #include <bits/stdc++.h>
 #define ll long long
-#define pb push_back
-#define jora(p, n) pair<ll, ll> p(n)
-#define sajai(x) sort(x.begin(), x.end())
-#define arr(v, x, y) vector<vector<ll>> v(x, vector<int>(y))
-#define loop(i, j, n) for (ll i = j; i < n; i++)
-#define in(v) loop(i, 0, v.size()) cin >> v[i]
-#define out(v) loop(i, 0, v.size()) cout << v[i] << " "
-#define yes cout << "YES" << endl
-#define no cout << "NO" << endl
-#define tata '\n'
+#define tata "\n"
 using namespace std;
 
 class Teacher
 {
 private:
-    double salary;
+    double salary; // data hiding
 
 public: // access modifier
     string name;
     string dept;
+    // non parameterized constructor
+    Teacher()
+    {
+        cout << "This is constructor." << tata; // no return type
+        dept = "CSE";
+    }
+    // parameterized constructor
+    Teacher(string n, string d, double sal)
+    {
+        cout << "This is parameterized constructor." << tata;
+        name = n;
+        dept = d;
+        salary = sal;
+    }
+    // random function
     void changedept(string newdept)
     {
         dept = newdept;
@@ -34,12 +40,12 @@ public: // access modifier
     {
         return salary;
     }
-};
-
-class Student
-{
-    string name;
-    int id;
+    void getinfo()
+    {
+        cout << "name: " << name << tata;
+        cout << "dept: " << dept << tata;
+        cout << "Salary: " << salary << tata;
+    }
 };
 
 int main()
@@ -52,6 +58,9 @@ int main()
     // t1.salary = 40000; becomes private not accessible from the main function
     t1.setsalary(40000);
     cout << t1.name << tata;
+    cout << t1.dept << tata;
     cout << t1.getsalary() << tata;
+    Teacher t2("Nayeem", "CSE", 39000.50);
+    t2.getinfo();
     return 0;
 }
