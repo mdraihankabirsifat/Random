@@ -20,11 +20,22 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, c = 0;
         cin >> n;
         vector<int> v(n);
         in(v);
-        
+        loop(i, 0, n - 1)
+        {
+            loop(j, i + 1, n)
+            {
+                if (v[i] > v[j] && v[j] != -1)
+                {
+                    c++;
+                    v[j] = -1;
+                }
+            }
+        }
+        cout << c << tata;
     }
     return 0;
 }
