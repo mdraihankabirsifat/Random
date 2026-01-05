@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+// #include <cstdlib>
 
 using namespace std;
 
@@ -57,7 +58,81 @@ using namespace std;
 
 class Packet
 {
-    
+private:
+    char *buffer;
+    int length;
+    int capacity;
+
+public:
+    Packet()
+    {
+        // allocate minimal buffer and mark empty
+        buffer = (char *)malloc(1);
+        if (buffer)
+            buffer[0] = '\0';
+        length = 0;
+        capacity = 1;
+        cout << "Empty packet created" << endl;
+    }
+    Packet(char s1[])
+    {
+        if (s1 == nullptr)
+        {
+            buffer = (char *)malloc(1);
+            if (buffer)
+                buffer[0] = '\0';
+            length = 0;
+            capacity = 1;
+            cout << "Empty packet created" << endl;
+        }
+        else
+        {
+            length = strlen(s1);
+            capacity = length + 1;
+            buffer = (char *)malloc(capacity * sizeof(char));
+            strcpy(buffer, s1);
+            cout << "Packet with initial content created" << endl;
+        }
+    }
+    ~Packet()
+    {
+        if (buffer)
+            free(buffer);
+        cout << "Packet destroyed" << endl;
+    }
+    string add(char s[])
+    {
+        if (s == nullptr)
+            return string(buffer ? buffer : "");
+        int slen = strlen(s);
+        int newlen = length + slen;
+        if (newlen + 1 > capacity)
+        {
+            capacity = newlen + 1;
+            buffer = (char *)realloc(buffer, capacity * sizeof(char));
+        }
+        strcat(buffer, s);
+        length = newlen;
+        return string(buffer);
+    }
+    // overload for single char
+    string add(char c)
+    {
+        int newlen = length + 1;
+        if (newlen + 1 > capacity)
+        {
+            capacity = newlen + 1;
+            buffer = (char *)realloc(buffer, capacity * sizeof(char));
+        }
+        buffer[length] = c;
+        length = newlen;
+        buffer[length] = '\0';
+        return string(buffer);
+    }
+    void show()
+    {
+        cout << "Packet content: " << (buffer ? buffer : "") << endl;
+    }
 };
 
 void testFunction()

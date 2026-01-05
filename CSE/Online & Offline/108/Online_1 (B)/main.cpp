@@ -6,11 +6,11 @@ using namespace std;
 /*
  * ONLINE 1: FileHandler Class Implementation
  * ================================================
- * 
+ *
  * TASK: Implement the FileHandler class to work with the given main() function.
- * Study the main() function carefully to understand what methods and constructors 
+ * Study the main() function carefully to understand what methods and constructors
  * your class needs to provide.
- * 
+ *
  * IMPORTANT RULES:
  * ---------------
  * DO NOT modify ANY code in the main() function
@@ -22,23 +22,23 @@ using namespace std;
  * EFFICIENCY REQUIREMENT:
  * ----------------------
  * Your FileHandler object should open and close the file ONLY ONCE during its lifetime.
- * 
+ *
  * FILE OPERATIONS REFERENCE:
  * --------------------------
  * To open a file in WRITE mode (overwrites existing content):
  *     Option 1 - Direct initialization:
  *         ofstream fileStream(filename);
- *     
+ *
  *     Option 2 - Declare then open (useful when ofstream is a member variable):
  *         ofstream fileStream;           // declare the stream
  *         fileStream.open(filename);     // open the file
- * 
+ *
  * To write to an opened file:
  *     fileStream << "some text" << endl;
- * 
+ *
  * To close a file:
  *     fileStream.close();
- * 
+ *
  * Study the expected console output format shown in the main() function comments.
  * Your program's output MUST EXACTLY MATCH the Expected Console Output.
  *
@@ -50,15 +50,39 @@ using namespace std;
  * - Do not change any other part of the code
  * - Submit only this file for evaluation
  * - The name of the file should be [YourID].cpp
- * - No need to zip the file, submit the .cpp file directly 
- * 
+ * - No need to zip the file, submit the .cpp file directly
+ *
  */
 
-class FileHandler {
+class FileHandler
+{
+private:
+    ofstream fileStream;
 
+public:
+    FileHandler()
+    {
+    }
+    FileHandler(string x)
+    {
+        fileStream.open(x);
+    }
+    ~FileHandler()
+    {
+        fileStream.close();
+    }
+    void writeLine(string x)
+    {
+        fileStream << x << endl;
+    }
+    void writeLine(string x, string y)
+    {
+        fileStream << x << " = " << y << endl;
+    }
 };
 
-int main() {
+int main()
+{
 
     // EXPECTED CONTENT OF output1.txt:
     // --------------------------------
@@ -76,7 +100,6 @@ int main() {
     fh1.writeLine("humidity", "70%");
     fh1.writeLine("System stable");
     fh1.writeLine("voltage", "220V");
-
 
     // EXPECTED CONTENT OF output2.txt:
     // --------------------------------
