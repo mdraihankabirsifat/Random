@@ -312,7 +312,7 @@ void set()
         printf("Enter document %d: ", i + 1);
         if (fgets(documents[i], MAX_LEN, stdin))
         {
-            size_t len = strlen(documents[i]);
+            int len = strlen(documents[i]);
             // Check if input was too long
             if (len > 0 && documents[i][len - 1] != '\n')
             {

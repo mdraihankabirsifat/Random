@@ -7,33 +7,33 @@ using namespace std;
 /*
  * ONLINE 1: Packet Class Implementation
  * ===========================================
- * 
+ *
  * TASK: Implement the Packet class to work with the given main() function.
- * Study the main() function carefully to understand what methods and constructors 
+ * Study the main() function carefully to understand what methods and constructors
  * your class needs to provide.
- * 
+ *
  * IMPORTANT RULES:
  * ---------------
  * DO NOT modify ANY code in the main() function
  * DO NOT modify the testFunction() function
  * ONLY implement code inside the Packet class
  * You may include other standard headers if needed
- * 
+ *
  * DYNAMIC MEMORY REQUIREMENT:
  * --------------------------
  * Your Packet class must use dynamic memory allocation to store character data.
  * - Allocate and deallocate memory properly
- * 
+ *
  * DYNAMIC MEMORY OPERATIONS:
  * -------------------------
  * To allocate memory dynamically:
  *     char* buffer = (char*)malloc(size * sizeof(char));
  * To reallocate memory dynamically:
  *     buffer = (char*)realloc(buffer, newSize * sizeof(char));
- * 
+ *
  * To deallocate memory:
  *     free(buffer);
- * 
+ *
  * DESIGN HINTS:
  * ------------
  * - Look at how Packet objects are created in main()
@@ -44,7 +44,7 @@ using namespace std;
  *
  * Study the expected console output format shown in the main() function comments.
  * Your program's output MUST EXACTLY MATCH the Expected Console Output.
- * 
+ *
  * Submission Instructions:
  * ------------------------
  * - Implement the Packet class below
@@ -55,31 +55,34 @@ using namespace std;
  * - No need to zip the file, submit the .cpp file directly
  */
 
-class Packet {
-
+class Packet
+{
+    
 };
 
-void testFunction() {
+void testFunction()
+{
     cout << "--- Inside testFunction ---" << endl;
-    
+
     char arr[] = "TEMP";
     char arr2[] = "TEST-";
     char arr3[] = "YZ";
 
-    Packet temp1;       // temporary packet
+    Packet temp1; // temporary packet
     temp1.add(arr);
-    temp1.show();       // prints: Packet content: TEMP
-    
+    temp1.show(); // prints: Packet content: TEMP
+
     Packet temp2(arr2);
     temp2.add('X');
     temp2.add(arr3);
-    temp2.show();       // prints: Packet content: TEST-XYZ
-    
+    temp2.show(); // prints: Packet content: TEST-XYZ
+
     cout << "--- Leaving testFunction ---" << endl;
     // temp1 and temp2 will be destroyed here
 }
 
-int main() {
+int main()
+{
 
     // EXPECTED CONSOLE OUTPUT:
     // --------------------------------
@@ -103,16 +106,16 @@ int main() {
     char arr2[] = "123";
     char arr3[] = "ELLO";
 
-    Packet p1;       // empty dynamic buffer
+    Packet p1; // empty dynamic buffer
     p1.add('H');
-    p1.add(arr3);  // now contains HELLO
-    p1.show();       // prints: Packet content: HELLO
+    p1.add(arr3); // now contains HELLO
+    p1.show();    // prints: Packet content: HELLO
 
-    testFunction();  // call function that creates temporary objects
+    testFunction(); // call function that creates temporary objects
 
     Packet p2(arr);
     p2.add(arr2);
-    p2.show();       // prints: Packet content: DATA-123
+    p2.show(); // prints: Packet content: DATA-123
 
     return 0;
 }
