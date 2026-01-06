@@ -2,6 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Ex2",
+            "request": "launch",
+            "mainClass": "Ex2",
+            "projectName": "Code_5bb29ddd"
+        },
+        {
+            "type": "java",
+            "name": "Ex1",
+            "request": "launch",
+            "mainClass": "Ex1",
+            "projectName": "Code_5bb29ddd"
+        },
+        {
             "name": "C/C++: g++.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",
