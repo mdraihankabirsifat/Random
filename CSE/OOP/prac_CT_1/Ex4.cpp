@@ -52,7 +52,7 @@ int main()
     cout << "Enter CGPA: ";
     cin >> icgpa;
     karim.setCGPA(icgpa);
-    " cout << karim.getName() << ";
+    cout << karim.getName() << " ";
     cout << karim.getRollno();
     cout << " " << karim.getCGPA();
 }
