@@ -10,7 +10,7 @@ class PartyMember
     ll asset_value;       // net asset of the member
     string nominated_for; // name of the constituency if this member is nominated by his party for running election
     // You are not allowed to add any other member variable in this class
-
+    
 public:
     // Write a default constructor for this class. Initialize data members as deem appropriate.
     PartyMember(string Name, ll asset)
