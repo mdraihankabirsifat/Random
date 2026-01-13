@@ -90,6 +90,7 @@ public:
     Inventory(Product *products, int numProducts, int maxProducts)
     {
     }
+    // Copy constructor
     Inventory(const Inventory &prev)
     {
         maxProducts = prev.maxProducts;
