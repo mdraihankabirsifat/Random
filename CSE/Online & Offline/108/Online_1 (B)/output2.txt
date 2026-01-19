@@ -1,5 +1,0 @@
-Device A
-mode = ACTIVE
-retries = 3
-Connection OK
-speed = 1Gbps

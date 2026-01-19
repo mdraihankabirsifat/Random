@@ -1,5 +1,0 @@
-Starting log
-temperature = 25C
-humidity = 70%
-System stable
-voltage = 220V
