@@ -20,12 +20,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
+        ll x, n, a, b, c;
+        cin >> n >> x;
         vector<int> v(n);
         in(v);
-        sajai(v);
-        out(v);
     }
     return 0;
 }
