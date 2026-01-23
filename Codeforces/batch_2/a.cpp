@@ -24,7 +24,8 @@ int main()
         cin >> n;
         vector<int> v(n);
         in(v);
-        
+        sajai(v);
+        out(v);
     }
     return 0;
 }
