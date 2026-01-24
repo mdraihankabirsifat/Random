@@ -4,22 +4,27 @@
 using namespace std;
 
 // Function prototype
-bool isValidExpression(const string& expression);
+bool isValidExpression(const string &expression);
 
 // Test helper function
-void runTest(const string& expression, bool expected, const string& testName) {
+void runTest(const string &expression, bool expected, const string &testName)
+{
     bool result = isValidExpression(expression);
-    if (result == expected) {
+    if (result == expected)
+    {
         cout << "[PASS] " << testName << endl;
-    } else {
+    }
+    else
+    {
         cout << "[FAIL] " << testName << endl;
         cout << "       Expression: \"" << expression << "\"" << endl;
-        cout << "       Expected: " << (expected ? "true" : "false") 
+        cout << "       Expected: " << (expected ? "true" : "false")
              << ", Got: " << (result ? "true" : "false") << endl;
     }
 }
 
-int main() {
+int main()
+{
     cout << "========================================" << endl;
     cout << "   Syntax Checker Test Suite" << endl;
     cout << "========================================" << endl;
@@ -128,25 +133,31 @@ int main() {
     // Test 11: Stress Tests
     cout << "Test Group 11: Stress Tests" << endl;
     cout << "---------------------------" << endl;
-    
+
     // Generate long valid expression
     string longValid = "";
-    for (int i = 0; i < 100; i++) longValid += "(";
-    for (int i = 0; i < 100; i++) longValid += ")";
+    for (int i = 0; i < 100; i++)
+        longValid += "(";
+    for (int i = 0; i < 100; i++)
+        longValid += ")";
     runTest(longValid, true, "Test 11.1: 100 nested parentheses");
-    
+
     // Generate long invalid expression (missing one closing)
     string longInvalid = "";
-    for (int i = 0; i < 100; i++) longInvalid += "(";
-    for (int i = 0; i < 99; i++) longInvalid += ")";
+    for (int i = 0; i < 100; i++)
+        longInvalid += "(";
+    for (int i = 0; i < 99; i++)
+        longInvalid += ")";
     runTest(longInvalid, false, "Test 11.2: 100 opening, 99 closing");
-    
+
     // Mixed long expression
     string mixedLong = "";
-    for (int i = 0; i < 50; i++) mixedLong += "([{";
-    for (int i = 0; i < 50; i++) mixedLong += "}])";
+    for (int i = 0; i < 50; i++)
+        mixedLong += "([{";
+    for (int i = 0; i < 50; i++)
+        mixedLong += "}])";
     runTest(mixedLong, true, "Test 11.3: 50 mixed nested brackets");
-    
+
     cout << endl;
     cout << "========================================" << endl;
     cout << "   All Tests Completed!" << endl;

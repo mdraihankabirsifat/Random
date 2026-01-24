@@ -8,7 +8,8 @@ using namespace std;
  * @param closing: The closing bracket character
  * @return true if they form a matching pair, false otherwise
  */
-bool isMatchingPair(char opening, char closing) {
+bool isMatchingPair(char opening, char closing)
+{
     // TODO: Implement this helper function
     // Check if opening and closing brackets match
     // Valid pairs: (), [], {}
@@ -20,8 +21,9 @@ bool isMatchingPair(char opening, char closing) {
  * @param expression: A string containing an arithmetic expression
  * @return true if all brackets are properly matched and balanced, false otherwise
  */
-bool isValidExpression(const string& expression) {
+bool isValidExpression(const string &expression)
+{
     // TODO: Implement the syntax checker using std::stack
-    
+
     return false; // Replace this with your implementation
 }

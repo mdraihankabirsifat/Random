@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
             cout << "\033[31m[Error]\033[0m Queue size is less than 25\% of its capacity." << endl;
             exit(1);
         }
-        
+
         else if (capacity < 2)
         {
             cout << "\033[31m[Error]\033[0m Queue capacity is less than 2." << endl;
