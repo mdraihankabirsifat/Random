@@ -9,6 +9,11 @@ using namespace std;
 template <typename Key, typename Value>
 class ListBST : public BST<Key, Value>
 {
+public:
+    static ListBST<Key, Value> *T_Total;
+    static ListBST<Key, Value> *T_Success;
+    static ListBST<Key, Value> *T_Reject;
+
 private:
     class Node
     {
@@ -17,7 +22,6 @@ private:
         Value value;
         Node *left;
         Node *right;
-
         Node(Key k, Value v) : key(k), value(v), left(nullptr), right(nullptr) {}
     };
 
@@ -153,7 +157,6 @@ private:
                 Print(n->left);
             else
                 cout << "()";
-
             if (n->right)
             {
                 cout << " ";
@@ -168,33 +171,38 @@ private:
         if (!n)
             return;
         printR(n->left);
-        cout << "  " << n->key << ": " << n->value << endl;
+        // task2
+        int t = T_Total ? T_Total->get(n->key) : 0;
+        int s = T_Success ? T_Success->get(n->key) : 0;
+        int r = T_Reject ? T_Reject->get(n->key) : 0;
+        cout << "  " << n->key << ": Current bid: " << n->value << ", Total bids: " << t << ", Successful: " << s << ", Rejected: " << r << endl;
         printR(n->right);
     }
 
 public:
-    ListBST() : root(nullptr), node_count(0) {}
-    ~ListBST() { clear(); }
-
+    ListBST() : root(nullptr), node_count(0)
+    {
+    }
+    ~ListBST()
+    {
+        clear();
+    }
     bool insert(Key key, Value value) override
     {
         bool ok = false;
         root = insrt(root, key, value, ok);
         return ok;
     }
-
     bool remove(Key key) override
     {
         bool ok = false;
         root = rmv(root, key, ok);
         return ok;
     }
-
     bool find(Key key) const override
     {
         return Find(root, key) != nullptr;
     }
-
     Value get(Key key) const override
     {
         Node *n = Find(root, key);
@@ -202,47 +210,36 @@ public:
             return Value();
         return n->value;
     }
-
     void update(Key key, Value value) override
     {
         Node *n = Find(root, key);
         if (n)
             n->value = value;
     }
-
     void clear() override
     {
         clean(root);
         root = nullptr;
         node_count = 0;
     }
-
     size_t size() const override
     {
         return node_count;
     }
-
     bool empty() const override
     {
         return node_count == 0;
     }
-
     Key find_min() const override
     {
         Node *n = min_node(root);
-        if (!n)
-            return Key();
-        return n->key;
+        return n ? n->key : Key();
     }
-
     Key find_max() const override
     {
         Node *n = max_node(root);
-        if (!n)
-            return Key();
-        return n->key;
+        return n ? n->key : Key();
     }
-
     void print(char traversal_type = 'D') const override
     {
         if (traversal_type == 'I')
@@ -275,5 +272,12 @@ public:
         }
     }
 };
+// static pointers
+template <typename Key, typename Value>
+ListBST<Key, Value> *ListBST<Key, Value>::T_Total = nullptr;
+template <typename Key, typename Value>
+ListBST<Key, Value> *ListBST<Key, Value>::T_Success = nullptr;
+template <typename Key, typename Value>
+ListBST<Key, Value> *ListBST<Key, Value>::T_Reject = nullptr;
 
 #endif // LISTBST_H
