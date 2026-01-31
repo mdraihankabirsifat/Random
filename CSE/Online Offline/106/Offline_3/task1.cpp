@@ -1,27 +1,35 @@
-#include <iostream>
-#include <fstream>
+#include <bits/stdc++.h>
+#define ll long long
+#define tata "\n"
+#define pb push_back
+using namespace std;
 #include "listBST.hpp"
 
 using namespace std;
 
-int main(int argc, char **argv) {
-    if (argc != 2) {
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
         cerr << "Usage: filename" << "\n";
         return 1;
     }
     ifstream in_file(argv[1]);
-    if (!in_file) {
+    if (!in_file)
+    {
         cerr << "Unable to open file\n";
         return 2;
     }
     char c, str[5];
     int val;
     BST<int, int> *bst = new ListBST<int, int>();
-    if (!bst) {
+    if (!bst)
+    {
         cerr << "Memory allocation failed\n";
         return 3;
     }
-    while (in_file >> c) {
+    while (in_file >> c)
+    {
         // TODO: Implement the logic to read commands from the file and output accordingly
         // After every insertion and removal, print the BST in nested parentheses format
         // Handle exceptions where necessary and print appropriate error messages

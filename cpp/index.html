@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CPP Code Variator</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 20px auto; background: #f0f2f5; padding: 20px; }
+        textarea { width: 100%; height: 250px; font-family: 'Consolas', monospace; padding: 15px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 10px; box-sizing: border-box; }
+        .actions { margin-bottom: 20px; }
+        button { padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-gen { background: #007bff; color: white; }
+        .btn-copy { background: #28a745; color: white; margin-left: 10px; }
+        #outputArea { background: #ffffff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; white-space: pre-wrap; font-family: 'Consolas', monospace; display: none; }
+        
+        #diffBadge {
+            position: fixed; top: 20px; right: 20px; background: #333; color: #fff;
+            padding: 10px 15px; border-radius: 50px; font-size: 14px; display: none;
+        }
+        .high-diff { background: #28a745 !important; }
+    </style>
+</head>
+<body>
+    <div id="diffBadge">Dissimilarity: 0%</div>
+    <h2>C++ Weekly HW Variator</h2>
+    <textarea id="inputArea" placeholder="Paste original C++ code here..."></textarea>
+    <div class="actions">
+        <button class="btn-gen" onclick="handleGenerate()">Generate Variant</button>
+        <button class="btn-copy" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <button onclick="location.reload()" style="background:#6c757d; color:white; margin-left:10px;">Reset</button>
+    </div>
+    <div id="outputArea"></div>
+
+    <script src="engine.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
