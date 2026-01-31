@@ -14,7 +14,7 @@ function handleGenerate() {
     // 3. Process Code (Safe now)
     result = Engine.applyVariableMapping(result);
     result = Engine.swapLogic(result);
-    
+
     // 4. Unmask Everything
     result = Engine.unmaskLiterals(result);
     result = Engine.unmaskHeaders(result);
