@@ -2,8 +2,9 @@
 #include <fstream>
 #include <string>
 #include "listBST.hpp"
-
 using namespace std;
+//g++ task2.cpp -o task2.exe
+//./task1 in_task1.txt > myout.task1.txt
 
 int main(int argc, char **argv)
 {

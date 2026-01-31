@@ -4,13 +4,16 @@
 #include "listBST.hpp"
 using namespace std;
 
-int main(int argc, char **argv) {
-    if (argc != 2) {
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
         cerr << "Usage: filename" << "\n";
         return 1;
     }
     ifstream in_file(argv[1]);
-    if (!in_file) {
+    if (!in_file)
+    {
         cerr << "Unable to open file\n";
         return 1;
     }
@@ -24,7 +27,8 @@ int main(int argc, char **argv) {
 
     int n;
     in_file >> n;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i)
+    {
         // TODO: Implement the logic to read initial items and their starting bids
         // Initialize statistics tracking for each item
         // Start your code here
@@ -40,7 +44,8 @@ int main(int argc, char **argv) {
     cout << "==============================\n";
 
     string operation;
-    while (in_file >> operation) {
+    while (in_file >> operation)
+    {
         // TODO: Implement the logic to process operations (ADD, BID, CHECK, STATS, REPORT) and print auction state after each operation
         // For BID operations: update statistics (total bids, successful/rejected counts)
         // For STATS operations: display statistics for the specified item

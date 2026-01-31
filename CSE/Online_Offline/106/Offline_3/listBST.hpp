@@ -4,6 +4,9 @@
 #include "BST.hpp"
 #include <iostream>
 #include <stdexcept>
+#define ll long long
+#define Check if(!node) return nullptr
+#define check if(!n) return
 using namespace std;
 
 template <typename Key, typename Value>
@@ -12,7 +15,6 @@ class ListBST : public BST<Key, Value>
 public:
     static ListBST<Key, Value> *T_Total;
     static ListBST<Key, Value> *T_Success;
-    static ListBST<Key, Value> *T_Reject;
 
 private:
     class Node
@@ -24,75 +26,85 @@ private:
         Node *right;
         Node(Key k, Value v) : key(k), value(v), left(nullptr), right(nullptr) {}
     };
-
     Node *root;
     size_t node_count;
-
     void clean(Node *node)
     {
         if (!node)
+        {
             return;
+        }
         clean(node->left);
         clean(node->right);
         delete node;
     }
-
-    Node *insrt(Node *node, Key key, Value value, bool &success)
+    Node *insrt(Node *node, Key key, Value value, bool &ok)
     {
         if (!node)
         {
-            success = true;
+            ok = true;
             node_count++;
             return new Node(key, value);
         }
         if (key < node->key)
-            node->left = insrt(node->left, key, value, success);
+        {
+            node->left = insrt(node->left, key, value, ok);
+        }
         else if (key > node->key)
-            node->right = insrt(node->right, key, value, success);
+        {
+            node->right = insrt(node->right, key, value, ok);
+        }
         else
         {
-            success = false;
+            ok = false;
         }
         return node;
     }
-
     Node *Find(Node *node, Key key) const
     {
-        if (!node)
-            return nullptr;
+        Check;
         if (key < node->key)
+        {
             return Find(node->left, key);
+        }
         if (key > node->key)
+        {
             return Find(node->right, key);
+        }
         return node;
     }
 
     Node *min_node(Node *node) const
     {
-        if (!node)
-            return nullptr;
+        Check;
         while (node->left)
+        {
             node = node->left;
+        }
         return node;
     }
 
     Node *max_node(Node *node) const
     {
-        if (!node)
-            return nullptr;
+        Check;
         while (node->right)
+        {
             node = node->right;
+        }
         return node;
     }
 
     Node *rmv(Node *node, Key key, bool &yo)
     {
-        if (!node)
-            return nullptr;
+        Check;
         if (key < node->key)
+        {
             node->left = rmv(node->left, key, yo);
+        }
         else if (key > node->key)
+        {
             node->right = rmv(node->right, key, yo);
+        }
         else
         {
             yo = true;
@@ -109,10 +121,10 @@ private:
                 delete node;
                 return temp;
             }
-            Node *temp = min_node(node->right);
-            node->key = temp->key;
-            node->value = temp->value;
-            node->right = rmv(node->right, temp->key, yo);
+            Node *t = min_node(node->right);
+            node->key = t->key;
+            node->value = t->value;
+            node->right = rmv(node->right, t->key, yo);
             node_count++;
         }
         return node;
@@ -120,8 +132,7 @@ private:
 
     void inorder(Node *n) const
     {
-        if (!n)
-            return;
+        check;
         inorder(n->left);
         cout << "(" << n->key << ":" << n->value << ") ";
         inorder(n->right);
@@ -129,8 +140,7 @@ private:
 
     void preorder(Node *n) const
     {
-        if (!n)
-            return;
+        check;
         cout << "(" << n->key << ":" << n->value << ") ";
         preorder(n->left);
         preorder(n->right);
@@ -138,8 +148,7 @@ private:
 
     void postorder(Node *n) const
     {
-        if (!n)
-            return;
+        check;
         postorder(n->left);
         postorder(n->right);
         cout << "(" << n->key << ":" << n->value << ") ";
@@ -147,16 +156,19 @@ private:
 
     void Print(Node *n) const
     {
-        if (!n)
-            return;
+        check;
         cout << "(" << n->key << ":" << n->value;
         if (n->left || n->right)
         {
             cout << " ";
             if (n->left)
+            {
                 Print(n->left);
+            }
             else
+            {
                 cout << "()";
+            }
             if (n->right)
             {
                 cout << " ";
@@ -168,13 +180,11 @@ private:
 
     void printR(Node *n) const
     {
-        if (!n)
-            return;
+        check;
         printR(n->left);
-        // task2
         int t = T_Total ? T_Total->get(n->key) : 0;
         int s = T_Success ? T_Success->get(n->key) : 0;
-        int r = T_Reject ? T_Reject->get(n->key) : 0;
+        int r = t - s;
         cout << "  " << n->key << ": Current bid: " << n->value << ", Total bids: " << t << ", Successful: " << s << ", Rejected: " << r << endl;
         printR(n->right);
     }
@@ -207,14 +217,18 @@ public:
     {
         Node *n = Find(root, key);
         if (!n)
+        {
             return Value();
+        }
         return n->value;
     }
     void update(Key key, Value value) override
     {
         Node *n = Find(root, key);
         if (n)
+        {
             n->value = value;
+        }
     }
     void clear() override
     {
@@ -272,12 +286,10 @@ public:
         }
     }
 };
-// static pointers
+
 template <typename Key, typename Value>
 ListBST<Key, Value> *ListBST<Key, Value>::T_Total = nullptr;
 template <typename Key, typename Value>
 ListBST<Key, Value> *ListBST<Key, Value>::T_Success = nullptr;
-template <typename Key, typename Value>
-ListBST<Key, Value> *ListBST<Key, Value>::T_Reject = nullptr;
 
 #endif // LISTBST_H

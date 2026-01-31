@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "listBST.hpp"
+#define ll long long
 using namespace std;
 
 int main(int argc, char **argv)
@@ -17,136 +18,132 @@ int main(int argc, char **argv)
         cerr << "Unable to open file\n";
         return 1;
     }
-
-    // TODO: Declare data structures...
-    ListBST<string, int> *priceTree = new ListBST<string, int>();
-    ListBST<string, int> *totalTree = new ListBST<string, int>();
-    ListBST<string, int> *successTree = new ListBST<string, int>();
-    ListBST<string, int> *rejectTree = new ListBST<string, int>();
-
-    int g_bids = 0, g_succ = 0, g_rej = 0;
-
-    // Link trees
-    ListBST<string, int>::T_Total = totalTree;
-    ListBST<string, int>::T_Success = successTree;
-    ListBST<string, int>::T_Reject = rejectTree;
+    // TODO: Declare data structures to track bid statistics for each item
+    // Start your code here
+    ListBST<string, int> *TPrice = new ListBST<string, int>();
+    ListBST<string, int> *TTotal = new ListBST<string, int>();
+    ListBST<string, int> *TSucc = new ListBST<string, int>();
+    ListBST<string, int>::T_Total = TTotal;
+    ListBST<string, int>::T_Success = TSucc;
+    ll Bids = 0, Succ = 0, Rej = 0;
     // End your code here
 
     int n;
     in_file >> n;
     for (int i = 0; i < n; ++i)
     {
-        // TODO: Read initial items...
+        // TODO: Implement the logic to read initial items and their starting bids
+        // Start your code here
         string id;
         int b;
         in_file >> id >> b;
-        priceTree->insert(id, b);
-        totalTree->insert(id, 0);
-        successTree->insert(id, 0);
-        rejectTree->insert(id, 0);
+        TPrice->insert(id, b);
+        TTotal->insert(id, 0);
+        TSucc->insert(id, 0);
         // End your code here
     }
 
-    // TODO: Print initial state...
+    // TODO: Implement the logic to print the initial auction state
+    // Start your code here
     cout << "Initial auction items:" << endl;
-    priceTree->print('I');
+    TPrice->print('I');
     // End your code here
     cout << "\nAuction starts!\n\n";
     cout << "==============================\n";
 
-    string operation;
-    while (in_file >> operation)
+    string op;
+    while (in_file >> op)
     {
-        // TODO: Process operations...
+        // TODO: Implement the logic to process operations
+        // Start your code here
         string id;
-        int val;
-
-        if (operation == "ADD")
+        ll x;
+        if (op == "ADD")
         {
-            in_file >> id >> val;
-            if (priceTree->find(id))
+            in_file >> id >> x;
+            if (TPrice->find(id))
             {
-                if (val > priceTree->get(id))
-                    priceTree->update(id, val);
+                if (x > TPrice->get(id))
+                    TPrice->update(id, x);
             }
             else
             {
-                priceTree->insert(id, val);
-                totalTree->insert(id, 0);
-                successTree->insert(id, 0);
-                rejectTree->insert(id, 0);
+                TPrice->insert(id, x);
+                TTotal->insert(id, 0);
+                TSucc->insert(id, 0);
             }
-            cout << "Item " << id << " added with starting bid " << val << endl;
-            priceTree->print('I');
+            cout << "Item " << id << " added with starting bid " << x << endl;
+            TPrice->print('I');
         }
-        else if (operation == "BID")
+        else if (op == "BID")
         {
-            in_file >> id >> val;
-            g_bids++;
-            if (!priceTree->find(id))
+            in_file >> id >> x;
+            Bids++;
+            if (!TPrice->find(id))
             {
-                g_rej++;
+                Rej++;
                 cout << "Bid rejected. Item " << id << " not found." << endl;
             }
             else
             {
-                totalTree->update(id, totalTree->get(id) + 1);
-                if (val > priceTree->get(id))
+                // Increment Total Bids
+                TTotal->update(id, TTotal->get(id) + 1);
+
+                if (x > TPrice->get(id))
                 {
-                    g_succ++;
-                    priceTree->update(id, val);
-                    successTree->update(id, successTree->get(id) + 1);
-                    cout << "Bid of " << val << " on " << id << " accepted. Current bid: " << val << endl;
+                    // Success Case
+                    Succ++;
+                    TPrice->update(id, x);
+                    TSucc->update(id, TSucc->get(id) + 1);
+                    cout << "Bid of " << x << " on " << id << " accepted. Current bid: " << x << endl;
                 }
                 else
                 {
-                    g_rej++;
-                    rejectTree->update(id, rejectTree->get(id) + 1);
-                    cout << "Bid of " << val << " on " << id << " rejected. Current bid: " << priceTree->get(id) << endl;
+                    // Reject Case
+                    Rej++;
+                    cout << "Bid of " << x << " on " << id << " rejected. Current bid: " << TPrice->get(id) << endl;
                 }
             }
-            priceTree->print('I');
+            TPrice->print('I');
         }
-        else if (operation == "CHECK")
+        else if (op == "CHECK")
         {
             in_file >> id;
-            if (priceTree->find(id))
-                cout << "Current bid for " << id << ": " << priceTree->get(id) << endl;
+            if (TPrice->find(id))
+                cout << "Current bid for " << id << ": " << TPrice->get(id) << endl;
             else
                 cout << "Item " << id << " not found." << endl;
-            priceTree->print('I');
+            TPrice->print('I');
         }
-        else if (operation == "STATS")
+        else if (op == "STATS")
         {
             in_file >> id;
-            if (priceTree->find(id))
+            if (TPrice->find(id))
             {
+                int t = TTotal->get(id);
+                int s = TSucc->get(id);
                 cout << "Statistics for " << id << ":" << endl;
-                cout << "  Current highest bid: " << priceTree->get(id) << endl;
-                cout << "  Total bids placed: " << totalTree->get(id) << endl;
-                cout << "  Successful bids: " << successTree->get(id) << endl;
-                cout << "  Rejected bids: " << rejectTree->get(id) << endl;
+                cout << "  Current highest bid: " << TPrice->get(id) << endl;
+                cout << "  Total bids placed: " << t << endl;
+                cout << "  Successful bids: " << s << endl;
+                cout << "  Rejected bids: " << (t - s) << endl;
             }
             else
+            {
                 cout << "Item " << id << " not found." << endl;
+            }
         }
-        else if (operation == "REPORT")
+        else if (op == "REPORT")
         {
-            cout << "Auction Report:\nTotal items: " << priceTree->size() << "\nTotal bids placed: " << g_bids
-                 << "\nTotal successful bids: " << g_succ << "\nTotal rejected bids: " << g_rej
-                 << "\n\nItem Statistics:" << endl;
-            priceTree->print('R');
+            cout << "Auction Report:\nTotal items: " << TPrice->size() << "\nTotal bids placed: " << Bids << "\nTotal successful bids: " << Succ << "\nTotal rejected bids: " << Rej << "\n\nItem Statistics:" << endl;
+            TPrice->print('R');
         }
         // End your code here
         cout << "==============================\n";
     }
-
     in_file.close();
-    // TODO: Delete...
-    delete priceTree;
-    delete totalTree;
-    delete successTree;
-    delete rejectTree;
-    // End your code here
+    delete TPrice;
+    delete TTotal;
+    delete TSucc;
     return 0;
 }
