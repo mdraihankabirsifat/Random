@@ -1,41 +1,46 @@
-# 🧠 Competitive Programming Repository
+# 💻 Code Odyssey | Daily CP & CSE Journey
 
-Welcome to my personal **Competitive Programming (CP)** repository.  
-This is a private collection of my practice and contest codes, covering a wide range of topics, platforms, and problem difficulties.
+Welcome! This is a public repository where I archive my daily journey through Computer Science and Engineering. It tracks my transition from competitive programming practice to versatile academic and personal development.
 
-## 📌 Purpose
+## 📂 Repository Breakdown
 
-This repository serves as:
-- A personal archive of solved problems from online judges (Codeforces, AtCoder, LeetCode, Vjudge etc.)
-- A tracker for my progress and learning in competitive programming
-- A reference for revisiting problem-solving techniques and patterns
+The code is organized into specific modules to track different aspects of my learning:
 
-## 🛠️ Tools and Languages
+### 🏆 Competitive Programming
+* **Problem Sets:** Solved problems from online judges like Codeforces, AtCoder, and LeetCode.
 
-- **Language:** Primarily C/C++
-- **Editor:** VS Code
-- **Compiler:** g++ with C++17/C++20 support
-- **Testing:** Manual test cases or input/output files
+### 🎓 Academic Work
+* **Data Structures & Algorithms:** Core implementations of BSTs, Linked Lists, Stacks, and Queues.
+* **Course Assessments:** Solutions for academic "Online" and "Offline" programming tasks.
+* **Object-Oriented Programming:** Projects and assignments focused on OOP principles.
+
+### 🛠️ Tools & Personal Library
+* **Personal Functions:** A collection of reusable snippets and utility functions.
+* **Projects:** Larger development projects and experimental builds.
+
+## 🛠️ Tech Stack
+
+* **Primary Language:** C++ (with C++17/20 support).
+* **Environment:** VS Code.
+* **Core Focus:** Turning logical puzzles into efficient code.
 
 ## 📚 Topics Covered
 
-- Sorting & Searching  
-- Graph Algorithms (DFS, BFS etc.)  
-- Dynamic Programming  
-- Number Theory  
-- Binary Search  
-- Bitmasking  
-- Greedy Algorithms  
-- Segment Trees  
-- Geometry and more...
+* Sorting & Searching
+* Graph Algorithms (DFS, BFS, etc.)
+* Dynamic Programming & Number Theory
+* Segment Trees & Greedy Algorithms
+* Bitmasking & Binary Search
 
 ## 🚧 Notes
 
-> ⚠️ This is a **private repository** for personal use and learning purposes.  
-> Solutions may not be optimized or commented thoroughly.  
-> Many codes are written under time pressure during contests.
+> [!NOTE]
+> This is a public repository for personal use and growth tracking. 
+> Some codes were written under time pressure during live contests, while others are structured implementations for academic requirements.
 
 ## 🧑‍💻 About Me
 
-I'm a CSE student at BUET with a strong interest in algorithms and problem solving.  
-This repository is a reflection of my journey in competitive programming.
+I am a CSE student at BUET with a strong interest in algorithms and problem-solving. I enjoy learning new things and adopting them in real-life experiences.
+
+---
+*Last updated: February 2026*
