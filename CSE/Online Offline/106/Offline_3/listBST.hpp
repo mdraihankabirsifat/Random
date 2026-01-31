@@ -6,19 +6,10 @@
 #include <stdexcept>
 using namespace std;
 
-/**
- * Binary Search Tree implementation using linked list structure
- *
- * @tparam Key - The type of keys stored in the BST
- * @tparam Value - The type of values associated with keys
- */
 template <typename Key, typename Value>
 class ListBST : public BST<Key, Value>
 {
 private:
-    /**
-     * Node class for the binary search tree
-     */
     class Node
     {
     public:
@@ -27,12 +18,13 @@ private:
         Node *left;
         Node *right;
 
-        Node(Key k, Value v) : key(k), value(v), left(nullptr), right(nullptr)
-        {
-        }
+        Node(Key k, Value v) : key(k), value(v), left(nullptr), right(nullptr) {}
     };
+
     Node *root;
     size_t node_count;
+
+    // Helper to free memory
     void clean(Node *node)
     {
         if (!node)
@@ -42,30 +34,27 @@ private:
         delete node;
     }
 
-    // Helper to insert node recursively
-    Node *insrt(Node *node, Key key, Value value, int flag)
+    // Recursive Insert
+    Node *insrt(Node *node, Key key, Value value, bool &success)
     {
         if (!node)
         {
-            flag = 1;
+            success = true;
             node_count++;
             return new Node(key, value);
         }
         if (key < node->key)
-        {
-            node->left = insrt(node->left, key, value, flag);
-        }
+            node->left = insrt(node->left, key, value, success);
         else if (key > node->key)
-        {
-            node->right = insrt(node->right, key, value, flag);
-        }
+            node->right = insrt(node->right, key, value, success);
         else
         {
-            flag = 0;
+            success = false;
         }
         return node;
     }
 
+    // Recursive Find
     Node *Find(Node *node, Key key) const
     {
         if (!node)
@@ -95,41 +84,41 @@ private:
         return node;
     }
 
-    Node *rmv(Node *node, Key key, int flag)
+    // Recursive Remove
+    Node *rmv(Node *node, Key key, bool &success)
     {
         if (!node)
             return nullptr;
+
         if (key < node->key)
-        {
-            node->left = rmv(node->left, key, flag);
-        }
+            node->left = rmv(node->left, key, success);
         else if (key > node->key)
-        {
-            node->right = rmv(node->right, key, flag);
-        }
+            node->right = rmv(node->right, key, success);
         else
         {
-            flag = 1;
+            success = true;
             node_count--;
+            // Case 1: No child or One child
             if (!node->left)
             {
-                Node *r = node->right;
+                Node *temp = node->right;
                 delete node;
-                return r;
+                return temp;
             }
             else if (!node->right)
             {
-                Node *l = node->left;
+                Node *temp = node->left;
                 delete node;
-                return l;
+                return temp;
             }
-            else
-            {
-                Node *MinR = min_node(node->right);
-                node->key = MinR->key;
-                node->value = MinR->value;
-                node->right = rmv(node->right, MinR->key, flag);
-            }
+            // Case 2: Two children
+            Node *temp = min_node(node->right);
+            node->key = temp->key;
+            node->value = temp->value;
+            node->right = rmv(node->right, temp->key, success);
+            // We increment node_count back because the recursive call decremented it
+            // but we only swapped data, effectively deleting one node in the end.
+            node_count++;
         }
         return node;
     }
@@ -138,91 +127,96 @@ private:
     {
         if (!n)
             return;
-        cout << "(";
         inorder(n->left);
-        if (n->left)
-            cout << " ";
-        cout << n->key << ":" << n->value;
-        if (n->right)
-            cout << " ";
+        cout << "(" << n->key << ":" << n->value << ") ";
         inorder(n->right);
-        cout << ")";
     }
+
     void preorder(Node *n) const
     {
         if (!n)
             return;
-        cout << "(" << n->key << ":" << n->value << " ";
+        cout << "(" << n->key << ":" << n->value << ") ";
         preorder(n->left);
         preorder(n->right);
-        cout << ")";
     }
+
     void postorder(Node *n) const
     {
         if (!n)
             return;
-        cout << "(";
         postorder(n->left);
         postorder(n->right);
-        cout << n->key << ":" << n->value << ")";
+        cout << "(" << n->key << ":" << n->value << ") ";
+    }
+
+    // Default Format: (Root (Left) (Right))
+    void Print(Node *n) const
+    {
+        if (!n)
+            return;
+        cout << "(" << n->key << ":" << n->value;
+
+        // If either child exists, we check structure
+        if (n->left || n->right)
+        {
+            cout << " ";
+            if (n->left)
+            {
+                Print(n->left);
+            }
+            else
+            {
+                cout << "()"; // Print empty placeholder if Left is missing but Right exists
+            }
+
+            if (n->right)
+            {
+                cout << " ";
+                Print(n->right);
+            }
+        }
+        cout << ")";
     }
 
 public:
-    ListBST() : root(nullptr), node_count(0)
-    {
-    }
-    ~ListBST()
-    {
-        clear();
-    }
+    ListBST() : root(nullptr), node_count(0) {}
+    ~ListBST() { clear(); }
 
-    // Insert a key-value pair into the BST
     bool insert(Key key, Value value) override
     {
-        bool f = false;
-        root = insrt(root, key, value, f);
-        return f;
+        bool success = false;
+        root = insrt(root, key, value, success);
+        return success;
     }
 
-    // Remove a key-value pair from the BST
     bool remove(Key key) override
     {
-        bool rmvd = false;
-        root = rmv(root, key, rmvd);
-        return rmvd;
+        bool success = false;
+        root = rmv(root, key, success);
+        return success;
     }
 
-    // Find if a key exists in the BST
     bool find(Key key) const override
     {
         return Find(root, key) != nullptr;
     }
 
-    // Find a value associated with a given key
     Value get(Key key) const override
     {
         Node *n = Find(root, key);
         if (!n)
-        {
-            cout << "Key not found" << endl;
-            return Value();
-        }
+            return Value(); // Return default value if not found
         return n->value;
     }
 
-    // Update the value associated with a given key
     void update(Key key, Value value) override
     {
         Node *n = Find(root, key);
-        if (!n)
-        {
-            cout << "Key not found" << endl;
-            return;
-        }
-        n->value = value;
+        if (n)
+            n->value = value;
     }
 
-    // Clear all elements from the BST
     void clear() override
     {
         clean(root);
@@ -230,41 +224,32 @@ public:
         node_count = 0;
     }
 
-    // Get the number of keys in the BST
     size_t size() const override
     {
         return node_count;
     }
 
-    // Check if the BST is empty
     bool empty() const override
     {
         return node_count == 0;
     }
 
-    // Find the minimum key in the BST
     Key find_min() const override
     {
         Node *n = min_node(root);
         if (!n)
-            throw std::runtime_error("BST is empty");
+            return Key();
         return n->key;
     }
 
-    /**
-     * Find the maximum key in the BST
-     */
     Key find_max() const override
     {
         Node *n = max_node(root);
         if (!n)
-            throw std::runtime_error("BST is empty");
+            return Key();
         return n->key;
     }
 
-    /**
-     * Print the BST using specified traversal method
-     */
     void print(char traversal_type = 'D') const override
     {
         if (traversal_type == 'I')
@@ -285,7 +270,7 @@ public:
         else
         {
             cout << "BST (Default): ";
-            inorder(root);
+            Print(root);
         }
         cout << endl;
     }
