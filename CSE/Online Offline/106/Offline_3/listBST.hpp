@@ -24,7 +24,6 @@ private:
     Node *root;
     size_t node_count;
 
-    // Helper to free memory
     void clean(Node *node)
     {
         if (!node)
@@ -34,7 +33,6 @@ private:
         delete node;
     }
 
-    // Recursive Insert
     Node *insrt(Node *node, Key key, Value value, bool &success)
     {
         if (!node)
@@ -54,7 +52,6 @@ private:
         return node;
     }
 
-    // Recursive Find
     Node *Find(Node *node, Key key) const
     {
         if (!node)
@@ -84,21 +81,19 @@ private:
         return node;
     }
 
-    // Recursive Remove
-    Node *rmv(Node *node, Key key, bool &success)
+    Node *rmv(Node *node, Key key, bool &yo)
     {
         if (!node)
             return nullptr;
 
         if (key < node->key)
-            node->left = rmv(node->left, key, success);
+            node->left = rmv(node->left, key, yo);
         else if (key > node->key)
-            node->right = rmv(node->right, key, success);
+            node->right = rmv(node->right, key, yo);
         else
         {
-            success = true;
+            yo = true;
             node_count--;
-            // Case 1: No child or One child
             if (!node->left)
             {
                 Node *temp = node->right;
@@ -111,13 +106,10 @@ private:
                 delete node;
                 return temp;
             }
-            // Case 2: Two children
             Node *temp = min_node(node->right);
             node->key = temp->key;
             node->value = temp->value;
-            node->right = rmv(node->right, temp->key, success);
-            // We increment node_count back because the recursive call decremented it
-            // but we only swapped data, effectively deleting one node in the end.
+            node->right = rmv(node->right, temp->key, yo);
             node_count++;
         }
         return node;
@@ -150,14 +142,11 @@ private:
         cout << "(" << n->key << ":" << n->value << ") ";
     }
 
-    // Default Format: (Root (Left) (Right))
     void Print(Node *n) const
     {
         if (!n)
             return;
         cout << "(" << n->key << ":" << n->value;
-
-        // If either child exists, we check structure
         if (n->left || n->right)
         {
             cout << " ";
@@ -167,7 +156,7 @@ private:
             }
             else
             {
-                cout << "()"; // Print empty placeholder if Left is missing but Right exists
+                cout << "()";
             }
 
             if (n->right)
@@ -185,16 +174,16 @@ public:
 
     bool insert(Key key, Value value) override
     {
-        bool success = false;
-        root = insrt(root, key, value, success);
-        return success;
+        bool ok = false;
+        root = insrt(root, key, value, ok);
+        return ok;
     }
 
     bool remove(Key key) override
     {
-        bool success = false;
-        root = rmv(root, key, success);
-        return success;
+        bool ok = false;
+        root = rmv(root, key, ok);
+        return ok;
     }
 
     bool find(Key key) const override
@@ -206,7 +195,7 @@ public:
     {
         Node *n = Find(root, key);
         if (!n)
-            return Value(); // Return default value if not found
+            return Value();
         return n->value;
     }
 
