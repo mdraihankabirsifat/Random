@@ -12,12 +12,13 @@ public class reference {
     }
 
     // toString method for easy printing
+    @Override
     public String toString() {
         return "(" + L + ", " + W + ", " + H + ")";
     }
 
     public static void main(String[] args) {
-        reference b1; // Type must be 'reference', not 'Box'
+        reference b1;
         reference b2;
 
         // 1. Allocate memory
