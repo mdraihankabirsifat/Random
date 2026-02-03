@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #define ll long long
-#define tata "\n"
 #define pb push_back
-using namespace std;
 #define jora(p, n) pair<ll, ll> p(n)
 #define sajai(x) sort(x.begin(), x.end())
 #define arr(v, x, y) vector<vector<ll>> v(x, vector<int>(y))
@@ -11,6 +9,8 @@ using namespace std;
 #define out(v) loop(i, 0, v.size()) cout << v[i] << " "
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
+#define tata "\n"
+using namespace std;
 
 int main()
 {
@@ -24,8 +24,7 @@ int main()
         cin >> n;
         vector<int> v(n);
         in(v);
-        sajai(v);
-        out(v);
+        
     }
     return 0;
 }
