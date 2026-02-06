@@ -29,23 +29,17 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    bool x = true;
-    ll n;
-    if (cin >> n)
+    ll t;
+    cin >> t;
+    while (t--)
     {
+        ll n;
+        cin >> n;
         vector<vector<ll>> v(n), v1;
-        string s;
-        getline(cin, s);
-        while (getline(cin, s))
+        loop(i, 0, n)
         {
-            if (s.size() == 0)
-            {
-                break;
-            }
             ll a1, a2;
-            char ch;
-            stringstream ss(s);
-            ss >> ch >> a1 >> ch >> a2 >> ch;
+            cin >> a1 >> a2;
             v[a1].pb(a2);
             v[a2].pb(a1);
         }
@@ -56,55 +50,42 @@ int main()
             {
                 vector<ll> emni;
                 dfs(v, seen, i, emni);
-                sajai(emni);
                 v1.pb(emni);
             }
         }
-        if (!x)
-        {
-            cout << tata;
-        }
-        x = false;
         cout << v1.size() << tata;
         loop(i, 0, v1.size())
         {
             cout << "Group " << i + 1 << ": {";
             loop(j, 0, v1[i].size())
             {
-                cout << v1[i][j] << ((j + 1 == v1[i].size()) ? "} | " : ", ");
+                cout << v1[i][j] << ((j == v1[i].size() - 1) ? "} | " : ", ");
             }
-            vector<vector<ll>> ye;
-            loop(a, 0, v1[i].size())
+            loop(j, 0, v1[i].size())
             {
-                loop(b, a + 1, v1[i].size())
+                vector<ll> phi;
+                phi = v1[i];
+                loop(l, 0, v[v1[i][j]].size())
                 {
-                    ll u = v1[i][a], w = v1[i][b], flag = 0;
-                    loop(k, 0, v[u].size())
+                    vector<vector<ll>> ye;
+                    loop(g, 0, phi.size())
                     {
-                        if (v[u][k] == w)
+                        if (v[v1[i][j]][l] == phi[g] && g != v1[i][j])
                         {
-                            flag = 1;
-                            break;
+                            phi.erase(phi.begin() + g);
+                        }
+                        if (phi[g] == v1[i][j])
+                        {
+                            phi.erase(phi.begin() + g);
                         }
                     }
-                    if (!flag)
+                    loop(w, 0, phi.size())
                     {
-                        ye.pb({u, w});
+                        ye.pb({v1[i][j], phi[w]});
                     }
-                }
-            }
-            if (ye.empty())
-            {
-                cout << "none";
-            }
-            else
-            {
-                loop(r, 0, ye.size())
-                {
-                    cout << "[" << ye[r][0] << "," << ye[r][1] << "]";
-                    if (r + 1 != ye.size())
+                    loop(r, 0, ye.size())
                     {
-                        cout << ", ";
+                        cout << "[" << ye[r][0] << "," << ye[r][1] << ((r == ye.size() - 1) ? "]" : "], ");
                     }
                 }
             }
