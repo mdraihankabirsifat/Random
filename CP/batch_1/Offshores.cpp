@@ -1,4 +1,3 @@
-/*Author- Md. Raihan Kabir Sifat; Institution-BUET*/
 #include <bits/stdc++.h>
 #define ll long long
 #define pb push_back
@@ -21,10 +20,20 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vector<int> v(n);
+        ll n, x, y, s = 0, m, a = 0;
+        cin >> n >> x >> y;
+        vector<ll> v(n);
         in(v);
+        loop(i, 0, n)
+        {
+            s += v[i] / x * y;
         }
+        loop(i, 0, n)
+        {
+            m = s - v[i] / x * y + v[i];
+            a = max(m, a);
+        }
+        cout << a << tata;
+    }
     return 0;
 }

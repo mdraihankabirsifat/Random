@@ -1,4 +1,3 @@
-/*Author- Md. Raihan Kabir Sifat; Institution-BUET*/
 #include <bits/stdc++.h>
 #define ll long long
 #define pb push_back
@@ -23,8 +22,20 @@ int main()
     {
         ll n;
         cin >> n;
-        vector<int> v(n);
-        in(v);
+        vector<ll> v;
+        ll p = ceil((double)n / 2);
+        for (int i = 1; i <= p; i++)
+        {
+            if (i == p && n % 2)
+            {
+                v.pb(i);
+                break;
+            }
+            v.pb(i);
+            v.pb(n - i + 1);
         }
+        reverse(v.begin(), v.end());
+        out(v);
+    }
     return 0;
 }
