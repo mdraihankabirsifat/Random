@@ -20,6 +20,33 @@ using namespace std;
 #define yes cout << "YES" << tata
 #define no cout << "NO" << tata
 
+class Solution
+{
+public:
+    int climbStairs(int n)
+    {
+        if (n == 1)
+        {
+            return 1;
+        }
+        else if (n == 2)
+        {
+            return 2;
+        }
+        else
+        {
+            int a = 1, b = 2, s = 0;
+            for (int i = 3; i <= n; i++)
+            {
+                s = a + b;
+                a = b;
+                b = s;
+            }
+            return s;
+        }
+    }
+};
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -32,7 +59,6 @@ int main()
         cin >> n;
         vr(v, n);
         in(v);
-        
     }
     return 0;
 }

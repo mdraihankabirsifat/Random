@@ -20,6 +20,31 @@ using namespace std;
 #define yes cout << "YES" << tata
 #define no cout << "NO" << tata
 
+class Solution
+{
+public:
+    int dominantIndices(vector<int> &nums)
+    {
+        int n = nums.size();
+        int s = 0, j = 1;
+        vector<int> v(n);
+        for (int i = n - 1; i >= 0; i--)
+        {
+            s += nums[i];
+            v[i] = s / j++;
+        }
+        j = 0;
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (nums[i] > v[i + 1])
+            {
+                j++;
+            }
+        }
+        return j;
+    }
+};
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -32,7 +57,6 @@ int main()
         cin >> n;
         vr(v, n);
         in(v);
-        
     }
     return 0;
 }

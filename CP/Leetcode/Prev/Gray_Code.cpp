@@ -20,19 +20,45 @@ using namespace std;
 #define yes cout << "YES" << tata
 #define no cout << "NO" << tata
 
+class Solution
+{
+public:
+    vector<int> grayCode(int n)
+    {
+        int x = pow(2, n);
+        vector<int> v;
+        v.push_back(0);
+        v.push_back(1);
+        if (n == 1)
+        {
+            return v;
+        }
+        v.push_back(3);
+        v.push_back(2);
+        for (int i = 3; i <= n; i++)
+        {
+            int j = (i - 2);
+            vector<int> v1;
+            v1 = v;
+            reverse(v1.begin(), v1.end());
+            for (int k = 0; k < v1.size(); k++)
+            {
+                v.push_back(v1[k] + pow(2, j + 1));
+            }
+        }
+        return v;
+    }
+};
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll t;
-    cin >> t;
-    while (t--)
-    {
-        ll n;
-        cin >> n;
-        vr(v, n);
-        in(v);
-        
-    }
+    int n;
+    cin >> n;
+    Solution sol;
+    vector<int> v;
+    v = sol.grayCode(n);
+    out(v);
     return 0;
 }
