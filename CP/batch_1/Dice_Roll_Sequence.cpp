@@ -28,11 +28,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, s = 0;
         cin >> n;
         vr(v, n);
+        vector<ll> p(n);
         in(v);
-        
+        for (int i = 1; i < n; i++)
+        {
+            if (v[i - 1] == 7 - v[i] && p[i - 1] == 0)
+            {
+                p[i] = 1;
+                s++;
+            }
+            else if (v[i] == v[i - 1] && p[i - 1] == 0)
+            {
+                p[i] = 1;
+                s++;
+            }
+        }
+        cout << s << tata;
     }
     return 0;
 }
