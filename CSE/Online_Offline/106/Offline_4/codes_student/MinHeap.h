@@ -6,13 +6,13 @@
 #include <stdexcept>
 #include <climits>
 
-#define MAX_CAPACITY 1000  // Defines the maximum capacity of the heap
+#define MAX_CAPACITY 1000 // Defines the maximum capacity of the heap
 
 class MinHeap
 {
 private:
-    int heap[MAX_CAPACITY];  // Array to store heap elements
-    int size;                // Current number of elements in the heap
+    int heap[MAX_CAPACITY]; // Array to store heap elements
+    int size;               // Current number of elements in the heap
 
     /**
      * Sifts up the node at index i to maintain heap property.
@@ -136,5 +136,4 @@ public:
         /**Write your code here**/
     }
 };
-
 #endif // MINHEAP_H

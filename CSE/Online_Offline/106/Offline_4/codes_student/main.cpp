@@ -26,55 +26,55 @@ int main()
         {
             switch (command)
             {
-            case 1:  // insert(x)
+            case 1: // insert(x)
                 iss >> value;
                 heap.insert(value);
                 outfile << "Inserted " << value << " into the heap." << std::endl;
                 break;
 
-            case 2:  // extract-min()
+            case 2: // extract-min()
                 outfile << "Extracted Min: " << heap.extractMin() << std::endl;
                 break;
 
-            case 3:  // find-min()
+            case 3: // find-min()
                 outfile << "Min: " << heap.findMin() << std::endl;
                 break;
 
-            case 4:  // get-size()
+            case 4: // get-size()
                 outfile << "Heap size: " << heap.getSize() << std::endl;
                 break;
 
-            case 5:  // is-empty()
+            case 5: // is-empty()
                 outfile << "Is heap empty? " << (heap.isEmpty() ? "Yes" : "No") << std::endl;
                 break;
 
-            case 6:  // delete-key(index)
+            case 6: // delete-key(index)
                 iss >> index;
                 heap.deleteKey(index);
                 outfile << "Deleted element at index " << index << std::endl;
                 break;
 
-            case 7:  // decrease-key(index, new_value)
+            case 7: // decrease-key(index, new_value)
                 iss >> index >> value;
                 heap.decreaseKey(index, value);
                 outfile << "Decreased key at index " << index << " to " << value << std::endl;
                 break;
 
-            case 8:  // print-heap()
+            case 8: // print-heap()
                 outfile << "Heap: ";
                 heap.printHeap(outfile);
                 break;
 
-            case 9:  // is-valid-min-heap()
+            case 9: // is-valid-min-heap()
                 outfile << "Min Heap property is "
                         << (heap.isValidMinHeap() ? "preserved." : "violated!")
                         << std::endl;
                 break;
 
-            case 10:  // heapify(arr, n)
+            case 10: // heapify(arr, n)
             {
                 iss >> n;
-                int* arr = new int[n];
+                int *arr = new int[n];
                 for (int i = 0; i < n; i++)
                 {
                     iss >> arr[i];
@@ -85,14 +85,14 @@ int main()
                 break;
             }
 
-            case 11:  // heap-sort()
+            case 11: // heap-sort()
                 outfile << "Sorted: ";
                 heap.heapSort(outfile);
                 break;
 
-            case 12:  // replace-min(x)
+            case 12: // replace-min(x)
                 iss >> value;
-                outfile << "Replaced Min: " << heap.replaceMin(value) 
+                outfile << "Replaced Min: " << heap.replaceMin(value)
                         << " with " << value << std::endl;
                 break;
 
@@ -106,9 +106,7 @@ int main()
             outfile << "Error: " << e.what() << std::endl;
         }
     }
-
     infile.close();
     outfile.close();
-
     return 0;
 }

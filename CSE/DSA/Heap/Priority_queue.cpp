@@ -40,13 +40,10 @@ int extractMax()
         cout << "Heap Underflow\n";
         return -1;
     }
-
     int maxValue = A[1];
     A[1] = A[heapSize];
     heapSize--;
-
     maxHeapify(1);
-
     return maxValue;
 }
 
@@ -58,13 +55,17 @@ void increaseKey(int i, int key)
         cout << "New key is smaller\n";
         return;
     }
-
     A[i] = key;
-
-    while (i > 1 && A[i / 2] < A[i])
+    for (int i = heapSize; i > 1; i = i / 2)
     {
-        swap(A[i], A[i / 2]);
-        i = i / 2;
+        if (A[i] < A[i / 2])
+        {
+            swap(A[i], A[i / 2]);
+        }
+        else
+        {
+            break;
+        }
     }
 }
 
