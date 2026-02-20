@@ -4,7 +4,6 @@
 #include <fstream>
 #include <stdexcept>
 #include <climits>
-using namespace std;
 #define MAX_CAPACITY 1000 // Defines the maximum capacity of the heap
 
 class MinHeap
@@ -19,17 +18,6 @@ private:
     void siftUp(int i)
     {
         /**Write your code here**/
-        for (int j = i; j > 0; j = (j - 1) / 2)
-        {
-            if (heap[j] < heap[(j - 1) / 2])
-            {
-                swap(heap[j], heap[(j - 1) / 2]);
-            }
-            else
-            {
-                break;
-            }
-        }
     }
 
     /**
@@ -38,21 +26,6 @@ private:
     void siftDown(int i)
     {
         /**Write your code here**/
-        int left = 2 * i + 1, right = 2 * i + 2;
-        int s = i;
-        if (left < size && heap[s] > heap[left])
-        {
-            s = left;
-        }
-        if (right < size && heap[s] > heap[right])
-        {
-            s = right;
-        }
-        if (s != i)
-        {
-            swap(heap[s], heap[i]);
-            siftDown(s);
-        }
     }
 
 public:
@@ -70,6 +43,15 @@ public:
     }
 
     /**
+     * Returns the minimum element without removing it.
+     */
+    int findMin()
+    {
+        /**Write your code here**/
+        return heap[0];
+    }
+
+    /**
      * Removes and returns the minimum element from the heap.
      */
     int extractMin()
@@ -79,29 +61,11 @@ public:
     }
 
     /**
-     * Returns the minimum element without removing it.
-     */
-    int findMin()
-    {
-        /**Write your code here**/
-        if (size < 1)
-        {
-            return NULL;
-        }
-        return heap[0];
-    }
-
-    /**
      * Returns the number of elements in the heap.
      */
     int getSize()
     {
         /**Write your code here**/
-        if (size == 0)
-        {
-            throw runtime_error("Heap is Empty.");
-        }
-        return size;
     }
 
     /**
@@ -111,7 +75,6 @@ public:
     bool isEmpty()
     {
         /**Write your code here**/
-        return size == 0;
     }
 
     /**
@@ -134,7 +97,7 @@ public:
      * Prints the heap's content to the output file.
      * Format: "elem1 elem2 elem3 ..." (space-separated)
      */
-    void printHeap(ofstream &outfile)
+    void printHeap(std::ofstream &outfile)
     {
         /**Write your code here**/
     }
@@ -160,7 +123,7 @@ public:
      * Returns all elements in sorted (ascending) order.
      * The original heap should remain UNCHANGED after this operation.
      */
-    void heapSort(ofstream &outfile)
+    void heapSort(std::ofstream &outfile)
     {
         /**Write your code here**/
     }
