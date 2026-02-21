@@ -67,6 +67,13 @@ public:
     void insert(int x)
     {
         /**Write your code here**/
+        if (size == MAX_CAPACITY)
+        {
+            throw runtime_error("Heap is full");
+        }
+        size++;
+        heap[size - 1] = x;
+        siftUp(size - 1);
     }
 
     /**
@@ -74,8 +81,16 @@ public:
      */
     int extractMin()
     {
-
         /**Write your code here**/
+        if (size == 0)
+        {
+            throw runtime_error("Heap is Empty.");
+        }
+        int temp = heap[0];
+        heap[0] = heap[size - 1];
+        size--;
+        siftDown(0);
+        return temp;
     }
 
     /**
@@ -86,7 +101,7 @@ public:
         /**Write your code here**/
         if (size < 1)
         {
-            return NULL;
+            throw runtime_error("Heap is Empty.");
         }
         return heap[0];
     }
@@ -97,10 +112,6 @@ public:
     int getSize()
     {
         /**Write your code here**/
-        if (size == 0)
-        {
-            throw runtime_error("Heap is Empty.");
-        }
         return size;
     }
 
@@ -120,6 +131,17 @@ public:
     void decreaseKey(int i, int newValue)
     {
         /**Write your code here**/
+        if (i < 0 || i >= size)
+        {
+            throw runtime_error("Invalid index.");
+        }
+
+        if (newValue > heap[i])
+        {
+            throw runtime_error("New value is greater than current value.");
+        }
+        heap[i] = newValue;
+        siftUp(i);
     }
 
     /**
@@ -128,6 +150,25 @@ public:
     void deleteKey(int i)
     {
         /**Write your code here**/
+        if (i < 0 || i >= size)
+        {
+            throw runtime_error("Invalid index.");
+        }
+        if (i == size - 1)
+        {
+            size--;
+            return;
+        }
+        heap[i] = heap[size - 1];
+        size--;
+        if (i > 0 && heap[i] < heap[(i - 1) / 2])
+        {
+            siftUp(i);
+        }
+        else
+        {
+            siftDown(i);
+        }
     }
 
     /**
@@ -137,6 +178,15 @@ public:
     void printHeap(ofstream &outfile)
     {
         /**Write your code here**/
+        for (int i = 0; i < size; i++)
+        {
+            outfile << heap[i];
+            if (i != size - 1)
+            {
+                outfile << " ";
+            }
+        }
+        outfile << endl;
     }
 
     /**
@@ -146,6 +196,20 @@ public:
     bool isValidMinHeap()
     {
         /**Write your code here**/
+        for (int i = 0; i < size; i++)
+        {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            if (left < size && heap[i] > heap[left])
+            {
+                return false;
+            }
+            if (right < size && heap[i] > heap[right])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -154,6 +218,19 @@ public:
     void heapify(int arr[], int n)
     {
         /**Write your code here**/
+        if (n > MAX_CAPACITY)
+        {
+            throw runtime_error("Heap exceeds maximum capacity.");
+        }
+        size = n;
+        for (int i = 0; i < n; i++)
+        {
+            heap[i] = arr[i];
+        }
+        for (int i = (n / 2) - 1; i >= 0; i--)
+        {
+            siftDown(i);
+        }
     }
 
     /**
@@ -163,6 +240,27 @@ public:
     void heapSort(ofstream &outfile)
     {
         /**Write your code here**/
+        int size2 = size;
+        int heap2[MAX_CAPACITY];
+        for (int i = 0; i < size; i++)
+        {
+            heap2[i] = heap[i];
+        }
+        for (int i = 0; i < size2; i++)
+        {
+            int m = extractMin();
+            outfile << m;
+            if (i != size2 - 1)
+            {
+                outfile << " ";
+            }
+        }
+        outfile << endl;
+        size = size2;
+        for (int i = 0; i < size2; i++)
+        {
+            heap[i] = heap2[i];
+        }
     }
 
     /**
@@ -172,6 +270,14 @@ public:
     int replaceMin(int x)
     {
         /**Write your code here**/
+        if (size == 0)
+        {
+            throw runtime_error("Heap is empty.");
+        }
+        int temp = heap[0];
+        heap[0] = x;
+        siftDown(0);
+        return temp;
     }
 };
 #endif // MINHEAP_H
