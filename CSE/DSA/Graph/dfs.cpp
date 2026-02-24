@@ -41,6 +41,8 @@ int main()
     for (int i = 0; i < vertex; i++)
     {
         if (color[i] == 0)
+        {
             DFS_visit(i);
+        }
     }
 }

@@ -4,6 +4,7 @@ const int MAX = 1000;
 int A[MAX];
 int heapSize = 0;
 
+// Time Complexity: O(log n) in the worst case (heap height)
 void minHeapify(int i)
 {
     int left = 2 * i;
@@ -24,6 +25,7 @@ void minHeapify(int i)
     }
 }
 
+// Time Complexity: O(log n) in the worst case (percolate up)
 void push(int value)
 {
     heapSize++;
@@ -50,6 +52,7 @@ void print()
     cout << endl;
 }
 
+// Time Complexity: O(log n) due to minHeapify call
 int min_extract()
 {
     if (heapSize == 0)

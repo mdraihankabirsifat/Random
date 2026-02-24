@@ -56,16 +56,10 @@ void increaseKey(int i, int key)
         return;
     }
     A[i] = key;
-    for (int i = heapSize; i > 1; i = i / 2)
+    while (i > 1 && A[i / 2] < A[i])
     {
-        if (A[i] < A[i / 2])
-        {
-            swap(A[i], A[i / 2]);
-        }
-        else
-        {
-            break;
-        }
+        swap(A[i], A[i / 2]);
+        i = i / 2;
     }
 }
 

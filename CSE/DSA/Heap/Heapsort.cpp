@@ -4,6 +4,7 @@ const int MAX = 1000;
 int A[MAX];
 int heapSize;
 
+// Time Complexity: O(log n) in the worst case (heap height)
 void maxHeapify(int i)
 {
     int left = 2 * i;
@@ -23,6 +24,7 @@ void maxHeapify(int i)
     }
 }
 
+// Time Complexity: O(log n) in the worst case (heap height)
 void minHeapify(int i)
 {
     int left = 2 * i;
@@ -42,6 +44,7 @@ void minHeapify(int i)
     }
 }
 
+// Time Complexity: O(n) for building heap from unordered array
 void buildMaxHeap(int n)
 {
     heapSize = n;
@@ -51,6 +54,7 @@ void buildMaxHeap(int n)
     }
 }
 
+// Time Complexity: O(n) for building heap from unordered array
 void buildMinHeap(int n)
 {
     heapSize = n;
@@ -60,6 +64,7 @@ void buildMinHeap(int n)
     }
 }
 
+// Time Complexity: O(n log n) overall (n times extract-max with O(log n) each)
 void heapSort(int n)
 {
     buildMaxHeap(n);
