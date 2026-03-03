@@ -8,7 +8,7 @@ class SharedCounter1 {
         this.counter = 0;
     }
 
-    public void increment() {
+    public synchronized void increment() {
         this.counter++;
     }
 
@@ -16,7 +16,8 @@ class SharedCounter1 {
         return this.counter;
     }
 
-    synchronized void count() {
+    //synchronized
+    void count() {
         for (int i = 0; i < 10000; i++) {
             increment();
         }

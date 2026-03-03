@@ -1,10 +1,10 @@
 package tcpobject;
 
+import java.io.IOException;
 import util.SocketWrapper;
 
-import java.io.IOException;
-
 public class ReadThread implements Runnable {
+
     private Thread thr;
     private SocketWrapper socketWrapper;
 
