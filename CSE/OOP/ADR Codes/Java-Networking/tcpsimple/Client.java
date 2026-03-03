@@ -10,7 +10,7 @@ public class Client {
             Socket socket = new Socket(serverAddress, serverPort);
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            String name = "C";
+            String name = "hola";
             oos.writeObject(name);
             System.out.println(ois.readObject());
             socket.close();
