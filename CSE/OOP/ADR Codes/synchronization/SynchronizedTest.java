@@ -1,4 +1,4 @@
-package synchronization;
+//package synchronization;
 
 class TestClass {
     public void f0() {

@@ -5,7 +5,7 @@ public class CreateThread {
     public static void main(String[] args) {
         CreateThread ct = new CreateThread();
         new Thread(ct::f1, "T1").start();
-        new Thread(CreateThread::f2, "T3").start();
+        new Thread(CreateThread::f2, "T3").start(); //if static, no object needed
     }
 
     public void f1() {

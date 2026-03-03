@@ -1,9 +1,7 @@
 //package threads;
 
 class NewThread1 implements Runnable {
-
     Thread t;
-
     NewThread1() {
         t = new Thread(this);
         t.start();
@@ -13,9 +11,9 @@ class NewThread1 implements Runnable {
     @Override
     public void run() {
         try {
-            for (int i = 100; i > 0; i--) {
+            for (int i = 5; i > 0; i--) {
                 System.out.println("Child Thread: " + i);
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
         } catch (InterruptedException e) {
             System.out.println("Child interrupted.");
@@ -28,9 +26,9 @@ public class ImplementsThread {
 
     public static void main(String[] args) throws Exception {
         new NewThread1();
-        for (int i = 500; i > 0; i--) {
+        for (int i = 10; i > 0; i--) {
             System.out.println("Main Thread: " + i);
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
     }
 }

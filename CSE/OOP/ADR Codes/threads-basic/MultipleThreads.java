@@ -16,7 +16,7 @@ class NewThread implements Runnable {
         try {
             for (int i = 10; i > 0; i--) {
                 System.out.println(name + ": " + i);
-                Thread.sleep(1000);
+                Thread.sleep(250);
             }
         } catch (InterruptedException e) {
             System.out.println(name + "Interrupted");
@@ -29,17 +29,21 @@ public class MultipleThreads {
 
     public static void main(String[] args) {
         System.out.println("Main thread starting.");
+        NewThread t1 = new NewThread("One");
+        // try {
+        //     t1.t.join();
+        // } catch (InterruptedException e) {
+        //     System.out.println("Main thread Interrupted");
+        // }
+        NewThread t2 = new NewThread("Two");
+        NewThread t3 = new NewThread("Three");
 
-        new NewThread("One");
-        new NewThread("Two");
-        new NewThread("Three");
-
-        /*try {
-            // wait for other threads to end
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            System.out.println("Main thread Interrupted");
-        }*/
+        // try {
+        //     // wait for other threads to end
+        //     Thread.sleep(500);
+        // } catch (InterruptedException e) {
+        //     System.out.println("Main thread Interrupted");
+        // }
         System.out.println("Main thread exiting.");
     }
 }

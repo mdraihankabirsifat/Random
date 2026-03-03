@@ -24,10 +24,10 @@ class SumThread implements Runnable {
 public class MultipleThreadSum {
 
     public static void main(String[] args) {
-        SumThread t1 = new SumThread(1, 2500);
-        SumThread t2 = new SumThread(2501, 5000);
-        SumThread t3 = new SumThread(5001, 7500);
-        SumThread t4 = new SumThread(7501, 10000);
+        SumThread t1 = new SumThread(1, 5);
+        SumThread t2 = new SumThread(6, 10);
+        SumThread t3 = new SumThread(11, 15);
+        SumThread t4 = new SumThread(16, 20);
 
         try {
             // wait for other threads to end
