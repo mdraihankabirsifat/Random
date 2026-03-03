@@ -1,8 +1,5 @@
-//package tcpforward;
-
-import util.SocketWrapper;
-
 import java.io.IOException;
+import util.SocketWrapper;
 
 public class ReadThreadClient implements Runnable {
     private Thread thr;

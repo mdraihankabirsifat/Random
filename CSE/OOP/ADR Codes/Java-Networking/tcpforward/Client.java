@@ -1,8 +1,5 @@
-//package tcpforward;
-
-import util.SocketWrapper;
-
 import java.util.Scanner;
+import util.SocketWrapper;
 
 public class Client {
 
