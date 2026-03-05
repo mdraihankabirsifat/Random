@@ -1,11 +1,11 @@
 //package threads;
 
-public class CreateThread {
+public class CreateThreads {
 
     public static void main(String[] args) {
-        CreateThread ct = new CreateThread();
+        CreateThreads ct = new CreateThreads();
         new Thread(ct::f1, "T1").start();
-        new Thread(CreateThread::f2, "T3").start(); //if static, no object needed
+        new Thread(CreateThreads::f2, "T3").start(); //if static, no object needed
     }
 
     public void f1() {

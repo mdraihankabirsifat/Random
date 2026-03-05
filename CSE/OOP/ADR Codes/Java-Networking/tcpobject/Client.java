@@ -1,4 +1,4 @@
-package tcpobject;
+//package tcpobject;
 
 import util.SocketWrapper;
 

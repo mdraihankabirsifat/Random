@@ -8,7 +8,7 @@ public class Server2 {
 
     public static void main(String[] args) {
         try {
-            ServerSocket ss = new ServerSocket(123);
+            ServerSocket ss = new ServerSocket(4444);
             while (true) {
                 Socket s = ss.accept();
                 System.out.println("Client connected!");
@@ -34,9 +34,7 @@ class Servant implements Runnable {
     @Override
     public void run() {
         try (
-            ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-            ObjectInputStream ois = new ObjectInputStream(s.getInputStream())
-        ) {
+                ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream()); ObjectInputStream ois = new ObjectInputStream(s.getInputStream())) {
             Integer a = (Integer) ois.readObject();
             System.out.println("Read a: " + a);
             Integer b = (Integer) ois.readObject();
@@ -52,9 +50,9 @@ class Servant implements Runnable {
         ArrayList<Integer> starters = fiboFinder(a);
         int p1 = starters.get(0);
         int p2 = starters.get(1);
-        if (b < p1) {
-            return 0; 
-        }else if (b < p2) {
+        if (b < p1) { //a<b<p1<p2
+            return 0;
+        } else if (b < p2) { // a<p1<b<p2
             return 1;
         }
         int c = 2;

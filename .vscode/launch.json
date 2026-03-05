@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "client2",
+            "request": "launch",
+            "mainClass": "client2",
+            "projectName": "Code_5bb29ddd"
+        },
+        {
+            "type": "java",
             "name": "ImplementsThread2",
             "request": "launch",
             "mainClass": "ImplementsThread2",
