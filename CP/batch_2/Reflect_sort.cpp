@@ -2,7 +2,7 @@
 using namespace std;
 #define ll long long
 #define pb push_back
-#define tata "\n"
+#define tata "\n" 
 #define vr(v, x) vector<ll> v(x)
 #define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
 #define jora(p, n) pair<ll, ll> p(n)
