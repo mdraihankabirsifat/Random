@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
+// struct p
+// {
+
+// } sifat;
 typedef struct xx
 {
 private:

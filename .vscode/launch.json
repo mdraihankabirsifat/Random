@@ -1,7 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [
-        { 
+        {
+            "type": "java",
+            "name": "Constructor",
+            "request": "launch",
+            "mainClass": "CSE.OOP.Encapsulation.Constructor",
+            "projectName": "Code_5bb29ddd"
+        },
+        {
             "type": "java",
             "name": "client2",
             "request": "launch",
