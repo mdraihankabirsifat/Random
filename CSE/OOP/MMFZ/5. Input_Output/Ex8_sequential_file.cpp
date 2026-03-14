@@ -4,40 +4,48 @@ using namespace std;
 
 int main()
 {
+
     ifstream in;
     ofstream out;
-    // fstream can be used for both input and output
-    // ios::out | ios::app opens for writing and appends to the end
+
     fstream out2("test3.cpp", ios::out | ios::app);
+
     char ch;
 
     try
     {
+
         in.open("test.cpp");
+
         if (!in)
             throw "Cannot open input file";
 
         out.open("test2.cpp", ios::out);
+
         if (!out)
             throw "Cannot open output file";
     }
+
     catch (const char *message)
     {
+
         cout << message << endl;
         return 1;
     }
 
-    // Read first character
-    in.get(ch);
+    in.get(ch); // read character
+
     while (!in.eof())
     {
-        out.put(ch);  // Write to first file
-        out2.put(ch); // Write to second file (append mode)
-        in.get(ch);   // Get next character
+
+        out.put(ch); // write character
+        out2.put(ch);
+
+        in.get(ch);
     }
 
-    // Check if a file is still open before closing
     if (in.is_open())
+
         cout << "file already open\n";
 
     in.close();
@@ -46,3 +54,15 @@ int main()
 
     return 0;
 }
+
+/*
+Key Notes:
+
+1. get() reads a character from file.
+
+2. put() writes a character to file.
+
+3. Used for sequential file access.
+
+4. Multiple output files can be written simultaneously.
+*/

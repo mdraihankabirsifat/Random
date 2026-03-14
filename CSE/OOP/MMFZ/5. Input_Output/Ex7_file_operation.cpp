@@ -1,14 +1,15 @@
 #include <iostream>
-#include <fstream> // Required for file operations
+#include <fstream>
 using namespace std;
 
 int main()
 {
-    // --- WRITING SECTION ---
+
     try
     {
-        // ios::app means "append" - it adds to the end without deleting old data
-        ofstream out("Inventory", ios::app);
+
+        ofstream out("Inventory", ios::app); // open file for append
+
         if (!out)
             throw "Cannot open output file";
 
@@ -16,37 +17,60 @@ int main()
         out << "Toasters " << 21 << endl;
         out << "Mixers " << 17 << endl;
 
-        out.close(); // Clean up
+        out.close();
     }
+
     catch (const char *message)
     {
+
         cout << message << endl;
         return 1;
     }
 
-    // --- READING SECTION ---
     try
     {
-        ifstream in("Inventory");
+
+        ifstream in("Inventory"); // open file for reading
+
         if (!in)
             throw "Cannot open input file";
 
         char item[20];
         int quantity;
 
-        // while(!in.eof()) checks if we reached the end of the file
         in >> item >> quantity;
+
         while (!in.eof())
         {
+
             cout << item << ' ' << quantity << endl;
+
             in >> item >> quantity;
         }
+
         in.close();
     }
+
     catch (const char *message)
     {
+
         cout << message << endl;
+        return 1;
     }
 
     return 0;
 }
+
+/*
+Key Notes:
+
+1. <fstream> library used for file operations.
+
+2. ofstream → writing to file.
+
+3. ifstream → reading from file.
+
+4. ios::app → append mode.
+
+5. eof() checks end of file.
+*/
