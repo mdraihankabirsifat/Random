@@ -30,9 +30,11 @@ int main()
     {
         ll n;
         cin >> n;
-        vr(v, n);
-        in(v);
-    
+        for (int i = n; i > 0; i--)
+        {
+            cout << i << " ";
+        }
+        cout << tata;
     }
     return 0;
 }
