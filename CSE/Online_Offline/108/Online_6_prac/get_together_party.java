@@ -1,7 +1,4 @@
-
 import java.util.*;
-// Keeping the shared resource as a class makes the lock easy to manage
-
 class Inventory {
     int[] stock;
     Inventory(int m) {
@@ -15,19 +12,15 @@ class Inventory {
 }
 
 public class get_together_party {
-
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt(), M = sc.nextInt();
-
         Inventory inv = new Inventory(M);
         Thread[] threads = new Thread[N];
-
         for (int i = 0; i < N; i++) {
             int k = sc.nextInt();
             char[] types = new char[k];
             int[] items = new int[k];
-
             // Read all actions for this friend first
             for (int j = 0; j < k; j++) {
                 types[j] = sc.next().charAt(0);
