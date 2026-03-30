@@ -1,44 +1,33 @@
 //package synchronization;
-
 class SharedCounter {
-
     private int counter;
-
     SharedCounter() {
         this.counter = 0;
     }
-
-    public void increment() {
+    public void  increment() { //synchronized
         this.counter = this.counter + 1;
     }
-
     public int get() {
         return this.counter;
     }
-
     void count() {
         for (int i = 0; i < 10000; i++) {
             increment();
         }
     }
-
 }
 
 class ThreadCounterNoSync implements Runnable {
-
     SharedCounter sharedCounter;
     Thread t;
-
     public ThreadCounterNoSync(SharedCounter s, String name) {
         sharedCounter = s;
         t = new Thread(this, name);
         t.start();
     }
-
     public void run() {
         sharedCounter.count();
     }
-
     public static void main(String[] args) {
         SharedCounter sharedCounter = new SharedCounter();
         sharedCounter.count();
@@ -47,7 +36,6 @@ class ThreadCounterNoSync implements Runnable {
 }
 
 public class NonSynchronizedCounter {
-
     public static void main(String[] args) {
         SharedCounter sharedCounter = new SharedCounter();
         ThreadCounterNoSync ob1 = new ThreadCounterNoSync(sharedCounter, "T1");

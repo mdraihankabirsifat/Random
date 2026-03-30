@@ -11,7 +11,7 @@ public class MainThread {
         try {
             for (int i = 10; i > 0; i--) {
                 System.out.println("Main Thread: " + i);
-                Thread.sleep(500);
+                Thread.sleep(100);
             }
         } catch (InterruptedException e) {
             System.out.println("Main thread interrupted");

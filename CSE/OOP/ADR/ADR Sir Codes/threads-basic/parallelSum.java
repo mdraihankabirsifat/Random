@@ -34,6 +34,7 @@ public class parallelSum {
         }
         ParallelSum[] parallelSum = new ParallelSum[10];
         int part = numbers.length / 10;
+        
         // Create 10 threads
         for (int i = 0; i < 10; i++) {
             int start = i * part;

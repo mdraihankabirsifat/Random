@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MyThread implements Runnable {
+
     List<String> list;
     Thread t;
 
@@ -14,18 +15,17 @@ class MyThread implements Runnable {
     }
 
     public void run() {
-        for (int i = 1; i <= 10000; i++) 
-        {
+        for (int i = 1; i <= 10; i++) {
             list.add(String.valueOf(i));
-            /*synchronized(list) 
-            {
-                list.add(String.valueOf(i));
-            }*/
+            // synchronized (list) {
+            //     list.add(String.valueOf(i));
+            // }
         }
     }
 }
 
 public class TestSyncArrayList {
+
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
         MyThread myThread1 = new MyThread(list);
@@ -36,6 +36,9 @@ public class TestSyncArrayList {
         } catch (Exception e) {
             System.out.println(e);
         }
+        // for (int i = 0; i < list.size(); i++) {
+        //     System.out.println(list.get(i));
+        // }
         System.out.println(list.size());
     }
 }
