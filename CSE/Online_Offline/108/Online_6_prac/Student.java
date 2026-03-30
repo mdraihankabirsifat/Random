@@ -20,10 +20,8 @@ public class Student {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-
         int N = sc.nextInt(); // students
         int M = sc.nextInt(); // courses
-
         StudentManager sm = new StudentManager(M);
         Thread[] threads = new Thread[N];
 

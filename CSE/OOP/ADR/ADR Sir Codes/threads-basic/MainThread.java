@@ -18,3 +18,4 @@ public class MainThread {
         }
     }
 }
+//gci -r -filter *.class | rm
