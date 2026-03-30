@@ -11,7 +11,7 @@ class Inventory {
     }
 }
 
-public class get_together_party {
+public class Party {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt(), M = sc.nextInt();
