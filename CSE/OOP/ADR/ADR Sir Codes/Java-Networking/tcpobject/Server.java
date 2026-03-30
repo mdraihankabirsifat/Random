@@ -1,10 +1,6 @@
-//package tcpobject;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import util.SocketWrapper;
 
 public class Server {
 
@@ -17,8 +13,8 @@ public class Server {
                 Socket clientSocket = serverSocket.accept();
                 serve(clientSocket);
             }
-        } catch (Exception e) {
-            System.out.println("Server starts:" + e);
+        } catch (IOException e) {
+            System.out.println("Server error: " + e.getMessage());
         }
     }
 

@@ -1,6 +1,6 @@
-//package tcpobject;
+// Client.java - TCP Client
 
-import util.SocketWrapper;
+import java.io.IOException;
 
 public class Client {
 
@@ -9,8 +9,8 @@ public class Client {
             SocketWrapper socketWrapper = new SocketWrapper(serverAddress, serverPort);
             new ReadThread(socketWrapper);
             new WriteThread(socketWrapper, "Client");
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println("Client error: " + e.getMessage());
         }
     }
 

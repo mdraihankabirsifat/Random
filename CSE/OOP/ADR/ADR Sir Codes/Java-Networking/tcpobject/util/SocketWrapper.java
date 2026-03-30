@@ -1,5 +1,3 @@
-package util;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -7,9 +5,9 @@ import java.net.Socket;
 
 public class SocketWrapper {
 
-    private Socket socket;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
+    private final Socket socket;
+    private final ObjectOutputStream oos;
+    private final ObjectInputStream ois;
 
     public SocketWrapper(String address, int port) throws IOException {
         this.socket = new Socket(address, port);

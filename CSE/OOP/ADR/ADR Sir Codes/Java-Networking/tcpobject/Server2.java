@@ -1,5 +1,3 @@
-//package tcpobject;
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -14,8 +12,8 @@ public class Server2 {
                 System.out.println("Client connected!");
                 new Servant(s);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Server error: " + e.getMessage());
         }
     }
 }
@@ -23,7 +21,7 @@ public class Server2 {
 class Servant implements Runnable {
 
     private final Socket s;
-    Thread t;
+    private final Thread t;
 
     public Servant(Socket s) {
         this.s = s;
@@ -39,10 +37,10 @@ class Servant implements Runnable {
             System.out.println("Read a: " + a);
             Integer b = (Integer) ois.readObject();
             System.out.println("Input received form client!");
-            oos.writeObject(Integer.valueOf(noOfFibo(a, b)));
+            oos.writeObject(noOfFibo(a, b));
             oos.flush();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Servant error: " + e.getMessage());
         }
     }
 

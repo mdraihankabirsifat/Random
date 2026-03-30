@@ -1,12 +1,9 @@
-//package tcpobject;
-
 import java.io.IOException;
-import util.SocketWrapper;
 
 public class ReadThread implements Runnable {
 
-    private Thread thr;
-    private SocketWrapper socketWrapper;
+    private final Thread thr;
+    private final SocketWrapper socketWrapper;
 
     public ReadThread(SocketWrapper socketWrapper) {
         this.socketWrapper = socketWrapper;
@@ -14,6 +11,7 @@ public class ReadThread implements Runnable {
         thr.start();
     }
 
+    @Override
     public void run() {
         try {
             while (true) {
@@ -23,13 +21,13 @@ public class ReadThread implements Runnable {
                     System.out.println("Received: " + obj.getId() + ", " + obj.getValue());
                 }
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("ReadThread error: " + e.getMessage());
         } finally {
             try {
                 socketWrapper.closeConnection();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Error closing connection: " + e.getMessage());
             }
         }
     }

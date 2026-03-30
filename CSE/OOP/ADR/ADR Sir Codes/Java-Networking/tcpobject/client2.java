@@ -1,8 +1,6 @@
-//package tcpobject;
-
+import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
-import util.SocketWrapper;
 
 public class client2 {
 
@@ -13,15 +11,13 @@ public class client2 {
             Socket socket = new Socket(serverAddress, port);
             socketWrapper = new SocketWrapper(socket);
             System.out.println("Connected to server.");
-        } catch (Exception e) {
-            System.out.println("Client starts: " + e);
+        } catch (IOException e) {
+            System.out.println("Client starts: " + e.getMessage());
         }
     }
 
     public void start() {
-        try {
-            Scanner scanner = new Scanner(System.in);
-
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Enter first number: ");
             int a = scanner.nextInt();
 
@@ -37,8 +33,8 @@ public class client2 {
 
             System.out.println("Number of prime numbers between given range: " + response);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Client2 error: " + e.getMessage());
         }
     }
 

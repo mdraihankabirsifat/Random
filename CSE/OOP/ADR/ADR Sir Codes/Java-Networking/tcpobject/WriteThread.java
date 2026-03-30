@@ -1,15 +1,11 @@
-//package tcpobject;
-
 import java.io.IOException;
 import java.util.Scanner;
 
-import util.SocketWrapper;
-
 public class WriteThread implements Runnable {
 
-    private Thread thr;
-    private SocketWrapper socketWrapper;
-    String name;
+    private final Thread thr;
+    private final SocketWrapper socketWrapper;
+    final String name;
 
     public WriteThread(SocketWrapper socketWrapper, String name) {
         this.socketWrapper = socketWrapper;
@@ -18,10 +14,10 @@ public class WriteThread implements Runnable {
         thr.start();
     }
 
+    @Override
     public void run() {
-        try {
+        try (Scanner input = new Scanner(System.in)) {
             int i = 1;
-            Scanner input = new Scanner(System.in);
             while (true) {
                 System.out.println("Enter a message to send: ");
                 String s = input.nextLine();
@@ -31,13 +27,13 @@ public class WriteThread implements Runnable {
                 socketWrapper.write(d);
                 i++;
             }
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println("WriteThread error: " + e.getMessage());
         } finally {
             try {
                 socketWrapper.closeConnection();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Error closing connection: " + e.getMessage());
             }
         }
     }

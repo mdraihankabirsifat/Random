@@ -1,5 +1,3 @@
-package tcpsimple;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,17 +16,18 @@ public class Server {
                 System.out.println("Server accepts a client ... ");
                 serve(clientSocket);
             }
-        } catch (Exception e) {
-            System.out.println("Server starts:" + e);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Server error: " + e.getMessage());
         }
     }
 
-    public void serve(Socket clientSocket) throws IOException, ClassNotFoundException {
+    private void serve(Socket clientSocket) throws IOException, ClassNotFoundException {
         clientCount++;
-        ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
-        ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
-        System.out.println(ois.readObject() + "," + clientCount);
-        oos.writeObject("Hello Client : " + clientCount);
+        try (ObjectOutputStream oos = new ObjectOutputStream(clientSocket.getOutputStream());
+             ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream())) {
+            System.out.println(ois.readObject() + "," + clientCount);
+            oos.writeObject("Hello Client : " + clientCount);
+        }
     }
     public static void main(String args[]) {
         new Server();
