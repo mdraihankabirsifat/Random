@@ -17,7 +17,7 @@ int main()
     cout << "Queue size: " << q.size() << endl;
 
     // Pop elements from the queue
-    cout << "\nRemoving elements:\n";
+    cout << "Removing elements:\n";
     while (!q.empty())
     {
         cout << q.front() << " ";

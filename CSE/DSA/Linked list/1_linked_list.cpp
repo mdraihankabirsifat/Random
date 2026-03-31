@@ -1,7 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+/*
+======================================================================
+LINKED LIST OPERATION TIME COMPLEXITY (SLL)
+======================================================================
 
+Operation                | Time Complexity | Notes
+-------------------------|-----------------|---------------------------
+Insert at Head (prepend) | O(1)            | Direct access, no search
+Insert at Tail (append)  | O(1)            | With tail pointer, O(n) without
+Insert at Index          | O(n)            | Must find position first
+Find Node (by value)     | O(n)            | Linear search through list
+Get Head                 | O(1)            | Direct access
+Get Tail                 | O(1)            | With tail pointer; O(n) without
+Get Node at Index        | O(n)            | Must traverse from head
+Remove Head              | O(1)            | Update head pointer only
+Remove Tail              | O(n)            | Must find node before tail
+Remove at Index          | O(n)            | Must find node before target
+Print/Traverse All       | O(n)            | Visit each node once
+Get Length               | O(n)            | Must traverse entire list
+*/
 class Node
 {
 public:
@@ -221,24 +240,3 @@ int main()
     Node *tail = n4;
     return 0;
 }
-
-/*
-======================================================================
-LINKED LIST OPERATION TIME COMPLEXITY (SLL)
-======================================================================
-
-Operation                | Time Complexity | Notes
--------------------------|-----------------|---------------------------
-Insert at Head (prepend) | O(1)            | Direct access, no search
-Insert at Tail (append)  | O(1)            | With tail pointer, O(n) without
-Insert at Index          | O(n)            | Must find position first
-Find Node (by value)     | O(n)            | Linear search through list
-Get Head                 | O(1)            | Direct access
-Get Tail                 | O(1)            | With tail pointer; O(n) without
-Get Node at Index        | O(n)            | Must traverse from head
-Remove Head              | O(1)            | Update head pointer only
-Remove Tail              | O(n)            | Must find node before tail
-Remove at Index          | O(n)            | Must find node before target
-Print/Traverse All       | O(n)            | Visit each node once
-Get Length               | O(n)            | Must traverse entire list
-*/
