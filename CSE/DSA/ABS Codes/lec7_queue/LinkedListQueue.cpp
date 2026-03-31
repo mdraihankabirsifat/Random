@@ -23,48 +23,59 @@ using namespace std;
  * ============================================================================
  */
 
-class Node {
+class Node
+{
 public:
     int data;
-    Node* next;
-    
-    Node(int val) {
+    Node *next;
+
+    Node(int val)
+    {
         data = val;
         next = nullptr;
     }
 };
 
-class LinkedListQueue {
+class LinkedListQueue
+{
 private:
-    Node* head;  // Front of queue
-    Node* tail;  // Rear of queue
+    Node *head; // Front of queue
+    Node *tail; // Rear of queue
     int count;
 
 public:
-    LinkedListQueue() {
+    LinkedListQueue()
+    {
         head = nullptr;
         tail = nullptr;
         count = 0;
     }
 
-    ~LinkedListQueue() {
-        while (!isEmpty()) {
+    ~LinkedListQueue()
+    {
+        while (!isEmpty())
+        {
             dequeue();
         }
     }
 
     // Check if queue is empty
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return head == nullptr;
     }
 
     // Add element to rear of queue (insert at end)
-    void enqueue(int val) {
-        Node* newNode = new Node(val);
-        
-        if (isEmpty()) {
+    void enqueue(int val)
+    {
+        Node *newNode = new Node(val);
+
+        if (isEmpty())
+        {
             head = tail = newNode;
-        } else {
+        }
+        else
+        {
             tail->next = newNode;
             tail = newNode;
         }
@@ -72,28 +83,33 @@ public:
     }
 
     // Remove element from front of queue (remove from front)
-    int dequeue() {
-        if (isEmpty()) {
+    int dequeue()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Queue underflow!" << endl;
             return -1;
         }
-        
-        Node* temp = head;
+
+        Node *temp = head;
         int val = head->data;
         head = head->next;
-        
-        if (head == nullptr) {
-            tail = nullptr;  // Queue is now empty
+
+        if (head == nullptr)
+        {
+            tail = nullptr; // Queue is now empty
         }
-        
+
         delete temp;
         count--;
         return val;
     }
 
     // Peek at front element without removing
-    int peek() {
-        if (isEmpty()) {
+    int peek()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Queue is empty!" << endl;
             return -1;
         }
@@ -101,19 +117,23 @@ public:
     }
 
     // Get current size
-    int size() {
+    int size()
+    {
         return count;
     }
 
     // Print queue contents
-    void print() {
-        if (isEmpty()) {
+    void print()
+    {
+        if (isEmpty())
+        {
             cout << "Queue is empty" << endl;
             return;
         }
         cout << "Queue (front to rear): ";
-        Node* current = head;
-        while (current != nullptr) {
+        Node *current = head;
+        while (current != nullptr)
+        {
             cout << current->data << " ";
             current = current->next;
         }
@@ -121,8 +141,10 @@ public:
     }
 };
 
-int main() {
-    cout << "=== Linked List-Based Queue Demo ===" << endl << endl;
+int main()
+{
+    cout << "=== Linked List-Based Queue Demo ===" << endl
+         << endl;
 
     LinkedListQueue queue;
 
@@ -159,7 +181,8 @@ int main() {
 
     // Test 6: Dequeue all elements
     cout << "\n6. Dequeue all elements:" << endl;
-    while (!queue.isEmpty()) {
+    while (!queue.isEmpty())
+    {
         cout << "   Dequeued: " << queue.dequeue() << endl;
     }
     queue.print();

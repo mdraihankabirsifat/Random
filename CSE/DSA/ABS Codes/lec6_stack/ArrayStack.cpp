@@ -24,35 +24,42 @@ using namespace std;
  * ============================================================================
  */
 
-class ArrayStack {
-    int* data;
-    int top;   // Index of next available position
+class ArrayStack
+{
+    int *data;
+    int top;      // Index of next available position
     int capacity; // Initial capacity
 
 public:
-    ArrayStack(int capacity = 10) {
+    ArrayStack(int capacity = 10)
+    {
         this->capacity = capacity;
         data = new int[capacity];
-        top = 0;  // Empty stack
+        top = 0; // Empty stack
     }
 
-    ~ArrayStack() {
+    ~ArrayStack()
+    {
         delete[] data;
     }
 
     // Check if stack is full
-    bool isFull() {
+    bool isFull()
+    {
         return top >= capacity;
     }
 
     // Check if stack is empty
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return top == 0;
     }
 
     // Push element onto stack
-    void push(int val) {
-        if (isFull()) {
+    void push(int val)
+    {
+        if (isFull())
+        {
             cout << "Error: Stack overflow!" << endl;
             return;
         }
@@ -60,8 +67,10 @@ public:
     }
 
     // Pop element from stack
-    int pop() {
-        if (isEmpty()) {
+    int pop()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Stack underflow!" << endl;
             return -1;
         }
@@ -69,8 +78,10 @@ public:
     }
 
     // Peek at top element without removing
-    int peek() {
-        if (isEmpty()) {
+    int peek()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Stack is empty!" << endl;
             return -1;
         }
@@ -78,26 +89,32 @@ public:
     }
 
     // Get current size
-    int size() {
+    int size()
+    {
         return top;
     }
 
     // Print stack contents
-    void print() {
-        if (isEmpty()) {
+    void print()
+    {
+        if (isEmpty())
+        {
             cout << "Stack is empty" << endl;
             return;
         }
         cout << "Stack (top to bottom): ";
-        for (int i = top - 1; i >= 0; i--) {
+        for (int i = top - 1; i >= 0; i--)
+        {
             cout << data[i] << " ";
         }
         cout << endl;
     }
 };
 
-int main() {
-    cout << "=== Array-Based Stack Demo ===" << endl << endl;
+int main()
+{
+    cout << "=== Array-Based Stack Demo ===" << endl
+         << endl;
 
     ArrayStack stack(5);
 
@@ -139,7 +156,8 @@ int main() {
 
     // Test 7: Pop all elements
     cout << "\n7. Pop all elements:" << endl;
-    while (!stack.isEmpty()) {
+    while (!stack.isEmpty())
+    {
         cout << "   Popped: " << stack.pop() << endl;
     }
     stack.print();

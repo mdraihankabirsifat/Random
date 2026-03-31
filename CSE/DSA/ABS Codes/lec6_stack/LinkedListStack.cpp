@@ -24,55 +24,65 @@ using namespace std;
  * ============================================================================
  */
 
-class Node {
+class Node
+{
 public:
     int data;
-    Node* next;
-    
-    Node(int val) {
+    Node *next;
+
+    Node(int val)
+    {
         data = val;
         next = nullptr;
     }
 };
 
-class LinkedListStack {
+class LinkedListStack
+{
 private:
-    Node* head;
+    Node *head;
     int count;
 
 public:
-    LinkedListStack() {
+    LinkedListStack()
+    {
         head = nullptr;
         count = 0;
     }
 
-    ~LinkedListStack() {
-        while (!isEmpty()) {
+    ~LinkedListStack()
+    {
+        while (!isEmpty())
+        {
             pop();
         }
     }
 
     // Check if stack is empty
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return head == nullptr;
     }
 
     // Push element onto stack (insert at front)
-    void push(int val) {
-        Node* newNode = new Node(val);
+    void push(int val)
+    {
+        Node *newNode = new Node(val);
         newNode->next = head;
         head = newNode;
         count++;
     }
 
     // Pop element from stack (remove from front)
-    int pop() {
-        if (isEmpty()) {
+    int pop()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Stack underflow!" << endl;
             return -1;
         }
-        
-        Node* temp = head;
+
+        Node *temp = head;
         int val = head->data;
         head = head->next;
         delete temp;
@@ -81,8 +91,10 @@ public:
     }
 
     // Peek at top element without removing
-    int peek() {
-        if (isEmpty()) {
+    int peek()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Stack is empty!" << endl;
             return -1;
         }
@@ -90,19 +102,23 @@ public:
     }
 
     // Get current size
-    int size() {
+    int size()
+    {
         return count;
     }
 
     // Print stack contents
-    void print() {
-        if (isEmpty()) {
+    void print()
+    {
+        if (isEmpty())
+        {
             cout << "Stack is empty" << endl;
             return;
         }
         cout << "Stack (top to bottom): ";
-        Node* current = head;
-        while (current != nullptr) {
+        Node *current = head;
+        while (current != nullptr)
+        {
             cout << current->data << " ";
             current = current->next;
         }
@@ -110,8 +126,10 @@ public:
     }
 };
 
-int main() {
-    cout << "=== Linked List-Based Stack Demo ===" << endl << endl;
+int main()
+{
+    cout << "=== Linked List-Based Stack Demo ===" << endl
+         << endl;
 
     LinkedListStack stack;
 
@@ -148,7 +166,8 @@ int main() {
 
     // Test 6: Pop all elements
     cout << "\n6. Pop all elements:" << endl;
-    while (!stack.isEmpty()) {
+    while (!stack.isEmpty())
+    {
         cout << "   Popped: " << stack.pop() << endl;
     }
     stack.print();

@@ -25,16 +25,18 @@ using namespace std;
  * ============================================================================
  */
 
-class CircularArrayQueue {
+class CircularArrayQueue
+{
 private:
-    int* data;
-    int front;     // Front of queue (index)
-    int rear;      // Rear of queue (index)
-    int count;     // Number of elements
+    int *data;
+    int front; // Front of queue (index)
+    int rear;  // Rear of queue (index)
+    int count; // Number of elements
     int capacity;
 
 public:
-    CircularArrayQueue(int cap = 5) {
+    CircularArrayQueue(int cap = 5)
+    {
         capacity = cap;
         data = new int[capacity];
         front = 0;
@@ -42,14 +44,16 @@ public:
         count = 0;
     }
 
-    ~CircularArrayQueue() {
+    ~CircularArrayQueue()
+    {
         delete[] data;
     }
 
     // Check if queue is empty
-    bool isEmpty() {
+    bool isEmpty()
+    {
         return count == 0;
-        
+
         // Alternative without count: front == rear (but ambiguous with full!)
         // To distinguish empty vs full without count:
         // Option 1: Sacrifice one slot (full when (rear+1)%capacity == front)
@@ -58,9 +62,10 @@ public:
     }
 
     // Check if queue is full
-    bool isFull() {
+    bool isFull()
+    {
         return count == capacity;
-        
+
         // Alternative without count: (rear+1) % capacity == front
         // Problem: This also means empty if we don't maintain count!
         // That's why we either:
@@ -70,33 +75,39 @@ public:
     }
 
     // Add element to rear of queue
-    void enqueue(int val) {
-        if (isFull()) {
+    void enqueue(int val)
+    {
+        if (isFull())
+        {
             cout << "Error: Queue overflow!" << endl;
             return;
         }
-        
+
         data[rear] = val;
-        rear = (rear + 1) % capacity;  // Circular increment
+        rear = (rear + 1) % capacity; // Circular increment
         count++;
     }
 
     // Remove element from front of queue
-    int dequeue() {
-        if (isEmpty()) {
+    int dequeue()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Queue underflow!" << endl;
             return -1;
         }
-        
+
         int val = data[front];
-        front = (front + 1) % capacity;  // Circular increment
+        front = (front + 1) % capacity; // Circular increment
         count--;
         return val;
     }
 
     // Peek at front element without removing
-    int peek() {
-        if (isEmpty()) {
+    int peek()
+    {
+        if (isEmpty())
+        {
             cout << "Error: Queue is empty!" << endl;
             return -1;
         }
@@ -104,28 +115,34 @@ public:
     }
 
     // Get current size
-    int size() {
+    int size()
+    {
         return count;
     }
 
     // Print queue contents
-    void print() {
-        if (isEmpty()) {
+    void print()
+    {
+        if (isEmpty())
+        {
             cout << "Queue is empty" << endl;
             return;
         }
         cout << "Queue (front to rear): ";
         int idx = front;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++)
+        {
             cout << data[idx] << " ";
-            idx = (idx + 1) % capacity;  // Circular traversal
+            idx = (idx + 1) % capacity; // Circular traversal
         }
         cout << endl;
     }
 };
 
-int main() {
-    cout << "=== Circular Array-Based Queue Demo ===" << endl << endl;
+int main()
+{
+    cout << "=== Circular Array-Based Queue Demo ===" << endl
+         << endl;
 
     CircularArrayQueue queue(5);
 
@@ -168,7 +185,8 @@ int main() {
 
     // Test 7: Dequeue all elements
     cout << "\n7. Dequeue all elements:" << endl;
-    while (!queue.isEmpty()) {
+    while (!queue.isEmpty())
+    {
         cout << "   Dequeued: " << queue.dequeue() << endl;
     }
     queue.print();
