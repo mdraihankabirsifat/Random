@@ -3,15 +3,16 @@ using namespace std;
 
 class StaticDemo
 {
-    static int a; // static variable (shared by all objects)
     static const int b = 5;
     int n = 4, m = 5; // non-static members
 
 public:
+    static int a; // static variable (shared by all objects)
     // static method
     static void increment()
     {
         a++; // static methods can access only static members
+        // n++;
     }
 
     // non-static method
@@ -32,15 +33,12 @@ int StaticDemo::a = 0;
 
 int main()
 {
-
     StaticDemo sd;
-
-    sd.display();          // display static values
-    sd.increment();        // increment static variable
-    StaticDemo::display(); // call using class name
-
+    sd.display();        // display static values
+    sd.increment();      // increment static variable
+    StaticDemo::display; // call using class name
+    cout << StaticDemo::a << endl;
     cout << sd.getProduct() << endl;
-
     return 0;
 }
 

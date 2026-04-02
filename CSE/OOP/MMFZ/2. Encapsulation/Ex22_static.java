@@ -1,11 +1,9 @@
 // Demonstration of static variable, static method and static block in Java
 
 class StaticDemo {
-
     static int a = 3;
     static int b;
     static int c;
-
     // static method
     static void show(int x) {
         a++;
@@ -25,19 +23,13 @@ class StaticDemo {
 }
 
 public class Ex22_static {
-
     public static void main(String[] args) {
-
         StaticDemo sd = new StaticDemo();
-
         StaticDemo.c = 5;
-
         for(int i = 0; i < 2; ++i) {
             sd.show(40 + i);
         }
-
         StaticDemo.show(10);
-
         System.out.println("B:" + StaticDemo.b);
     }
 }

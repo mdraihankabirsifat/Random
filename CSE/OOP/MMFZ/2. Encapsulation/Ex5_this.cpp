@@ -8,7 +8,7 @@ class Message
 public:
     Message(string msg)
     {
-        this->msg = msg;
+        this->msg = msg; //this is a object pointer that's why arrow
     }
     Message updateMessage(string msg)
     {

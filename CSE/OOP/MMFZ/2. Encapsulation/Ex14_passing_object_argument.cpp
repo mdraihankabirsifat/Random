@@ -27,6 +27,7 @@ public:
 
 void sqrOb(ObArg ob) // if &ob, then After sqrOb: 100
 {
+    //cout << ob.getA() << endl;
     ob.setA(ob.getA() * ob.getA()); // shallow copy
     cout << "Inside sqrOb: " << ob.getA() << endl;
 }

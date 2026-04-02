@@ -22,6 +22,7 @@ public:
 
 int main()
 {
+    // There is no pointer operator in Java.
     MyClass ob(120);
     MyClass *p;
     p = &ob;

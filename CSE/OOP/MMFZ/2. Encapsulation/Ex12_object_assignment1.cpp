@@ -31,7 +31,7 @@ public:
 
 int main()
 {
-    // ObAssign ob1("Hello World"), ob2("I like C++");
+    ObAssign ob1("Hello World"), ob2("I like C++");
     //  ob1.show();
     //  ob2.show();
     //  ob2 = ob1; // Problem occurs here (shallow copy)
@@ -45,7 +45,7 @@ int main()
     //ObAssign *temp = ob4;
     ob4 = ob3;
     ob4->show();
-    // No Execution of Destructor
+    //No Execution of Destructor
     delete ob3;
     delete ob4;
 

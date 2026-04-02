@@ -12,7 +12,7 @@ class Box {
     }
 
     // Copy constructor
-    Box(Box ob) {
+    Box(Box ob) {  //Java does NOT have references like C++
         length = ob.length;
         width = ob.width;
         height = ob.height;
@@ -23,7 +23,7 @@ class Box {
     }
 }
 
-public class box {
+public class Ex3_box {
 
     public static void main(String[] args) {
 

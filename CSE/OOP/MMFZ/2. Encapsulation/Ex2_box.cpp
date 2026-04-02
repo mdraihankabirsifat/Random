@@ -18,7 +18,7 @@ public:
     }
 
     // Copy constructor
-    Box(const Box &ob)
+    Box(Box &ob)
     {
         length = ob.length;
         width = ob.width;

@@ -10,7 +10,7 @@ class Samp
 public:
     Samp()
     {
-        s = "\0";
+        s = nullptr;
     }
     // Copy Assignment Operator
     Samp &operator=(const Samp &ob)

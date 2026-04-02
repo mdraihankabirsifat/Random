@@ -51,21 +51,14 @@ int Car::speedGreaterMember(Truck t)
     return speed - t.speed;
 }
 
-/* ---------- Main ---------- */
 int main()
 {
-
     Car c(5, 70);
     Truck t(500, 60);
-
     // Using non-member friend
-    cout << "Speed Gap (Friend Function): "
-         << speedGreater(c, t) << endl;
-
+    cout << "Speed Gap (Friend Function): " << speedGreater(c, t) << endl;
     // Using member friend
-    cout << "Speed Gap (Member Friend): "
-         << c.speedGreaterMember(t) << endl;
-
+    cout << "Speed Gap (Member Friend): " << c.speedGreaterMember(t) << endl;
     return 0;
 }
 

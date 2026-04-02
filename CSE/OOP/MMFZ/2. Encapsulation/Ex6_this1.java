@@ -12,7 +12,7 @@ class Message {
     }
 }
 
-public class this1 {
+public class Ex6_this1 {
     public static void main(String[] args) {
         Message msg = new Message("Hello, World!");
         msg.displayMessage();

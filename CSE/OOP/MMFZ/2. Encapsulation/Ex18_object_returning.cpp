@@ -31,7 +31,7 @@ public:
 Samp input()
 {
     Samp s;
-    s.set("Hello, world"); // dangling pointer
+    s.set("Hello world"); // dangling pointer
     return s;
 }
 
