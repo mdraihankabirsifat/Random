@@ -6,7 +6,6 @@ using namespace std;
 class Sa
 {
     int a;
-
 public:
     Sa(int n)
     {
@@ -41,23 +40,15 @@ public:
 /* ---------- Main ---------- */
 int main()
 {
-
     Sa s1[4] = {10, 20, 30, 40};
-
     Sa s2[4] = {Sa(50), Sa(60), Sa(70), Sa(80)};
-
     Sa s3[3][2] = {{11, 12}, {21, 22}, {31, 32}};
+    Sa s4[3][2] = {{Sa(41), Sa(42)}, {Sa(51), Sa(52)}, {Sa(61), Sa(62)}};
 
-    Sa s4[3][2] = {
-        {Sa(41), Sa(42)},
-        {Sa(51), Sa(52)},
-        {Sa(61), Sa(62)}};
-
-    Da ob[4] = {
-        Da("A", 10),
-        Da("B", 20),
-        Da("C", 30),
-        Da("D", 40)};
+    Da ob[4] = {Da("A", 10),
+                Da("B", 20),
+                Da("C", 30),
+                Da("D", 40)};
 
     for (int i = 0; i < 4; i++)
     {
@@ -74,7 +65,6 @@ int main()
             cout << "s4[" << i << "][" << j << "] = " << s4[i][j].getA() << endl;
         }
     }
-
     return 0;
 }
 

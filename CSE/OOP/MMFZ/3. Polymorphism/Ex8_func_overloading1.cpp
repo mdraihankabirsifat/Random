@@ -31,14 +31,15 @@ int main()
     float x = 10.09;
     double y = 10.09;
 
-    cout << f(x) << endl;  // calls float version
-    cout << f(y) << endl;  // calls double version
-    
-    //cout << f(10) << endl; // ambiguous: int → float or double
+    cout << f(x) << endl; // calls float version
+    cout << f(y) << endl; // calls double version
+
+    // cout << f(10) << endl; // ambiguous: int → float or double
+    cout << f((double)10) << endl;
 
     g('c'); // calls char version
-    
-    //g(86);  // ambiguous: int → char or unsigned char
+
+    // g(86);  // ambiguous: int → char or unsigned char
 
     return 0;
 }

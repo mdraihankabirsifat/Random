@@ -130,8 +130,7 @@ string infixToPostfix(string infix)
         else if (isOperator(ch))
         {
             // Pop operators with higher or equal precedence
-            while (!s.empty() && s.top() != '(' &&
-                   precedence(s.top()) >= precedence(ch))
+            while (!s.empty() && s.top() != '(' && precedence(s.top()) >= precedence(ch))
             {
                 postfix += s.top();
                 s.pop();

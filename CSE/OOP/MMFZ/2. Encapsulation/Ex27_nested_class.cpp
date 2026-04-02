@@ -7,7 +7,10 @@ class Outer
     int a;
 
 public:
-    Outer(int x) { a = x; }
+    Outer(int x)
+    {
+        a = x;
+    }
 
     void show()
     {
@@ -52,7 +55,6 @@ public:
 
 int main()
 {
-
     Outer outer(10);
     outer.show();
     outer.showInner(20);

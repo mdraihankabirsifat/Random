@@ -12,7 +12,11 @@ public:
         a = 0;
         b = 0;
     }
-
+    Demo(int a1, int b1)
+    {
+        a = a1;
+        b = b1;
+    }
     int getA() const
     {
         return a;
@@ -33,14 +37,10 @@ public:
 
 int main()
 {
-
-    const Demo d;
-
+    const Demo d(5, 6);
     d.setAB(10, 20);
-
     cout << "A: " << d.getA() << endl;
     cout << "B: " << d.getB() << endl;
-
     return 0;
 }
 

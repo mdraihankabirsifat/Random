@@ -30,9 +30,7 @@ bool isMatchingParenthesis(string str)
                s.pop();
 
                // Check if brackets match
-               if ((ch == ')' && top != '(') ||
-                   (ch == ']' && top != '[') ||
-                   (ch == '}' && top != '{'))
+               if ((ch == ')' && top != '(') || (ch == ']' && top != '[') || (ch == '}' && top != '{'))
                {
                     return false;
                }

@@ -35,7 +35,6 @@ public:
 
 int main()
 {
-
     Coord a(10, 20), b(2, 3);
 
     a += b; // left object (a) passed implicitly
@@ -44,9 +43,11 @@ int main()
     ++a; // unary operator
     a.show();
 
+    // a++; // unary operator
+    // a.show();
+
     b = ++a; // return object assigned to b
     b.show();
-
     return 0;
 }
 

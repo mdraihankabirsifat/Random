@@ -30,7 +30,7 @@ int main()
 
     Myclass ob1(10);
 
-    // Myclass ob2 = 20;  // ERROR: implicit conversion not allowed (because of explicit)
+    //Myclass ob2 = 20;  // ERROR: implicit conversion not allowed (because of explicit)
 
     Myclass ob3("40"); // string constructor called
 

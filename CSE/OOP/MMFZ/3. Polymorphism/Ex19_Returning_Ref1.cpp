@@ -48,6 +48,7 @@ Coord &Coord::operator+=(Coord &ob)
 // << operator
 ostream &operator<<(ostream &out, const Coord &ob)
 {
+    //cout << "Helllo" << endl;
     out << "(" << ob.x << "," << ob.y << ")";
     return out; // return stream reference
 }

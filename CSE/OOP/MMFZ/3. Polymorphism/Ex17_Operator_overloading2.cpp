@@ -39,6 +39,20 @@ public:
         return temp;
     }
 
+    Coord operator+(Coord ob)
+    {
+        Coord temp;
+        temp.x = x + ob.x;
+        temp.y = y + ob.y;
+        return temp;
+    }
+    Coord operator+(int p)
+    {
+        Coord temp;
+        temp.x = x + p;
+        temp.y = y + p;
+        return temp;
+    }
     Coord operator=(Coord ob)
     {
         x = ob.x + 100; // just for testing
@@ -68,32 +82,27 @@ int main()
     Coord a(10, 20), b(4, 4), c;
     int x, y;
 
-    c = a++;
+    c = a++; // c= 110 120 a=11 21
     c.getxy(x, y);
-    cout << x << " " << y << endl;
-
+    cout << x << " " << y << endl; //
     a.getxy(x, y);
     cout << x << " " << y << endl;
-
-    c = ++a;
+    c = ++a; // c=112 122 a= 12 22
     c.getxy(x, y);
     cout << x << " " << y << endl;
-
     a.getxy(x, y);
     cout << x << " " << y << endl;
-
-    (a * b).getxy(x, y);
+    (a * b).getxy(x, y); // 48 88
     cout << x << " " << y << endl;
-
     if (4 == b)
         cout << "Equal" << endl;
     else
         cout << "Not equal" << endl;
-
     (20 + a).getxy(x, y);
     cout << x << " " << y << endl;
-
-    c = a++;
+    (a + b + c + 100).getxy(x, y); // 128 248  //left associative +,-,*,/,>,<,==
+    cout << x << " " << y << endl;
+    c = a++; // 
     c.getxy(x, y);
     cout << x << " " << y << endl;
 

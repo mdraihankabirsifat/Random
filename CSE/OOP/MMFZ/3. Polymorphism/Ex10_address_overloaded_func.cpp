@@ -17,7 +17,6 @@ void space(int count, char ch)
 
 int main()
 {
-
     // function pointer declarations
     void (*fp1)(int);
     void (*fp2)(int, char);

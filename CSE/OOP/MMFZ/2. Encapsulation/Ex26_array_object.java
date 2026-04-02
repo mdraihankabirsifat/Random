@@ -31,18 +31,11 @@ class Std {
 public class Ex26_array_object {
 
     public static void main(String[] args) {
-
         int[] A = new int[4];
         int[][] B = {{11, 12, 13, 14}};
         int[][] C = {{21, 22}, {23, 24}, {25, 26}};
-
         Samp[] S = new Samp[4];
-
-        Std[] std = {
-            new Std("J", 101),
-            new Std("L", 102),
-            new Std("H", 103)
-        };
+        Std[] std = {new Std("J", 101), new Std("L", 102), new Std("H", 103)};
 
         for (int i = 0; i < 4; ++i) {
             A[i] = 30 + i;
@@ -68,4 +61,4 @@ Key Notes:
 3. Each element must be initialized using 'new'.
 4. Objects are accessed using array indexing (arr[i].method()).
 5. Enhanced for-loop (for-each) can iterate through object arrays.
-*/
+ */

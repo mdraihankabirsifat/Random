@@ -21,7 +21,6 @@ class Outer {
     public class Inner {
 
         private int b;
-
         Inner(int y) {
             b = y;
         }

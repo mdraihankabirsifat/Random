@@ -1,7 +1,7 @@
 // Demonstration of final keyword in Java
 
 class Figure {
-
+    //public static final int getValue() -->for function
     final private double pi = 3.14159;   // final variable (constant)
     private double radius;
 
@@ -19,7 +19,6 @@ class Figure {
 final class Cylinder extends Figure {
 
     final private double height;
-
     Cylinder(double newRadius, double newHeight) {
         setRadius(newRadius);
         height = newHeight;
@@ -31,11 +30,8 @@ final class Cylinder extends Figure {
 }
 
 public class Ex24_final {
-
     public static void main(String[] args) {
-
         Cylinder cylinder = new Cylinder(3.0, 4.0);
-
         System.out.print(cylinder.cylinderVolume());
     }
 }

@@ -22,14 +22,22 @@ public:
     }
 
 protected:
-    double getDim1() { return dim1; }
-    double getDim2() { return dim2; }
+    double getDim1()
+    {
+        return dim1;
+    }
+    double getDim2()
+    {
+        return dim2;
+    }
 };
 
 class Rectangle : public Figure
 {
 public:
-    Rectangle(double a, double b) : Figure(a, b) {}
+    Rectangle(double a, double b) : Figure(a, b)
+    {
+    }
 
     double area()
     {
@@ -45,7 +53,9 @@ public:
 class Triangle : public Figure
 {
 public:
-    Triangle(double a, double b) : Figure(a, b) {}
+    Triangle(double a, double b) : Figure(a, b)
+    {
+    }
 
     double area()
     {
@@ -60,7 +70,6 @@ public:
 
 int main()
 {
-
     Rectangle r(4, 5);
     Triangle t(4, 3);
 

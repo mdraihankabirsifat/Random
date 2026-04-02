@@ -47,7 +47,7 @@ int main()
     (a + b).getxy(x, y); // temporary object created from a+b
     cout << x << " " << y << endl;
 
-    c = a = b; // assignment chaining
+    c = a = b; // assignment chaining from right ++,--,!=,+=,=
     c.getxy(x, y);
     cout << x << " " << y << endl;
 

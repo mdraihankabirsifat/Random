@@ -62,7 +62,7 @@ public:
     }
 
     /* Friend operators */
-    friend bool operator==(int v, Coord ob)
+    friend bool operator==(int v, Coord ob) // left object implicitly paased, right one argument
     {
         return (v == ob.x && v == ob.y);
     }

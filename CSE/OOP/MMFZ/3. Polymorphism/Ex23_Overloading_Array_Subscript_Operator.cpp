@@ -35,7 +35,6 @@ public:
 
 int main()
 {
-
     Point p1(3, 4);
 
     p1.print();

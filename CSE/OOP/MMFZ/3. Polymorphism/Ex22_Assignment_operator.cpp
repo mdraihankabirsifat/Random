@@ -9,9 +9,15 @@ class strtype
     int len;
 
 public:
-    strtype(char *s);                // constructor
-    ~strtype() { delete[] p; }       // destructor (free memory)
-    char *get() { return p; }        // return stored string
+    strtype(char *s); // constructor
+    ~strtype()
+    {
+        delete[] p; // destructor (free memory)
+    }
+    char *get()
+    {
+        return p; // return stored string
+    }
     strtype &operator=(strtype &ob); // overloaded assignment operator
 };
 

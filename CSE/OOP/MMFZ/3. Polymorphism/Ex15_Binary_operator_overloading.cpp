@@ -46,7 +46,6 @@ public:
 
 int main()
 {
-
     Coord a(10, 20), b(2, 3), c;
 
     a += b; // object changed

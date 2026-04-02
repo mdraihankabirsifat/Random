@@ -6,8 +6,14 @@ class myclass
     int x;
 
 public:
-    myclass(int n = 0) { x = n; } // constructor with default argument
-    int getx() { return x; }
+    myclass(int n = 0)
+    {
+        x = n;
+    } // constructor with default argument
+    int getx()
+    {
+        return x;
+    }
 };
 
 int main()
