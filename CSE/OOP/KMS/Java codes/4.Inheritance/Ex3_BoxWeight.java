@@ -1,7 +1,7 @@
 // Practical Inheritance Example
 
 class Box {
-    double width, height, depth;
+     double width, height, depth;
 
     Box(Box ob) {
         width = ob.width;

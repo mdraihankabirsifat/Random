@@ -1,6 +1,7 @@
 // Method Overriding Example
 
 class Base {
+
     int a;
 
     Base(int a) {
@@ -47,4 +48,4 @@ Method overriding occurs when subclass
 provides new implementation of superclass method.
 
 Runtime polymorphism occurs.
-*/
+ */

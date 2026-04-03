@@ -12,7 +12,6 @@ class A {
 class B extends A {
 
     int k;
-
     void showk() {
         System.out.println(k);
     }
@@ -29,7 +28,7 @@ public class Ex1_SimpleInheritance {
         A superOb = new A();
         superOb.i = 10;
         superOb.j = 20;
-        superOb.showij();
+        superOb.showij(); //10 20
 
         B subOb = new B();
         subOb.i = 7;

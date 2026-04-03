@@ -1,6 +1,7 @@
 // Inheritance and Member Access
 
 class M {
+
     int i;
     private int j;
 
@@ -11,10 +12,11 @@ class M {
 }
 
 class N extends M {
+
     int total;
 
     void sum() {
-        // total = i + j;  // ERROR: j is private
+        //total = i + j;  // ERROR: j is private
         total = i;
     }
 }
@@ -40,4 +42,4 @@ Key Notes
 private members are NOT inherited.
 
 Only accessible inside the class itself.
-*/
+ */
