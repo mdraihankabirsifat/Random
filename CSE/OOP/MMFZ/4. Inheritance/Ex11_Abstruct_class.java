@@ -38,7 +38,7 @@ public class Ex11_Abstruct_class {
     public static void main(String[] args) {
         Rectangle r = new Rectangle(4, 5);
         Triangle t = new Triangle(4, 3);
-        Figure figref;
+        Figure figref; //reference variable
         figref = r;
         System.out.println("Area: " + figref.area());
         figref = t;
@@ -56,4 +56,4 @@ Key Notes:
 3. Abstract class reference can refer to subclass object.
 
 4. Demonstrates dynamic method dispatch.
-*/
+ */

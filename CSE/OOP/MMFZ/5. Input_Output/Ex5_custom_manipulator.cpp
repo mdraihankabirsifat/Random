@@ -16,7 +16,6 @@ istream &hex_input(istream &is)
 {
 
     is >> hex; // read input as hexadecimal
-
     return is;
 }
 

@@ -10,8 +10,9 @@ public class Ex2_Extraction {
         System.out.println(c1); // W
 
         char c2[] = new char[5];
+        c2[0] = 'p';
 
-        s.getChars(0, 5, c2, 0);
+        s.getChars(0, 4, c2, 1); // s = source, c2 = destination
         System.out.println(c2); // Hello
 
     }

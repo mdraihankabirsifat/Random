@@ -22,7 +22,10 @@ public:
 class D3 : public D1, public D2
 {
 public:
-    int product() { return i * j; }
+    int product()
+    {
+        return i * j;
+    }
 };
 
 int main()

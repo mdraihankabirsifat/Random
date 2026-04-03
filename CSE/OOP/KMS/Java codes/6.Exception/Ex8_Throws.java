@@ -18,6 +18,7 @@ public class Ex8_Throws {
         catch(IllegalAccessException e) {
             System.out.println("Inside catch of main()");
             e.printStackTrace();
+            //e.getMessage();
         }
 
     }

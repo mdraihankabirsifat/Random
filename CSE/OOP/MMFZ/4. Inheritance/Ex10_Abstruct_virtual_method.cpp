@@ -48,6 +48,7 @@ int main()
     r.setarea(3.3, 4.5);
     t.setarea(4.0, 5.0);
     p = &r;
+    cout << r.getarea() << '\n';
     cout << p->getarea() << '\n';
     p = &t;
     cout << p->getarea() << '\n';

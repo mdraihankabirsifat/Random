@@ -27,7 +27,7 @@ class derived : public base
     int i, j;
 
 public:
-    derived(int n, int m, int p) : base(n, p)
+    derived(int n, int m, int p) : base(n, p) //10 20 30
     { // constructor chaining
         i = n;
         j = m;

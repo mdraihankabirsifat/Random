@@ -13,7 +13,7 @@ int main()
 
     cout.width(10);
     cout.fill('*');
-    cout << "Hello" << endl; // fill unused spaces with *
+    cout << "Hello" << endl; // fill unused spaces with * //*****Hello
 
     cout.precision(8);
     cout << 123.456789 << endl; // set precision
@@ -27,6 +27,7 @@ int main()
     cout.fill(' ');
     cout.setf(ios::right); // right aligned
     cout.precision(4);
+    //cout << 123.456789 << endl;
 
     for (double x = 2.0; x <= 5; x++)
     {

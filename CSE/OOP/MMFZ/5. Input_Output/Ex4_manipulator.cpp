@@ -6,11 +6,10 @@ int main()
 {
 
     cout << hex << 100 << endl; // hexadecimal output
-
-    cout << oct << 10 << endl; // octal output
+    cout << oct << 10 << endl;  // octal output
 
     cout << setfill('*') << setw(10); // width and fill manipulator
-    cout << 100 << " hi" << endl;
+    cout << dec << 100 << " hi" << endl;
 
     return 0;
 }

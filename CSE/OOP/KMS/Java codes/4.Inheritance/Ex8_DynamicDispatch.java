@@ -29,7 +29,7 @@ public class Ex8_DynamicDispatch {
         P x;
 
         x = p;
-        x.call();
+        x.call(); 
 
         x = q;
         x.call();

@@ -32,20 +32,20 @@ int main()
     int num = 10;
     Animal *animal;
 
-    const type_info &type_num = typeid(num);
-    cout << "Type(num): " << type_num.name() << endl;
-    cout << "Type(dog): " << typeid(dog).name() << endl;
-    cout << "Type(*dog): " << typeid(*dog).name() << endl;
-    cout << "Type(cat): " << typeid(cat).name() << endl;
-    cout << "Type(length): " << typeid(length).name() << endl;
+    const type_info &type_num = typeid(num);                   // int
+    cout << "Type(num): " << type_num.name() << endl;          // i
+    cout << "Type(dog): " << typeid(dog).name() << endl;       // Dog*->P3Dog   (P = pointer, 3= object name legth, object)
+    cout << "Type(*dog): " << typeid(*dog).name() << endl;     // Dog
+    cout << "Type(cat): " << typeid(cat).name() << endl;       // Cat*
+    cout << "Type(length): " << typeid(length).name() << endl; // double
 
     animal = dog;
-    cout << "Type(animal): " << typeid(animal).name() << endl;
-    cout << "Type(*animal): " << typeid(*animal).name() << endl;
+    cout << "Type(animal): " << typeid(animal).name() << endl;   // Animal*
+    cout << "Type(*animal): " << typeid(*animal).name() << endl; // Dog
 
     animal = cat;
-    cout << "Type(animal): " << typeid(animal).name() << endl;
-    cout << "Type(*animal): " << typeid(*animal).name() << endl;
+    cout << "Type(animal): " << typeid(animal).name() << endl;   // P6Animal
+    cout << "Type(*animal): " << typeid(*animal).name() << endl; // 3Cat
 
     cout << "Type(length+num): " << typeid(length + num).name() << endl;
     return 0;

@@ -1,6 +1,10 @@
 // Applying Interfaces
 
 interface MyInterface {
+//    default void print(String msg){
+//     System.out.println("Atik");
+//    }
+
     void print(String msg);
 }
 
@@ -41,4 +45,4 @@ Key Notes
 ---------
 Interface reference enables
 runtime polymorphism.
-*/
+ */

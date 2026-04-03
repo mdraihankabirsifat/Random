@@ -9,7 +9,6 @@ abstract class S {
     void call2() {
         System.out.println("This is a concrete method");
     }
-
 }
 
 public class Ex13_AnonymousSubclass {
@@ -18,16 +17,12 @@ public class Ex13_AnonymousSubclass {
 
         // cannot instantiate abstract class directly
         // S s = new S();  // illegal
-
         // anonymous subclass of S
         S s = new S() {
-
             void call() {
                 System.out.println("Call method of an abstract class");
             }
-
-        };
-
+        }; //As we don't have any child class here that's why we bcreated an anonymous subclass
         s.call();
         s.call2();
 
@@ -45,4 +40,4 @@ Used when subclass is needed once.
 
 Commonly used with abstract classes
 and interfaces.
-*/
+ */

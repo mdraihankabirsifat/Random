@@ -12,22 +12,29 @@ class Student
     int roll;
 
 public:
-    Student(int r) { roll = r; };
+    Student(int r)
+    {
+        roll = r; //3
+    };
 
     void funct() const
     {
         (const_cast<Student *>(this))->roll = 5; // remove constness
     }
 
-    int getRoll() const { return roll; }
+    int getRoll() const
+    {
+        return roll;
+    }
 };
 
 int main()
 {
     const int num = 10;
     const int *ptr1 = &num;
-    int *ptr2 = const_cast<int *>(ptr1);
-
+    int *ptr2 = const_cast<int *>(ptr1); // pointer & reference
+    // int *ptr3;
+    // ptr3 = ptr2;
     cout << "Value of num after: " << funct(ptr2) << endl;
     cout << "*ptr1: " << *ptr1 << endl;
     cout << "Value of num before: " << num << endl;

@@ -7,6 +7,7 @@ interface MyIFStatic {
     default String getString() {
         return "Default String";
     }
+// default can be called through implemented class but static can't
 
     static int getDefaultNumber() {
         return 0;
@@ -31,4 +32,4 @@ are not inherited.
 
 Called using:
 InterfaceName.method()
-*/
+ */

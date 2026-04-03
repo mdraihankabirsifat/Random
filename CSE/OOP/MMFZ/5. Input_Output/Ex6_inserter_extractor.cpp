@@ -4,7 +4,6 @@ using namespace std;
 
 class Inventory
 {
-
     char itemName[20];
     int itemNumber;
     double price;
@@ -24,7 +23,6 @@ public:
 
 ostream &operator<<(ostream &os, Inventory &inv)
 {
-
     os << "Item: " << inv.itemName << endl;
     os << "Item Number: " << inv.itemNumber << endl;
     os << "Price: " << inv.price << endl;
@@ -72,5 +70,5 @@ Key Notes:
 3. Both usually implemented as friend functions.
 
 4. Return stream reference to allow chaining:
-      cout << a << b << c;
+    cout << a << b << c;
 */

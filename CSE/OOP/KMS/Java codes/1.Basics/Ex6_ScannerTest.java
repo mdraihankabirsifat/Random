@@ -14,9 +14,7 @@ public class Ex6_ScannerTest {
         while (scn.hasNextLine()) {
             System.out.println(scn.nextLine());
         }
-
     }
-
 }
 
 /*

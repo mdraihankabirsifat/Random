@@ -44,8 +44,8 @@ int main()
         return 1;
     }
 
-    cout << "getPointer: " << in.tellg()
-         << " putPointer: " << out.tellp() << endl;
+    cout << "getPointer: " << in.tellg()            // tellg means get pointer
+         << " putPointer: " << out.tellp() << endl; // tellp means put pointer
 
     in.read(str, 80);   // read 80 bytes
     out.write(str, 80); // write 80 bytes

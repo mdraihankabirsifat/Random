@@ -4,7 +4,7 @@ public class Ex7_Split {
 
     public static void main(String[] args) {
 
-        String test = "abc,,def,123";
+        String test = "abc,j,def,123";
 
         String out[] = test.split(",");
 

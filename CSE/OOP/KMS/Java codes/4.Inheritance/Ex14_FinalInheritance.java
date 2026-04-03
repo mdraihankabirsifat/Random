@@ -7,7 +7,6 @@ class A {
     }
 
 }
-
 // class B extends A {
 //     void f() {                // ERROR
 //         System.out.println("Illegal!");
@@ -22,6 +21,9 @@ final class C {
 
 }
 
+final class D extends A {
+
+}
 // class D extends C { }   // ERROR: cannot inherit final class
 
 public class Ex14_FinalInheritance {
@@ -33,6 +35,8 @@ public class Ex14_FinalInheritance {
 
         C c = new C();
         c.show();
+        D d = new D();
+        d.f();
 
     }
 
@@ -48,4 +52,4 @@ final class
 → cannot be inherited.
 
 Used to restrict modification.
-*/
+ */

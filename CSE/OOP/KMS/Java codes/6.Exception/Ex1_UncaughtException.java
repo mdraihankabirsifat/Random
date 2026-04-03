@@ -6,7 +6,7 @@ public class Ex1_UncaughtException {
 
         int a = 10, b = 0;
 
-        int c = a / b;   // ArithmeticException
+        int c = a / b;   // Arithmetic Exception
 
         System.out.println(a);
         System.out.println(b);

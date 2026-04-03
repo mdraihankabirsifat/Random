@@ -28,6 +28,8 @@ public class Ex10_PrivateInterfaceMethod {
 
         System.out.println(ifp.f1());
         System.out.println(ifp.f2());
+        //System.out.println(ifp.login());
+        //ifp.login();
 
     }
 }

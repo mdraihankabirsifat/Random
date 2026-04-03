@@ -4,7 +4,7 @@ using namespace std;
 struct mystruct
 {
     int a = 5;
-    char c = 'a';
+    char c = 'a'; //97
 };
 
 class A
@@ -32,17 +32,14 @@ int main()
 
     cout << *p << endl;
     cout << *ch << endl;
-    cout << p << endl
-         << endl;
+    cout << p << endl;
 
     mystruct s;
     int *iptr = reinterpret_cast<int *>(&s);
 
-    cout << *iptr << endl;
+    cout << *iptr << endl; // 5 97
     iptr++;
-    cout << *iptr << endl
-         << endl;
-
+    cout << *iptr << endl;
     B *b = new B();
     b->display();
 

@@ -1,14 +1,11 @@
 // Abstract Class Example
 
 abstract class S {
-
     abstract void call();
-
     void call2() {
         System.out.println("This is a concrete method");
     }
 }
-
 class T extends S {
 
     void call() {
@@ -19,9 +16,7 @@ class T extends S {
 public class Ex11_AbstractClass {
 
     public static void main(String args[]) {
-
         T t = new T();
-
         t.call();
         t.call2();
 

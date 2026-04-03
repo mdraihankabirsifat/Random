@@ -1,10 +1,13 @@
 // instanceof and final example
 
-class Animal {}
+class Animal {
+}
 
-class Dog extends Animal {}
+class Dog extends Animal {
+}
 
 final class FinalClass {
+
     void f() {
         System.out.println("This is a final method.");
     }
@@ -20,9 +23,11 @@ public class Ex10_InstanceOfFinal {
         System.out.println(s instanceof Object);
 
         Animal a = new Dog();
+        Animal b = new Animal();
 
         System.out.println(a instanceof Animal);
         System.out.println(a instanceof Dog);
+        System.out.println(b instanceof Dog);
 
     }
 }
@@ -35,4 +40,4 @@ instanceof → checks object type at runtime.
 final method → cannot be overridden.
 
 final class → cannot be inherited.
-*/
+ */

@@ -13,8 +13,8 @@ public class Ex5_SearchConcat {
 
         String s = "Hello World";
 
-        System.out.println(s.indexOf('o'));
-        System.out.println(s.lastIndexOf('o'));
+        System.out.println(s.indexOf('o'));    //first o
+        System.out.println(s.lastIndexOf('o')); //last o
 
     }
 }
@@ -27,4 +27,4 @@ concat() → joins strings
 indexOf(char)
 
 lastIndexOf(char)
-*/
+ */

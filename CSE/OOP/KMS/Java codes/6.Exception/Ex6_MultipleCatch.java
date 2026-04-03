@@ -29,7 +29,6 @@ public class Ex6_MultipleCatch {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
-
     }
 }
 

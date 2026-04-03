@@ -44,6 +44,7 @@ public class Ex8_Method_Overriding {
         son.show();
         ((Son) son).showAge(); // downcast
         System.out.println(son.age);
+        System.out.println(((Son)son).age);
         father = son;
         father.show();
     }

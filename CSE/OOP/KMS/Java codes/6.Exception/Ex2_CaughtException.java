@@ -13,7 +13,7 @@ public class Ex2_CaughtException {
 
         catch (Exception e) {
             System.out.println("In Catch");
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
         finally {

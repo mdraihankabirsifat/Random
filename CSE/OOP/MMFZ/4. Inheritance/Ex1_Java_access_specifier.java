@@ -4,6 +4,7 @@ class Base {
     public int x;
     private int y;
     protected int z;
+    int b; //default
 
     public void setY(int n) {
         y = n;
@@ -13,7 +14,7 @@ class Base {
         return y;
     }
 
-    protected int getSum() {
+    protected int getSum() { // can be accessed from subclass
         return x + y;
     } // base method
 }

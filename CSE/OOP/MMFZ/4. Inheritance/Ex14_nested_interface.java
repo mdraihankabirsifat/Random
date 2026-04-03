@@ -28,9 +28,14 @@ public class Ex14_nested_interface {
     public static void main(String[] args) {
         A.Nested nes = new B();
         inNested ines = new B();
+        B nes2 = new B();
 
         if (!nes.isNegative(10)) {
             ((B) nes).print("Positive");
+        }
+
+        if (!nes2.isNegative(10)) {
+            (nes2).print("Positive");
         }
 
         if (ines.isNegative(-5)) {
@@ -49,4 +54,4 @@ Key Notes:
 3. B implements both interfaces.
 
 4. Casting is used to call methods not present in reference type.
-*/
+ */

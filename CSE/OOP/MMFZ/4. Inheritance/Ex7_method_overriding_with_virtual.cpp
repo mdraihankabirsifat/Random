@@ -5,7 +5,10 @@ class Father
     char name[20];
 
 public:
-    Father(char *fname) { strcpy(name, fname); }
+    Father(char *fname)
+    {
+        strcpy(name, fname);
+    }
     virtual void show()
     { // virtual enables overriding
         cout << "Father: " << name << endl;
@@ -17,7 +20,10 @@ class Son : public Father
     char name[20];
 
 public:
-    Son(char *sname, char *fname) : Father(fname) { strcpy(name, sname); }
+    Son(char *sname, char *fname) : Father(fname)
+    {
+        strcpy(name, sname);
+    }
     void show()
     {
         cout << "Son: " << name << endl;

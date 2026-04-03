@@ -7,7 +7,6 @@ int main()
 
     try
     {
-
         ofstream out("Inventory", ios::app); // open file for append
 
         if (!out)
@@ -42,9 +41,7 @@ int main()
 
         while (!in.eof())
         {
-
             cout << item << ' ' << quantity << endl;
-
             in >> item >> quantity;
         }
 
