@@ -11,11 +11,20 @@ class name
     char str[40];
 
 public:
-    name() { strcpy(str, ""); }
+    name()
+    {
+        strcpy(str, "");
+    }
 
-    name(char *s) { strcpy(str, s); }
+    name(char *s)
+    {
+        strcpy(str, s);
+    }
 
-    char *get() { return str; }
+    char *get()
+    {
+        return str;
+    }
 };
 
 // Must define less than relative to name objects.
@@ -31,18 +40,27 @@ class phoneNum
     char str[80];
 
 public:
-    phoneNum() { strcpy(str, ""); }
+    phoneNum()
+    {
+        strcpy(str, "");
+    }
 
-    phoneNum(char *s) { strcpy(str, s); }
+    phoneNum(char *s)
+    {
+        strcpy(str, s);
+    }
 
-    char *get() { return str; }
+    char *get()
+    {
+        return str;
+    }
 };
 
 int main()
 {
 
     map<name, phoneNum> directory;
-
+    //name Name = new name("Tom");
     // put names and numbers into map
     directory.insert(pair<name, phoneNum>(name("Tom"), phoneNum("555-4533")));
     directory.insert(pair<name, phoneNum>(name("Chris"), phoneNum("555-9678")));
@@ -57,7 +75,7 @@ int main()
 
     map<name, phoneNum>::iterator p;
 
-    p = directory.find(name(str));
+    p = directory.find(name(str)); //O(n)
 
     if (p != directory.end())
         cout << "Phone number: " << p->second.get();

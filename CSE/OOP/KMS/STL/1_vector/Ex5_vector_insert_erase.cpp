@@ -28,7 +28,8 @@ int main()
     p += 2; // point to third element
 
     // insert elements
-    v.insert(p, 10, 'X');
+    v.insert(p, 'X'); // (starting, times, element)
+    // v.insert(p,10, 'X');
 
     cout << v.size() << endl;
 
@@ -40,8 +41,8 @@ int main()
     // erase inserted elements
     p = v.begin();
     p += 2;
-
-    v.erase(p, p + 10);
+    // 2-7 a b c d e f g h i j
+    v.erase(p, p + 5); // O(n)
 
     cout << v.size() << endl;
 
@@ -51,6 +52,7 @@ int main()
     cout << "\n\n";
 
     // insert another vector
+    // v2 = Vector
     v.insert(p, v2.begin(), v2.end());
 
     cout << "Size after v2 insertion = ";

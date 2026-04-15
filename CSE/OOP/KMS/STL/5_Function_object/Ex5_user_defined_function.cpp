@@ -41,9 +41,7 @@ int main()
     cout << endl;
 
     // apply custom functor
-    p = transform(vals.begin(), vals.end(),
-                  vals.begin(),
-                  reciprocal<double, double>());
+    p = transform(vals.begin(), vals.end(), vals.begin(), reciprocal<double, double>());
 
     cout << "Transformed contents of vals:\n";
 

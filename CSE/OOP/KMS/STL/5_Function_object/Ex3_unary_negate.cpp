@@ -30,9 +30,7 @@ int main()
     cout << endl;
 
     // negate each element
-    p = transform(vals.begin(), vals.end(),
-                  vals.begin(),
-                  negate<double>()); // function object
+    p = transform(vals.begin(), vals.end(), vals.begin(), negate<double>()); // function object
 
     cout << "Negated contents of vals:\n";
 

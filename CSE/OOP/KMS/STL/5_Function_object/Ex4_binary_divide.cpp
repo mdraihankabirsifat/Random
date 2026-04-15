@@ -18,7 +18,7 @@ int main()
         vals.push_back((double)i);
 
     for (i = 1; i < 10; i++)
-        divisors.push_back(3.0);
+        divisors.push_back(3.0*i); //3^n
 
     cout << "Original contents of vals:\n";
 
@@ -33,10 +33,7 @@ int main()
     cout << endl;
 
     // divide values using binary functor
-    p = transform(vals.begin(), vals.end(),
-                  divisors.begin(),
-                  vals.begin(),
-                  divides<double>()); // function object
+    p = transform(vals.begin(), vals.end(), divisors.begin(), vals.begin(), divides<double>()); // function object
 
     cout << "Divided contents of vals:\n";
 

@@ -22,10 +22,7 @@ int main()
 
     list<int> list2 = {100, 200, 300, 400, 500, 600};
 
-    transform(list1.begin(), list1.end(),
-              list2.begin(),
-              list1.begin(),
-              ReplaceNegative<int>());
+    transform(list1.begin(), list1.end(), list2.begin(), list1.begin(), ReplaceNegative<int>());
 
     cout << "Modified list1: ";
 

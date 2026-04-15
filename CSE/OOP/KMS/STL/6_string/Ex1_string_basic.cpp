@@ -13,8 +13,7 @@ int main()
     // assign string
     str4 = str1;
 
-    cout << str1 << "\n"
-         << str3 << "\n";
+    cout << str1 << "\n"<< str3 << "\n";
 
     // concatenate strings
     str4 = str1 + str2;

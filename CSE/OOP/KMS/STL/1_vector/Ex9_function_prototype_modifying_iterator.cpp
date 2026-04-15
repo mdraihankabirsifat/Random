@@ -55,18 +55,25 @@ int main()
     cout << endl;
 
     // insert element
-    v.insert(v.begin() + 1, 99);
+    v.insert(v.begin() + 1, 99); // v[1]==99 //  10 99 20 30 40
 
     // erase element
-    v.erase(v.begin() + 2);
+    v.erase(v.begin() + 2); // size srink  10 99 30 40
+
+    cout << "Vector after insert & erase: ";
+
+    for (int x : v)
+        cout << x << " ";
+    cout << " \n";
 
     // assign new values
-    v.assign(3, 5);
+    v.assign(3, 5); // 5 5 5
 
     cout << "Vector after assign: ";
 
     for (int x : v)
         cout << x << " ";
+    cout << " \n";
 
     return 0;
 }

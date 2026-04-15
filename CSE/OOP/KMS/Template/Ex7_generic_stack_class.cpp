@@ -13,22 +13,20 @@ class stack
 public:
     stack() { tos = 0; } // initialize empty stack
 
-    void push(StackType ob);
-    StackType pop();
-};
-
-template <class StackType>
-void stack<StackType>::push(StackType ob)
-{
-    if (tos == SIZE)
+    void push(StackType ob)
     {
-        cout << "Stack is full.\n";
-        return;
+        if (tos == SIZE)
+        {
+            cout << "Stack is full.\n";
+            return;
+        }
+
+        stck[tos] = ob;
+        tos++;
     }
 
-    stck[tos] = ob;
-    tos++;
-}
+    StackType pop();
+};
 
 template <class StackType>
 StackType stack<StackType>::pop()

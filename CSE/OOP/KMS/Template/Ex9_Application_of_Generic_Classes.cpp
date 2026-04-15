@@ -10,7 +10,9 @@ class atype
     AType a[SIZE]; // array storing elements
 
 public:
-    atype() {}
+    atype()
+    {
+    }
 
     AType &operator[](int i); // overload [] operator
 };

@@ -6,12 +6,14 @@ using namespace std;
 int main()
 {
 
-    char str[] = "The STL is power programming.";
+    char str[] = "Atik is gay.";
 
     vector<char> v, v2(30);
+    //v2[0]=5;
 
     unsigned int i;
 
+    
     for (i = 0; str[i]; i++)
         v.push_back(str[i]);
 
@@ -32,8 +34,7 @@ int main()
     for (i = 0; i < v2.size(); i++)
         cout << v2[i];
 
-    cout << endl
-         << endl;
+    cout << endl;
 
     // demonstrate replace_copy
 
@@ -45,7 +46,7 @@ int main()
     cout << endl;
 
     // replace spaces with colons
-    replace_copy(v.begin(), v.end(), v2.begin(), ' ', ':');
+    replace_copy(v.begin(), v.end(), v2.begin(), 'Atik', 'Ifat');
 
     cout << "Result after replacing spaces with colons:\n";
 

@@ -10,11 +10,22 @@ int main()
 
     int i;
 
-    for (i = 0; i < 10; i += 2)
+    for (i = 0; i < 4; i ++)
         lst1.push_back(i);
 
-    for (i = 1; i < 11; i += 2)
+    for (i = 1; i < 4; i ++)
         lst2.push_back(i);
+        
+    // lst1.push_back(2);
+    // lst1.push_back(6);
+    // lst1.push_back(1);
+    // lst1.push_back(5);
+
+    // lst2.push_back(1);
+    // lst2.push_back(6);
+    // lst2.push_back(7);
+    // lst2.push_back(0);
+    // lst2.push_back(130);
 
     cout << "Contents of lst1:\n";
 
@@ -39,8 +50,7 @@ int main()
         p++;
     }
 
-    cout << endl
-         << endl;
+    cout << endl;
 
     // now merge the two lists
     lst1.merge(lst2);

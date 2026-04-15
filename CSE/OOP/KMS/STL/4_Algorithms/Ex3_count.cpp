@@ -24,7 +24,7 @@ int main()
     cout << "Sequence:\n";
 
     for (i = 0; i < v.size(); i++)
-        cout << boolalpha << v[i] << " ";
+        cout << boolalpha << v[i] << " "; // Alt: bool x=true; cout<<x; output:1
 
     cout << endl;
 

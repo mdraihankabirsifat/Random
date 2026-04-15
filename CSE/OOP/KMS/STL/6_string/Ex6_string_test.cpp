@@ -4,13 +4,12 @@
 #include <algorithm>
 using namespace std;
 
-void removeText(string &str)
+string removeText(string &str)
 {
-
     size_t pos = 0;
-
     if ((pos = str.find("Sheikh Hasina")) != string::npos)
         str.erase(pos, 14);
+    return str;
 }
 
 int main()
@@ -22,7 +21,8 @@ int main()
         "Sheikh Hasina National Youth Center",
         "Gangachara Sheikh Hasina Bridge"};
 
-    for_each(strings.begin(), strings.end(), removeText);
+    transform(strings.begin(), strings.end(), strings.begin(), removeText);
+    // for_each(strings.begin(), strings.end(), removeText);
 
     sort(strings.begin(), strings.end());
 

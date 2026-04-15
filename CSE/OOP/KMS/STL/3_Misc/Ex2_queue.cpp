@@ -3,11 +3,10 @@
 using namespace std;
 
 // Print the queue
-void print_queue(queue<int> q)
+void print_queue(queue<int> &temp)
 {
-
-    queue<int> temp = q; // copy queue
-
+    //queue<int> temp = q; // copy queue
+    // 1 2 3
     while (!temp.empty())
     {
         cout << temp.front() << " " << temp.back() << '\n'; // show front and back
@@ -29,6 +28,12 @@ int main()
     cout << "The first queue is : ";
 
     print_queue(q1);
+
+    while (!q1.empty())
+    {
+        cout << q1.front() << " " << q1.back() << '\n'; // show front and back
+        q1.pop();
+    }
 
     return 0;
 }

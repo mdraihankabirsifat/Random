@@ -31,9 +31,15 @@ int main()
     return 0;
 }
 
-void square(int &n) { n *= n; } // square element
+void square(int &n)
+{
+    n *= n;
+} // square element
 
-void print(int &n) { cout << n << " "; } // print element
+void print(int &n)
+{
+    cout << n << " ";
+} // print element
 
 /*
 Key Notes

@@ -7,15 +7,25 @@ class Box
 {
 protected:
     T value;
+
+public:
+    Box(T a)
+    {
+        value = a;
+    }
+    T get()
+    {
+        return value;
+    }
 };
 
 // derived class using int specialization
 class IntBox : public Box<int>
 {
 public:
-    IntBox(int v)
+    IntBox(int v) : Box<int>(v)
     {
-        value = v;
+        //   value = v;
     }
 
     int get() const
@@ -26,7 +36,9 @@ public:
 
 int main()
 {
-    IntBox b(10);
+    IntBox a(10);
+    Box b(10.10);
+    cout << a.get() << "\n";
     cout << b.get();
 }
 

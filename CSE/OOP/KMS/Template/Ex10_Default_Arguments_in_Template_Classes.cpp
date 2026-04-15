@@ -6,7 +6,6 @@ template <class AType = int, int size = 10>
 class atype
 {
     AType a[size];
-
 public:
     atype() {}
 
@@ -23,7 +22,6 @@ AType &atype<AType, size>::operator[](int i)
         cout << i << " is out-of-bounds.\n";
         exit(1);
     }
-
     return a[i];
 }
 

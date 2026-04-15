@@ -34,21 +34,13 @@ int main()
     v.push_back(10); // add element
     v.push_back(20);
     v.push_back(30);
-
-    cout << "Element [1]: " << v[1] << endl; // no bound check
-
+    cout << "Element [1]: " << v[1] << endl;   // no bound check
     cout << "Using at(): " << v.at(1) << endl; // safe access
-
-    cout << "Front: " << v.front() << endl; // first element
-
-    cout << "Back: " << v.back() << endl; // last element
-
-    v.pop_back(); // remove last element
-
+    cout << "Front: " << v.front() << endl;    // first element
+    cout << "Back: " << v.back() << endl;      // last element
+    v.pop_back();                              // remove last element
     cout << "After pop_back, size: " << v.size() << endl;
-
-    v.clear(); // remove all elements
-
+    v.clear(); // remove all elements //O(n)
     cout << "After clear, size: " << v.size() << endl;
 
     return 0;

@@ -15,7 +15,7 @@ int main()
         cout << "Match found at " << i << endl;
 
     // find last "of"
-    i = s1.rfind("of");
+    i = s1.rfind("of"); // 36
 
     if (i != string::npos)
     {
@@ -23,7 +23,7 @@ int main()
 
         cout << "Remaining string is:\n";
 
-        s2.assign(s1, i, s1.size());
+        s2.assign(s1, i, s1.size()); // (string, starting,ending)
 
         cout << s2;
     }

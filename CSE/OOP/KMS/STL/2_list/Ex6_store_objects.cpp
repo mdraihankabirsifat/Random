@@ -16,7 +16,10 @@ public:
         sum = a + b;
     }
 
-    int getsum() { return sum; }
+    int getsum()
+    {
+        return sum;
+    }
 
     friend bool operator<(const myclass &o1, const myclass &o2)
     {

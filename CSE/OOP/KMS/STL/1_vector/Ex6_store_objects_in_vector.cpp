@@ -11,9 +11,15 @@ class DailyTemp
     int temp; // stores temperature
 
 public:
-    DailyTemp() { temp = 0; } // default constructor
+    DailyTemp()
+    {
+        temp = 0;
+    } // default constructor
 
-    DailyTemp(int x) { temp = x; } // parameterized constructor
+    DailyTemp(int x)
+    {
+        temp = x;
+    } // parameterized constructor
 
     // overload assignment operator
     DailyTemp &operator=(int x)
@@ -23,7 +29,10 @@ public:
     }
 
     // accessor function
-    double get_temp() { return temp; }
+    double get_temp()
+    {
+        return temp;
+    }
 };
 
 // comparison operator for sorting

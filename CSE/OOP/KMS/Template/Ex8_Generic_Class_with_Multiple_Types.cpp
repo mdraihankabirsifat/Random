@@ -24,11 +24,18 @@ public:
 
 int main()
 {
-    myclass<int, double> ob1(10, 0.23);                     // int and double
+    myclass<int, float> ob1(10, 0.23);                     // int and double
     myclass<char, char *> ob2('X', "Templates add power."); // char and string
+
+    int c = 3;
+    float p = 1.2;
+    myclass Myclass(c, p);
+    myclass Myclass1(3, "ifat"); //automatically detects
 
     ob1.show();
     ob2.show();
+    Myclass.show();
+    Myclass1.show();
 
     return 0;
 }

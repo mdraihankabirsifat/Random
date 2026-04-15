@@ -21,7 +21,6 @@ int main()
     cout << "Contents of lst1:\n";
 
     p = lst1.begin();
-
     while (p != lst1.end())
     {
         cout << *p << " ";

@@ -2,6 +2,7 @@
 #include <vector>
 using namespace std;
 
+
 // Functions in Vector Template Class
 // Constructors
 
@@ -31,28 +32,17 @@ using namespace std;
 
 int main()
 {
-    vector<int> v1; // default constructor
-
-    vector<int> v2(5, 10); // fill constructor
-
-    vector<int> v3(v2); // copy constructor
-
+    vector<int> v1;                       // default constructor
+    vector<int> v2(5, 10);                // fill constructor
+    vector<int> v3(v2);                   // copy constructor
     vector<int> v4(v2.begin(), v2.end()); // range constructor
-
     cout << "Size: " << v2.size() << endl;
-
     cout << "Capacity: " << v2.capacity() << endl;
-
     cout << "Empty? " << v1.empty() << endl;
-
-    v1.reserve(10); // reserve memory
-
+    v1.reserve(10);  // reserve memory
     v1.resize(5, 2); // resize vector
-
     cout << "Max size: " << v1.max_size() << endl;
-
     v1.shrink_to_fit(); // shrink capacity
-
     return 0;
 }
 
@@ -63,7 +53,6 @@ vector()              -> creates empty vector
 vector(n,val)         -> creates n elements filled with val
 vector(v)             -> copy constructor
 vector(begin,end)     -> copy a range
-
 size()                -> number of elements
 capacity()            -> allocated memory
 empty()               -> check if vector empty

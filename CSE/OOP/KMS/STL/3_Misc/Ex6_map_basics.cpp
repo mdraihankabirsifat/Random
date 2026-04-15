@@ -13,6 +13,7 @@ int main()
     // put pairs into map
     for (i = 0; i < 26; i++)
     {
+        // m['A'+i] = 65+i;
         m.insert(pair<char, int>('A' + i, 65 + i));
     }
 
