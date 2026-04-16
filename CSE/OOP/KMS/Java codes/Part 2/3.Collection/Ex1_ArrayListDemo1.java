@@ -7,7 +7,7 @@ public class Ex1_ArrayListDemo1 {
     public static void main(String args[]) {
 
         // create an array list
-        List<String> al = new ArrayList<>();
+        List<String> al = new ArrayList<>(); // List->interface
 
         System.out.println("Initial size of al: " + al.size());
 
@@ -25,11 +25,10 @@ public class Ex1_ArrayListDemo1 {
         System.out.println("Contents: " + al);
 
         for (int i = 0; i < al.size(); i++) {
-            System.out.print(al.get(i) + " ");
+            System.out.print(al.get(i) + " "); //v[i]
         }
-
+        //String p = al.get(0);
         System.out.println();
-
         // remove elements
         al.remove("F");
         al.remove(2);
@@ -41,7 +40,7 @@ public class Ex1_ArrayListDemo1 {
 
 /*
 Key Notes:
-
+//Atik
 1. ArrayList is dynamic → size can grow/shrink.
 2. List<String> → type-safe due to generics.
 3. add() → insert element.
@@ -51,4 +50,4 @@ Key Notes:
 5. get(i) → access element.
 6. size() → returns number of elements.
 7. Internally uses dynamic array → fast access.
-*/
+ */
