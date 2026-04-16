@@ -1,4 +1,4 @@
-package advanced;
+//package advanced;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -99,3 +99,62 @@ public class Ex10_Main {
         new Thread(new C(queue, poison)).start();
     }
 }
+
+/*
+Key Notes:
+
+1. This is an advanced Producer-Consumer example using BlockingQueue.
+
+2. It uses LinkedBlockingQueue, which is also part of
+   java.util.concurrent package.
+
+3. Like previous BlockingQueue example:
+   - queue.put() waits automatically if queue is full
+   - queue.take() waits automatically if queue is empty
+   - no need for wait(), notify(), notifyAll()
+
+4. Special idea used here:
+   POISON PILL technique.
+
+5. What is poison pill?
+   - a special marker value inserted into queue
+   - signals consumers that production is finished
+   - after reading poison pill, consumer stops
+
+6. Here:
+   - producer puts values 0 to 19
+   - after finishing, it inserts POISON twice
+   - because there are 2 consumer threads
+   - each consumer needs one poison pill to terminate
+
+7. Why finally block is used?
+   - ensures poison pills are inserted
+   - even if interruption happens during processing
+
+8. Consumer logic:
+   - take item from queue
+   - process it
+   - if item is poison pill, break loop and exit
+
+9. Important concept:
+   This example solves graceful thread termination.
+   In many producer-consumer systems,
+   stopping threads safely is a major issue.
+
+10. remainingCapacity():
+    - shows how much space is left in queue
+
+11. VERY IMPORTANT note:
+    In this line:
+    if (take == POISON)
+
+    safer comparison is:
+    if (take.equals(POISON))
+
+    because Integer is an object, and equals() checks value.
+    == checks reference.
+
+12. This code is related to slide topic:
+    Concurrent Collections → BlockingQueue for Producer-Consumer.
+    It is an extended practical version of that concept.
+*/

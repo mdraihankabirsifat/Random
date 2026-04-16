@@ -1,4 +1,4 @@
-package advanced;
+//package advanced;
 
 // Suspending and resuming a thread the modern way.
 class NewThreadSR implements Runnable {
@@ -74,3 +74,52 @@ public class Ex5_SuspendResume {
         System.out.println("advanced.Main thread exiting.");
     }
 }
+
+/*
+Key Notes:
+
+1. This code shows the modern way to suspend and resume a thread.
+
+2. According to the slide:
+   old methods were:
+   - suspend()
+   - resume()
+   - stop()
+   These methods are deprecated.
+
+3. Why deprecated?
+   - suspend() may keep locks unreleased
+   - can cause deadlock
+   - stop() may corrupt shared data
+   - unsafe for system stability
+
+4. So instead of using t.suspend() and t.resume(),
+   this program uses:
+   - a boolean flag (suspendFlag)
+   - wait()
+   - notify()
+
+5. How it works:
+   - mySuspend() sets suspendFlag = true
+   - in run(), thread checks the flag
+   - if true, thread waits
+   - myResume() sets suspendFlag = false
+   - then notify() wakes the waiting thread
+
+6. VERY IMPORTANT:
+   while (suspendFlag) { wait(); }
+   is safer than if, because condition is rechecked after waking up.
+
+7. synchronized is needed because:
+   - wait() and notify() must be called inside synchronized context
+   - shared variable suspendFlag is accessed safely
+
+8. join() is used in main thread to wait for both threads to finish.
+
+9. This code does not use deprecated thread control methods directly.
+   Instead, it implements suspend/resume behavior safely.
+
+10. Slide connection:
+    "Suspend, Resume and Stop" topic explains why old thread control
+    methods are dangerous, and this code demonstrates the safer approach.
+*/

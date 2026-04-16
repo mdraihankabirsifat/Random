@@ -1,4 +1,4 @@
-package advanced;
+//package advanced;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +45,7 @@ class CustomRecursiveAction extends RecursiveAction {
 }
 
 class CustomRecursiveTask extends RecursiveTask<Integer> {
+
     private int[] arr;
     private static final int THRESHOLD = 20;
 
@@ -81,12 +82,13 @@ class CustomRecursiveTask extends RecursiveTask<Integer> {
 }
 
 public class Ex12_ForkJoinTest {
+
     public static void main(String[] args) {
         /*
          * String alphabet =
          * "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-         * advanced.CustomRecursiveAction customRecursiveAction = new
-         * advanced.CustomRecursiveAction(alphabet);
+         * CustomRecursiveAction customRecursiveAction = new
+         * CustomRecursiveAction(alphabet);
          * ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
          * forkJoinPool.invoke(customRecursiveAction);
          */
@@ -100,3 +102,97 @@ public class Ex12_ForkJoinTest {
         System.out.println(forkJoinPool.invoke(customRecursiveTask));
     }
 }
+
+/*
+Key Notes:
+
+1. This program demonstrates the Fork/Join Framework.
+
+2. According to slide:
+   Fork/Join is used for parallel programming
+   and utilizes multiple processors efficiently.
+
+3. Core idea:
+   Divide and Conquer approach.
+
+   - Break large task into smaller subtasks (fork)
+   - Process them in parallel
+   - Combine results (join)
+
+----------------------------------------
+PART 1: RecursiveAction (no return value)
+----------------------------------------
+
+4. CustomRecursiveAction extends RecursiveAction:
+   - used when task does NOT return result
+
+5. compute():
+   - if workload is large → split into subtasks
+   - if small → process directly
+
+6. invokeAll():
+   - runs subtasks in parallel
+
+7. THRESHOLD:
+   - controls when to split vs process
+   - very important tuning parameter
+
+----------------------------------------
+PART 2: RecursiveTask (returns value)
+----------------------------------------
+
+8. CustomRecursiveTask extends RecursiveTask<Integer>:
+   - used when task returns result
+
+9. compute():
+   - if array is large → split into two parts
+   - fork() → submit subtask asynchronously
+   - join() → wait and get result
+   - combine results
+
+10. processing():
+    - calculates sum of array
+    - runs when task size is small
+
+----------------------------------------
+PART 3: ForkJoinPool
+----------------------------------------
+
+11. ForkJoinPool:
+    - manages worker threads
+    - executes fork/join tasks
+
+12. commonPool():
+    - shared pool provided by Java
+
+13. forkJoinPool.invoke(task):
+    - starts execution
+    - returns final result
+
+----------------------------------------
+IMPORTANT CONCEPTS (Exam Focus)
+----------------------------------------
+
+14. fork():
+    - splits task and executes asynchronously
+
+15. join():
+    - waits and retrieves result
+
+16. RecursiveTask vs RecursiveAction:
+    - RecursiveTask → returns result
+    - RecursiveAction → no return
+
+17. Benefits:
+    - automatic parallelism
+    - better CPU utilization
+    - scalable with number of processors
+
+----------------------------------------
+SLIDE CONNECTION
+----------------------------------------
+
+18. Slide topic:
+    Fork/Join Framework → simplifies multithreading
+    supports parallel processing using divide-and-conquer.
+*/

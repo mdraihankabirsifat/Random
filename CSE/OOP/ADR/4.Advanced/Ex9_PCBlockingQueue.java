@@ -1,9 +1,10 @@
-package advanced;
+//package advanced;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 class ProducerB implements Runnable {
+
     BlockingQueue<Integer> queue;
 
     ProducerB(BlockingQueue<Integer> queue, String name) {
@@ -25,6 +26,7 @@ class ProducerB implements Runnable {
 }
 
 class ConsumerB implements Runnable {
+
     BlockingQueue<Integer> queue;
 
     ConsumerB(BlockingQueue<Integer> queue, String name) {
@@ -44,6 +46,7 @@ class ConsumerB implements Runnable {
 }
 
 public class Ex9_PCBlockingQueue {
+
     public static void main(String[] args) {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
         new ProducerB(queue, "Producer");
@@ -51,3 +54,55 @@ public class Ex9_PCBlockingQueue {
         System.out.println("Press Control-C to stop.");
     }
 }
+
+/*
+Key Notes:
+
+1. This is Producer-Consumer using BlockingQueue (modern approach).
+
+2. BlockingQueue is part of:
+   java.util.concurrent (Concurrency Utilities).
+
+3. According to slide:
+   BlockingQueue can solve Producer-Consumer problem
+   without using wait(), notify(), notifyAll().
+
+4. queue.put():
+   - inserts element into queue
+   - if queue is FULL → thread automatically waits
+
+5. queue.take():
+   - removes element from queue
+   - if queue is EMPTY → thread automatically waits
+
+6. So:
+   ❌ No need for manual synchronization
+   ❌ No need for wait/notify
+   ✅ BlockingQueue handles everything internally
+
+7. ArrayBlockingQueue(1):
+   - capacity = 1
+   - acts like single-slot buffer (classic PC problem)
+
+8. Producer:
+   - continuously produces values
+   - blocks when queue is full
+
+9. Consumer:
+   - continuously consumes values
+   - blocks when queue is empty
+
+10. Advantage over previous methods:
+    - simpler code
+    - less error-prone
+    - no deadlock risk (if used properly)
+
+11. This replaces:
+    Polling → IncorrectPC → CorrectPC
+
+    Final evolution:
+    BlockingQueue (BEST approach)
+
+12. Slide connection:
+    Concurrent Collections → BlockingQueue solves Producer-Consumer.
+*/
