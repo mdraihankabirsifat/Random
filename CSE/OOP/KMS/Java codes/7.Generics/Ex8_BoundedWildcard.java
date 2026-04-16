@@ -56,14 +56,14 @@ class Ex8_BoundedWildcard {
     // Only ThreeD and subclasses
     static void showXYZ(Ex8_Coords<? extends Ex8_ThreeD> c) {
         for (int i = 0; i < c.coords.length; i++) {
-            System.out.println(c.coords[i].x + " "+ c.coords[i].y + " "+ c.coords[i].z);
+            System.out.println(c.coords[i].x + " " + c.coords[i].y + " " + c.coords[i].z);
         }
     }
 
     // Only FourD
     static void showAll(Ex8_Coords<? extends Ex8_FourD> c) {
         for (int i = 0; i < c.coords.length; i++) {
-            System.out.println(c.coords[i].x + " "+ c.coords[i].y + " "+ c.coords[i].z + " "+ c.coords[i].t);
+            System.out.println(c.coords[i].x + " " + c.coords[i].y + " " + c.coords[i].z + " " + c.coords[i].t);
         }
     }
 
