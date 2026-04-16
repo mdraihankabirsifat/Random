@@ -47,7 +47,7 @@ class TestClass {
 
 }
 
-public class SynchronizedTest {
+public class Ex4_SynchronizedTest {
     public static void main(String[] args) {
         TestClass t1 = new TestClass();
         TestClass t2 = new TestClass();

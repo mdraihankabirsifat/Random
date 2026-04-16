@@ -35,7 +35,7 @@ class ThreadCounterNoSync implements Runnable {
     }
 }
 
-public class NonSynchronizedCounter {
+public class Ex1_NonSynchronizedCounter {
     public static void main(String[] args) {
         SharedCounter sharedCounter = new SharedCounter();
         ThreadCounterNoSync ob1 = new ThreadCounterNoSync(sharedCounter, "T1");

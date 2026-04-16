@@ -15,7 +15,7 @@ class MyCallable implements Callable<Integer> {
     }
 }
 
-public class CallableFutures {
+public class Ex7_CallableFutures {
     public static void main(String[] args) throws Exception {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         List<Future<Integer>> futureList = new ArrayList<>();

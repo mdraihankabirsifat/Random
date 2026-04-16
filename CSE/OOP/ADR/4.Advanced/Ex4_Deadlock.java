@@ -41,12 +41,12 @@ class B {
     }
 }
 
-public class Deadlock implements Runnable {
+public class Ex4_Deadlock implements Runnable {
     A a;
     B b;
     Thread t;
 
-    Deadlock() {
+    Ex4_Deadlock() {
         a = new A();
         b = new B();
         Thread.currentThread().setName("advanced.Main Thread");
@@ -65,7 +65,7 @@ public class Deadlock implements Runnable {
     }
 
     public static void main(String[] args) {
-        Deadlock deadlock = new Deadlock();
+        Ex4_Deadlock deadlock = new Ex4_Deadlock();
         deadlock.deadlockStart();
     }
 

@@ -34,7 +34,7 @@ class ThreadSyncLock implements Runnable {
     }
 }
 
-public class SynchronizationLock {
+public class Ex11_SynchronizationLock {
     public static void main(String[] args) {
         SharedClass4 sharedObject = new SharedClass4();
         ThreadSyncLock ob1 = new ThreadSyncLock(sharedObject, "T1");

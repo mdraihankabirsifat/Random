@@ -24,7 +24,7 @@ class MyThread implements Runnable {
     }
 }
 
-public class TestSyncArrayList {
+public class Ex5_TestSyncArrayList {
 
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();

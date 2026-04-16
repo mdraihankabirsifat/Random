@@ -1,6 +1,7 @@
 package advanced;
 
 class BufferC {
+
     int value;
     boolean valueSet = false;
 
@@ -40,6 +41,7 @@ class BufferC {
 }
 
 class ProducerC implements Runnable {
+
     BufferC buffer;
 
     ProducerC(BufferC buffer, String name) {
@@ -61,6 +63,7 @@ class ProducerC implements Runnable {
 }
 
 class ConsumerC implements Runnable {
+
     BufferC buffer;
 
     ConsumerC(BufferC buffer, String name) {
@@ -81,7 +84,8 @@ class ConsumerC implements Runnable {
     }
 }
 
-public class CorrectPC {
+public class Ex3_CorrectPC {
+
     public static void main(String[] args) {
         BufferC buffer = new BufferC();
         new ProducerC(buffer, "Producer");

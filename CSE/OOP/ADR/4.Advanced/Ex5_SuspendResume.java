@@ -2,6 +2,7 @@ package advanced;
 
 // Suspending and resuming a thread the modern way.
 class NewThreadSR implements Runnable {
+
     String name; // name of thread
     Thread t;
     boolean suspendFlag;
@@ -42,7 +43,8 @@ class NewThreadSR implements Runnable {
     }
 }
 
-public class SuspendResume {
+public class Ex5_SuspendResume {
+
     public static void main(String[] args) {
         NewThreadSR ob1 = new NewThreadSR("One");
         NewThreadSR ob2 = new NewThreadSR("Two");

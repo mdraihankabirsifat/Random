@@ -1,23 +1,31 @@
 package advanced;
 
-class Buffer {
+class PollingBuffer {
     int value;
+    volatile boolean valueSet = false;
 
-    synchronized int consume() {
+    void consume() {
+        while (!valueSet) {
+
+        }
+        valueSet = false;
         System.out.println(Thread.currentThread().getName() + " consumes: " + value);
-        return value;
     }
 
-    synchronized void produce(int value) {
+    void produce(int value) {
+        while (valueSet) {
+
+        }
         this.value = value;
+        this.valueSet = true;
         System.out.println(Thread.currentThread().getName() + " produces: " + this.value);
     }
 }
 
-class Producer implements Runnable {
-    Buffer buffer;
+class PollingProducer implements Runnable {
+    PollingBuffer buffer;
 
-    Producer(Buffer buffer, String name) {
+    PollingProducer(PollingBuffer buffer, String name) {
         this.buffer = buffer;
         new Thread(this, name).start();
     }
@@ -35,10 +43,10 @@ class Producer implements Runnable {
     }
 }
 
-class Consumer implements Runnable {
-    Buffer buffer;
+class PollingConsumer implements Runnable {
+    PollingBuffer buffer;
 
-    Consumer(Buffer buffer, String name) {
+    PollingConsumer(PollingBuffer buffer, String name) {
         this.buffer = buffer;
         new Thread(this, name).start();
     }
@@ -56,11 +64,11 @@ class Consumer implements Runnable {
     }
 }
 
-public class IncorrectPC {
+public class Ex1_PollingPC {
     public static void main(String[] args) {
-        Buffer buffer = new Buffer();
-        new Producer(buffer, "Producer");
-        new Consumer(buffer, "Consumer");
+        PollingBuffer buffer = new PollingBuffer();
+        new PollingProducer(buffer, "Producer");
+        new PollingConsumer(buffer, "Consumer");
         System.out.println("Press Control-advanced.C to stop.");
     }
 }

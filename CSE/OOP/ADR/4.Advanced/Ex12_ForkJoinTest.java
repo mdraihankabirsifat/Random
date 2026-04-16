@@ -80,7 +80,7 @@ class CustomRecursiveTask extends RecursiveTask<Integer> {
     }
 }
 
-public class ForkJoinTest {
+public class Ex12_ForkJoinTest {
     public static void main(String[] args) {
         /*
          * String alphabet =

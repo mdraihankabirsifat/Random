@@ -43,7 +43,7 @@ class ConsumerB implements Runnable {
     }
 }
 
-public class PCBlockingQueue {
+public class Ex9_PCBlockingQueue {
     public static void main(String[] args) {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(1);
         new ProducerB(queue, "Producer");

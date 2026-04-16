@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class CallableFutures2 {
+public class Ex8_CallableFutures2 {
     public static void main(String[] args) throws Exception {
         ExecutorService executor = Executors.newFixedThreadPool(10);
         List<Callable<Integer>> taskList = new ArrayList<>();

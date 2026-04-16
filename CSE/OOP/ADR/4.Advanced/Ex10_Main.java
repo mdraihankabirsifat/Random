@@ -84,13 +84,13 @@ class C implements Runnable {
     }
 }
 
-public class Main {
+public class Ex10_Main {
+
     public static void main(String[] args) {
         BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(1);
 
         // new Thread(new Producer(queue)).start();
         // new Thread(new Consumer(queue)).start();
-
         Integer poison = -1;
         new Thread(new P(queue, poison)).start();
         // new Thread(new advanced.P(queue, poison)).start();

@@ -35,7 +35,7 @@ class ThreadCounterSyncBlock implements Runnable {
     }
 
     public void run() {
-        synchronized (SynchronizedCounterBlock.class) {
+        synchronized (Ex3_SynchronizedCounterBlock.class) {
             sharedCounter.count();
         }
         //synchronized (sharedCounter) {
@@ -44,7 +44,7 @@ class ThreadCounterSyncBlock implements Runnable {
     }
 }
 
-public class SynchronizedCounterBlock {
+public class Ex3_SynchronizedCounterBlock {
 
     public static void main(String[] args) {
         SharedCounter2 sharedCounter = new SharedCounter2();

@@ -39,7 +39,7 @@ class ThreadCounterSyncMethod implements Runnable {
     }
 }
 
-public class SynchronizedCounterMethod {
+public class Ex2_SynchronizedCounterMethod {
 
     public static void main(String[] args) {
         SharedCounter1 sharedCounter = new SharedCounter1();
