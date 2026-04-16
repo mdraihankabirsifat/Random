@@ -1,3 +1,4 @@
+
 interface Stack<T> {
     void push(T e);
     T pop();
@@ -26,6 +27,7 @@ class MyStack<T> implements Stack<T> {
 }
 
 public class Ex6_GenericInterface {
+
     public static void main(String[] args) {
         String[] s = new String[10];
         MyStack<String> st = new MyStack<>(s);

@@ -1,4 +1,6 @@
+
 public class Ex3_MultipleGenerics<S, T> {
+
     private S a;
     private T b;
 
@@ -16,8 +18,7 @@ public class Ex3_MultipleGenerics<S, T> {
     }
 
     public static void main(String[] args) {
-        Ex3_MultipleGenerics<Integer, String> obj =
-                new Ex3_MultipleGenerics<>(10, "Hello");
+        Ex3_MultipleGenerics<Integer, String> obj = new Ex3_MultipleGenerics<>(10, "Hello");
 
         System.out.println(obj.getFirst());
         System.out.println(obj.getSecond());

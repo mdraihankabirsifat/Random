@@ -1,8 +1,13 @@
+
 class GenCons {
+
     double val;
 
     public <T extends Number> GenCons(T arg) {
         val = arg.doubleValue();
+        // T val;
+        // public GenCons(T arg) {
+        //     val = arg;
     }
 
     void showVal() {
@@ -11,13 +16,16 @@ class GenCons {
 
     public static <V> boolean isIn(V x, V[] a) {
         for (V t : a) {
-            if (t == x) return true;
+            if (t == x) {
+                return true;
+            }
         }
         return false;
     }
 }
 
 public class Ex5_GenericMethod {
+
     public static void main(String[] args) {
         GenCons obj1 = new GenCons(100);
         GenCons obj2 = new GenCons(123.5);
@@ -38,4 +46,4 @@ Key Notes:
 3. Generic method → <V> works independently of class.
 4. isIn() checks element presence in array.
 5. No casting required.
-*/
+ */

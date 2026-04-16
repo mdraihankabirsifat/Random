@@ -1,18 +1,23 @@
+
 class X {
+
     void f1() {
         System.out.println("In f1");
     }
 }
 
 interface Y {
+
     void f2();
 }
 
 interface Z {
+
     void f3();
 }
 
 class MyX extends X implements Y, Z {
+
     public void f2() {
         System.out.println("In f2");
     }
@@ -23,6 +28,7 @@ class MyX extends X implements Y, Z {
 }
 
 public class Ex4_BoundedGenerics<T extends X & Y & Z> {
+
     private T a;
 
     public void setObj(T a) {
