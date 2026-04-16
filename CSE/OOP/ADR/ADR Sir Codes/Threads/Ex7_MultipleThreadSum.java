@@ -21,7 +21,7 @@ class SumThread implements Runnable {
     }
 }
 
-public class MultipleThreadSum {
+public class Ex7_MultipleThreadSum {
 
     public static void main(String[] args) {
         SumThread t1 = new SumThread(1, 5);

@@ -22,7 +22,7 @@ class NewThread2 extends Thread {
     }
 }
 
-public class ExtendsThread {
+public class Ex3_ExtendsThread {
 
     public static void main(String[] args) throws Exception {
         NewThread2 newThread2 = new NewThread2();

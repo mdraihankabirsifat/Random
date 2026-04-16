@@ -25,7 +25,7 @@ class ParallelSum implements Runnable {
         // 4=150, localsum=60, total sum=210
     }
 }
-public class parallelSum {
+public class Ex9_parallelSum {
     public static void main(String[] args) {
         java.util.Random random = new java.util.Random();
         int[] numbers = new int[10000];

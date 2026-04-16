@@ -1,6 +1,6 @@
 //package threads;
 
-public class MainThread {
+public class Ex2_MainThread {
 
     public static void main(String[] args) {
         Thread t = Thread.currentThread();

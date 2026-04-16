@@ -38,7 +38,7 @@ class PrimeCounter implements Runnable {
     }
 }
 
-public class Primecheck {
+public class Ex10_Primecheck {
 
     public static void main(String[] args) {
         java.util.Random random = new java.util.Random();

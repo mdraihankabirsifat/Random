@@ -25,7 +25,7 @@ class NewThread implements Runnable {
     }
 }
 
-public class MultipleThreads {
+public class Ex6_MultipleThreads {
 
     public static void main(String[] args) {
         System.out.println("Main thread starting.");

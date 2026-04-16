@@ -1,6 +1,6 @@
 //package threads;
 
-public class JoinAliveThreads {
+public class Ex8_JoinAliveThreads {
 
     public static void main(String[] args) {
         NewThread ob1 = new NewThread("One");

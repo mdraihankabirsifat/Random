@@ -22,7 +22,7 @@ class NewThread1 implements Runnable {
     }
 }
 
-public class ImplementsThread {
+public class Ex4_ImplementsThread {
 
     public static void main(String[] args) throws Exception {
         new NewThread1();
