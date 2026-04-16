@@ -8,11 +8,11 @@ public class Ex3_FileInputStreamDemo {
 
         int size;
 
-        InputStream f = new FileInputStream("TestFile.java");
+        InputStream f = new FileInputStream("sample.txt");
 
         System.out.println("Total Available Bytes: " + (size = f.available()));
 
-        int n = size / 40;
+        int n = size / 4; // 13 / 4 = 3
 
         System.out.println("Reading first " + n + " bytes:");
 
@@ -27,7 +27,7 @@ public class Ex3_FileInputStreamDemo {
         byte b[] = new byte[n];
 
         if (f.read(b) != n) {
-            System.out.println("Couldn't read properly");
+            System.out.println("Couldn't read properly"); //
         }
 
         System.out.println(new String(b, 0, n));

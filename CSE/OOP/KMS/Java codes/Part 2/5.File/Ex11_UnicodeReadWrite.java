@@ -6,15 +6,11 @@ public class Ex11_UnicodeReadWrite {
 
     public static void main(String args[]) throws Exception {
 
-        Reader reader = new InputStreamReader(
-                new FileInputStream("unicode.txt"),
-                StandardCharsets.UTF_8);
+        Reader reader = new InputStreamReader( new FileInputStream("sample.txt"),StandardCharsets.UTF_8);
 
         BufferedReader br = new BufferedReader(reader);
 
-        Writer writer = new OutputStreamWriter(
-                new FileOutputStream("unicodeout.txt"),
-                StandardCharsets.UTF_8);
+        Writer writer = new OutputStreamWriter(new FileOutputStream("output.txt"),StandardCharsets.UTF_8);
 
         BufferedWriter bw = new BufferedWriter(writer);
 

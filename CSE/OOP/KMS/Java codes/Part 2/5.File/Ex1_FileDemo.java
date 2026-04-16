@@ -10,7 +10,7 @@ public class Ex1_FileDemo {
 
     public static void main(String args[]) {
 
-        File f1 = new File("dir/sample.txt");
+        File f1 = new File("D:/Documents/Code/CSE/OOP/KMS/Java codes/Part 2/5.File/sample.txt");
 
         p("File Name: " + f1.getName());
         p("Path: " + f1.getPath());
@@ -49,4 +49,4 @@ Key Notes:
 3. lastModified() → returns time in milliseconds.
 4. File object does NOT create file automatically.
 5. VERY IMPORTANT: File class ≠ File I/O (just info).
-*/
+ */

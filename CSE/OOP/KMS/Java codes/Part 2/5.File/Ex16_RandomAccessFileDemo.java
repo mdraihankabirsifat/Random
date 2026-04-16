@@ -5,26 +5,17 @@ public class Ex16_RandomAccessFileDemo {
 
     public static void main(String[] args) throws Exception {
 
-        RandomAccessFile file = new RandomAccessFile("random.txt", "rw");
+        RandomAccessFile file = new RandomAccessFile("sample.txt", "rw");
 
         file.write("Hello".getBytes());
-
         System.out.println(file.getFilePointer());
-
         file.seek(0);
-
         System.out.println(file.getFilePointer());
-
         System.out.println(file.readLine());
-
         file.seek(10);
-
         file.write("World".getBytes());
-
         file.seek(0);
-
         System.out.println(file.readLine());
-
         file.close();
     }
 }
@@ -37,4 +28,4 @@ Key Notes:
 3. getFilePointer() → current position.
 4. Works like array of bytes.
 5. VERY IMPORTANT concept.
-*/
+ */

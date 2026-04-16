@@ -5,7 +5,7 @@ public class Ex14_DataIODemo {
 
     public static void main(String args[]) throws Exception {
 
-        FileOutputStream fos = new FileOutputStream("Test.dat");
+        FileOutputStream fos = new FileOutputStream("output.txt");
         DataOutputStream dos = new DataOutputStream(fos);
 
         dos.writeDouble(98.6);
@@ -15,7 +15,7 @@ public class Ex14_DataIODemo {
         dos.close();
         fos.close();
 
-        FileInputStream fis = new FileInputStream("Test.dat");
+        FileInputStream fis = new FileInputStream("output.txt");
         DataInputStream dis = new DataInputStream(fis);
 
         double d = dis.readDouble();

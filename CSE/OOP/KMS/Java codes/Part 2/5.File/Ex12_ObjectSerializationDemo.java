@@ -13,7 +13,7 @@ class MyClass implements Serializable {
         this.d = d;
     }
 
-    public String toString() {
+    public String toString() { //
         return "s=" + s + "; i=" + i + "; d=" + d;
     }
 }
@@ -26,11 +26,12 @@ public class Ex12_ObjectSerializationDemo {
             MyClass obj1 = new MyClass("Hello", -7, 2.7e10);
 
             FileOutputStream fos = new FileOutputStream("serial");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            ObjectOutputStream oos = new ObjectOutputStream(fos); // object to byte stream
 
-            oos.writeObject(obj1);
+            oos.writeObject(obj1); //serialization happens here
 
             oos.close();
+            System.out.println(obj1);
 
         } catch (Exception e) {
             System.out.println(e);

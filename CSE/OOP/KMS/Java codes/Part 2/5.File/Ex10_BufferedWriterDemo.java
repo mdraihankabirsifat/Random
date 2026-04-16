@@ -5,10 +5,10 @@ public class Ex10_BufferedWriterDemo {
 
     public static void main(String args[]) throws Exception {
 
-        Reader fr = new FileReader("TestFile.java");
+        Reader fr = new FileReader("sample.txt");
         BufferedReader br = new BufferedReader(fr);
 
-        FileWriter fw = new FileWriter("TestFileCopy.java");
+        FileWriter fw = new FileWriter("output.txt");
         BufferedWriter bw = new BufferedWriter(fw);
 
         while (true) {
@@ -17,6 +17,7 @@ public class Ex10_BufferedWriterDemo {
                 break;
             }
             bw.write(s);
+            bw.write("Oi Hello");
             bw.newLine();
         }
 

@@ -7,10 +7,7 @@ public class Ex7_FileWriterDemo {
 
     public static void main(String args[]) throws Exception {
 
-        String source
-                = "Now is the time for all good men\n"
-                + "to come to the aid of their country\n"
-                + "and pay their due taxes.";
+        String source= "Now is the time for all good men\n" + "to come to the aid of their country\n"+ "and pay their due taxes.";
 
         char buffer[] = new char[source.length()];
 

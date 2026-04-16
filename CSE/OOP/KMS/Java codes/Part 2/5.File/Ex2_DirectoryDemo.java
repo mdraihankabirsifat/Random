@@ -5,7 +5,7 @@ public class Ex2_DirectoryDemo {
 
     public static void main(String args[]) {
 
-        String dirname = "dir";
+        String dirname = "D:/Documents/Code/CSE/OOP/KMS/Java codes/Part 2";
 
         File f1 = new File(dirname);
 
@@ -17,7 +17,7 @@ public class Ex2_DirectoryDemo {
 
             for (int i = 0; i < s.length; i++) {
 
-                File f = new File(dirname + "/" + s[i]);
+                File f = new File(dirname + "/" + s[i]); //Example 1
 
                 if (f.isDirectory()) {
                     System.out.println(s[i] + " is a directory");

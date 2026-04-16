@@ -7,7 +7,7 @@ public class Ex9_BufferedReaderWithException {
 
     public static void main(String args[]) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader("TestFile.java"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("D:/Documents/Code/CSE/OOP/KMS/Java codes/Part 2/5.File/sample.txt"))) {
 
             while (true) {
                 String s = br.readLine();
