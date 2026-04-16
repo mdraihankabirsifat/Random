@@ -18,7 +18,8 @@ public class Ex1_ArrayListDemo1 {
         al.add("B");
         al.add("D");
         al.add("F");
-
+        
+        al.set(1,"K"); //ifat!!!
         System.out.println("Size after additions: " + al.size());
 
         // display list

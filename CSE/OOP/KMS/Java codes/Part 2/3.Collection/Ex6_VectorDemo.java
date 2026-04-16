@@ -19,6 +19,7 @@ public class Ex6_VectorDemo {
         System.out.println("First: " + v.firstElement());
         System.out.println("Last: " + v.lastElement());
 
+        //v.add(3);
         if (v.contains(3)) {
             System.out.println("Contains 3");
         }
@@ -28,6 +29,8 @@ public class Ex6_VectorDemo {
         for (int i = 0; i < v.size(); i++) {
             System.out.println(v.elementAt(i));
         }
+        //v.get(1);
+        //v.set(1,5);
     }
 }
 
@@ -39,4 +42,4 @@ Key Notes:
 3. Capacity doubles automatically.
 4. Legacy class (rarely used now).
 5. elementAt() similar to get().
-*/
+ */

@@ -19,7 +19,7 @@ public class Ex5_ArraysDemo {
         System.out.print("Sorted: ");
         display(array);
 
-        Arrays.fill(array, 2, 6, -1);
+        Arrays.fill(array, 2, 6, -1); // 0 indexing
 
         System.out.print("After fill: ");
         display(array);
@@ -50,4 +50,4 @@ Key Notes:
 3. fill(start, end, value) → partial overwrite.
 4. binarySearch() → must be sorted before use.
 5. Useful for array manipulation in exams.
-*/
+ */

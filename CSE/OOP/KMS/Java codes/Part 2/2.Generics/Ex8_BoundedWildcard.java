@@ -82,6 +82,7 @@ class Ex8_BoundedWildcard {
 
         // ❌ ERROR (no z)
         // Ex8_BoundedWildcard.showXYZ(twoDCoords);
+        
         Ex8_FourD[] fourD = {
             new Ex8_FourD(1, 8, 9, 16),
             new Ex8_FourD(2, 7, 10, 15),

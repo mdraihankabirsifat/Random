@@ -26,7 +26,7 @@ public class Ex2_ArrayListDemo2 {
         System.out.println();
 
         // lambda iteration
-        al.forEach(e -> System.out.print(e + " "));
+        al.forEach(atik -> System.out.print(atik + " "));
 
         System.out.println();
 
@@ -34,16 +34,15 @@ public class Ex2_ArrayListDemo2 {
 
         // convert to array
         Integer ia[] = new Integer[al.size()];
-        al.toArray(ia);
+        al.toArray(ia); //List to array al->ia
 
         for (int i = 0; i < ia.length; i++) {
             System.out.print(ia[i] + " ");
         }
 
         System.out.println();
-
         // array to list
-        List<Integer> alist = Arrays.asList(ia);
+        List<Integer> alist = Arrays.asList(ia); //Array to List ia->alist
 
         for (Integer i : alist) {
             System.out.print(i + " ");
@@ -60,4 +59,4 @@ Key Notes:
 4. Arrays.asList() → Array → List conversion.
 5. remove(index) removes element at that position.
 6. Demonstrates interoperability between List and Array.
-*/
+ */

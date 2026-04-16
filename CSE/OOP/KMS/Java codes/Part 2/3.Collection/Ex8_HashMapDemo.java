@@ -15,8 +15,9 @@ public class Ex8_HashMapDemo {
         balance.put(null, 0.0);
 
         Iterator<String> itr = balance.keySet().iterator();
+        //Enumeration<String> itr1 = balance.keys();
 
-        while (itr.hasNext()) {
+        while (itr.hasNext()) { //hasMoreElements in Hashtable
             String key = itr.next();
             System.out.println(key + ": " + balance.get(key));
         }

@@ -33,7 +33,7 @@ class TestClassComparator implements Comparator<TestClass> {
     }
 }
 
-public class Ex9_ComparatorDemo {
+public class Ex10_ComparatorDemo {
 
     public static void printList(List<TestClass> al) {
         for (TestClass t : al) {

@@ -1,25 +1,28 @@
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Ex4_LinkedListDemo {
 
     public static void main(String args[]) {
 
-        LinkedList<String> ll = new LinkedList<>();
+        //LinkedList<String> ll = new LinkedList<>();
+        List<String> ll = new LinkedList<>();
 
         ll.add("F");
         ll.add("B");
         ll.add("D");
-        ll.add("E");
+        ll.add("F");
         ll.add("C");
 
         ll.addLast("Z");
         ll.addFirst("A");
         ll.add(1, "A2");
+        ll.set(1, "B2");
 
         System.out.println("Original: " + ll);
 
-        ll.remove("F");
+        ll.remove("F"); //first occurence only
         ll.remove(2);
 
         System.out.println("After deletion: " + ll);
@@ -45,4 +48,4 @@ Key Notes:
 4. removeFirst(), removeLast() → efficient.
 5. get() + set() → access and modify elements.
 6. Slower random access compared to ArrayList.
-*/
+ */
