@@ -1,7 +1,5 @@
 //package Package;
-
 class Balance {
-
     String name;
     double bal;
 
@@ -9,14 +7,12 @@ class Balance {
         name = n;
         bal = b;
     }
-
     void show() {
         System.out.println(name + ": $" + bal);
     }
 }
 
 public class Ex1_AccountBalance {
-
     public static void main(String[] args) {
         Balance[] current = new Balance[3];
 
@@ -32,7 +28,6 @@ public class Ex1_AccountBalance {
 
 /*
 Key Notes:
-
 1. Demonstrates package usage.
 2. Only one public class → filename must match.
 3. Array of objects used.
