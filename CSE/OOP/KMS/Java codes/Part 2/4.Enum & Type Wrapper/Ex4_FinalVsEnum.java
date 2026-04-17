@@ -14,11 +14,13 @@ public class Ex4_FinalVsEnum {
 
     static void printStatusOld(int status) {
         if (status == OrderStatusOld.PENDING) {
-            System.out.println("Pending"); 
-        }else if (status == OrderStatusOld.SHIPPED) {
-            System.out.println("Shipped"); 
-        }else if (status == OrderStatusOld.DELIVERED) {
+            System.out.println("Pending");
+        } else if (status == OrderStatusOld.SHIPPED) {
+            System.out.println("Shipped");
+        } else if (status == OrderStatusOld.DELIVERED) {
             System.out.println("Delivered");
+        } else {
+            System.out.println("Nothing.");
         }
     }
 
@@ -50,4 +52,4 @@ Key Notes:
 3. Enum prevents invalid values.
 4. Enum improves readability.
 5. VERY IMPORTANT exam comparison.
-*/
+ */

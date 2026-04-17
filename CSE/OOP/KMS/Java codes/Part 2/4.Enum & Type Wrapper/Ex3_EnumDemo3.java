@@ -9,6 +9,7 @@ enum AppleNew {
     // constructor
     AppleNew(int p) {
         price = p;
+        //System.out.println("Ifat");
     }
 
     int getPrice() {
@@ -33,8 +34,7 @@ public class Ex3_EnumDemo3 {
 
     public static void main(String args[]) {
 
-        System.out.println("Winesap costs "
-                + AppleNew.Winesap.getPrice() + " cents.\n");
+        System.out.println("Winesap costs "+ AppleNew.Winesap.getPrice() + " cents.\n");
 
         System.out.println("All apple prices:");
 

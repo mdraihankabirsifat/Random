@@ -14,7 +14,7 @@ public class Ex1_EnumDemo {
 
         // print enum value
         System.out.println("Value of ap: " + ap);
-        System.out.println();
+        //System.out.println();
 
         ap = Apple.GoldenDel;
 

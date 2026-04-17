@@ -12,7 +12,7 @@ public class Ex16_RandomAccessFileDemo {
         file.seek(0);
         System.out.println(file.getFilePointer());
         System.out.println(file.readLine());
-        file.seek(10);
+        file.seek(10); //Hello-----World
         file.write("World".getBytes());
         file.seek(0);
         System.out.println(file.readLine());

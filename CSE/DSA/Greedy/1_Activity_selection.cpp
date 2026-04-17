@@ -2,39 +2,41 @@
 #include <vector>
 using namespace std;
 
-//maximum number of non-overlapping activities
+// maximum number of non-overlapping activities
+//  if sorted then O(n) else O(nlog(n))
+//  DP O(n^3)
 
 // Activity Selection (activities are already sorted by finish time)
 void activitySelection(vector<int> &s, vector<int> &f)
 {
-    int n = s.size();
+   int n = s.size();
 
-    // pick the first activity
-    cout << "Selected activities: 0 ";
-    int k = 0; // index of last selected activity
+   // pick the first activity
+   cout << "Selected activities: 0 ";
+   int k = 0; // index of last selected activity
 
-    // check remaining activities
-    for (int m = 1; m < n; m++)
-    {
-        // if current activity starts after or when last selected one finishes
-        if (s[m] >= f[k])
-        {
-            cout << m << " ";
-            k = m; // update last selected activity
-        }
-    }
+   // check remaining activities
+   for (int m = 1; m < n; m++)
+   {
+      // if current activity starts after or when last selected one finishes
+      if (s[m] >= f[k])
+      {
+         cout << m << " ";
+         k = m; // update last selected activity
+      }
+   }
 }
 
 int main()
 {
-    // start times and finish times
-    // already sorted by finish time
-    vector<int> s = {1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12};
-    vector<int> f = {4, 5, 6, 7, 9, 9, 10, 11, 12, 14, 16};
+   // start times and finish times
+   // already sorted by finish time
+   vector<int> s = {1, 3, 0, 5, 3, 5, 6, 8, 8, 2, 12};
+   vector<int> f = {4, 5, 6, 7, 9, 9, 10, 11, 12, 14, 16};
 
-    activitySelection(s, f);
+   activitySelection(s, f);
 
-    return 0;
+   return 0;
 }
 
 /*

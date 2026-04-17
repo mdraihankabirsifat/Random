@@ -16,7 +16,7 @@ int main()
     vector<pair<double, int>> ratio;
 
     for (int i = 0; i < n; i++)
-        ratio.push_back({(double)v[i] / w[i], i});
+        ratio.push_back({(double)v[i] / w[i], i}); // 6, 5, 4
 
     // sort by descending ratio
     sort(ratio.begin(), ratio.end(), greater<>());

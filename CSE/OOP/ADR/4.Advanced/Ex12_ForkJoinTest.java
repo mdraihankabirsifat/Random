@@ -39,8 +39,7 @@ class CustomRecursiveAction extends RecursiveAction {
 
     private void processing(String work) {
         String result = work.toUpperCase();
-        System.out.println("This result - (" + result + ") - was processed by "
-                + Thread.currentThread().getName());
+        System.out.println("This result - (" + result + ") - was processed by "+ Thread.currentThread().getName());
     }
 }
 

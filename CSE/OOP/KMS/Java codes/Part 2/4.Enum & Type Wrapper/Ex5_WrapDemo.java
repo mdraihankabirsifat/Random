@@ -4,7 +4,7 @@ public class Ex5_WrapDemo {
     public static void main(String args[]) {
 
         // boxing
-        Integer iOb = new Integer(100);
+        Integer iOb = new Integer(100); 
 
         // unboxing
         int i = iOb.intValue();

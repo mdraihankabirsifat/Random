@@ -3,60 +3,67 @@
 #include <algorithm>
 using namespace std;
 
-struct Edge
-{
-    int u, v, w;
-};
-
-// Disjoint Set (Union-Find)
 vector<int> parent;
 
+// Find with path compression
 int findSet(int x)
 {
     if (parent[x] == x)
         return x;
-    return parent[x] = findSet(parent[x]); // path compression
+    return parent[x] = findSet(parent[x]);
 }
 
+// Union two sets
 void unionSet(int a, int b)
 {
-    a = findSet(a);
-    b = findSet(b);
+    a = findSet(a); //0
+    b = findSet(b); // 1
+
     if (a != b)
         parent[a] = b;
 }
 
 int main()
 {
+    int n = 5;
 
-    int n = 5; // number of vertices
+    // {weight, {u, v}}
+    vector<pair<int, pair<int, int>>> edges = {
+        {4, {0, 1}},
+        {8, {0, 2}},
+        {2, {1, 2}},
+        {6, {1, 3}},
+        {3, {2, 3}},
+        {5, {3, 4}}};
 
-    vector<Edge> edges = {
-        {0, 1, 4}, {0, 2, 8}, {1, 2, 2}, {1, 3, 6}, {2, 3, 3}, {3, 4, 5}};
-
-    // initialize disjoint sets
+    // Make-Set
     parent.resize(n);
     for (int i = 0; i < n; i++)
         parent[i] = i;
 
-    // sort edges by weight
-    sort(edges.begin(), edges.end(), [](Edge a, Edge b)
-         { return a.w < b.w; });
+    // Sort edges by weight
+    sort(edges.begin(), edges.end());
 
     int mstCost = 0;
+    int cnt = 0;
 
-    // process edges
     for (auto e : edges)
     {
+        int w = e.first;
+        int u = e.second.first;
+        int v = e.second.second;
 
-        // if adding edge does not create cycle
-        if (findSet(e.u) != findSet(e.v))
+        // If no cycle
+        if (findSet(u) != findSet(v))
         {
+            cout << u << " - " << v << " : " << w << endl;
 
-            unionSet(e.u, e.v); // connect components
-            mstCost += e.w;
+            mstCost += w;
+            unionSet(u, v);
+            cnt++;
 
-            cout << e.u << " - " << e.v << " : " << e.w << endl;
+            if (cnt == n - 1)
+                break;
         }
     }
 
@@ -68,29 +75,29 @@ int main()
 /*
 Key Notes:
 
-1. Problem:
-   Find Minimum Spanning Tree (MST)
+1. Kruskal's Algorithm (Greedy):
+   Always pick smallest weight edge.
 
-2. Idea (Greedy):
-   Always pick the smallest weight edge.
+2. Steps:
+   - Make each node its own set
+   - Sort edges by weight
+   - Pick edge if it does NOT form cycle
 
-3. Steps:
-   - Start with each node as separate tree
-   - Sort edges in increasing order
-   - Add edge if it does NOT form a cycle
+3. Cycle Detection:
+   findSet(u) != findSet(v)
 
-4. Cycle Detection:
-   Use Disjoint Set (Union-Find)
+4. Union-Find:
+   - findSet(x) → finds representative
+   - unionSet(a, b) → merges sets
 
-5. If Find(u) ≠ Find(v):
-   → safe to add edge
+5. Stop after (V - 1) edges.
 
-6. Stop when:
-   MST has (V - 1) edges
+6. Time Complexity:
+   O(E log E)  [sorting dominates]
 
-7. Time Complexity:
-   O(E log E) (sorting)
+7. Optimization:
+   Path compression makes find fast
 
-8. Why greedy works:
-   Minimum edge between components is always safe
+8. From your slides:
+   - Make-Set(v), Find(x), Union(x,y) are core operations :contentReference[oaicite:0]{index=0}
 */

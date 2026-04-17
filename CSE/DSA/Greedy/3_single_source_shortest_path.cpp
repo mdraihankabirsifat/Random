@@ -26,15 +26,15 @@ int main()
 
     while (!q.empty())
     {
-        int u = q.front();
-        q.pop();
+        int u = q.front(); // u=1
+        q.pop();           // q=2
 
         for (int v : adj[u])
         {
             if (dist[v] == -1)
             {
-                dist[v] = dist[u] + 1;
-                q.push(v);
+                dist[v] = dist[u] + 1; // dist[1]=1, dist[2]=1, dist[3]=2
+                q.push(v);             // q=2,3
             }
         }
     }
