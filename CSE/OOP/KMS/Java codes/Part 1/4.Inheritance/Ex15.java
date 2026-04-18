@@ -4,12 +4,12 @@ interface i1 {
     void f2();
 }
 
-interface i2 extends i1 {
+interface i2  {
     void f3();
     void f4();
 }
 
-interface i3 extends  i2
+interface i3 extends  i1,i2
 {
     void f5();
     void f6();
