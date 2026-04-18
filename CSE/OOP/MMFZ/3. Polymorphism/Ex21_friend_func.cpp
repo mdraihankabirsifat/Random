@@ -6,7 +6,9 @@ class Coord
     int x, y;
 
 public:
-    Coord(int x = 0, int y = 0) : x(x), y(y) {}
+    Coord(int x = 0, int y = 0) : x(x), y(y)
+    {
+    }
 
     void show() const
     {

@@ -16,8 +16,8 @@ int findSet(int x)
 // Union two sets
 void unionSet(int a, int b)
 {
-    a = findSet(a); //0
-    b = findSet(b); // 1
+    a = findSet(a); // 3
+    b = findSet(b); // 4
 
     if (a != b)
         parent[a] = b;
@@ -49,15 +49,14 @@ int main()
 
     for (auto e : edges)
     {
-        int w = e.first;
-        int u = e.second.first;
-        int v = e.second.second;
+        int w = e.first;         // w=2
+        int u = e.second.first;  // u=1
+        int v = e.second.second; // v=2
 
         // If no cycle
         if (findSet(u) != findSet(v))
         {
             cout << u << " - " << v << " : " << w << endl;
-
             mstCost += w;
             unionSet(u, v);
             cnt++;
