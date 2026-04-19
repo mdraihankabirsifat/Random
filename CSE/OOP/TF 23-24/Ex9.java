@@ -14,18 +14,18 @@ enum HttpStatus {
         this.message = message;
     }
 
-    // i) isError()
+    // isError()
     public boolean isError() {
         return this != OK;
     }
 
-    // ii) toString()
+    // toString()
     @Override
     public String toString() {
         return code + " " + message;
     }
 
-    // iii) fromCode()
+    // fromCode()
     public static HttpStatus fromCode(int code) {
         for (HttpStatus status : HttpStatus.values()) {
             if (status.code == code) {

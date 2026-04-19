@@ -25,7 +25,7 @@ class Book {
     }
 
     // Override equals() (ignore edition)
-    @Override
+    //@Override
     public boolean equals(Object o) {
 
         // Same reference → true
