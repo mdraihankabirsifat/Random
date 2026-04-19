@@ -1,10 +1,13 @@
+
 class X {
-    int a = 1;
+
+    static int a = 1;
+
     void display() {
         Y obY = new Y();
         obY.display();
         Z obZ = new Z();
-        obZ.display(this);
+        obZ.display();
     }
 
     void showNested() {
@@ -15,7 +18,9 @@ class X {
     }
 
     class Y {
+
         int b = 2;
+
         void display() {
             System.out.println(a);
             System.out.println(b);
@@ -23,15 +28,18 @@ class X {
     }
 
     static class Z {
+
         int c = 3;
-        void display(X obX) {
-            System.out.println(obX.a);
+
+        void display() {
+            System.out.println(a); //it can not directly access non static variable
             System.out.println(c);
         }
     }
 }
 
 public class Ex6 {
+
     public static void main(String[] args) {
 
         X obX = new X();
@@ -43,7 +51,7 @@ public class Ex6 {
         obY.display();
 
         X.Z obZ = new X.Z();
-        obZ.display(obX);
+        obZ.display();
     }
 }
 
@@ -81,4 +89,4 @@ Key Notes:
 7. Important exam idea:
    - non-static inner class needs outer object
    - static nested class does not need outer object
-*/
+ */
