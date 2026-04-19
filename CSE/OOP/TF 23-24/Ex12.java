@@ -51,23 +51,17 @@ public class Ex12 {
 
         // (ii) Using Stream
         // Extract names
-        List<String> names = list.stream()
-                .map(e -> e.getName())
-                .collect(Collectors.toList());
+        List<String> names = list.stream().map(e -> e.getName()).collect(Collectors.toList());
 
         // Employees with age <= 20
-        List<Employee> employees = list.stream()
-                .filter(e -> e.getAge() <= 20)
-                .collect(Collectors.toList());
+        List<Employee> employees = list.stream().filter(e -> e.getAge() <= 20).collect(Collectors.toList());
 
         // Print results
         System.out.println(names);
         System.out.println(employees);
 
         // (iii) Sorting
-        list.sort(
-                Comparator.comparing(Employee::getAge)
-                        .thenComparing(Employee::getName)
+        list.sort(Comparator.comparing(Employee::getAge).thenComparing(Employee::getName)
         );
 
         // Print sorted list
@@ -118,4 +112,4 @@ Key Notes:
    Age 15 → Chambers, Mccoy
    Age 25 → Bradley
    Age 30 → Quinn
-*/
+ */
