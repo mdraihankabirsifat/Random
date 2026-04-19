@@ -1,4 +1,3 @@
-
 public class Ex6_va_list {
 
     static int maxmin(String s, int... a) {

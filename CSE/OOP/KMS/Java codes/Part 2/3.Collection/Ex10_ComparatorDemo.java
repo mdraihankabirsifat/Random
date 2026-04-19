@@ -25,7 +25,7 @@ class TestClass implements Comparable<TestClass> {
     }
 }
 
-class TestClassComparator implements Comparator<TestClass> {
+class TestClassComparator implements Comparator<TestClass> { //Tor kora lagbo
 
     @Override
     public int compare(TestClass o1, TestClass o2) {
@@ -52,10 +52,10 @@ public class Ex10_ComparatorDemo {
 
         printList(al);
 
-        Collections.sort(al); // by name
+        Collections.sort(al); // by name //comparable
         printList(al);
 
-        Collections.sort(al, new TestClassComparator()); // by id
+        Collections.sort(al, new TestClassComparator()); // by id //comparator
         printList(al);
 
         Collections.sort(al, (a, b) -> a.getName().compareTo(b.getName())); // lambda

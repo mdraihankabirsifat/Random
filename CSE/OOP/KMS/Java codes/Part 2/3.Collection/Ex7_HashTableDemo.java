@@ -19,6 +19,11 @@ public class Ex7_HashTableDemo {
             System.out.println(key + ": " + balance.get(key));
         }
 
+        // for (String s : balance.keySet()) {
+        //     System.out.println(balance.get(s));
+        // }
+
+        //balance.forEach((k, v) -> System.out.println(k + ": " + v));
         String key = "John doe";
         double bal = 1000.0;
 

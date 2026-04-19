@@ -11,7 +11,6 @@ class Inventory
 public:
     Inventory(char *name, int num, double cost)
     {
-
         strcpy(itemName, name);
         itemNumber = num;
         price = cost;

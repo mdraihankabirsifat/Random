@@ -4,32 +4,26 @@ using namespace std;
 
 ostream &setup(ostream &os)
 {
-
     os << hex << showbase << uppercase; // set formatting
+    //os << "str" << endl;
     os.width(10);
     os.fill('*');
-
+    //os << "str" << endl;
     return os;
 }
 
 istream &hex_input(istream &is)
 {
-
     is >> hex; // read input as hexadecimal
     return is;
 }
 
 int main()
 {
-
     int number;
-
     cout << "Enter a hexadecimal number: ";
-
-    cin >> hex_input >> number; // use custom input manipulator
-
+    cin >> hex_input >> number;                         // use custom input manipulator
     cout << "You entered: " << setup << number << endl; // custom output manipulator
-
     return 0;
 }
 
