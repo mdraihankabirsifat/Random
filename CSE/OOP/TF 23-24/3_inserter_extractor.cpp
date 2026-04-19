@@ -11,14 +11,16 @@ public:
     friend istream &operator>>(istream &in, Complex &c)
     {
         cout << "Enter real part: ";
-        if (!(in >> c.real))
+        in >> c.real;
+        if (!in)
         {
             in.setstate(ios::failbit);
             return in;
         }
 
         cout << "Enter imaginary part: ";
-        if (!(in >> c.imaginary))
+        in >> c.imaginary;
+        if (!in)
         {
             in.setstate(ios::failbit);
             return in;
@@ -28,7 +30,7 @@ public:
     }
 
     // inserter (<<)
-    friend ostream &operator<<(ostream &out, const Complex &c)
+    friend ostream &operator<<(ostream &out, Complex &c)
     {
         out << c.real << " + " << c.imaginary << "i";
         return out;
@@ -45,7 +47,6 @@ int main()
         cout << "Invalid input\n";
         return 0;
     }
-
     cout << c; // inserter
 
     return 0;
