@@ -12,6 +12,15 @@ class Employee implements Comparable<Employee> {
         this.age = age;
     }
 
+    // getters
+    String getName() {
+        return name;
+    }
+
+    int getAge() {
+        return age;
+    }
+
     public int compareTo(Employee o) {
         if (age != o.age) {
             return age - o.age;
@@ -33,6 +42,19 @@ public class Ex {
         list.add(new Employee(5, "Quinn", 30));
         list.add(new Employee(6, "Mccoy", 15));
 
+        // Part (ii) stream
+        List<String> names = list.stream()
+                .map(Employee::getName)
+                .toList();
+
+        List<Employee> employees = list.stream()
+                .filter(e -> e.getAge() <= 20)
+                .toList();
+
+        System.out.println(names);
+        System.out.println(employees);
+
+        // sorting
         Collections.sort(list);
 
         for (Employee e : list) {
@@ -44,9 +66,16 @@ public class Ex {
 /*
 Key Notes:
 
-1. Comparable → default sorting
-2. Sorting rule:
-   - age ascending
-   - if same → name ascending
-3. Collections.sort() uses compareTo()
+1. Must declare:
+   List<String> names
+   List<Employee> employees
+
+2. Stream:
+   map → extract name
+   filter → condition (age <= 20)
+
+3. Getter required for method reference
+
+4. Sorting:
+   Comparable used (age → name)
 */
