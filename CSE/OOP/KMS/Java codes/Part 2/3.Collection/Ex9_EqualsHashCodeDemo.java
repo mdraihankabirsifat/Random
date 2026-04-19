@@ -1,12 +1,8 @@
-
 import java.util.HashMap;
 import java.util.Objects;
-
 // Custom class
 class Point {
-
     int x, y;
-
     // Constructor
     Point(int x, int y) {
         this.x = x;
@@ -16,20 +12,16 @@ class Point {
     // Override equals() to compare content
     @Override
     public boolean equals(Object o) {
-
         // Same reference → true
         if (o == this) {
             return true;
         }
-
         // If not same class → false
         if (!(o instanceof Point)) {
             return false;
         }
-
         // Typecast
         Point p = (Point) o;
-
         // Compare values
         return p.x == this.x && p.y == this.y;
     }
