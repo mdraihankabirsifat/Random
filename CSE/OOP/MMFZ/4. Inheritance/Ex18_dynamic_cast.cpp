@@ -17,6 +17,7 @@ public:
     {
         cout << "Dog" << endl;
     }
+    void dog2() {}
 };
 
 class Cat : public Animal
@@ -39,7 +40,7 @@ int main()
     Cat *cat = new Cat;
 
     animal->print();
-
+    // dog->print();
     animal = dynamic_cast<Animal *>(dog);
     animal->print();
 

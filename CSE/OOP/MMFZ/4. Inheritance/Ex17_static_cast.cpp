@@ -35,21 +35,25 @@ int main()
     cout << "wide: " << wide << endl;
 
     Derived *d = new Derived;
-    d->print();
+    d->print(); // Derived
 
     Base *b = static_cast<Base *>(d); // upcast
-    b->print();
+    b->print();                       // Derived
 
     b = new Base();
-    b->print();
+    b->print(); // Base
 
     Base *base = new Base();
     Derived *derived = static_cast<Derived *>(base); // unsafe downcast
-    derived->print();
+    derived->print();                                // Base
 
     derived = new Derived();
     derived->print();
-
+    
+    // float y = 9.1;
+    // int x = static_cast<int>(y);
+    // cout << x << endl;
+    // int h = (int)y;
     return 0;
 }
 

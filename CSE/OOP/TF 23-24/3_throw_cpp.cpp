@@ -17,7 +17,7 @@ int main()
     {
         cout << divide() << endl;
     }
-    catch (const runtime_error &e)
+    catch (runtime_error &e)
     {
         cout << e.what() << endl;
     }

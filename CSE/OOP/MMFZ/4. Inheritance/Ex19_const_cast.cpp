@@ -14,11 +14,12 @@ class Student
 public:
     Student(int r)
     {
-        roll = r; //3
+        roll = r; // 3
     };
 
     void funct() const
     {
+        // this becomes const under const funct
         (const_cast<Student *>(this))->roll = 5; // remove constness
     }
 
