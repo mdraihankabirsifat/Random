@@ -47,10 +47,10 @@ public class Ex6 {
         obX.display();
         obX.showNested();
 
-        X.Y obY = obX.new Y();
+        X.Y obY = obX.new Y(); // non static inner class tied with outer class obj
         obY.display();
 
-        X.Z obZ = new X.Z();
+        X.Z obZ = new X.Z(); //static are not
         obZ.display();
     }
 }
