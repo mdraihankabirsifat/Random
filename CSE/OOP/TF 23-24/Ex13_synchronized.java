@@ -22,7 +22,7 @@ class MyThread implements Runnable {
     }
 }
 
-public class TestSyncArrayList {
+public class Ex13_synchronized {
 
     public static void main(String[] args) throws Exception {
 

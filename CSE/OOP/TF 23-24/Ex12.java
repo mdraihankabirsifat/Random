@@ -29,7 +29,7 @@ class Employee implements Comparable<Employee> {
     }
 }
 
-public class Ex {
+public class Ex12 {
 
     public static void main(String[] args) {
 
