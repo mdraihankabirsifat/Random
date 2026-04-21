@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Demonstrates inheritance (derived class inherits base class properties)
 
 #include <iostream>

@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 class Message {
     private String msg;
     public Message(String msg) {

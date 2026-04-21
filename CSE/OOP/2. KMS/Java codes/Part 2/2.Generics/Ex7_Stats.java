@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 //package generics;
 
 // Generic class with bounded type (only Number or subclasses)

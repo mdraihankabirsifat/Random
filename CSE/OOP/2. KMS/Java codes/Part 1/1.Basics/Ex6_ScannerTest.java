@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Scanner Example
 // Scanner is a utility class in java.util package
 // Used for reading input from keyboard.

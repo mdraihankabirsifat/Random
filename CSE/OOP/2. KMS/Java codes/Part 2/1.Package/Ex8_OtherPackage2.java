@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 public class Ex8_OtherPackage2 {
     Ex8_OtherPackage2() {
         System.out.println("---OtherPackage---");

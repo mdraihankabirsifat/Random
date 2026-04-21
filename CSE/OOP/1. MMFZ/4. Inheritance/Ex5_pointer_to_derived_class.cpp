@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 base *p; // base pointer
 base base_ob;
 derived derived_ob;

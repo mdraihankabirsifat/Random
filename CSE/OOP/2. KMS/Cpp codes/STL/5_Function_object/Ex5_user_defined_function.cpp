@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Create a reciprocal function object.
 
 #include <iostream>

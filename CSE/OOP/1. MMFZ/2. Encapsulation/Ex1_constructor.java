@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 class MyClass {
     private int a = 0;
     MyClass() {

@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 public class Ex6_va_list {
 
     static int maxmin(String s, int... a) {

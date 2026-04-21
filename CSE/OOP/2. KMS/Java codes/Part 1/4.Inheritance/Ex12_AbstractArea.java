@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Abstract Class Area Example
 
 abstract class Figure2 {

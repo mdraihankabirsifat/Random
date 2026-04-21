@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 class PrimeCounter implements Runnable {
     int[] numbers;
     int start, end;

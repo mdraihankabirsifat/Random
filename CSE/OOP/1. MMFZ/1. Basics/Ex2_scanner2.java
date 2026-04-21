@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 import java.util.Scanner;
 
 public class Ex2_scanner2 {

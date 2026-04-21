@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 public class Ex2_GenericClass<T> {
     private T a;
 

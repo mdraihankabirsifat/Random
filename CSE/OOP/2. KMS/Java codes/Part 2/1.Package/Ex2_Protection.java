@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 public class Ex2_Protection {
     int n = 1;
     private int nPrivate = 2;

@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Anonymous class implementing interface
 interface Callback2 {
     void call(int param);

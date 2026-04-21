@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 abstract class Figure {
 
     double dim1, dim2;

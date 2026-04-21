@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 public class Ex7_Protection3 extends Ex2_Protection {
     Ex7_Protection3() {
         System.out.println("---Protection3---");

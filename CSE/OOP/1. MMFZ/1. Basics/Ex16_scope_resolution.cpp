@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 #include <iostream>
 using namespace std;
 int count = 0; // global variable

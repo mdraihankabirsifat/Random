@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Issue with Scanner when mixing nextInt() and nextLine()
 
 import java.util.Scanner;

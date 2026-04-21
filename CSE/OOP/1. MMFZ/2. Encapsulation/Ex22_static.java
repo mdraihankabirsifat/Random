@@ -1,3 +1,4 @@
+// https://github.com/mdraihankabirsifat/Random
 // Demonstration of static variable, static method and static block in Java
 
 class StaticDemo {
