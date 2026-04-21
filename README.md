@@ -1,46 +1,94 @@
-# 💻 Code Odyssey | Daily CP & CSE Journey
+# Code Odyssey
 
-Welcome! This is a public repository where I archive my daily journey through Computer Science and Engineering. It tracks my transition from competitive programming practice to versatile academic and personal development.
+<div align="center">
+	<h3>Daily CP + CSE Build Log</h3>
+	<p>A single workspace for competitive programming, coursework, and implementation practice.</p>
+	<p>
+		<img src="https://img.shields.io/badge/Workspace-D%3A%5CDocuments%5CCode-0A66C2?style=for-the-badge" alt="Workspace" />
+		<img src="https://img.shields.io/badge/Files-1221-1F8B4C?style=for-the-badge" alt="Files" />
+		<img src="https://img.shields.io/badge/Main%20Stack-C%2FC%2B%2B%20%7C%20Java-333333?style=for-the-badge" alt="Main Stack" />
+	</p>
+</div>
 
-## 📂 Repository Breakdown
+## Snapshot
 
-The code is organized into specific modules to track different aspects of my learning:
+This repository is a running archive of problem solving and academic coding.
+It combines fast-paced contest solutions with structured university coursework.
 
-### 🏆 Competitive Programming
-* **Problem Sets:** Solved problems from online judges like Codeforces, AtCoder, and LeetCode.
+### Repository at a Glance (April 2026)
 
-### 🎓 Academic Work
-* **Data Structures & Algorithms:** Core implementations of BSTs, Linked Lists, Stacks, and Queues.
-* **Course Assessments:** Solutions for academic "Online" and "Offline" programming tasks.
-* **Object-Oriented Programming:** Projects and assignments focused on OOP principles.
+| Scope | File Count |
+|---|---:|
+| Total | 1221 |
+| [CP](CP/) | 279 |
+| [CSE](CSE/) | 938 |
 
-### 🛠️ Tools & Personal Library
-* **Personal Functions:** A collection of reusable snippets and utility functions.
-* **Projects:** Larger development projects and experimental builds.
+### CSE Breakdown
 
-## 🛠️ Tech Stack
+| Folder | File Count |
+|---|---:|
+| [CSE/C](CSE/C/) | 167 |
+| [CSE/CP practice](CSE/CP%20practice/) | 37 |
+| [CSE/DSA](CSE/DSA/) | 240 |
+| [CSE/Online_Offline](CSE/Online_Offline/) | 132 |
+| [CSE/OOP](CSE/OOP/) | 362 |
 
-* **Primary Language:** C++ (with C++17/20 support).
-* **Environment:** VS Code.
-* **Core Focus:** Turning logical puzzles into efficient code.
+### CP Breakdown
 
-## 📚 Topics Covered
+| Folder | File Count |
+|---|---:|
+| [CP/batch_1](CP/batch_1/) | 268 |
+| [CP/batch_2](CP/batch_2/) | 3 |
+| [CP/Leetcode](CP/Leetcode/) | 8 |
 
-* Sorting & Searching
-* Graph Algorithms (DFS, BFS, etc.)
-* Dynamic Programming & Number Theory
-* Segment Trees & Greedy Algorithms
-* Bitmasking & Binary Search
+## Structure
 
-## 🚧 Notes
+```text
+Code/
+|- CP/
+|  |- batch_1/
+|  |- batch_2/
+|  `- Leetcode/
+|- CSE/
+|  |- C/
+|  |- CP practice/
+|  |- DSA/
+|  |- Online_Offline/
+|  `- OOP/
+`- README.md
+```
 
-> [!NOTE]
-> This is a public repository for personal use and growth tracking. 
-> Some codes were written under time pressure during live contests, while others are structured implementations for academic requirements.
+## Language Mix
 
-## 🧑‍💻 About Me
+Top extensions in the workspace:
 
-I am a CSE student at BUET with a strong interest in algorithms and problem-solving. I enjoy learning new things and adopting them in real-life experiences.
+| Extension | Count |
+|---|---:|
+| .cpp | 604 |
+| .java | 242 |
+| .c | 230 |
+| .json | 45 |
+| .txt | 29 |
+| .md | 25 |
+
+## Focus Areas
+
+- Competitive programming problem solving and speed practice.
+- Data structures and algorithm implementation from coursework.
+- OOP fundamentals and Java-based class exercises.
+- Online and offline academic assessments.
+
+## Notes
+
+- This is an actively growing personal archive.
+- Some files are contest submissions written under time pressure.
+- Others are cleaned academic implementations and practice code.
+
+## About
+
+I am a CSE student building consistency through daily coding.
+This repository tracks that progress in a practical, file-by-file way.
 
 ---
-*Last updated: March 2026*
+
+Last updated: April 21, 2026
