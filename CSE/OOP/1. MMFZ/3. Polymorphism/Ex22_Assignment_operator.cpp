@@ -10,7 +10,13 @@ class strtype
     int len;
 
 public:
-    strtype(char *s); // constructor
+    // strtype(char *s); // constructor
+    strtype(char *s)
+    {
+        p = new char[strlen(s) + 1]; // dynamic memory allocation
+        strcpy(p, s);
+        len = strlen(s);
+    }
     ~strtype()
     {
         delete[] p; // destructor (free memory)
@@ -19,27 +25,31 @@ public:
     {
         return p; // return stored string
     }
-    strtype &operator=(strtype &ob); // overloaded assignment operator
+    strtype &operator=(strtype &ob) // overloaded assignment operator
+    {
+        p = new char[ob.len]; // allocate new memory
+        len = ob.len;
+        strcpy(p, ob.p); // copy string
+        return *this;    // return current object reference
+    }
 };
 
 // constructor
-strtype::strtype(char *s)
-{
-    int l;
-    l = strlen(s) + 1;
-    p = new char[l]; // dynamic memory allocation
-    strcpy(p, s);
-    len = l;
-}
+// strtype::strtype(char *s)
+// {
+//     p = new char[strlen(s) + 1]; // dynamic memory allocation
+//     strcpy(p, s);
+//     len = strlen(s);
+// }
 
 // assignment operator overloading
-strtype &strtype::operator=(strtype &ob)
-{
-    p = new char[ob.len]; // allocate new memory
-    len = ob.len;
-    strcpy(p, ob.p); // copy string
-    return *this;    // return current object reference
-}
+// strtype &strtype::operator=(strtype &ob)
+// {
+//     p = new char[ob.len]; // allocate new memory
+//     len = ob.len;
+//     strcpy(p, ob.p); // copy string
+//     return *this;    // return current object reference
+// }
 
 int main()
 {

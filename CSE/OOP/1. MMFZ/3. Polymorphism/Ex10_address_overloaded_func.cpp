@@ -21,6 +21,7 @@ int main()
     // function pointer declarations
     void (*fp1)(int);
     void (*fp2)(int, char);
+    space(10,'p');
 
     // assigning addresses of overloaded functions
     fp1 = space;

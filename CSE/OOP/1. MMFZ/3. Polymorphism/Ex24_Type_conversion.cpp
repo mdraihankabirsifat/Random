@@ -38,6 +38,7 @@ int main()
     Myclass ob4 = "60"; // implicit conversion using char* constructor
 
     cout << "ob1: " << ob1.getA() << endl;
+    //cout << "ob2: " << ob2.getA() << endl;
     cout << "ob3: " << ob3.getA() << endl;
     cout << "ob4: " << ob4.getA() << endl;
 

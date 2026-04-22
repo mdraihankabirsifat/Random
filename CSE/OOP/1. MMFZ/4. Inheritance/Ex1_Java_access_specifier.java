@@ -24,6 +24,8 @@ class Derived extends Base { // inheritance
 
     public void setZ(int n) {
         z = n;
+        //x = n; //okay
+        //b = n; //okay
     }
 
     public int getZ() {
@@ -56,4 +58,4 @@ Key Notes:
 3. protected member z and protected method getSum() are usable in Derived.
 
 4. Output: 16
-*/
+ */

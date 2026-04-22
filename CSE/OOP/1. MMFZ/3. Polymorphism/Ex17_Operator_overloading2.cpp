@@ -101,7 +101,7 @@ int main()
         cout << "Not equal" << endl;
     (20 + a).getxy(x, y);
     cout << x << " " << y << endl;
-    (a + b + c + 100).getxy(x, y); // 128 248  //left associative +,-,*,/,>,<,==
+    (a + b + c + 100).getxy(x, y); // 128 248  //left associative +,-,*,/ right assosiative >,<,==
     cout << x << " " << y << endl;
     c = a++; // 
     c.getxy(x, y);
