@@ -16,13 +16,6 @@ int main()
 }
 
 /*
-Output:
-0 0
-10 0
-10 99
-*/
-
-/*
 Key Notes:
 
 1. Default arguments allow a function to be called with fewer parameters.

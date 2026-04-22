@@ -27,10 +27,6 @@ int main()
 }
 
 /*
-Output
-10
-0
-
 Key Notes:
 1. Constructors can also have default arguments.
 2. Object can be created with or without parameter.

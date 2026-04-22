@@ -18,10 +18,6 @@ int main()
 }
 
 /*
-Output
-58
-100
-
 Key Notes:
 1. Default arguments can replace some function overloading.
 2. Default values must be on the rightmost parameters.

@@ -22,9 +22,7 @@ public:
     // Copy Constructor: creates deep copy of object
     strtype(const strtype &s)
     {
-        int l;
-        l = strlen(s.p) + 1;
-        p = new char[l];
+        p = new char[strlen(s.p) + 1];
         strcpy(p, s.p);
         cout << "Constructing copy\n";
     }

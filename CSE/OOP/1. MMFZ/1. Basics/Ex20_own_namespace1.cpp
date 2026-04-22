@@ -11,9 +11,18 @@ namespace firstNS
         int i;
 
     public:
-        MyClass(int n) { i = n; }
-        void setI(int n) { i = n; }
-        int getI() { return i; }
+        MyClass(int n)
+        {
+            i = n;
+        }
+        void setI(int n)
+        {
+            i = n;
+        }
+        int getI()
+        {
+            return i;
+        }
     };
 
     const char *str = "Hello from firstNS!";

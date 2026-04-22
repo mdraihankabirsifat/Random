@@ -29,7 +29,11 @@ public:
         int b;
 
     public:
-        Inner(int y) { b = y; }
+        Inner(int y)
+        {
+            b = y;
+            // a = y;
+        }
 
         void show()
         {
@@ -41,7 +45,7 @@ public:
             ob.show();
         }
     };
-
+    //b = a;
     class Inner2
     {
     public:

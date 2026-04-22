@@ -27,7 +27,6 @@ public:
 
 int main()
 {
-
     myclass o1[5];                   // uses default constructor
     myclass o2[5] = {1, 2, 3, 4, 5}; // uses parameterized constructor
 
@@ -36,7 +35,7 @@ int main()
         cout << o1[i].getx() << " ";
         cout << o2[i].getx() << endl;
     }
-
+    
     return 0;
 }
 
