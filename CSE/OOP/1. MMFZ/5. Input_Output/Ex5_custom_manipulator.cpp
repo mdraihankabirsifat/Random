@@ -5,11 +5,9 @@ using namespace std;
 
 ostream &setup(ostream &os)
 {
-    os << hex << showbase << uppercase; // set formatting
-    //os << "str" << endl;
-    os.width(10);
     os.fill('*');
-    //os << "str" << endl;
+    os.width(10);
+    os << hex << showbase << uppercase; // set formatting
     return os;
 }
 

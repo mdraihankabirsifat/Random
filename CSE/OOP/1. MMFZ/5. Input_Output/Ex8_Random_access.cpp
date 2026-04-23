@@ -27,7 +27,7 @@ int main()
     try
     {
 
-        in.open("test.cpp");
+        in.open("test1.cpp");
 
         if (!in)
             throw "Cannot open input file";
@@ -64,7 +64,9 @@ int main()
     showState(state);
 
     in.clear(); // clear error flags
-
+    state = in.rdstate();
+    showState(state);
+    
     return 0;
 }
 
