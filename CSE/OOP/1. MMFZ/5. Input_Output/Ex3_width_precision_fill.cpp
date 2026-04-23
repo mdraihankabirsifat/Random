@@ -25,10 +25,10 @@ int main()
 
     cout << 123.456789 << endl;
 
-    cout.fill(' ');
+    cout.fill('_');
     cout.setf(ios::right); // right aligned
     cout.precision(4);
-    //cout << 123.456789 << endl;
+    cout << 123.456789 << endl;
 
     for (double x = 2.0; x <= 5; x++)
     {
