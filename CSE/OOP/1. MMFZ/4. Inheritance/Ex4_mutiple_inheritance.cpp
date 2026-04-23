@@ -76,7 +76,8 @@ public:
 };
 
 class D2 : public D1, public B2, public B3
-{ // multiple inheritance
+{
+    // multiple inheritance
 public:
     D2(int i, int j, int k) : D1(i), B2(j), B3(k) // B1 D1 B2 B3 D2
     {
