@@ -1,5 +1,6 @@
 // https://github.com/mdraihankabirsifat/Random
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
 using namespace std;
 class Father
 {

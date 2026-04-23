@@ -1,5 +1,5 @@
 // https://github.com/mdraihankabirsifat/Random
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 class area
 { // abstract class
