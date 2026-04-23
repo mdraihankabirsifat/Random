@@ -33,29 +33,35 @@ public class Ex16_RTTI {
         Cat cat = new Cat();
         Double length = 25.5;
         Integer num = 10;
-        PrintType pt = new PrintType();
+        //PrintType pt = new PrintType();
 
         if (dog instanceof Dog) {
             System.out.println("Yes, Dog.");
         }
-
-        pt.printType(dog);
-        pt.printType(cat);
+        System.out.println(dog.getClass());
+        System.out.println(cat.getClass());
+        // pt.printType(dog);
+        // pt.printType(cat);
 
         Animal animal = dog;
-        pt.printType(animal);
+        System.out.println(animal.getClass());
+        //pt.printType(animal);
 
         animal = cat;
-        pt.printType(animal);
+        System.out.println(animal.getClass());
+        //pt.printType(animal);
 
         Object ob = length; //class java.lang.Double
-        pt.printType(ob);
+        System.out.println(ob.getClass());
+        //pt.printType(ob);
 
         ob = num;
-        pt.printType(ob);
+        System.out.println(ob.getClass());
+        //pt.printType(ob);
 
         ob = dog;
-        pt.printType(ob);
+        System.out.println(ob.getClass());
+        //pt.printType(ob);
     }
 }
 
@@ -67,4 +73,4 @@ Key Notes:
 2. getClass() prints actual runtime class.
 
 3. Base reference still keeps actual object type at runtime.
-*/
+ */
