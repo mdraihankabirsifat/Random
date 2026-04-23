@@ -36,19 +36,19 @@ int main()
     const type_info &type_num = typeid(num);                   // int
     cout << "Type(num): " << type_num.name() << endl;          // i
     cout << "Type(dog): " << typeid(dog).name() << endl;       // Dog*->P3Dog   (P = pointer, 3= object name legth, object)
-    cout << "Type(*dog): " << typeid(*dog).name() << endl;     // Dog
-    cout << "Type(cat): " << typeid(cat).name() << endl;       // Cat*
-    cout << "Type(length): " << typeid(length).name() << endl; // double
+    cout << "Type(*dog): " << typeid(*dog).name() << endl;     // 3Dog
+    cout << "Type(cat): " << typeid(cat).name() << endl;       // P3Cat
+    cout << "Type(length): " << typeid(length).name() << endl; // d
 
     animal = dog;
-    cout << "Type(animal): " << typeid(animal).name() << endl;   // Animal*
-    cout << "Type(*animal): " << typeid(*animal).name() << endl; // Dog
+    cout << "Type(animal): " << typeid(animal).name() << endl;   // P6Animal
+    cout << "Type(*animal): " << typeid(*animal).name() << endl; // 3Dog
 
     animal = cat;
     cout << "Type(animal): " << typeid(animal).name() << endl;   // P6Animal
     cout << "Type(*animal): " << typeid(*animal).name() << endl; // 3Cat
 
-    cout << "Type(length+num): " << typeid(length + num).name() << endl;
+    cout << "Type(length+num): " << typeid(length + num).name() << endl; // d
     return 0;
 }
 
