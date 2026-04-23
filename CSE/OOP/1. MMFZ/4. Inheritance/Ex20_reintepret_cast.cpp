@@ -41,6 +41,7 @@ int main()
     cout << *iptr << endl; // 5 97
     iptr++;
     cout << *iptr << endl;
+    
     B *b = new B();
     b->display();
 
