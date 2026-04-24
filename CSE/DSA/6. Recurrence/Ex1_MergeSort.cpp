@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -77,45 +79,25 @@ bool isSorted(int *arr, int n)
     return true;
 }
 
-int main(int argc, char **argv)
+int main()
 {
-    // take n from command line, create array of size n with random integers
-    if (argc < 2)
-    {
-        cout << "Usage: " << argv[0] << " <num_elements>" << endl;
-        return 1;
-    }
-    int n = atoi(argv[1]);
+    int n = 20;
+
     int *arr = new int[n];
     srand(123); // deterministic seed
+
     for (int i = 0; i < n; i++)
     {
-        arr[i] = rand() % (n / 10); // random integers in [0, n/10)
+        arr[i] = rand() % (n / 10 + 1); // avoid division by 0 for small n
     }
 
     cout << "Before sorting (n=" << n << "):" << endl;
-    if (n <= 20)
-    {
-        printArray(arr, n);
-    }
-    else
-    {
-        cout << "First 10: ";
-        printArray(arr, 10);
-    }
+    printArray(arr, n);
 
     mergesort(arr, 0, n);
 
     cout << "\nAfter sorting:" << endl;
-    if (n <= 20)
-    {
-        printArray(arr, n);
-    }
-    else
-    {
-        cout << "First 100: ";
-        printArray(arr, 100);
-    }
+    printArray(arr, n);
 
     if (isSorted(arr, n))
     {
