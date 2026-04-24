@@ -1,19 +1,15 @@
 // https://github.com/mdraihankabirsifat/Random
-// Scanner Example
-// Scanner is a utility class in java.util package
-// Used for reading input from keyboard.
-
 import java.util.Scanner;
 
-public class Ex6_ScannerTest {
+public class Ex8_ScannerTest {
 
     public static void main(String[] args) {
 
-        Scanner scn = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         // Read lines until input ends
-        while (scn.hasNextLine()) {
-            System.out.println(scn.nextLine());
+        while (sc.hasNextLine()) {
+            System.out.println(sc.nextLine());
         }
     }
 }

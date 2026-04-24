@@ -4,7 +4,7 @@
 // java Ex5_CommandLineTest Hello 2 You
 // Words after class name are passed to main() as String arguments.
 
-public class Ex5_CommandLineTest {
+public class Ex6_CommandLineTest {
 
     public static void main(String[] args) {
 

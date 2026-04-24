@@ -1,11 +1,11 @@
 // https://github.com/mdraihankabirsifat/Random
 //Object Reference Example
 
-public class Ex4_Box {
+public class Ex4_Non_primitive {
 
     int L, W, H;
 
-    Ex4_Box(int l, int w, int h) {
+    Ex4_Non_primitive(int l, int w, int h) {
         L = l;
         W = w;
         H = h;
@@ -13,14 +13,14 @@ public class Ex4_Box {
 
     public static void main(String args[]) {
 
-        Ex4_Box b1; // reference
-        Ex4_Box b2;
+        Ex4_Non_primitive b1; // reference
+        Ex4_Non_primitive b2;
 
-        b1 = new Ex4_Box(8, 5, 7);
+        b1 = new Ex4_Non_primitive(8, 5, 7);
 
         b2 = b1; // both refer same object
 
-        b1 = new Ex4_Box(3, 9, 2);
+        b1 = new Ex4_Non_primitive(3, 9, 2);
 
         b1 = b2;
 
