@@ -29,7 +29,8 @@ public class Ex3_InterfaceApply {
 
         MyClass1 mc1 = new MyClass1();
         MyClass2 mc2 = new MyClass2();
-
+        //mc1.print("kio");
+        
         MyInterface mi;
 
         mi = mc1;

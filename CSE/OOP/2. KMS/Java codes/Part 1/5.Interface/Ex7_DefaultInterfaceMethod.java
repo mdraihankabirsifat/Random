@@ -17,6 +17,10 @@ class MyIFImp implements MyIF {
         return 100;
     }
 
+    // public String getString() {
+    //     return "implemented";
+    // }
+
 }
 
 public class Ex7_DefaultInterfaceMethod {
@@ -39,4 +43,4 @@ in Java 8.
 
 Allows method implementation
 inside interface.
-*/
+ */

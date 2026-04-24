@@ -22,6 +22,7 @@ class BoxWeight2 extends Box2 {
 
     BoxWeight2(double w, double h, double d, double m) {
         super(w, h, d);
+        // super.width=w;
         weight = m;
     }
 }

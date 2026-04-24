@@ -24,7 +24,7 @@ public class Ex4_NestedInterface {
         A.NestedIF nif = new B();
         B niF=new B();
 
-        System.out.println(nif.isNonNegative(100));
+        System.out.println(niF.isNonNegative(100));
         System.out.println(nif.isNonNegative(-10));
         System.out.println(niF.isNonNegative(-10));
 
