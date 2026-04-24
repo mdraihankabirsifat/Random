@@ -14,7 +14,7 @@ public class Ex2_Extraction {
         c2[0] = 'p';
 
         s.getChars(0, 4, c2, 1); // s = source, c2 = destination
-        System.out.println(c2); // Hello
+        System.out.println(c2); // pHell
 
     }
 }
