@@ -3,7 +3,7 @@ using namespace std;
 vector<vector<int>> adj;
 vector<int> color, d, parent;
 
-void BFS(int s)
+void bfs(int s)
 {
     queue<int> Q;
     color[s] = 1; // GRAY
@@ -45,5 +45,5 @@ int main()
     d.assign(vertex, -1);
     parent.assign(vertex, -1);
     int source = 1;
-    BFS(source);
+    bfs(source);
 }

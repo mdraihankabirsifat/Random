@@ -4,7 +4,7 @@ vector<vector<int>> adj;
 vector<int> color, d, f, parent;
 int timer;
 
-void DFS_visit(int u)
+void dfs(int u)
 {
     color[u] = 1;   // GRAY
     d[u] = ++timer; // discovery time
@@ -14,7 +14,7 @@ void DFS_visit(int u)
         if (color[v] == 0) // WHITE
         {
             parent[v] = u;
-            DFS_visit(v); // go deeper
+            dfs(v); // go deeper
         }
     }
     color[u] = 2;   // BLACK
@@ -42,7 +42,7 @@ int main()
     {
         if (color[i] == 0)
         {
-            DFS_visit(i);
+            dfs(i);
         }
     }
 }
