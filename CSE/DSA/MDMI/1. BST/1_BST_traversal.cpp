@@ -78,7 +78,7 @@ void levelOrder(struct Node *rt)
 // --- Array-based Logic for Complete Binary Tree ---
 int getParent(int i)
 {
-    return floor(i / 2.0);
+    return floor(i / 2); // floor ( (i - 1) / 2 ) for 0 based indexing
 }
 int getLeftChild(int i)
 {
