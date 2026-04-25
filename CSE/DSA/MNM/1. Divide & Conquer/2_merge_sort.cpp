@@ -4,6 +4,7 @@ using namespace std;
 // Time complexity O(nlog(n))
 //  Space complexity O(n)
 //  Function to merge two sorted subarrays
+
 void merged(int arr[], int lo, int mid, int hi)
 {
     int *merge = new int[hi - lo]; // Temporary array for merged elements

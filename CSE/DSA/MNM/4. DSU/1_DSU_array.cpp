@@ -45,7 +45,6 @@ void unionSet(int x, int y)
         component[v] = cx;
         members[cx].push_back(v);
     }
-
     sz[cx] += sz[cy];
     members[cy].clear();
 }
