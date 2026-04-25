@@ -8,7 +8,7 @@ using namespace std;
 // worst case
 // example 1,2,3,4,5
 // O(n)+O(n-1)+O(n-2)+⋯+O(1)=O(n^2)
-// Time Complexity O(nlog(n))
+// Time Complexity O(n^2))
 // space complexity O(n)
 
 //  Partition function that selects a pivot and places it in the correct position
