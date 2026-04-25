@@ -2,27 +2,30 @@
 using namespace std;
 
 vector<int> adj[100];
-int color[100]; // 0 = WHITE, 1 = GRAY, 2 = BLACK
-int parent[100];
 
-void iterativeDFS(int source)
+int color[100]; // 0=WHITE, 1=GRAY, 2=BLACK
+int parent[100];
+int disc[100], fin[100];
+int timer = 0;
+
+void iterativeDFS(int src)
 {
     stack<int> st;
-
-    st.push(source);
-    parent[source] = -1;
+    st.push(src);
+    parent[src] = -1;
 
     while (!st.empty())
     {
         int u = st.top();
 
+        // first time visit
         if (color[u] == 0)
         {
-            color[u] = 1; // discovered
-            cout << u << " becomes GRAY\n";
+            color[u] = 1; // GRAY
+            disc[u] = ++timer;
         }
 
-        bool foundWhiteChild = false;
+        bool pushed = false;
 
         for (int v : adj[u])
         {
@@ -31,23 +34,27 @@ void iterativeDFS(int source)
                 cout << "Tree Edge: " << u << " -> " << v << endl;
                 parent[v] = u;
                 st.push(v);
-                foundWhiteChild = true;
+                pushed = true;
                 break;
             }
             else if (color[v] == 1)
             {
                 cout << "Back Edge: " << u << " -> " << v << endl;
             }
-            else if (color[v] == 2)
+            else // color[v] == BLACK
             {
-                cout << "Forward/Cross Edge: " << u << " -> " << v << endl;
+                // distinguish forward vs cross
+                if (disc[u] < disc[v])
+                    cout << "Forward Edge: " << u << " -> " << v << endl;
+                else
+                    cout << "Cross Edge: " << u << " -> " << v << endl;
             }
         }
 
-        if (!foundWhiteChild)
+        if (!pushed)
         {
-            color[u] = 2; // finished
-            cout << u << " becomes BLACK\n";
+            color[u] = 2; // BLACK
+            fin[u] = ++timer;
             st.pop();
         }
     }
@@ -56,7 +63,6 @@ void iterativeDFS(int source)
 int main()
 {
     /*
-        Vertex mapping:
         r=0, s=1, t=2, u=3, v=4, w=5, x=6, y=7
     */
 
@@ -82,28 +88,23 @@ int main()
 /*
 Key Notes:
 
-1. DFS explores as deep as possible before backtracking.
+1. Tree Edge:
+   WHITE → first discovery
 
-2. Recursive DFS uses function call stack.
-   Iterative DFS explicitly uses stack.
+2. Back Edge:
+   GRAY → ancestor
 
-3. Colors:
-   WHITE = undiscovered
-   GRAY  = discovered but not finished
-   BLACK = finished
+3. Forward Edge:
+   BLACK and disc[u] < disc[v]
+   (u → descendant)
 
-4. Stack behavior:
-   - Push a WHITE child when found.
-   - If no WHITE child remains, pop the node.
+4. Cross Edge:
+   BLACK and disc[u] > disc[v]
+   (different subtree)
 
-5. Edge types:
-   - WHITE vertex  => Tree Edge
-   - GRAY vertex   => Back Edge
-   - BLACK vertex  => Forward/Cross Edge
-
-6. Time Complexity:
+5. Time Complexity:
    O(V + E)
 
-7. Space Complexity:
-   O(V), for stack, color array, and parent array.
+6. Important:
+   Without disc[], you CANNOT distinguish forward vs cross edge.
 */
