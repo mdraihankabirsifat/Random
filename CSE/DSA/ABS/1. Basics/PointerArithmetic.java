@@ -1,4 +1,4 @@
-package lec1_intro1;
+//package lec1_intro1;
 
 public class PointerArithmetic {
     // Reverse an array in place using indices
