@@ -38,7 +38,8 @@ int *create_array(int n)
     return A;
 }
 
-// Quadratic duplicate finder
+// Naive Algo
+//  Quadratic duplicate finder
 int dup1(int *A, int n)
 {
     int count = 0;
@@ -53,7 +54,8 @@ int dup1(int *A, int n)
     return count;
 }
 
-// Linear duplicate finder
+// Efficient Algo
+//  Linear duplicate finder
 int dup2(int *A, int n)
 {
     int count = 0;
@@ -92,18 +94,18 @@ int main()
     int tests[] = {2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000};
     int T = sizeof(tests) / sizeof(tests[0]);
 
-    printf("===== DUP1 (Quadratic) =====\n");
     double prev = -1;
-    for (int i = 0; i < T; i++)
-    {
-        int n = tests[i];
-        double t = run_dup1(n);
-        if (prev > 0)
-            printf("n=%6d   time = %4.3f ms   ratio=%.2f\n", n, t, t / prev);
-        else
-            printf("n=%6d   time = %.3f ms\n", n, t);
-        prev = t;
-    }
+    // printf("===== DUP1 (Quadratic) =====\n");
+    // for (int i = 0; i < T; i++)
+    // {
+    //     int n = tests[i];
+    //     double t = run_dup1(n);
+    //     if (prev > 0)
+    //         printf("n=%6d   time = %4.3f ms   ratio=%.2f\n", n, t, t / prev);
+    //     else
+    //         printf("n=%6d   time = %.3f ms\n", n, t);
+    //     prev = t;
+    // }
 
     printf("\n===== DUP2 (Linear) =====\n");
     prev = -1;
