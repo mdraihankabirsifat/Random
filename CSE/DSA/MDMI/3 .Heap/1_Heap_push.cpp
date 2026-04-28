@@ -20,7 +20,7 @@ void minHeapify(int i)
     }
     if (smallest != i)
     {
-        swap(A[i], A[smallest]);
+        swap(A[i], A[smallest]); 
         minHeapify(smallest);
     }
 }
