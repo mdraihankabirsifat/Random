@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void merge(int *ara, int lo, int mid, int hi)
+void merge(int *arr, int lo, int mid, int hi)
 {
     int *merged = new int[hi - lo];
     int left = lo, right = mid, k = 0;
@@ -12,32 +12,32 @@ void merge(int *ara, int lo, int mid, int hi)
     // Merge the two sorted halves
     while (left < mid && right < hi)
     {
-        if (ara[left] < ara[right])
+        if (arr[left] < arr[right])
         {
-            merged[k++] = ara[left++];
+            merged[k++] = arr[left++];
         }
         else
         {
-            merged[k++] = ara[right++];
+            merged[k++] = arr[right++];
         }
     }
 
     // Copy remaining elements from left half
     while (left < mid)
     {
-        merged[k++] = ara[left++];
+        merged[k++] = arr[left++];
     }
 
     // Copy remaining elements from right half
     while (right < hi)
     {
-        merged[k++] = ara[right++];
+        merged[k++] = arr[right++];
     }
 
     // Copy merged array back to original
     for (int idx = 0; idx < hi - lo; idx++)
     {
-        ara[lo + idx] = merged[idx];
+        arr[lo + idx] = merged[idx];
     }
 
     delete[] merged;
