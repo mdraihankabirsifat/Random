@@ -62,8 +62,7 @@ int evaluatePostfix(string expr)
 
 int main()
 {
-    cout << "=== Postfix Expression Evaluation ===" << endl
-         << endl;
+    cout << "=== Postfix Expression Evaluation ===" << endl<< endl;
 
     string expr1 = "23+";       // 2 + 3 = 5
     string expr2 = "23*";       // 2 * 3 = 6

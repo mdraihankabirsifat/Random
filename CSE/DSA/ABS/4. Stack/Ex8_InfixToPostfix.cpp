@@ -151,8 +151,7 @@ string infixToPostfix(string infix)
 
 int main()
 {
-    cout << "=== Infix to Postfix Conversion ===" << endl
-         << endl;
+    cout << "=== Infix to Postfix Conversion ===" << endl << endl;
 
     string expr1 = "2+3";
     string expr2 = "2+3*4";
@@ -164,36 +163,28 @@ int main()
     string expr8 = "2+3-4*5/6";
 
     cout << "Infix:    " << expr1 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr1) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr1) << endl<< endl;
 
     cout << "Infix:    " << expr2 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr2) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr2) << endl << endl;
 
     cout << "Infix:    " << expr3 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr3) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr3) << endl << endl;
 
     cout << "Infix:    " << expr4 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr4) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr4) << endl << endl;
 
     cout << "Infix:    " << expr5 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr5) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr5) << endl<< endl;
 
     cout << "Infix:    " << expr6 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr6) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr6) << endl << endl;
 
     cout << "Infix:    " << expr7 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr7) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr7) << endl<< endl;
 
     cout << "Infix:    " << expr8 << endl;
-    cout << "Postfix:  " << infixToPostfix(expr8) << endl
-         << endl;
+    cout << "Postfix:  " << infixToPostfix(expr8) << endl<< endl;
 
     cout << "Done!" << endl;
 
