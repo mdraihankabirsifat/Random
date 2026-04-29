@@ -23,7 +23,7 @@ int partition(int arr[], int p, int r) // O(n)
     {
         if (arr[j] <= x)
         { // If current element is less than or equal to pivot
-            i = i + 1;
+            i++;
             swap(arr[i], arr[j]); // Swap arr[i] with arr[j]
         }
     }

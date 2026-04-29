@@ -111,15 +111,15 @@ void treeDelete(Node *&root, Node *z)
         // and then turn y into z's right child.
         if (y->parent != z)
         {
-            transplant(root, y, y->right); // Line 7 in slide
-            y->right = z->right;           // Line 8
-            y->right->parent = y;          // Line 9
+            transplant(root, y, y->right);
+            y->right = z->right;           
+            y->right->parent = y;          
         }
 
         // CASE A (and cleanup for Case B): Replace z with y
-        transplant(root, z, y); // Line 10
-        y->left = z->left;      // Line 11
-        y->left->parent = y;    // Line 12
+        transplant(root, z, y);
+        y->left = z->left;     
+        y->left->parent = y;  
     }
     delete z; // Free memory
 }
