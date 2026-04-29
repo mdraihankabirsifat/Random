@@ -37,7 +37,6 @@ void countingSort(vector<int> &A)
     vector<int> C(k + 1, 0);
 
     // Step 2: Count frequency of each value
-    // C[i] = number of times i appears in A
     for (int j = 0; j < n; j++)
     {
         C[A[j]]++;
@@ -51,7 +50,7 @@ void countingSort(vector<int> &A)
     }
 
     // Step 4: Build output array from right to left
-    // This makes counting sort stable
+    // This makes counting sort stable 
     for (int j = n - 1; j >= 0; j--)
     {
         B[C[A[j]] - 1] = A[j]; // place A[j] into correct sorted position
