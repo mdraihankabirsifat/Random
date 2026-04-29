@@ -9,13 +9,12 @@ using namespace std;
 int knapsack(int W, int wt[], int val[], int n)
 {
     int M[n + 1][W + 1]; // DP table: max value for i items and capacity w
-
+    
     // base case: if no items, value = 0
     for (int w = 0; w <= W; w++)
     {
         M[0][w] = 0;
     }
-
     // build table row by row
     for (int i = 1; i <= n; i++)
     {
@@ -33,7 +32,6 @@ int knapsack(int W, int wt[], int val[], int n)
             }
         }
     }
-
     return M[n][W]; // maximum value for n items and capacity W
 }
 

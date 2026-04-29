@@ -6,10 +6,8 @@ using namespace std;
 int main()
 {
     int W = 50; // capacity
-
     vector<int> w = {10, 20, 30};   // weights
     vector<int> v = {60, 100, 120}; // values
-
     int n = w.size();
 
     // store (value/weight, index)

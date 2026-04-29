@@ -20,10 +20,7 @@ int sequenceAlignment(string x, string y, int gap, int mismatch)
 
     // AB
     // CB
-
-    // M[0][2]
-    // --
-    // AB
+    
     //   0  1  2
     // 0 0  2  4
     // 1 2  1  0
