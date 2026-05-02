@@ -28,11 +28,20 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        int n;
         cin >> n;
-        vr(v, n);
-        in(v);
-        
+        string s;
+        cin >> s;
+        int o = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (s[i] == '(')
+                o++;
+        }
+        if (o == n - o)
+            yes;
+        else
+            no;
     }
     return 0;
 }
