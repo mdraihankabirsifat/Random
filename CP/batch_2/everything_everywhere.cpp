@@ -28,11 +28,18 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, c = 0;
         cin >> n;
         vr(v, n);
         in(v);
-        
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (abs(v[i] - v[i + 1]) == __gcd(v[i], v[i + 1]))
+            {
+                c++;
+            }
+        }
+        cout << c << tata;
     }
     return 0;
 }
