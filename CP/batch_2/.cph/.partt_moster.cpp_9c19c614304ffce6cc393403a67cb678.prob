@@ -1,1 +1,0 @@
-{"name":"Local: partt_moster","url":"d:\\Documents\\Code\\CP\\batch_2\\partt_moster.cpp","tests":[{"id":1777757563779,"input":"6\n2\n()\n2\n)(\n3\n(((\n6\n())(()\n4\n(()(\n5\n)()()\n","output":"YES\nYES\nNO\nYES\nNO\nNO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Documents\\Code\\CP\\batch_2\\partt_moster.cpp","group":"local","local":true}
