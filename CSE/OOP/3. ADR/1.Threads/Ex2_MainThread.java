@@ -19,4 +19,3 @@ public class Ex2_MainThread {
         }
     }
 }
-//gci -r -filter *.class | rm

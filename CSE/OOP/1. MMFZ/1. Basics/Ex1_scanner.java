@@ -17,3 +17,5 @@ public class Ex1_scanner {
         sc.close();
     }
 }
+
+//gci -r -filter *.class | rm
