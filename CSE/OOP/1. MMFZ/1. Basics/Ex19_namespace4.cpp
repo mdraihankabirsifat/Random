@@ -5,22 +5,18 @@ using namespace std;
 // unnamed namespace (visible only within this file)
 namespace
 {
-
     void displayMsg()
     {
         cout << "unnamed namespace." << endl;
     }
-
     int add(int a, int b)
     {
         return a + b;
     }
-
 }
 
 int main()
 {
-
     displayMsg();
 
     int result = add(5, 3);
