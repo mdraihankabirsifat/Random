@@ -5,7 +5,7 @@ using namespace std;
 // first namespace
 namespace firstNS
 {
-
+    int x;
     class MyClass
     {
         int i;
@@ -51,8 +51,13 @@ int main()
         cout << counter << " ";
     cout << endl;
 
+firstNS:
+    x = 5;
+
     secondNS::x = 10;
     secondNS::y = 20;
+
+    cout << "First NS of X: " << firstNS::x << endl;
 
     cout << "X: " << secondNS::x << endl;
     cout << "Y: " << secondNS::y << endl;
