@@ -39,7 +39,6 @@ class Biman implements Fly {
     }
 }
 
-// https://github.com/mdraihankabirsifat/Random
 // Main class to demonstrate interface use
 public class Ex14_Interface {
 

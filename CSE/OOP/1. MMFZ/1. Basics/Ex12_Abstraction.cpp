@@ -25,7 +25,9 @@ public:
 class Rectangle : public Figure
 {
 public:
-    Rectangle(double d1, double d2) : Figure(d1, d2) {}
+    Rectangle(double d1, double d2) : Figure(d1, d2) // constructor initializer
+    {
+    }
 
     double area()
     {
@@ -51,6 +53,7 @@ int main()
 
     Rectangle r(10, 7);
     Triangle t(10, 5);
+    //cout << r.area();
 
     p = &r;
     cout << "Rectangle Area: " << p->area() << endl;
