@@ -1,4 +1,5 @@
 // https://github.com/mdraihankabirsifat/Random
+
 class Box {
 
     double length;
@@ -19,6 +20,10 @@ class Box {
         height = ob.height;
     }
 
+    void setwidth(int w) {
+        width = w;
+    }
+
     double volume() {
         return length * width * height;
     }
@@ -31,6 +36,8 @@ public class Ex3_box {
         Box myBox = new Box(5, 3, 2);
         Box myClone = new Box(myBox);
 
+        // myBox.setwidth(0);
+        
         System.out.println("Box Volume: " + myBox.volume());
         System.out.println("Clone Volume: " + myClone.volume());
     }
