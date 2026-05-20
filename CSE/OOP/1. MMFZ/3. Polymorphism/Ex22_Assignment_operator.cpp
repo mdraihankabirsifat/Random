@@ -27,10 +27,9 @@ public:
     }
     strtype &operator=(strtype &ob) // overloaded assignment operator
     {
-        p = new char[ob.len]; // allocate new memory
-        len = ob.len;
-        strcpy(p, ob.p); // copy string
-        return *this;    // return current object reference
+        p = new char[ob.len + 1]; // allocate new memory
+        strcpy(p, ob.p);          // copy string
+        return *this;             // return current object reference
     }
 };
 

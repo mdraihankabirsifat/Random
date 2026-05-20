@@ -17,7 +17,12 @@ public:
     Coord &operator+=(Coord &ob);
 
     // stream operators must be friend functions
-    friend ostream &operator<<(ostream &out, const Coord &ob);
+    friend ostream &operator<<(ostream &out, const Coord &ob)
+    {
+        // cout << "Helllo" << endl;
+        out << "(" << ob.x << "," << ob.y << ")";
+        return out; // return stream reference
+    }
     friend istream &operator>>(istream &in, Coord &ob);
 
     // Prefix ++ : returns reference to modified object
@@ -44,14 +49,6 @@ Coord &Coord::operator+=(Coord &ob)
     x += ob.x;
     y += ob.y;
     return *this; // returning reference allows chaining
-}
-
-// << operator
-ostream &operator<<(ostream &out, const Coord &ob)
-{
-    //cout << "Helllo" << endl;
-    out << "(" << ob.x << "," << ob.y << ")";
-    return out; // return stream reference
 }
 
 // >> operator

@@ -98,7 +98,7 @@ int main()
 
     c = a++; // c= 110 120 a=11 21
     c.getxy(x, y);
-    cout << x << " " << y << endl; //
+    cout << x << " " << y << endl;
     a.getxy(x, y);
     cout << x << " " << y << endl;
     c = ++a; // c=112 122 a= 12 22
