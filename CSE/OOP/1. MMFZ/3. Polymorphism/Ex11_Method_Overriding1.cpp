@@ -93,7 +93,8 @@ Triangle Area: 6
 
 Key Notes:
 
-1. Method overriding occurs when a derived class redefines a virtual function of the base class.
+1. Method overriding occurs when a derived class redefines a virtual function 
+   of the base class.
 
 2. Base class pointer can refer to derived class objects.
 

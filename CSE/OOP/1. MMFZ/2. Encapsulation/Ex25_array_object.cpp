@@ -7,6 +7,7 @@ using namespace std;
 class Sa
 {
     int a;
+
 public:
     Sa(int n)
     {
@@ -46,10 +47,7 @@ int main()
     Sa s3[3][2] = {{11, 12}, {21, 22}, {31, 32}};
     Sa s4[3][2] = {{Sa(41), Sa(42)}, {Sa(51), Sa(52)}, {Sa(61), Sa(62)}};
 
-    Da ob[4] = {Da("A", 10),
-                Da("B", 20),
-                Da("C", 30),
-                Da("D", 40)};
+    Da ob[4] = {Da("A", 10), Da("B", 20), Da("C", 30), Da("D", 40)};
 
     for (int i = 0; i < 4; i++)
     {
