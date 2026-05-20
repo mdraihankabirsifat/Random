@@ -36,8 +36,8 @@ public:
     }
 
     // Friend declarations
-    friend int speedGreater(Car c, Truck t);     // non-member friend
     friend int Car::speedGreaterMember(Truck t); // member friend
+    friend int speedGreater(Car c, Truck t);     // non-member friend
 };
 
 /* ---------- Friend Function (non-member) ---------- */
