@@ -26,8 +26,7 @@ public:
         // Free old memory
         free(str);
         // Allocate new memory
-        len = obj.len;
-        str = (char *)malloc(len + 1);
+        str = (char *)malloc(obj.len + 1 + 1);
         // Copy string
         strcpy(str, obj.str);
         return *this;

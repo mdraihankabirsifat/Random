@@ -20,7 +20,7 @@ public:
         cout << a << ", " << b << endl;
     }
 };
-
+ 
 // Second class
 class YourClass
 {
