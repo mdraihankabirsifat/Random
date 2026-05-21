@@ -15,17 +15,16 @@ int main()
     cout << 123.45 << " Hello " << -10 << " " << 100.0 << " " << 100 << endl;
 
     ios::fmtflags f2 = ios::scientific | ios::showpoint | ios::uppercase;
-    cout.setf(f2); // enable scientific notation and uppercase
+    cout.setf(f2); // keeps previous one allso, enable scientific notation and uppercase
 
     cout << 123.45 << " Hello " << -10 << " " << 100.0 << " " << 100 << endl;
 
     if (f & ios::dec)
         cout << "Dec is set" << endl; // check if decimal flag active
 
-    cout.flags(f); // restore original flags
+    cout.flags(f); // removes previous ones, restore original flags
 
-    cout << 123.45 << " Hello " << -10 << " ";
-    cout << 100.0 << " " << 100 << endl;
+    cout << 123.45 << " Hello " << -10 << " " << 100.0 << " " << 100 << endl;
 
     return 0;
 }
