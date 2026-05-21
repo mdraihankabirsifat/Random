@@ -18,7 +18,6 @@ public:
     {
         cout << "Dog" << endl;
     }
-    void dog2() {}
 };
 
 class Cat : public Animal

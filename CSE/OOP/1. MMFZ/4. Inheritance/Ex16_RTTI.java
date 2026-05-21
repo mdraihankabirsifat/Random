@@ -52,7 +52,7 @@ public class Ex16_RTTI {
         //pt.printType(animal);
 
         Object ob = length; //class java.lang.Double
-        System.out.println(ob.getClass());
+        System.out.println(length.getClass());
         //pt.printType(ob);
 
         ob = num;
