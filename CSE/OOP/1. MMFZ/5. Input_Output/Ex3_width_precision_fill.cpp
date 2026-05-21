@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 
-    cout << " Hello " << endl;
+    cout << "Hello " << endl;
     cout << 123.456789 << endl;
 
     cout.width(10);
@@ -17,13 +17,13 @@ int main()
     cout << "Hello" << endl; // fill unused spaces with * //*****Hello
 
     cout.precision(8);
-    cout << 123.456789 << endl; // set precision
+    cout << 123.456376 << endl; // set precision
 
     cout.width(12);
     cout.fill('%');
     cout.setf(ios::left); // left aligned output
 
-    cout << 123.456789 << endl;
+    cout << 123.456786 << endl;
 
     cout.fill('_');
     cout.setf(ios::right); // right aligned

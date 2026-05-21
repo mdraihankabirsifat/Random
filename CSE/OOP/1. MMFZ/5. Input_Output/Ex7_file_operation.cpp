@@ -35,6 +35,7 @@ int main()
         if (!in)
             throw "Cannot open input file";
 
+        // string item;
         char item[20];
         int quantity;
 
