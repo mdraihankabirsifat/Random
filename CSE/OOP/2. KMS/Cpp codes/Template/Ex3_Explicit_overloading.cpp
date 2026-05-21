@@ -19,7 +19,7 @@ void swapargs(int &a, int &b)
     temp = a;
     a = b;
     b = temp;
-    cout << "Inside swapargs int specialization.\n";
+    cout << "Inside swapargs int specialization 1.\n";
 }
 
 // Explicit Template Specialization
@@ -30,7 +30,7 @@ void swapargs<int>(int &a, int &b)
     temp = a;
     a = b;
     b = temp;
-    cout << "Inside swapargs int specialization.\n";
+    cout << "Inside swapargs int specialization 2.\n";
 }
 
 int main()
