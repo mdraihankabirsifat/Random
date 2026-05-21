@@ -57,16 +57,22 @@ int main()
     in.seekg(0, ios::end);  // move get pointer
     out.seekp(0, ios::end); // move put pointer
 
+    in.read(str, 80); //But pointer already at file end. nothing can be read, EOF reached
+    cout << in.gcount() << " characters read" << endl;
+    out.write(str, 80);
+
     cout << "getPointer: " << in.tellg()
          << " putPointer: " << out.tellp() << endl;
 
     ios::iostate state = in.rdstate(); // check stream state
+
     showState(state);
 
     in.clear(); // clear error flags
+
     state = in.rdstate();
     showState(state);
-    
+
     return 0;
 }
 

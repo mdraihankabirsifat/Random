@@ -2,17 +2,54 @@
 #include <iostream>
 using namespace std;
 
-// template with two type parameters
-template <class type1, class type2>
-void myfunc(type1 x, type2 y)
+// function template
+template <class X>
+void swapargs(X &a, X &b)
 {
-    cout << x << ' ' << y << '\n';
+    X temp; // temporary variable of same type
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+// Normal Overloaded Function
+void swapargs(int &a, int &b)
+{
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    cout << "Inside swapargs int specialization.\n";
+}
+
+// Explicit Template Specialization
+template <>
+void swapargs<int>(int &a, int &b)
+{
+    int temp;
+    temp = a;
+    a = b;
+    b = temp;
+    cout << "Inside swapargs int specialization.\n";
 }
 
 int main()
 {
-    myfunc(10, "I like C++"); // int and string literal
-    myfunc(98.6, 19L);        // double and long
+    int i = 10, j = 20;
+    double x = 10.1, y = 23.3;
+    char a = 'x', b = 'z';
+
+    cout << "Original i, j: " << i << ' ' << j << '\n';
+    cout << "Original x, y: " << x << ' ' << y << '\n';
+    cout << "Original a, b: " << a << ' ' << b << '\n';
+
+    swapargs(i, j); // swaps int values
+    swapargs(x, y); // swaps double values
+    swapargs(a, b); // swaps char values
+
+    cout << "Swapped i, j: " << i << ' ' << j << '\n';
+    cout << "Swapped x, y: " << x << ' ' << y << '\n';
+    cout << "Swapped a, b: " << a << ' ' << b << '\n';
 
     return 0;
 }
@@ -20,9 +57,10 @@ int main()
 /*
 Key Notes:
 
-1. A template can take more than one type parameter.
+1. Template Function → one function can work with different data types.
 2. Syntax:
-   template <class type1, class type2>
-3. Useful when function arguments are of different types.
-4. Compiler deduces the types from the passed arguments.
+   template <class X>
+3. Compiler creates the needed version automatically.
+4. Here the same function works for int, double, and char.
+5. Reference parameters (&) are used so original values are swapped.
 */
