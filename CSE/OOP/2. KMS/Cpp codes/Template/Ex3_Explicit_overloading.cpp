@@ -13,14 +13,14 @@ void swapargs(X &a, X &b)
 }
 
 // Normal Overloaded Function
-void swapargs(int &a, int &b)
-{
-    int temp;
-    temp = a;
-    a = b;
-    b = temp;
-    cout << "Inside swapargs int specialization 1.\n";
-}
+// void swapargs(int &a, int &b)
+// {
+//     int temp;
+//     temp = a;
+//     a = b;
+//     b = temp;
+//     cout << "Inside swapargs int specialization 1.\n";
+// }
 
 // Explicit Template Specialization
 template <>

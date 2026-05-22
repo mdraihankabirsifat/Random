@@ -35,12 +35,29 @@ public:
     }
 };
 
+template <class T>
+class Box2 : public Box<T>
+{
+public:
+    Box2(T v) : Box<T>(v)
+    {
+        //   value = v;
+    }
+
+    T get() const
+    {
+        return this->value;
+    }
+};
+
 int main()
 {
     IntBox a(10);
     Box b(10.10);
-    cout << a.get() << "\n";
-    cout << b.get();
+    Box2 c(10.30);
+    cout << a.get() << endl;
+    cout << b.get() << endl;
+    cout << c.get();
 }
 
 /*
