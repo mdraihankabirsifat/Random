@@ -61,8 +61,9 @@ int main()
 {
 
     map<name, phoneNum> directory;
-    //name Name = new name("Tom");
-    // put names and numbers into map
+    // name Name = new name("Tom");
+    //  put names and numbers into map
+    directory[name("sifat")] = phoneNum("0123");
     directory.insert(pair<name, phoneNum>(name("Tom"), phoneNum("555-4533")));
     directory.insert(pair<name, phoneNum>(name("Chris"), phoneNum("555-9678")));
     directory.insert(pair<name, phoneNum>(name("John"), phoneNum("555-8195")));
@@ -76,7 +77,7 @@ int main()
 
     map<name, phoneNum>::iterator p;
 
-    p = directory.find(name(str)); //O(n)
+    p = directory.find(name(str)); // O(n)
 
     if (p != directory.end())
         cout << "Phone number: " << p->second.get();

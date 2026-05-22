@@ -18,6 +18,7 @@ int main()
     {
         cout << q.top() << " "; // largest element
         q.pop();
+        
     }
 
     cout << '\n';

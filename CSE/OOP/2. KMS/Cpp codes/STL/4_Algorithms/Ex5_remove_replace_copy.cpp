@@ -46,7 +46,7 @@ int main()
     cout << endl;
 
     // replace spaces with colons
-    replace_copy(v.begin(), v.end(), v2.begin(), 'Atik', 'Ifat');
+    replace_copy(v.begin(), v.end(), v2.begin(), ' ', ':');
 
     cout << "Result after replacing spaces with colons:\n";
 

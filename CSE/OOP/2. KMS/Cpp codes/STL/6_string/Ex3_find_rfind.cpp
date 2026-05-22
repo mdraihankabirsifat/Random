@@ -24,7 +24,7 @@ int main()
 
         cout << "Remaining string is:\n";
 
-        s2.assign(s1, i, s1.size()); // (string, starting,ending)
+        s2.assign(s1, i, s1.size()); // (string, starting, ending)
 
         cout << s2;
     }

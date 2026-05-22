@@ -3,31 +3,32 @@
 #include <algorithm>
 #include <vector>
 #include <functional> // required header
+using namespace std;
 
 int main()
 {
 
-    std::vector<int> numbers = {5, 2, 8, 1, 9, 4};
+    vector<int> num = {5, 2, 8, 1, 9, 4};
 
     // sort in descending order using functor
-    std::sort(numbers.begin(), numbers.end(), std::greater<int>());
+    sort(num.begin(), num.end(), greater<int>());
 
     // print vector
-    std::cout << "Sorted in descending order: ";
+    cout << "Sorted in descending order: ";
 
-    for (int num : numbers)
+    for (int x : num)
     {
-        std::cout << num << " ";
+        cout << x << " ";
     }
 
-    std::cout << std::endl;
+    cout << endl;
 
     // use function object directly
-    std::greater<int> is_greater;
+    greater<int> g;
 
-    if (is_greater(10, 5))
+    if (g(10, 5))
     {
-        std::cout << "10 is greater than 5" << std::endl;
+        cout << "10 is greater than 5" << endl;
     }
 
     return 0;

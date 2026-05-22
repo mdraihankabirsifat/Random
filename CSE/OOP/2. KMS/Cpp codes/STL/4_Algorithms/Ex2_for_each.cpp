@@ -6,8 +6,15 @@
 #include <algorithm>
 using namespace std;
 
-void square(int &n);
-void print(int &n);
+void square(int &n)
+{
+    n *= n;
+} // square element
+
+void print(int &n)
+{
+    cout << n << " ";
+} // print element
 
 int main()
 {
@@ -31,16 +38,6 @@ int main()
 
     return 0;
 }
-
-void square(int &n)
-{
-    n *= n;
-} // square element
-
-void print(int &n)
-{
-    cout << n << " ";
-} // print element
 
 /*
 Key Notes

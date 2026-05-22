@@ -19,7 +19,7 @@ int main()
         vals.push_back((double)i);
 
     for (i = 1; i < 10; i++)
-        divisors.push_back(3.0*i); //3^n
+        divisors.push_back(3.0 * i);
 
     cout << "Original contents of vals:\n";
 

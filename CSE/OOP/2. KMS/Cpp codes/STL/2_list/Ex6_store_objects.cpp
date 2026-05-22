@@ -8,7 +8,10 @@ class myclass
     int a, b, sum;
 
 public:
-    myclass() { a = b = 0; }
+    myclass()
+    {
+        a = b = 0;
+    }
 
     myclass(int i, int j)
     {

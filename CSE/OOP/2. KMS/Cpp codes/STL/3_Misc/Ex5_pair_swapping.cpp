@@ -13,7 +13,7 @@ int main()
 
      cout << "Contents of pair1 = " << pair1.first << " " << pair1.second;
 
-     cout << "Contents of pair2 = " << pair2.first << " " << pair2.second;
+     cout << "\n Contents of pair2 = " << pair2.first << " " << pair2.second;
 
      pair1.swap(pair2); // swap contents
 
@@ -21,7 +21,7 @@ int main()
 
      cout << "Contents of pair1 = " << pair1.first << " " << pair1.second;
 
-     cout << "Contents of pair2 = " << pair2.first << " " << pair2.second;
+     cout << "\n Contents of pair2 = " << pair2.first << " " << pair2.second;
 
      return 0;
 }

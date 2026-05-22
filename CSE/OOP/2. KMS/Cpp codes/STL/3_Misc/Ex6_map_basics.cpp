@@ -16,6 +16,7 @@ int main()
     {
         // m['A'+i] = 65+i;
         m.insert(pair<char, int>('A' + i, 65 + i));
+        //m.insert('A' + i, 65 + i);
     }
 
     char ch;
