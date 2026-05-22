@@ -6,24 +6,24 @@ using namespace std;
 int main()
 {
 
-    stack<int> stack; // create stack container
+    stack<int> st; // create stack container
 
-    stack.push(21); // push element
-    stack.push(22);
-    stack.push(24);
-    stack.push(25);
+    st.push(21); // push element
+    st.push(22);
+    st.push(24);
+    st.push(25);
 
     int num = 0;
-    stack.push(num);
+    st.push(num);
 
-    stack.pop(); // remove top element
-    stack.pop();
-    stack.pop();
+    st.pop(); // remove top element
+    st.pop();
+    st.pop();
 
-    while (!stack.empty())
+    while (!st.empty())
     {                               // print stack contents
-        cout << stack.top() << " "; // access top element
-        stack.pop();                // remove after printing
+        cout << st.top() << " "; // access top element
+        st.pop();                // remove after printing
     }
 }
 
