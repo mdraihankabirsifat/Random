@@ -7,6 +7,7 @@ public class Ex1_A {
     public Ex1_A() {
         this.a = 0; // constructor
     }
+    
 
     public void setA(int a) {
         this.a = a;

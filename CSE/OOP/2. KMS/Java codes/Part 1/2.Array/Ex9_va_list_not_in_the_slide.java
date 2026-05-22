@@ -1,5 +1,5 @@
 // https://github.com/mdraihankabirsifat/Random
-public class Ex9_va_list {
+public class Ex9_va_list_not_in_the_slide {
 
     static int maxmin(String s, int... a) {
         int res = a[0];

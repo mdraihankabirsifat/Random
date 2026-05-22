@@ -1,7 +1,7 @@
 // https://github.com/mdraihankabirsifat/Random
 // Command-Line Arguments Example
 // Run program as:
-// java Ex5_CommandLineTest Hello 2 You
+// java Ex6_CommandLineTest Hello 2 You
 // Words after class name are passed to main() as String arguments.
 
 public class Ex6_CommandLineTest {
