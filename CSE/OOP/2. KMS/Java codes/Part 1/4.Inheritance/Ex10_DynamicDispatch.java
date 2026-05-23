@@ -19,7 +19,7 @@ class R extends Q {
     }
 }
 
-public class Ex9_DynamicDispatch {
+public class Ex10_DynamicDispatch {
 
     public static void main(String[] args) {
 

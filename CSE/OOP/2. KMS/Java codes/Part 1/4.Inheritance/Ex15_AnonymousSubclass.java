@@ -12,7 +12,7 @@ abstract class S {
     }
 }
 
-public class Ex14_AnonymousSubclass {
+public class Ex15_AnonymousSubclass {
 
     public static void main(String args[]) {
 

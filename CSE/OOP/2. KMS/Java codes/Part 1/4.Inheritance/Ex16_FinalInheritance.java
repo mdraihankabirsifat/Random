@@ -27,7 +27,7 @@ final class D extends A {
 }
 // class D extends C { }   // ERROR: cannot inherit final class
 
-public class Ex15_FinalInheritance {
+public class Ex16_FinalInheritance {
 
     public static void main(String[] args) {
 

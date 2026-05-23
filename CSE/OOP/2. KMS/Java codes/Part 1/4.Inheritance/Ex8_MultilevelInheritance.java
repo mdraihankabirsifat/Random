@@ -39,7 +39,7 @@ class Z extends Y {
     }
 }
 
-public class Ex7_MultilevelInheritance {
+public class Ex8_MultilevelInheritance {
 
     public static void main(String[] args) {
 
