@@ -14,12 +14,11 @@ public class Ex8_Throws {
 
         try {
             f();
-        }
-
-        catch(IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             System.out.println("Inside catch of main()");
             e.printStackTrace();
-            //e.getMessage();
+            //System.out.println(e.getMessage());
+            //System.out.println(e);
         }
 
     }
@@ -30,4 +29,4 @@ Key Notes
 ---------
 throws declares exception
 that method may produce.
-*/
+ */
