@@ -15,16 +15,16 @@ interface MyIFPrivate {
 //can be called by a dafault method or another private mehtod of the same interface
 
     private void login() {
-        System.out.println("login");
+        System.out.print("login ");
     }
 
 }
 
 class MyIFPrivateImp implements MyIFPrivate {
 
-    void login() {
-        System.out.println("login");
-    }
+    // void login() {
+    //     System.out.println("login from class.");
+    // }
 }
 
 public class Ex10_PrivateInterfaceMethod {
@@ -38,8 +38,8 @@ public class Ex10_PrivateInterfaceMethod {
         //System.out.println(ifp.login());
         //ifp.login();
 
-        // MyIFPrivateImp ifp1 = new MyIFPrivateImp();
-        // ifp1.login();
+        //MyIFPrivateImp ifp1 = new MyIFPrivateImp();
+        //ifp1.login();
     }
 }
 
