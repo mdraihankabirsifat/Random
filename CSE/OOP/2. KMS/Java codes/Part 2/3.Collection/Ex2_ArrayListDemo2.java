@@ -27,14 +27,14 @@ public class Ex2_ArrayListDemo2 {
         System.out.println();
 
         // lambda iteration
-        al.forEach(atik -> System.out.print(atik + " "));
+        al.forEach(x -> System.out.print(x + " "));
 
         System.out.println();
 
         al.remove(2); // remove index
 
         // convert to array
-        Integer ia[] = new Integer[al.size()];
+        Integer[] ia = new Integer[al.size()];
         al.toArray(ia); //List to array al->ia
 
         for (int i = 0; i < ia.length; i++) {

@@ -10,7 +10,7 @@ class MyStack<T> implements Stack<T> {
     T[] arr;
     int top = -1;
 
-    MyStack(T[] arr) {
+    MyStack(T[] arr) { 
         this.arr = arr;
     }
 

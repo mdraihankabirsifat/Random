@@ -34,7 +34,7 @@ class TestClassComparator implements Comparator<TestClass> { //Tor kora lagbo
     }
 }
 
-public class Ex10_ComparatorDemo {
+public class Ex10_Custom_Comparator {
 
     public static void printList(List<TestClass> al) {
         for (TestClass t : al) {

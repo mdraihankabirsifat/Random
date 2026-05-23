@@ -1,12 +1,12 @@
 // https://github.com/mdraihankabirsifat/Random
 //package threads;
 
-public class Ex1_CreateThreads {
+public class Ex2_CreateThreads {
 
     public static void main(String[] args) {
-        Ex1_CreateThreads ct = new Ex1_CreateThreads();
+        Ex2_CreateThreads ct = new Ex2_CreateThreads();
         new Thread(ct::f1, "T1").start();
-        new Thread(Ex1_CreateThreads::f2, "T3").start(); //if static, no object needed
+        new Thread(Ex2_CreateThreads::f2, "T3").start(); //if static, no object needed
     }
 
     public void f1() {

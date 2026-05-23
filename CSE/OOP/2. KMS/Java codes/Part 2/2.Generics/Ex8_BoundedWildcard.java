@@ -2,44 +2,44 @@
 //package generics;
 
 // Base class
-class Ex8_TwoD {
+class TwoD {
 
     int x, y;
 
-    Ex8_TwoD(int x, int y) {
+    TwoD(int x, int y) {
         this.x = x;
         this.y = y;
     }
 }
 
 // Derived class
-class Ex8_ThreeD extends Ex8_TwoD {
+class ThreeD extends TwoD {
 
     int z;
 
-    Ex8_ThreeD(int x, int y, int z) {
+    ThreeD(int x, int y, int z) {
         super(x, y);
         this.z = z;
     }
 }
 
 // Further derived
-class Ex8_FourD extends Ex8_ThreeD {
+class FourD extends ThreeD {
 
     int t;
 
-    Ex8_FourD(int x, int y, int z, int t) {
+    FourD(int x, int y, int z, int t) {
         super(x, y, z);
         this.t = t;
     }
 }
 
 // Generic container
-class Ex8_Coords<T extends Ex8_TwoD> {
+class Coords<T extends TwoD> {
 
     T[] coords;
 
-    Ex8_Coords(T[] o) {
+    Coords(T[] o) {
         coords = o;
     }
 }
@@ -48,21 +48,21 @@ class Ex8_Coords<T extends Ex8_TwoD> {
 class Ex8_BoundedWildcard {
 
     // Works for ALL types
-    static void showXY(Ex8_Coords<?> c) {
+    static void showXY(Coords<?> c) {
         for (int i = 0; i < c.coords.length; i++) {
             System.out.println(c.coords[i].x + " " + c.coords[i].y);
         }
     }
 
     // Only ThreeD and subclasses
-    static void showXYZ(Ex8_Coords<? extends Ex8_ThreeD> c) {
+    static void showXYZ(Coords<? extends ThreeD> c) {
         for (int i = 0; i < c.coords.length; i++) {
             System.out.println(c.coords[i].x + " " + c.coords[i].y + " " + c.coords[i].z);
         }
     }
 
     // Only FourD
-    static void showAll(Ex8_Coords<? extends Ex8_FourD> c) {
+    static void showAll(Coords<? extends FourD> c) {
         for (int i = 0; i < c.coords.length; i++) {
             System.out.println(c.coords[i].x + " " + c.coords[i].y + " " + c.coords[i].z + " " + c.coords[i].t);
         }
@@ -70,28 +70,27 @@ class Ex8_BoundedWildcard {
 
     public static void main(String[] args) {
 
-        Ex8_TwoD[] twoD = {
-            new Ex8_TwoD(1, 8),
-            new Ex8_TwoD(2, 7),
-            new Ex8_TwoD(3, 6),
-            new Ex8_TwoD(4, 5)
+        TwoD[] twoD = {
+            new TwoD(1, 8),
+            new TwoD(2, 7),
+            new TwoD(3, 6),
+            new TwoD(4, 5)
         };
 
-        Ex8_Coords<Ex8_TwoD> twoDCoords = new Ex8_Coords<>(twoD);
+        Coords<TwoD> twoDCoords = new Coords<>(twoD);
 
         Ex8_BoundedWildcard.showXY(twoDCoords);
 
         // ❌ ERROR (no z)
         // Ex8_BoundedWildcard.showXYZ(twoDCoords);
-        
-        Ex8_FourD[] fourD = {
-            new Ex8_FourD(1, 8, 9, 16),
-            new Ex8_FourD(2, 7, 10, 15),
-            new Ex8_FourD(3, 6, 11, 14),
-            new Ex8_FourD(4, 5, 12, 13)
+        FourD[] fourD = {
+            new FourD(1, 8, 9, 16),
+            new FourD(2, 7, 10, 15),
+            new FourD(3, 6, 11, 14),
+            new FourD(4, 5, 12, 13)
         };
 
-        Ex8_Coords<Ex8_FourD> fourDCoords = new Ex8_Coords<>(fourD);
+        Coords<FourD> fourDCoords = new Coords<>(fourD);
 
         Ex8_BoundedWildcard.showXY(fourDCoords);
         Ex8_BoundedWildcard.showXYZ(fourDCoords);

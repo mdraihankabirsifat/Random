@@ -1,5 +1,5 @@
 // https://github.com/mdraihankabirsifat/Random
-//package p.p4;
+//package p3.p4;
 //import p1.Ex2_Protection;
 
 public class Ex8_OtherPackage2 {

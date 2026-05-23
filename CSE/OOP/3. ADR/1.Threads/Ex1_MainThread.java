@@ -1,7 +1,7 @@
 // https://github.com/mdraihankabirsifat/Random
 //package threads;
 
-public class Ex2_MainThread {
+public class Ex1_MainThread {
 
     public static void main(String[] args) {
         Thread t = Thread.currentThread();

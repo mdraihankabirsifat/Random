@@ -1,5 +1,7 @@
 // https://github.com/mdraihankabirsifat/Random
+
 public class Ex2_GenericClass<T> {
+
     private T a;
 
     public void setObj(T a) {
@@ -16,6 +18,7 @@ public class Ex2_GenericClass<T> {
 
         Ex2_GenericClass<String> g2 = new Ex2_GenericClass<>();
         g2.setObj("Hello");
+        //g2.setObj(10);
 
         System.out.println(g1.getObj());
         System.out.println(g2.getObj());

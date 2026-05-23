@@ -4,9 +4,16 @@ import java.util.Arrays;
 
 public class Ex5_ArraysDemo {
 
+    static void display(int array[]) {
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String args[]) {
 
-        int array[] = new int[10];
+        int[] array = new int[10];
 
         for (int i = 0; i < 10; i++) {
             array[i] = -3 * i;
@@ -35,12 +42,6 @@ public class Ex5_ArraysDemo {
         System.out.println("Index of -9: " + index);
     }
 
-    static void display(int array[]) {
-        for (int i : array) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-    }
 }
 
 /*

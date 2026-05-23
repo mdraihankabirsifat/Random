@@ -16,7 +16,7 @@ public class Ex1_ArrayListDemo1 {
         al.add("C");
         al.add("A");
         al.add("E");
-        al.add("B");
+        al.add("F");
         al.add("D");
         al.add("F");
         

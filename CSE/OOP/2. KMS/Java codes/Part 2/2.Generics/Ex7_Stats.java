@@ -47,10 +47,12 @@ class Ex7_Stats<T extends Number> {
         Integer[] n2 = {50, 20, 40, 10, 30};
         Ex7_Stats<Integer> s2 = new Ex7_Stats<>(n2);
         System.out.println(s2.average());
+
         System.out.println(s1.sameAvg(s2));
         Double[] n3 = {50.0, 40.0, 30.0, 20.0, 10.0};
         Ex7_Stats<Double> s3 = new Ex7_Stats<>(n3);
         System.out.println(s3.average());
+        
         //System.out.println(s2.sameAvg(s3)); // error
         System.out.println(s2.sameAvgAny(s3));
     }
