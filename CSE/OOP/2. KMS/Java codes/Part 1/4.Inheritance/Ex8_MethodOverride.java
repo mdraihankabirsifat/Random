@@ -29,7 +29,7 @@ class Child extends Base {
     }
 }
 
-public class Ex7_MethodOverride {
+public class Ex8_MethodOverride {
 
     public static void main(String[] args) {
 

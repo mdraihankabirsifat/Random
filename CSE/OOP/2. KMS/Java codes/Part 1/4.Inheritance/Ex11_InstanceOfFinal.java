@@ -14,7 +14,7 @@ final class FinalClass {
     }
 }
 
-public class Ex10_InstanceOfFinal {
+public class Ex11_InstanceOfFinal {
 
     public static void main(String[] args) {
 

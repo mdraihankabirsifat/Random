@@ -37,7 +37,7 @@ class Triangle2 extends Figure2 {
     }
 }
 
-public class Ex12_AbstractArea {
+public class Ex13_AbstractArea {
 
     public static void main(String[] args) {
 

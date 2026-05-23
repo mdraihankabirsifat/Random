@@ -14,7 +14,7 @@ class T extends S {
     }
 }
 
-public class Ex11_AbstractClass {
+public class Ex12_AbstractClass {
 
     public static void main(String args[]) {
         T t = new T();

@@ -41,7 +41,7 @@ class Triangle extends Figure {
     }
 }
 
-public class Ex9_FigureArea {
+public class Ex10_FigureArea {
 
     public static void main(String[] args) {
 
