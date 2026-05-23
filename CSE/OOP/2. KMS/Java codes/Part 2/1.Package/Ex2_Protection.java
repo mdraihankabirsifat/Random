@@ -1,5 +1,8 @@
 // https://github.com/mdraihankabirsifat/Random
+//can not run this code, run Ex4_SamePackage
+
 public class Ex2_Protection {
+
     int n = 1;
     private int nPrivate = 2;
     protected int nProtected = 3;
@@ -7,10 +10,11 @@ public class Ex2_Protection {
 
     public Ex2_Protection() {
         System.out.println("---Protection---");
-        System.out.println(n);
-        System.out.println(nPrivate);
-        System.out.println(nProtected);
-        System.out.println(nPublic);
+        System.out.print(n + " ");
+        System.out.print(nPrivate + " ");
+        System.out.print(nProtected + " ");
+        System.out.print(nPublic + " ");
+        System.out.println();
     }
 }
 
@@ -22,4 +26,4 @@ Key Notes:
    - private → only inside class
    - protected → same package + subclass
    - public → everywhere
-*/
+ */
