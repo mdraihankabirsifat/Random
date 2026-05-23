@@ -6,7 +6,7 @@ public class Ex16_RandomAccessFileDemo {
 
     public static void main(String[] args) throws Exception {
 
-        RandomAccessFile file = new RandomAccessFile("sample.txt", "rw");
+        RandomAccessFile file = new RandomAccessFile("D:/Documents/Code/CSE/OOP/2. KMS/Java codes/Part 2/5.File/file1.txt", "rw");
 
         file.write("Hello".getBytes());
         System.out.println(file.getFilePointer());

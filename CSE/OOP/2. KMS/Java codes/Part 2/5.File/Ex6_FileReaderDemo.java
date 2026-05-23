@@ -8,7 +8,7 @@ public class Ex6_FileReaderDemo {
 
     public static void main(String args[]) throws Exception {
 
-        File f = new File("TestFile.java");
+        File f = new File("D:/Documents/Code/CSE/OOP/2. KMS/Java codes/Part 2/5.File/file1.txt");
 
         Reader fr = new FileReader(f);
 

@@ -1,8 +1,10 @@
 // https://github.com/mdraihankabirsifat/Random
+
 class PrimeCounter implements Runnable {
+
     int[] numbers;
     int start, end;
-    long localCount;
+
     static long total = 0; //static
     Thread t;
 
@@ -15,17 +17,17 @@ class PrimeCounter implements Runnable {
     }
 
     public void run() {
+        long localCount = 0;
         for (int i = start; i < end; i++) {
-            localCount = 0;
             if (isPrime(numbers[i])) {
                 localCount++;
             }
-            synchronized (PrimeCounter.class) {
-                total += localCount;
-            }
+        }
+        synchronized (PrimeCounter.class) {
+            total += localCount;
         }
     }
-    
+
     private boolean isPrime(int n) {
         if (n <= 1) {
             return false;

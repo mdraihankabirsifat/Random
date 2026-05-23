@@ -11,7 +11,7 @@ public class Ex4_FileOutputStreamDemo {
 
         byte buf[] = source.getBytes();
 
-        OutputStream f0 = new FileOutputStream("D:/Documents/Code/CSE/OOP/KMS/Java codes/Part 2/5.File/file1.txt");
+        OutputStream f0 = new FileOutputStream("D:/Documents/Code/CSE/OOP/2. KMS/Java codes/Part 2/5.File/file1.txt");
 
         for (int i = 0; i < buf.length; i += 2) {
             f0.write(buf[i]);

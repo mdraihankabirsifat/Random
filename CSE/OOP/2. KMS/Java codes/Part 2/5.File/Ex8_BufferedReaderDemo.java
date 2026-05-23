@@ -8,7 +8,7 @@ public class Ex8_BufferedReaderDemo {
 
     public static void main(String args[]) throws Exception {
 
-        Reader fr = new FileReader("D:/Documents/Code/CSE/OOP/KMS/Java codes/Part 2/5.File/sample.txt");
+        Reader fr = new FileReader("D:/Documents/Code/CSE/OOP/2. KMS/Java codes/Part 2/5.File/sample.txt");
         BufferedReader br = new BufferedReader(fr);
 
         while (true) {
