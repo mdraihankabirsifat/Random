@@ -32,7 +32,7 @@ int main()
         cin >> n;
         vr(v, n);
         in(v);
-        
+        cout << round((boro(v) - choto(v)) / 2.0) << tata;
     }
     return 0;
 }
