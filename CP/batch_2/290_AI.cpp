@@ -28,34 +28,16 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, c = 0;
-        cin >> n;
-        vector<int> v(n), v1;
-        in(v);
-        for (int i = n - 1; i >= 0; i--)
+        ll n, x, y, z;
+        cin >> n >> x >> y >> z;
+        if (x * z <= n)
         {
-            if (v[i] > 0)
-            {
-                ll p = 1;
-                if (v[i + 1] > 0 && i != n - 1)
-                {
-                    p = 0;
-                }
-                if (p)
-                {
-                    c++;
-                    v1.pb(i + 1);
-                }
-            }
-            else if (v[i] < 0 && v[i + 1] > 0 && i != n - 1)
-            {
-                c++;
-                v1.pb(i + 1);
-            }
+            cout << x * z + ceil((n - x * z) / (y * 10)) << tata;
         }
-        cout << c << tata;
-        out(v1);
-        cout << tata;
+        else
+        {
+            cout << ceil(n / x) << tata;
+        }
     }
     return 0;
 }
