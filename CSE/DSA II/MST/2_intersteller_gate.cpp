@@ -99,8 +99,8 @@ int main()
 
     for (ll i = 0; i < n; i++)
     {
-        cin >> planets[i].x >> planets[i].y >> planets[i].z;
         planets[i].id = i;
+        cin >> planets[i].x >> planets[i].y >> planets[i].z;
     }
 
     // Sort by x and add adjacent edges
