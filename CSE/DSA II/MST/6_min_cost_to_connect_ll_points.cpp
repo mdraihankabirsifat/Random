@@ -90,7 +90,7 @@ public:
             }
         }
         sort(edges.begin(), edges.end(), cmp);
-        DSU dsu(edges.size());
+        DSU dsu(n);
         for (Edge e : edges)
         {
             if (dsu.unite(e.u, e.v))

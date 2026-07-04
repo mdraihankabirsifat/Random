@@ -1,4 +1,3 @@
-//https://www.geeksforgeeks.org/dsa/minimize-count-of-connections-required-to-be-rearranged-to-make-all-the-computers-connected/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -27,46 +26,6 @@ bool cmp(Edge a, Edge b)
 {
     return a.w < b.w;
 }
-
-// ---------- DFS/BFS Part ----------
-vector<vector<ll>> adj;
-vector<ll> visited;
-
-void dfs(ll node)
-{
-    visited[node] = 1;
-
-    for (ll child : adj[node])
-    {
-        if (!visited[child])
-        {
-            dfs(child);
-        }
-    }
-}
-
-void bfs(ll start)
-{
-    queue<ll> q;
-    q.push(start);
-    visited[start] = 1;
-
-    while (!q.empty())
-    {
-        ll node = q.front();
-        q.pop();
-
-        for (ll child : adj[node])
-        {
-            if (!visited[child])
-            {
-                visited[child] = 1;
-                q.push(child);
-            }
-        }
-    }
-}
-// ---------- DFS/BFS Part End ----------
 
 class DSU
 {
@@ -119,28 +78,19 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, m, u, v, w, ans = 0, edgeCount = 0;
-    cin >> n >> m;
-
+    ll n, u, v, w, ans = 0, edgeCount = 0;
+    cin >> n;
     vector<Edge> edges;
-
-    adj.resize(n + 1);
-    visited.assign(n + 1, 0);
-
-    for (ll i = 0; i < m; i++)
+    for (int i = 1; i <= n; i++)
     {
-        cin >> u >> v >> w;
-        edges.pb({u, v, w});
-
-        // For DFS/BFS graph traversal
-        adj[u].pb(v);
-        adj[v].pb(u);
+        for (int j = i+1; j <= n; j++)
+        {
+            if (abs(i - j) > 0 && abs(i - j) < 3)
+            {
+                edges.pb({i, j, i + j});
+            }
+        }
     }
-
-    // Example use of DFS/BFS if needed:
-    // dfs(1);
-    // bfs(1);
-
     sort(edges.begin(), edges.end(), cmp);
 
     DSU dsu(n);
