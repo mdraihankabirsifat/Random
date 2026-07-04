@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/minimum-operations-to-transform-binary-string/description/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
