@@ -1,3 +1,4 @@
+//geeksforgeeks
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -20,52 +21,13 @@ using namespace std;
 struct Edge
 {
     ll u, v, w;
+    double logw;
 };
 
 bool cmp(Edge a, Edge b)
 {
-    return a.w < b.w;
+    return a.logw < b.logw;
 }
-
-// ---------- DFS/BFS Part ----------
-vector<vector<ll>> adj;
-vector<ll> visited;
-
-void dfs(ll node)
-{
-    visited[node] = 1;
-
-    for (ll child : adj[node])
-    {
-        if (!visited[child])
-        {
-            dfs(child);
-        }
-    }
-}
-
-void bfs(ll start)
-{
-    queue<ll> q;
-    q.push(start);
-    visited[start] = 1;
-
-    while (!q.empty())
-    {
-        ll node = q.front();
-        q.pop();
-
-        for (ll child : adj[node])
-        {
-            if (!visited[child])
-            {
-                visited[child] = 1;
-                q.push(child);
-            }
-        }
-    }
-}
-// ---------- DFS/BFS Part End ----------
 
 class DSU
 {
@@ -118,27 +80,15 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, m, u, v, w, ans = 0, edgeCount = 0;
+    ll n, m, u, v, w, p = 1, edgeCount = 0;
     cin >> n >> m;
-
     vector<Edge> edges;
-
-    adj.resize(n + 1);
-    visited.assign(n + 1, 0);
 
     for (ll i = 0; i < m; i++)
     {
         cin >> u >> v >> w;
-        edges.pb({u, v, w});
-
-        // For DFS/BFS graph traversal
-        adj[u].pb(v);
-        adj[v].pb(u);
+        edges.pb({u, v, w, log(w)});
     }
-
-    // Example use of DFS/BFS if needed:
-    // dfs(1);
-    // bfs(1);
 
     sort(edges.begin(), edges.end(), cmp);
 
@@ -148,7 +98,7 @@ int main()
     {
         if (dsu.unite(e.u, e.v))
         {
-            ans += e.w;
+            p *= e.w;
             edgeCount++;
 
             if (edgeCount == n - 1)
@@ -160,7 +110,7 @@ int main()
 
     if (edgeCount == n - 1)
     {
-        cout << ans << tata;
+        cout << p << tata;
     }
     else
     {

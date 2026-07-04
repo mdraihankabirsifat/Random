@@ -1,4 +1,4 @@
-//online B
+//https://www.geeksforgeeks.org/dsa/minimize-count-of-connections-required-to-be-rearranged-to-make-all-the-computers-connected/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -123,7 +123,6 @@ int main()
     cin >> n >> m;
 
     vector<Edge> edges;
-    vector<Edge> v1;
 
     adj.resize(n + 1);
     visited.assign(n + 1, 0);
@@ -152,7 +151,6 @@ int main()
         {
             ans += e.w;
             edgeCount++;
-            v1.pb({e.u, e.v, e.w});
 
             if (edgeCount == n - 1)
             {
@@ -163,11 +161,7 @@ int main()
 
     if (edgeCount == n - 1)
     {
-        cout << "Minimum cost: " << ans << tata;
-        for (int i = 0; i < v1.size(); i++)
-        {
-            cout << v1[i].u << " " << v1[i].v << " " << v1[i].w << tata;
-        }
+        cout << ans << tata;
     }
     else
     {
