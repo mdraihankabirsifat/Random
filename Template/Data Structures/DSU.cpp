@@ -4,16 +4,6 @@ using namespace std;
 #define pb push_back
 #define tata "\n"
 
-struct Edge
-{
-    ll u, v, w;
-};
-
-bool cmp(Edge a, Edge b)
-{
-    return a.w < b.w;
-}
-
 class DSU
 {
 public:
@@ -33,7 +23,9 @@ public:
     ll find(ll x)
     {
         if (parent[x] == x)
+        {
             return x;
+        }
 
         return parent[x] = find(parent[x]);
     }
@@ -58,6 +50,16 @@ public:
 
         return true;
     }
+
+    bool same(ll a, ll b)
+    {
+        return find(a) == find(b);
+    }
+
+    ll size(ll x)
+    {
+        return sz[find(x)];
+    }
 };
 
 int main()
@@ -65,43 +67,24 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, m, u, v, w, ans = 0, edgeCount = 0;
-    cin >> n >> m;
-
-    vector<Edge> edges;
-
-    for (ll i = 0; i < m; i++)
-    {
-        cin >> u >> v >> w;
-        edges.pb({u, v, w});
-    }
-
-    sort(edges.begin(), edges.end(), cmp);
-
+    ll n = 10;
     DSU dsu(n);
 
-    for (Edge e : edges)
-    {
-        if (dsu.unite(e.u, e.v))
-        {
-            ans += e.w;
-            edgeCount++;
+    dsu.unite(1, 2);
+    dsu.unite(2, 3);
 
-            if (edgeCount == n - 1)
-            {
-                break;
-            }
-        }
-    }
+    cout << dsu.find(3) << tata;
 
-    if (edgeCount == n - 1)
+    if (dsu.same(1, 3))
     {
-        cout << ans << tata;
+        cout << "Same component" << tata;
     }
     else
     {
-        cout << "IMPOSSIBLE" << tata;
+        cout << "Different component" << tata;
     }
+
+    cout << dsu.size(1) << tata;
 
     return 0;
 }
