@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 #define ll long long
 #define pb push_back
 #define tata "\n"
@@ -39,23 +40,23 @@ vector<ll> bfs(ll n, vector<vector<ll>> &adj, ll source)
     return dist;
 }
 
-// ---------- Dijkstra for Non-negative Weighted Graph ----------
-vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
+// ---------- Dijkstra with At Most Two Coupons ----------
+vector<vector<ll>> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
 {
-    vector<ll> dist(n + 1, INF);
+    vector<vector<ll>> dist(n + 1, vector<ll>(3, INF));
 
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    // {distance, node, couponsUsed}
+    priority_queue<tuple<ll, ll, ll>, vector<tuple<ll, ll, ll>>, greater<tuple<ll, ll, ll>>> pq;
 
-    dist[source] = 0;
-    pq.push({0, source});
+    dist[source][0] = 0;
+    pq.push({0, source, 0});
 
     while (!pq.empty())
     {
-        ll currentDist = pq.top().first;
-        ll node = pq.top().second;
+        auto [currentDist, node, used] = pq.top();
         pq.pop();
 
-        if (currentDist != dist[node])
+        if (currentDist != dist[node][used])
             continue;
 
         for (auto child : adj[node])
@@ -63,30 +64,38 @@ vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
             ll nextNode = child.first;
             ll weight = child.second;
 
-            if (dist[nextNode] > dist[node] + weight)
+            // Travel normally
+            if (dist[nextNode][used] > dist[node][used] + weight)
             {
-                dist[nextNode] = dist[node] + weight;
-                pq.push({dist[nextNode], nextNode});
+                dist[nextNode][used] = dist[node][used] + weight;
+                pq.push({dist[nextNode][used], nextNode, used});
+            }
+
+            // Use one coupon
+            if (used < 2 && dist[nextNode][used + 1] > dist[node][used] + weight / 2)
+            {
+                dist[nextNode][used + 1] = dist[node][used] + weight / 2;
+                pq.push({dist[nextNode][used + 1], nextNode, used + 1});
             }
         }
     }
-
     return dist;
 }
 
-// ---------- Bellman-Ford for Negative Edge Weighted Graph ----------
-bool bellmanFord(ll n, vector<Edge> &edges, ll source, vector<ll> &dist)
+// ---------- Bellman-Ford ----------
+bool bellmanFord(ll n, vector<Edge> &edges,ll source, vector<ll> &dist)
 {
     dist.assign(n + 1, INF);
     dist[source] = 0;
 
-    for (ll i = 1; i <= n - 1; i++)
+    for (ll i = 1; i < n; i++)
     {
         bool changed = false;
 
         for (Edge e : edges)
         {
-            if (dist[e.u] != INF && dist[e.v] > dist[e.u] + e.w)
+            if (dist[e.u] != INF &&
+                dist[e.v] > dist[e.u] + e.w)
             {
                 dist[e.v] = dist[e.u] + e.w;
                 changed = true;
@@ -99,9 +108,10 @@ bool bellmanFord(ll n, vector<Edge> &edges, ll source, vector<ll> &dist)
 
     for (Edge e : edges)
     {
-        if (dist[e.u] != INF && dist[e.v] > dist[e.u] + e.w)
+        if (dist[e.u] != INF &&
+            dist[e.v] > dist[e.u] + e.w)
         {
-            return false; // negative cycle reachable from source
+            return false;
         }
     }
 
@@ -113,30 +123,8 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    /*
-    //-----------BFS input style--------------
-
-    ll n, m, source;
-    cin >> n >> m >> source;
-
-    vector<vector<ll>> adj(n + 1);
-
-    for (ll i = 0; i < m; i++)
-    {
-        ll u, v;
-        cin >> u >> v;
-
-        adj[u].pb(v);
-        adj[v].pb(u); // remove this line if directed
-    }
-
-    vector<ll> dist = bfs(n, adj, source);
-    */
-
-    /*
-    //---------Dijkstra input style-----------
-    ll n, m, source;
-    cin >> n >> m >> source;
+    ll n, m;
+    cin >> n >> m;
 
     vector<vector<pair<ll, ll>>> adj(n + 1);
 
@@ -144,50 +132,17 @@ int main()
     {
         ll u, v, w;
         cin >> u >> v >> w;
-
-        adj[u].pb({v, w});
-        adj[v].pb({u, w}); // remove this line if directed
+        adj[u].pb({v, w}); // directed
     }
 
-    vector<ll> dist = dijkstra(n, adj, source);
-    */
+    vector<vector<ll>> dist = dijkstra(n, adj, 1);
 
-    /*
-    //---------Bellman-Ford input style--------
+    ll answer = min({dist[n][0], dist[n][1], dist[n][2]});
 
-    ll n, m, source;
-    cin >> n >> m >> source;
-
-    vector<Edge> edges;
-
-    for (ll i = 0; i < m; i++)
-    {
-        ll u, v, w;
-        cin >> u >> v >> w;
-
-        edges.pb({u, v, w}); // directed edge
-    }
-
-    vector<ll> dist;
-
-    bool ok = bellmanFord(n, edges, source, dist);
-
-    if (!ok)
-    {
-        cout << "NEGATIVE CYCLE" << tata;
-    }
+    if (answer == INF)
+        cout << "Not possible" << tata;
     else
-    {
-        for (ll i = 1; i <= n; i++)
-        {
-            if (dist[i] == INF)
-                cout << "INF ";
-            else
-                cout << dist[i] << " ";
-        }
-        cout << tata;
-    }
-    */
+        cout << answer << tata;
 
     return 0;
 }

@@ -45,10 +45,7 @@ vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
 {
     vector<ll> dist(n + 1, INF);
 
-    priority_queue<pair<ll, ll>,
-                   vector<pair<ll, ll>>,
-                   greater<pair<ll, ll>>>
-        pq;
+    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>>pq;
 
     dist[source] = 0;
     pq.push({0, source});
@@ -81,9 +78,7 @@ vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
 // ---------- Modified Bellman-Ford ----------
 bool bellmanFord(ll n, vector<Edge> &edges, ll source, ll k, vector<ll> &dist)
 {
-    vector<ll> noCoupon(n + 1, INF);
-    vector<ll> usedCoupon(n + 1, INF);
-
+    vector<ll> noCoupon(n + 1, INF),usedCoupon(n + 1, INF);
     noCoupon[source] = 0;
 
     k = min(k, n - 1);
