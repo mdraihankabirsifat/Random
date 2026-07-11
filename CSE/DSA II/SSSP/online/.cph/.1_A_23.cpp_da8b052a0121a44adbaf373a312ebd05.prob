@@ -1,0 +1,1 @@
+{"name":"Local: 1_A_23","url":"d:\\Documents\\Code\\CSE\\DSA II\\SSSP\\online\\1_A_23.cpp","tests":[{"id":1783764410102,"input":"4 5 3\n1 2 4\n2 4 4\n1 3 10\n3 4 1\n2 3 2","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Documents\\Code\\CSE\\DSA II\\SSSP\\online\\1_A_23.cpp","group":"local","local":true}

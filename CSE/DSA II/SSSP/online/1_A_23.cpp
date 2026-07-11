@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 #define ll long long
 #define pb push_back
 #define tata "\n"
@@ -44,7 +45,10 @@ vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
 {
     vector<ll> dist(n + 1, INF);
 
-    priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
+    priority_queue<pair<ll, ll>,
+                   vector<pair<ll, ll>>,
+                   greater<pair<ll, ll>>>
+        pq;
 
     dist[source] = 0;
     pq.push({0, source});
@@ -74,38 +78,63 @@ vector<ll> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source)
     return dist;
 }
 
-// ---------- Bellman-Ford for Negative Edge Weighted Graph ----------
-bool bellmanFord(ll n, vector<Edge> &edges, ll source, vector<ll> &dist)
+// ---------- Modified Bellman-Ford ----------
+bool bellmanFord(ll n, vector<Edge> &edges, ll source, ll k, vector<ll> &dist)
 {
-    dist.assign(n + 1, INF);
-    dist[source] = 0;
+    vector<ll> noCoupon(n + 1, INF);
+    vector<ll> usedCoupon(n + 1, INF);
 
-    for (ll i = 1; i <= n - 1; i++)
+    noCoupon[source] = 0;
+
+    k = min(k, n - 1);
+
+    for (ll i = 1; i <= k; i++)
     {
+        vector<ll> nextNoCoupon = noCoupon;
+        vector<ll> nextUsedCoupon = usedCoupon;
+
         bool changed = false;
 
         for (Edge e : edges)
         {
-            if (dist[e.u] != INF && dist[e.v] > dist[e.u] + e.w)
+            if (noCoupon[e.u] != INF)
             {
-                dist[e.v] = dist[e.u] + e.w;
-                changed = true;
+                // Travel without using coupon
+                if (nextNoCoupon[e.v] > noCoupon[e.u] + e.w)
+                {
+                    nextNoCoupon[e.v] = noCoupon[e.u] + e.w;
+                    changed = true;
+                }
+
+                // Use coupon on this flight
+                if (nextUsedCoupon[e.v] > noCoupon[e.u] + e.w / 2)
+                {
+                    nextUsedCoupon[e.v] = noCoupon[e.u] + e.w / 2;
+                    changed = true;
+                }
+            }
+
+            // Coupon was used earlier
+            if (usedCoupon[e.u] != INF)
+            {
+                if (nextUsedCoupon[e.v] > usedCoupon[e.u] + e.w)
+                {
+                    nextUsedCoupon[e.v] = usedCoupon[e.u] + e.w;
+                    changed = true;
+                }
             }
         }
+
+        noCoupon = nextNoCoupon;
+        usedCoupon = nextUsedCoupon;
 
         if (!changed)
             break;
     }
 
-    for (Edge e : edges)
-    {
-        if (dist[e.u] != INF && dist[e.v] > dist[e.u] + e.w)
-        {
-            return false; // negative cycle reachable from source
-        }
-    }
+    dist = usedCoupon;
 
-    return true;
+    return dist[n] != INF;
 }
 
 int main()
@@ -113,50 +142,8 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    /*
-    //-----------BFS input style--------------
-
-    ll n, m, source;
-    cin >> n >> m >> source;
-
-    vector<vector<ll>> adj(n + 1);
-
-    for (ll i = 0; i < m; i++)
-    {
-        ll u, v;
-        cin >> u >> v;
-
-        adj[u].pb(v);
-        adj[v].pb(u); // remove this line if directed
-    }
-
-    vector<ll> dist = bfs(n, adj, source);
-    */
-
-    /*
-    //---------Dijkstra input style-----------
-    ll n, m, source;
-    cin >> n >> m >> source;
-
-    vector<vector<pair<ll, ll>>> adj(n + 1);
-
-    for (ll i = 0; i < m; i++)
-    {
-        ll u, v, w;
-        cin >> u >> v >> w;
-
-        adj[u].pb({v, w});
-        adj[v].pb({u, w}); // remove this line if directed
-    }
-
-    vector<ll> dist = dijkstra(n, adj, source);
-    */
-
-    /*
-    //---------Bellman-Ford input style--------
-
-    ll n, m, source;
-    cin >> n >> m >> source;
+    ll n, m, k;
+    cin >> n >> m >> k;
 
     vector<Edge> edges;
 
@@ -165,29 +152,21 @@ int main()
         ll u, v, w;
         cin >> u >> v >> w;
 
-        edges.pb({u, v, w}); // directed edge
+        edges.pb({u, v, w});
     }
 
     vector<ll> dist;
 
-    bool ok = bellmanFord(n, edges, source, dist);
+    bool ok = bellmanFord(n, edges, 1, k, dist);
 
     if (!ok)
     {
-        cout << "NEGATIVE CYCLE" << tata;
+        cout << "Not possible" << tata;
     }
     else
     {
-        for (ll i = 1; i <= n; i++)
-        {
-            if (dist[i] == INF)
-                cout << "INF ";
-            else
-                cout << dist[i] << " ";
-        }
-        cout << tata;
+        cout << dist[n] << tata;
     }
-    */
 
     return 0;
 }
