@@ -12,7 +12,7 @@ struct Edge
 };
 
 // ---------- Dijkstra with Coupon and Mandatory Edge ----------
-vector<vector<vector<ll>>> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source, ll x, ll y, ll mandatoryWeight)
+vector<vector<vector<ll>>> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll source, ll x, ll y, ll man_W)
 {
     // dist[node][couponUsed][mandatoryUsed]
     vector<vector<vector<ll>>> dist(n + 1, vector<vector<ll>>(2, vector<ll>(2, INF)));
@@ -36,7 +36,7 @@ vector<vector<vector<ll>>> dijkstra(ll n, vector<vector<pair<ll, ll>>> &adj, ll 
             ll weight = child.second;
             ll nextMandatoryUsed = mandatoryUsed;
 
-            if (node == x && nextNode == y && weight == mandatoryWeight)
+            if (node == x && nextNode == y && weight == man_W)
             {
                 nextMandatoryUsed = 1;
             }
@@ -63,31 +63,28 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
-    ll n, m, x, y, mandatoryWeight;
+    ll n, m, x, y, man_W;
     cin >> n >> m;
     vector<vector<pair<ll, ll>>> adj(n + 1);
-
     for (ll i = 0; i < m; i++)
     {
         ll u, v, w;
         cin >> u >> v >> w;
         adj[u].pb({v, w}); // directed edge
     }
-    cin >> x >> y >> mandatoryWeight;
+    cin >> x >> y >> man_W;
 
-    vector<vector<vector<ll>>> dist = dijkstra(n, adj, 1, x, y, mandatoryWeight);
-
+    vector<vector<vector<ll>>> dist = dijkstra(n, adj, 1, x, y, man_W);
     // Mandatory edge must be used.
     // Coupon may be used or unused.
-    ll answer = min(dist[n][0][1], dist[n][1][1]);
-    if (answer == INF)
+    ll ans = min(dist[n][0][1], dist[n][1][1]);
+    if (ans == INF)
     {
         cout << "Not possible" << tata;
     }
     else
     {
-        cout << answer << tata;
+        cout << ans << tata;
     }
     return 0;
 }
