@@ -144,7 +144,6 @@ int main()
     {
         ll u, v, w;
         cin >> u >> v >> w;
-
         adj[u].pb({v, w});
         adj[v].pb({u, w}); // remove this line if directed
     }
