@@ -24,11 +24,7 @@ int main()
     vector<bool> visited(n + 1, false);
 
     // {weight, node}
-    priority_queue<
-        pair<long long, int>,
-        vector<pair<long long, int>>,
-        greater<pair<long long, int>>>
-        pq;
+    priority_queue<pair<long long, int>,vector<pair<long long, int>>,greater<pair<long long, int>>>pq;
 
     int start = 1;
     pq.push({0, start});
