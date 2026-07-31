@@ -24,15 +24,11 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll t;
-    cin >> t;
-    while (t--)
+    ll n, m;
+    cin >> n >> m;
+    loop(i, 0, m)
     {
-        ll n;
-        cin >> n;
-        vr(v, n);
-        in(v);
-        
+
     }
     return 0;
 }
