@@ -5,8 +5,6 @@ using namespace std;
 #define tata "\n"
 #define V vector<vector<ll>>
 #define loop(i, j, n) for (ll i = j; i < n; i++)
-#define in(v) loop(i, 0, v.size()) cin >> v[i]
-#define out(v) loop(i, 0, v.size()) cout << v[i] << " "
 const ll INF = LLONG_MAX;
 
 struct Flight
@@ -14,7 +12,7 @@ struct Flight
     string s, dep, arr;
     ll dept, arrt;
 };
-//2405144
+
 ll somoy_dekhao(string s)
 {
     ll a = s[0] - '0';
@@ -52,7 +50,7 @@ ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
     }
     return 0;
 }
-//2405144
+
 ll edmondsKarp(ll n, ll source, ll sink, V &adj, V &capacity)
 {
     ll maxFlow = 0;
@@ -168,4 +166,3 @@ int main()
     }
     return 0;
 }
-// 2405144

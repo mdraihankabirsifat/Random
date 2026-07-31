@@ -4,6 +4,7 @@ using namespace std;
 #define pb push_back
 #define tata "\n"
 #define V vector<vector<ll>>
+#define loop(i, j, n) for (ll i = j; i < n; i++)
 const ll INF = LLONG_MAX;
 
 ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
@@ -67,7 +68,7 @@ int main()
     cin >> n >> m;
     ll source = 0, sink = n - 1;
     V adj(n + 1), capacity(n + 1, vector<ll>(n + 1, 0));
-    for (ll i = 0; i < m; i++)
+    loop(i, 0, m)
     {
         ll u, v, c;
         cin >> u >> v >> c;
