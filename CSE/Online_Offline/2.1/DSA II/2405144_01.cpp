@@ -3,9 +3,10 @@ using namespace std;
 #define ll long long
 #define pb push_back
 #define tata "\n"
-const ll INF = 4e18;
+#define V vector<vector<ll>>
+const ll INF = LLONG_MAX;
 
-ll bfs(ll source, ll sink, vector<vector<ll>> &adj, vector<vector<ll>> &capacity, vector<ll> &parent)
+ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
 {
     fill(parent.begin(), parent.end(), -1);
     parent[source] = -2;
@@ -35,8 +36,7 @@ ll bfs(ll source, ll sink, vector<vector<ll>> &adj, vector<vector<ll>> &capacity
     return 0;
 }
 
-// Edmonds-Karp = Ford-Fulkerson using BFS.
-ll edmondsKarp(ll n, ll source, ll sink, vector<vector<ll>> &adj, vector<vector<ll>> &capacity)
+ll edmondsKarp(ll n, ll source, ll sink, V &adj, V &capacity)
 {
     ll maxFlow = 0;
     vector<ll> parent(n + 1);
@@ -67,7 +67,7 @@ int main()
     ll n, m;
     cin >> n >> m;
     ll source = 0, sink = n - 1;
-    vector<vector<ll>> adj(n + 1),capacity(n + 1, vector<ll>(n + 1, 0));
+    V adj(n + 1), capacity(n + 1, vector<ll>(n + 1, 0));
     for (ll i = 0; i < m; i++)
     {
         ll u, v, c;

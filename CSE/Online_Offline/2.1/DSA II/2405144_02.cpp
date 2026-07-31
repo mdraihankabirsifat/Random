@@ -6,16 +6,12 @@ using namespace std;
 #define V vector<vector<ll>>
 const ll INF = LLONG_MAX;
 
-// BFS finds the shortest augmenting path in number of edges.
-// Returns its bottleneck flow; returns 0 if sink is unreachable.
 ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
 {
     fill(parent.begin(), parent.end(), -1);
     parent[source] = -2;
-
     queue<pair<ll, ll>> q;
     q.push({source, INF});
-
     while (!q.empty())
     {
         ll node = q.front().first;
@@ -28,12 +24,10 @@ ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
             {
                 parent[child] = node;
                 ll newFlow = min(flow, capacity[node][child]);
-
                 if (child == sink)
                 {
                     return newFlow;
                 }
-
                 q.push({child, newFlow});
             }
         }
@@ -42,24 +36,18 @@ ll bfs(ll source, ll sink, V &adj, V &capacity, vector<ll> &parent)
     return 0;
 }
 
-// Edmonds-Karp = Ford-Fulkerson using BFS.
 ll edmondsKarp(ll n, ll source, ll sink, V &adj, V &capacity)
 {
     ll maxFlow = 0;
     vector<ll> parent(n + 1);
-
     while (true)
     {
         ll pathFlow = bfs(source, sink, adj, capacity, parent);
-
         if (pathFlow == 0)
         {
             break;
         }
-
         maxFlow += pathFlow;
-
-        // Update forward and reverse residual capacities.
         ll node = sink;
         while (node != source)
         {
@@ -78,38 +66,16 @@ int main()
     cin.tie(nullptr);
     ll n, m;
     cin >> n >> m;
-
-    // Assignment-style indexing: source = 0, sink = n - 1.
-    // If source and sink are given, read them instead.
     ll source = 0, sink = n - 1;
-
     V adj(n + 1), capacity(n + 1, vector<ll>(n + 1, 0));
-
     for (ll i = 0; i < m; i++)
     {
         ll u, v, c;
         cin >> u >> v >> c;
-        // Both directions are needed in the residual graph.
         adj[u].pb(v);
         adj[v].pb(u);
-        // += handles multiple directed edges u -> v.
         capacity[u][v] += c;
     }
     cout << edmondsKarp(n, source, sink, adj, capacity) << tata;
     return 0;
 }
-
-/*
-===========================================================
-EDMONDS-KARP
-===========================================================
-
-1. BFS runs only through edges with positive residual capacity.
-2. The found path is shortest by number of edges.
-3. pathFlow = minimum residual capacity on that path.
-4. Forward residual capacity decreases by pathFlow.
-5. Reverse residual capacity increases by pathFlow.
-
-Time Complexity : O(V * E^2)
-Space Complexity: O(V^2 + E) here, because a capacity matrix is used.
-*/
