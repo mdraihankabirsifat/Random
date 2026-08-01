@@ -4,6 +4,7 @@ using namespace std;
 #define pb push_back
 #define tata "\n"
 #define V vector<vector<ll>>
+#define loop(i, j, n) for (ll i = j; i < n; i++)
 const ll INF = LLONG_MAX;
 
 // BFS finds the shortest augmenting path in number of edges.
@@ -72,6 +73,57 @@ ll edmondsKarp(ll n, ll source, ll sink, V &adj, V &capacity)
     return maxFlow;
 }
 
+// DFS finds any augmenting path and updates its residual capacities.
+// Returns the flow sent through that path; returns 0 if no path exists.
+ll dfs(ll node, ll sink, ll flow, V &adj, V &capacity, vector<bool> &visited)
+{
+    if (node == sink)
+    {
+        return flow;
+    }
+
+    visited[node] = true;
+
+    for (ll child : adj[node])
+    {
+        if (!visited[child] && capacity[node][child] > 0)
+        {
+            ll pathFlow = dfs(child, sink, min(flow, capacity[node][child]),
+                              adj, capacity, visited);
+
+            if (pathFlow > 0)
+            {
+                capacity[node][child] -= pathFlow;
+                capacity[child][node] += pathFlow;
+                return pathFlow;
+            }
+        }
+    }
+
+    return 0;
+}
+
+// Ford-Fulkerson using DFS.
+ll fordFulkerson(ll n, ll source, ll sink, V &adj, V &capacity)
+{
+    ll maxFlow = 0;
+
+    while (true)
+    {
+        vector<bool> visited(n + 1, false);
+        ll pathFlow = dfs(source, sink, INF, adj, capacity, visited);
+
+        if (pathFlow == 0)
+        {
+            break;
+        }
+
+        maxFlow += pathFlow;
+    }
+
+    return maxFlow;
+}
+
 int main()
 {
     ios::sync_with_stdio(false);
@@ -95,7 +147,9 @@ int main()
         // += handles multiple directed edges u -> v.
         capacity[u][v] += c;
     }
-    cout << edmondsKarp(n, source, sink, adj, capacity) << tata;
+    // Use ONE of the following; both modify capacity.
+    cout << edmondsKarp(n, source, sink, adj, capacity) << tata; // recommended
+    // cout << fordFulkerson(n, source, sink, adj, capacity) << tata;
     return 0;
 }
 
@@ -112,4 +166,13 @@ EDMONDS-KARP
 
 Time Complexity : O(V * E^2)
 Space Complexity: O(V^2 + E) here, because a capacity matrix is used.
+
+===========================================================
+FORD-FULKERSON WITH DFS
+===========================================================
+
+1. DFS chooses any augmenting path.
+2. With integer capacities, time complexity is O(E * maxFlow).
+3. Edmonds-Karp is usually safer because its O(V * E^2) bound does not
+   depend on the value of maxFlow.
 */
