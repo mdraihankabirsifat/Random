@@ -94,7 +94,7 @@ ll edmondsKarp(
     return maxFlow;
 }
 
-// Finds all nodes reachable from source
+// Finds all vertices reachable from source
 // in the final residual graph.
 vector<ll> findReachable(
     ll n,
@@ -148,11 +148,15 @@ int main()
         ll u, v, c;
         cin >> u >> v >> c;
 
+        // Both directions are needed
+        // for traversing residual reverse edges.
         adj[u].pb(v);
         adj[v].pb(u);
 
+        // Handles multiple edges u -> v.
         capacity[u][v] += c;
 
+        // Store original edge for min-cut output.
         edges.pb({u, v, c});
     }
 
@@ -174,17 +178,53 @@ int main()
     cout << "Maximum Flow: "
          << maxFlow << tata;
 
+    // Reachable vertices form S.
+    cout << "S = { ";
+
+    for (ll node = 1; node <= n; node++)
+    {
+        if (reachable[node])
+        {
+            cout << node << " ";
+        }
+    }
+
+    cout << "}" << tata;
+
+    // Unreachable vertices form T.
+    cout << "T = { ";
+
+    for (ll node = 1; node <= n; node++)
+    {
+        if (!reachable[node])
+        {
+            cout << node << " ";
+        }
+    }
+
+    cout << "}" << tata;
+
     cout << "Minimum Cut Edges:" << tata;
+
+    ll minCutCapacity = 0;
 
     for (Edge e : edges)
     {
+        // Original edge goes from S to T.
         if (reachable[e.u] &&
             !reachable[e.v])
         {
-            cout << e.u << " "
-                 << e.v << tata;
+            cout << e.u << " -> "
+                 << e.v
+                 << " capacity "
+                 << e.c << tata;
+
+            minCutCapacity += e.c;
         }
     }
+
+    cout << "Minimum Cut Capacity: "
+         << minCutCapacity << tata;
 
     return 0;
 }
