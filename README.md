@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💻 Random
+# 💻 Welcome to my daily odyssey
 
 ### Competitive Programming • Computer Science • Algorithms • Academic Archive
 
