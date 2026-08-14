@@ -4,8 +4,8 @@ using namespace std;
 struct Node
 {
     int val;
-    Node *left;
-    Node *right;
+    Node *l;
+    Node *r;
 };
 
 // returns 1-indexed level order array
@@ -27,11 +27,11 @@ vector<int> levelOrderArray(Node *root)
 
         arr.push_back(cur->val);
 
-        if (cur->left != NULL)
-            q.push(cur->left);
+        if (cur->l != NULL)
+            q.push(cur->l);
 
-        if (cur->right != NULL)
-            q.push(cur->right);
+        if (cur->r != NULL)
+            q.push(cur->r);
     }
 
     return arr;

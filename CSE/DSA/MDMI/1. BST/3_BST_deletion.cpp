@@ -5,17 +5,17 @@ using namespace std;
 struct Node
 {
     int data;
-    struct Node *left;
-    struct Node *right;
+    struct Node *l;
+    struct Node *r;
     struct Node *parent;
 
-    Node(int val) : data(val), left(nullptr), right(nullptr), parent(nullptr) {}
+    Node(int val) : data(val), l(nullptr), r(nullptr), parent(nullptr) {}
 };
 
 Node *treeMinimum(Node *x)
 {
-    while (x->left != nullptr)
-        x = x->left;
+    while (x->l != nullptr)
+        x = x->l;
     return x;
 }
 
@@ -24,9 +24,9 @@ Node *treeSearch(Node *x, int k)
     if (x == nullptr || k == x->data)
         return x;
     if (k < x->data)
-        return treeSearch(x->left, k);
+        return treeSearch(x->l, k);
     else
-        return treeSearch(x->right, k);
+        return treeSearch(x->r, k);
 }
 
 void treeInsert(Node *&root, int k)
@@ -39,27 +39,27 @@ void treeInsert(Node *&root, int k)
     {
         y = x;
         if (z->data < x->data)
-            x = x->left;
+            x = x->l;
         else
-            x = x->right;
+            x = x->r;
     }
 
     z->parent = y;
     if (y == nullptr)
         root = z;
     else if (z->data < y->data)
-        y->left = z;
+        y->l = z;
     else
-        y->right = z;
+        y->r = z;
 }
 
 void inorder(Node *root)
 {
     if (root == nullptr)
         return;
-    inorder(root->left);
+    inorder(root->l);
     cout << root->data << " ";
-    inorder(root->right);
+    inorder(root->r);
 }
 
 // The TRANSPLANT function replaces the subtree rooted at node u
@@ -70,13 +70,13 @@ void transplant(Node *&root, Node *u, Node *v)
     {
         root = v; // u was the root
     }
-    else if (u == u->parent->left)
+    else if (u == u->parent->l)
     {
-        u->parent->left = v; // u was a left child
+        u->parent->l = v; // u was a left child
     }
     else
     {
-        u->parent->right = v; // u was a right child
+        u->parent->r = v; // u was a right child
     }
 
     if (v != nullptr)
@@ -91,35 +91,35 @@ void treeDelete(Node *&root, Node *z)
         return;
 
     // Case 1: z has no left child (Replace z with right child)
-    if (z->left == nullptr)
+    if (z->l == nullptr)
     {
-        transplant(root, z, z->right);
+        transplant(root, z, z->r);
     }
     // Case 2: z has no right child (Replace z with left child)
-    else if (z->right == nullptr)
+    else if (z->r == nullptr)
     {
-        transplant(root, z, z->left);
+        transplant(root, z, z->l);
     }
     // Case 3: z has two children
     else
     {
         // Find successor y (minimum in right subtree)
-        Node *y = treeMinimum(z->right);
+        Node *y = treeMinimum(z->r);
 
         // CASE B: Successor y is NOT the immediate right child of z
         // We must first replace y with its own right child,
         // and then turn y into z's right child.
         if (y->parent != z)
         {
-            transplant(root, y, y->right);
-            y->right = z->right;           
-            y->right->parent = y;          
+            transplant(root, y, y->r);
+            y->r = z->r;           
+            y->r->parent = y;          
         }
 
         // CASE A (and cleanup for Case B): Replace z with y
         transplant(root, z, y);
-        y->left = z->left;     
-        y->left->parent = y;  
+        y->l = z->l;     
+        y->l->parent = y;  
     }
     delete z; // Free memory
 }

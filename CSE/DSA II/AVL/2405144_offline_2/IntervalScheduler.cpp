@@ -19,17 +19,17 @@ using namespace std;
 struct Node
 {
     ll id, start, end;
-    ll height, maxEnd;
-    Node *left, *right;
+    ll h, maxEnd;
+    Node *l, *r;
 
     Node(ll _id, ll _start, ll _end)
     {
         id = _id;
         start = _start;
         end = _end;
-        height = 1;
+        h = 1;
         maxEnd = _end;
-        left = right = nullptr;
+        l = r = nullptr;
     }
 };
 
@@ -61,7 +61,7 @@ void updateNode(Node *node)
     // update node->maxEnd = max(node->end, left maxEnd, right maxEnd)
 }
 
-ll getBalance(Node *node)
+ll Balance_dekhao(Node *node)
 {
     // TODO
     return 0;
@@ -98,7 +98,7 @@ Node *insertNode(Node *node, ll id, ll start, ll end)
     return node;
 }
 
-Node *minimumNode(Node *node)
+Node *min_Node(Node *node)
 {
     // TODO
     return node;
@@ -156,7 +156,7 @@ string serialize(Node *node)
     return "";
 }
 
-void clearTree(Node *node)
+void Tree_mucho(Node *node)
 {
     // TODO: postorder delete
 }
@@ -167,13 +167,13 @@ struct TimingData
     ll total_ns = 0;
 };
 
-void addTiming(TimingData &x, ll ns)
+void time_jog(TimingData &x, ll ns)
 {
     x.count++;
     x.total_ns += ns;
 }
 
-void printTiming(string operation, TimingData x)
+void time_print(string operation, TimingData x)
 {
     cout << operation << "," << x.count << "," << x.total_ns << ",";
     if (x.count == 0)
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
 
             auto en = chrono::steady_clock::now();
 
-            addTiming(addTime,
+            time_jog(addTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             fout << serialize(root) << tata;
@@ -243,7 +243,7 @@ int main(int argc, char *argv[])
 
             auto en = chrono::steady_clock::now();
 
-            addTiming(removeTime,
+            time_jog(removeTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (!ok)
@@ -266,7 +266,7 @@ int main(int argc, char *argv[])
 
             auto en = chrono::steady_clock::now();
 
-            addTiming(updateTime,
+            time_jog(updateTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (!ok)
@@ -283,7 +283,7 @@ int main(int argc, char *argv[])
             bool ans = conflictNode(root, s, e);
             auto en = chrono::steady_clock::now();
 
-            addTiming(conflictTime,
+            time_jog(conflictTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             fout << (ans ? "yes" : "no") << tata;
@@ -298,7 +298,7 @@ int main(int argc, char *argv[])
             overlapsNode(root, s, e, ans);
             auto en = chrono::steady_clock::now();
 
-            addTiming(overlapsTime,
+            time_jog(overlapsTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (ans.empty())
@@ -324,7 +324,7 @@ int main(int argc, char *argv[])
             atNode(root, t, ans);
             auto en = chrono::steady_clock::now();
 
-            addTiming(atTime,
+            time_jog(atTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (ans.empty())
@@ -349,7 +349,7 @@ int main(int argc, char *argv[])
             Node *ans = nextNode(t);
             auto en = chrono::steady_clock::now();
 
-            addTiming(nextTime,
+            time_jog(nextTime,
                       chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (ans == nullptr)
@@ -360,14 +360,14 @@ int main(int argc, char *argv[])
     }
 
     cout << "operation,count,total_ns,average_ns" << tata;
-    printTiming("add", addTime);
-    printTiming("remove", removeTime);
-    printTiming("update", updateTime);
-    printTiming("conflict", conflictTime);
-    printTiming("overlaps", overlapsTime);
-    printTiming("at", atTime);
-    printTiming("next", nextTime);
+    time_print("add", addTime);
+    time_print("remove", removeTime);
+    time_print("update", updateTime);
+    time_print("conflict", conflictTime);
+    time_print("overlaps", overlapsTime);
+    time_print("at", atTime);
+    time_print("next", nextTime);
 
-    clearTree(root);
+    Tree_mucho(root);
     return 0;
 }

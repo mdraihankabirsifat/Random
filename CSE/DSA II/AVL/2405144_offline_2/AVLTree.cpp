@@ -4,28 +4,20 @@ using namespace std;
 #define pb push_back
 #define tata "\n"
 #define vr(v, x) vector<ll> v(x)
-#define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
 #define sajai(x) sort(x.begin(), x.end())
-#define rsort(a) sort(a.begin(), a.end(), greater<>())
-#define ulta(a) reverse(a.begin(), a.end())
-#define mucho(a, j) a.erase(a.begin() + j)
-#define choto(a) *min_element(a.begin(), a.end())
-#define boro(a) *max_element(a.begin(), a.end())
-#define jog(a) accumulate(a.begin(), a.end(), 0LL)
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 #define in(v) loop(i, 0, v.size()) cin >> v[i]
 #define out(v) loop(i, 0, v.size()) cout << v[i] << " "
 
 struct Node
 {
-    ll key, height;
-    Node *left, *right;
-
+    ll key, h;
+    Node *l, *r;
     Node(ll x)
     {
         key = x;
-        height = 1;
-        left = right = nullptr;
+        h = 1;
+        l = r = nullptr;
     }
 };
 
@@ -42,7 +34,7 @@ void updateHeight(Node *node)
     // TODO: height = 1 + max(left height, right height)
 }
 
-ll getBalance(Node *node)
+ll Balance_dekhao(Node *node)
 {
     // TODO: height(left) - height(right)
     return 0;
@@ -69,7 +61,7 @@ Node *rebalance(Node *node)
     return node;
 }
 
-Node *insertNode(Node *node, ll key, bool &inserted)
+Node *insert_Node(Node *node, ll key, bool &inserted)
 {
     // TODO:
     // ordinary BST insertion
@@ -78,13 +70,13 @@ Node *insertNode(Node *node, ll key, bool &inserted)
     return node;
 }
 
-Node *minimumNode(Node *node)
+Node *min_Node(Node *node)
 {
     // TODO: return leftmost node
     return node;
 }
 
-Node *eraseNode(Node *node, ll key, bool &erased)
+Node *Node_sorao(Node *node, ll key, bool &erased)
 {
     // TODO:
     // ordinary BST deletion
@@ -94,7 +86,7 @@ Node *eraseNode(Node *node, ll key, bool &erased)
     return node;
 }
 
-bool findKey(ll key)
+bool key_khujo(ll key)
 {
     // TODO: ordinary BST search from root
     return false;
@@ -114,30 +106,33 @@ string serialize(Node *node)
     return "";
 }
 
-void clearTree(Node *node)
+void Tree_mucho(Node *node)
 {
     // TODO: postorder delete
 }
 
 struct TimingData
 {
-    ll count = 0;
-    ll total_ns = 0;
+    ll count = 0, total_ns = 0;
 };
 
-void addTiming(TimingData &x, ll ns)
+void time_jog(TimingData &x, ll ns)
 {
     x.count++;
     x.total_ns += ns;
 }
 
-void printTiming(string operation, TimingData x)
+void time_print(string operation, TimingData x)
 {
     cout << operation << "," << x.count << "," << x.total_ns << ",";
     if (x.count == 0)
+    {
         cout << "N/A";
+    }
     else
+    {
         cout << x.total_ns / x.count;
+    }
     cout << tata;
 }
 
@@ -145,106 +140,98 @@ int main(int argc, char *argv[])
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
     if (argc != 3)
     {
         cerr << "Usage: ./avl_tree <input-file> <output-file>" << tata;
         return 1;
     }
-
     ifstream fin(argv[1]);
     ofstream fout(argv[2]);
-
     if (!fin || !fout)
     {
         cerr << "File open error" << tata;
         return 1;
     }
-
     TimingData insertTime, deleteTime, findTime, traverseTime;
     char cmd;
-
     while (fin >> cmd)
     {
         if (cmd == 'I')
         {
             ll x;
             fin >> x;
-
-            bool inserted = false;
-
-            auto st = chrono::steady_clock::now();
-            root = insertNode(root, x, inserted);
-            auto en = chrono::steady_clock::now();
-
-            addTiming(insertTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            if (!inserted)
+            bool x1 = false;
+            auto a = chrono::steady_clock::now();
+            root = insert_Node(root, x, x1);
+            auto b = chrono::steady_clock::now();
+            time_jog(insertTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (!x1)
+            {
                 fout << "duplicate" << tata;
+            }
             else
+            {
                 fout << serialize(root) << tata;
+            }
         }
         else if (cmd == 'D')
         {
             ll x;
             fin >> x;
-
-            bool erased = false;
-
-            auto st = chrono::steady_clock::now();
-            root = eraseNode(root, x, erased);
-            auto en = chrono::steady_clock::now();
-
-            addTiming(deleteTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            if (!erased)
+            bool e = false;
+            auto a = chrono::steady_clock::now();
+            root = Node_sorao(root, x, e);
+            auto b = chrono::steady_clock::now();
+            time_jog(deleteTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (!e)
+            {
                 fout << "not found" << tata;
+            }
             else
+            {
                 fout << serialize(root) << tata;
+            }
         }
         else if (cmd == 'F')
         {
             ll x;
             fin >> x;
-
-            auto st = chrono::steady_clock::now();
-            bool found = findKey(x);
-            auto en = chrono::steady_clock::now();
-
-            addTiming(findTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            fout << (found ? "found" : "not found") << tata;
+            auto a = chrono::steady_clock::now();
+            bool x1 = key_khujo(x);
+            auto b = chrono::steady_clock::now();
+            time_jog(findTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (x1)
+            {
+                fout << "found" << tata;
+            }
+            else
+            {
+                fout << "not found" << tata;
+            }
         }
         else if (cmd == 'T')
         {
-            vector<ll> ans;
-
-            auto st = chrono::steady_clock::now();
-            inorder(root, ans);
-            auto en = chrono::steady_clock::now();
-
-            addTiming(traverseTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            loop(i, 0, ans.size())
+            vector<ll> v;
+            auto a = chrono::steady_clock::now();
+            inorder(root, v);
+            auto b = chrono::steady_clock::now();
+            time_jog(traverseTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            loop(i, 0, v.size())
             {
                 if (i)
+                {
                     fout << " ";
-                fout << ans[i];
+                }
+                fout << v[i];
             }
             fout << tata;
         }
     }
-
     cout << "operation,count,total_ns,average_ns" << tata;
-    printTiming("insert", insertTime);
-    printTiming("delete", deleteTime);
-    printTiming("find", findTime);
-    printTiming("traverse", traverseTime);
-
-    clearTree(root);
+    time_print("insert", insertTime);
+    time_print("delete", deleteTime);
+    time_print("find", findTime);
+    time_print("traverse", traverseTime);
+    Tree_mucho(root);
     return 0;
 }

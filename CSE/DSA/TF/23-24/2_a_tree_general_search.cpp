@@ -4,8 +4,8 @@ using namespace std;
 struct Node
 {
     int key;
-    Node *left;
-    Node *right;
+    Node *l;
+    Node *r;
 };
 
 /*
@@ -20,9 +20,9 @@ bool searchBST(Node *root, int x)
         return true;
 
     if (x < root->key)
-        return searchBST(root->left, x);
+        return searchBST(root->l, x);
     else
-        return searchBST(root->right, x);
+        return searchBST(root->r, x);
 }
 
 /*
@@ -36,8 +36,8 @@ bool searchBinaryTree(Node *root, int x)
     if (root->key == x)
         return true;
 
-    return searchBinaryTree(root->left, x) ||
-           searchBinaryTree(root->right, x);
+    return searchBinaryTree(root->l, x) ||
+           searchBinaryTree(root->r, x);
 }
 
 /*

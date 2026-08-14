@@ -5,8 +5,8 @@ using namespace std;
 struct Node
 {
     int data;            // Value stored in the node
-    struct Node *left;   // Pointer to left child
-    struct Node *right;  // Pointer to right child
+    struct Node *l;   // Pointer to left child
+    struct Node *r;  // Pointer to right child
     struct Node *parent; // Pointer to parent node
 };
 
@@ -18,35 +18,35 @@ Node *treeSearch(Node *x, int k)
     if (x == nullptr || k == x->data)
         return x; // Return node if found or nullptr if not found
     if (k < x->data)
-        return treeSearch(x->left, k); // Search left subtree
+        return treeSearch(x->l, k); // Search left subtree
     else
-        return treeSearch(x->right, k); // Search right subtree
+        return treeSearch(x->r, k); // Search right subtree
 }
 
 // 2. Find the node with the minimum key in the BST rooted at x
 Node *treeMinimum(Node *x)
 {
-    while (x->left != nullptr)
-        x = x->left; // Go as left as possible
+    while (x->l != nullptr)
+        x = x->l; // Go as left as possible
     return x;
 }
 
 // 3. Find the node with the maximum key in the BST rooted at x
 Node *treeMaximum(Node *x)
 {
-    while (x->right != nullptr)
-        x = x->right; // Go as right as possible
+    while (x->r != nullptr)
+        x = x->r; // Go as right as possible
     return x;
 }
 
 // 4. Find the successor of node x (the node with the next higher key)
 Node *treeSuccessor(Node *x)
 {
-    if (x->right != nullptr)
-        return treeMinimum(x->right); // Successor is leftmost node in right subtree
+    if (x->r != nullptr)
+        return treeMinimum(x->r); // Successor is leftmost node in right subtree
     Node *y = x->parent;
     // Go up until we find a node that is a left child; its parent is the successor
-    while (y != nullptr && x == y->right)
+    while (y != nullptr && x == y->r)
     {
         x = y;
         y = y->parent;
@@ -57,11 +57,11 @@ Node *treeSuccessor(Node *x)
 // 5. Find the predecessor of node x (the node with the next lower key)
 Node *treePredecessor(Node *x)
 {
-    if (x->left != nullptr)
-        return treeMaximum(x->left); // Predecessor is rightmost node in left subtree
+    if (x->l != nullptr)
+        return treeMaximum(x->l); // Predecessor is rightmost node in left subtree
     Node *y = x->parent;
     // Go up until we find a node that is a right child; its parent is the predecessor
-    while (y != nullptr && x == y->left)
+    while (y != nullptr && x == y->l)
     {
         x = y;
         y = y->parent;
@@ -81,27 +81,27 @@ void treeInsert(Node *&root, int k)
     {
         y = x;
         if (z->data < x->data)
-            x = x->left;
+            x = x->l;
         else
-            x = x->right;
+            x = x->r;
     }
 
     z->parent = y; // Set parent pointer
     if (y == nullptr)
         root = z; // Tree was empty, new node is root
     else if (z->data < y->data)
-        y->left = z; // Insert as left child
+        y->l = z; // Insert as left child
     else
-        y->right = z; // Insert as right child
+        y->r = z; // Insert as right child
 }
 
 void inorder(Node *root)
 {
     if (root == nullptr)
         return;
-    inorder(root->left);
+    inorder(root->l);
     cout << root->data << " ";
-    inorder(root->right);
+    inorder(root->r);
 }
 
 // 7. Delete a node z from the BST (Implements logic from slides)
@@ -112,10 +112,10 @@ void deleteNode(Node *&root, Node *z)
 
     // CASE 3: Node has TWO children
     // Strategy: Find successor, copy key, delete successor
-    if (z->left != nullptr && z->right != nullptr)
+    if (z->l != nullptr && z->r != nullptr)
     {
         // 1. Find successor (minimum in right subtree)
-        Node *y = treeMinimum(z->right);
+        Node *y = treeMinimum(z->r);
 
         // 2. Copy successor's key to node z
         z->data = y->data;
@@ -128,7 +128,7 @@ void deleteNode(Node *&root, Node *z)
     {
         // CASE 1 & 2: Leaf node OR One child
         // Find the child (if any). If leaf, child will be nullptr.
-        Node *child = (z->left != nullptr) ? z->left : z->right;
+        Node *child = (z->l != nullptr) ? z->l : z->r;
 
         // Update the child's parent pointer (if child exists)
         if (child != nullptr)
@@ -141,15 +141,15 @@ void deleteNode(Node *&root, Node *z)
             // z was the root
             root = child;
         }
-        else if (z == z->parent->left)
+        else if (z == z->parent->l)
         {
             // z was a left child
-            z->parent->left = child;
+            z->parent->l = child;
         }
         else
         {
             // z was a right child
-            z->parent->right = child;
+            z->parent->r = child;
         }
 
         // Free memory

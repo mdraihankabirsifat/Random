@@ -6,8 +6,8 @@ using namespace std;
 struct Node
 {
     int data;
-    struct Node *left;
-    struct Node *right;
+    struct Node *l;
+    struct Node *r;
 };
 
 // Global pointer to the root of the tree
@@ -18,7 +18,7 @@ Node *createNode(int val)
 {
     Node *newNode = new Node();
     newNode->data = val;
-    newNode->left = newNode->right = nullptr;
+    newNode->l = newNode->r = nullptr;
     return newNode;
 }
 
@@ -28,8 +28,8 @@ void preorder(struct Node *rt)
     if (rt == nullptr)
         return;
     cout << rt->data << " "; // Visit root
-    preorder(rt->left);      // Traverse left subtree
-    preorder(rt->right);     // Traverse right subtree
+    preorder(rt->l);      // Traverse left subtree
+    preorder(rt->r);     // Traverse right subtree
 }
 
 // 2. Inorder Traversal: Left -> Root -> Right
@@ -37,9 +37,9 @@ void inorder(struct Node *rt)
 {
     if (rt == nullptr)
         return;
-    inorder(rt->left);       // Traverse left subtree
+    inorder(rt->l);       // Traverse left subtree
     cout << rt->data << " "; // Visit root
-    inorder(rt->right);      // Traverse right subtree
+    inorder(rt->r);      // Traverse right subtree
 }
 
 // 3. Postorder Traversal: Left -> Right -> Root
@@ -47,8 +47,8 @@ void postorder(struct Node *rt)
 {
     if (rt == nullptr)
         return;
-    postorder(rt->left);     // Traverse left subtree
-    postorder(rt->right);    // Traverse right subtree
+    postorder(rt->l);     // Traverse left subtree
+    postorder(rt->r);    // Traverse right subtree
     cout << rt->data << " "; // Visit root
 }
 
@@ -68,11 +68,11 @@ void levelOrder(struct Node *rt)
         cout << current->data << " "; // Visit current node
 
         // Enqueue left child first to maintain left-to-right order
-        if (current->left != nullptr)
-            q.push(current->left);
+        if (current->l != nullptr)
+            q.push(current->l);
         // Enqueue right child
-        if (current->right != nullptr)
-            q.push(current->right);
+        if (current->r != nullptr)
+            q.push(current->r);
     }
 }
 // --- Array-based Logic for Complete Binary Tree ---
@@ -98,10 +98,10 @@ int main()
     //      / \
     //     4   5
     root = createNode(1);
-    root->left = createNode(2);
-    root->right = createNode(3);
-    root->left->left = createNode(4);
-    root->left->right = createNode(5);
+    root->l = createNode(2);
+    root->r = createNode(3);
+    root->l->l = createNode(4);
+    root->l->r = createNode(5);
 
     // Demonstrate all traversals
     cout << "Preorder   : ";
