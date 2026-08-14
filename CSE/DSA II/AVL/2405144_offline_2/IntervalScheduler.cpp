@@ -4,24 +4,18 @@ using namespace std;
 #define pb push_back
 #define tata "\n"
 #define vr(v, x) vector<ll> v(x)
-#define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
 #define sajai(x) sort(x.begin(), x.end())
-#define rsort(a) sort(a.begin(), a.end(), greater<>())
-#define ulta(a) reverse(a.begin(), a.end())
-#define mucho(a, j) a.erase(a.begin() + j)
-#define choto(a) *min_element(a.begin(), a.end())
-#define boro(a) *max_element(a.begin(), a.end())
-#define jog(a) accumulate(a.begin(), a.end(), 0LL)
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 #define in(v) loop(i, 0, v.size()) cin >> v[i]
 #define out(v) loop(i, 0, v.size()) cout << v[i] << " "
+#define yes cout << "YES" << tata
+#define no cout << "NO" << tata
 
 struct Node
 {
     ll id, start, end;
     ll h, maxEnd;
     Node *l, *r;
-
     Node(ll _id, ll _start, ll _end)
     {
         id = _id;
@@ -163,8 +157,7 @@ void Tree_mucho(Node *node)
 
 struct TimingData
 {
-    ll count = 0;
-    ll total_ns = 0;
+    ll count = 0,total_ns = 0;
 };
 
 void time_jog(TimingData &x, ll ns)
@@ -177,9 +170,13 @@ void time_print(string operation, TimingData x)
 {
     cout << operation << "," << x.count << "," << x.total_ns << ",";
     if (x.count == 0)
+    {
         cout << "N/A";
+    }
     else
+    {
         cout << x.total_ns / x.count;
+    }
     cout << tata;
 }
 
@@ -190,175 +187,162 @@ int main(int argc, char *argv[])
 
     if (argc != 3)
     {
-        cerr << "Usage: ./interval_scheduler <input-file> <output-file>" << tata;
         return 1;
     }
-
     ifstream fin(argv[1]);
     ofstream fout(argv[2]);
-
     if (!fin || !fout)
     {
         cerr << "File open error" << tata;
         return 1;
     }
-
     TimingData addTime, removeTime, updateTime;
     TimingData conflictTime, overlapsTime, atTime, nextTime;
-
-    string cmd;
-
-    while (fin >> cmd)
+    string c;
+    while (fin >> c)
     {
-        if (cmd == "ADD")
+        if (c == "ADD")
         {
             ll s, e;
             fin >> s >> e;
-
-            auto st = chrono::steady_clock::now();
-
+            auto a = chrono::steady_clock::now();
             // TODO:
             // ll id = nextId++;
             // root = insertNode(root, id, s, e);
             // events[id] = {s, e};
-
-            auto en = chrono::steady_clock::now();
-
-            time_jog(addTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
+            auto b = chrono::steady_clock::now();
+            time_jog(addTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             fout << serialize(root) << tata;
         }
-        else if (cmd == "REMOVE")
+        else if (c == "REMOVE")
         {
-            ll id;
-            fin >> id;
-
-            auto st = chrono::steady_clock::now();
-
+            ll x;
+            fin >> x;
+            auto a = chrono::steady_clock::now();
             // TODO:
             // if id absent => not found
             // else remove (oldStart,id) from tree and erase hash entry
-            bool ok = false;
-
-            auto en = chrono::steady_clock::now();
-
-            time_jog(removeTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            if (!ok)
+            bool y = false;
+            auto b = chrono::steady_clock::now();
+            time_jog(removeTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (!y)
+            {
                 fout << "not found" << tata;
+            }
             else
+            {
                 fout << serialize(root) << tata;
+            }
         }
-        else if (cmd == "UPDATE")
+        else if (c == "UPDATE")
         {
-            ll id, s, e;
-            fin >> id >> s >> e;
-
-            auto st = chrono::steady_clock::now();
-
+            ll x, s, e;
+            fin >> x >> s >> e;
+            auto a = chrono::steady_clock::now();
             // TODO:
             // absent id => not found and do not change nextId
             // otherwise erase old key, insert new interval with same id,
             // and update hash entry
-            bool ok = false;
-
-            auto en = chrono::steady_clock::now();
-
-            time_jog(updateTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            if (!ok)
+            bool y = false;
+            auto b = chrono::steady_clock::now();
+            time_jog(updateTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (!y)
+            {
                 fout << "not found" << tata;
-            else
-                fout << serialize(root) << tata;
-        }
-        else if (cmd == "CONFLICT")
-        {
-            ll s, e;
-            fin >> s >> e;
-
-            auto st = chrono::steady_clock::now();
-            bool ans = conflictNode(root, s, e);
-            auto en = chrono::steady_clock::now();
-
-            time_jog(conflictTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            fout << (ans ? "yes" : "no") << tata;
-        }
-        else if (cmd == "OVERLAPS")
-        {
-            ll s, e;
-            fin >> s >> e;
-            vector<ll> ans;
-
-            auto st = chrono::steady_clock::now();
-            overlapsNode(root, s, e, ans);
-            auto en = chrono::steady_clock::now();
-
-            time_jog(overlapsTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
-            if (ans.empty())
-                fout << "none" << tata;
+            }
             else
             {
-                loop(i, 0, ans.size())
+                fout << serialize(root) << tata;
+            }
+        }
+        else if (c == "CONFLICT")
+        {
+            ll s, e;
+            fin >> s >> e;
+            auto a = chrono::steady_clock::now();
+            bool x = conflictNode(root, s, e);
+            auto b = chrono::steady_clock::now();
+            time_jog(conflictTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (x)
+            {
+                yes;
+            }
+            else
+            {
+                no;
+            }
+        }
+        else if (c == "OVERLAPS")
+        {
+            ll s, e;
+            fin >> s >> e;
+            vector<ll> v;
+            auto a = chrono::steady_clock::now();
+            overlapsNode(root, s, e, v);
+            auto b = chrono::steady_clock::now();
+            time_jog(overlapsTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            if (v.empty())
+            {
+                fout << "none" << tata;
+            }
+            else
+            {
+                loop(i, 0, v.size())
                 {
                     if (i)
+                    {
                         fout << " ";
-                    fout << ans[i];
+                    }
+                    fout << v[i];
                 }
                 fout << tata;
             }
         }
-        else if (cmd == "AT")
+        else if (c == "AT")
         {
             ll t;
             fin >> t;
             vector<ll> ans;
-
             auto st = chrono::steady_clock::now();
             atNode(root, t, ans);
             auto en = chrono::steady_clock::now();
-
-            time_jog(atTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
+            time_jog(atTime, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
 
             if (ans.empty())
+            {
                 fout << "none" << tata;
+            }
             else
             {
                 loop(i, 0, ans.size())
                 {
                     if (i)
+                    {
                         fout << " ";
+                    }
                     fout << ans[i];
                 }
                 fout << tata;
             }
         }
-        else if (cmd == "NEXT")
+        else if (c == "NEXT")
         {
             ll t;
             fin >> t;
-
             auto st = chrono::steady_clock::now();
             Node *ans = nextNode(t);
             auto en = chrono::steady_clock::now();
-
-            time_jog(nextTime,
-                      chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
+            time_jog(nextTime, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
             if (ans == nullptr)
+            {
                 fout << "none" << tata;
+            }
             else
+            {
                 fout << ans->id << " " << ans->start << " " << ans->end << tata;
+            }
         }
     }
-
     cout << "operation,count,total_ns,average_ns" << tata;
     time_print("add", addTime);
     time_print("remove", removeTime);
@@ -367,7 +351,6 @@ int main(int argc, char *argv[])
     time_print("overlaps", overlapsTime);
     time_print("at", atTime);
     time_print("next", nextTime);
-
     Tree_mucho(root);
     return 0;
 }

@@ -142,8 +142,7 @@ int main(int argc, char *argv[])
     cin.tie(nullptr);
     if (argc != 3)
     {
-        cerr << "Usage: ./avl_tree <input-file> <output-file>" << tata;
-        return 1;
+         return 1;
     }
     ifstream fin(argv[1]);
     ofstream fout(argv[2]);
@@ -153,10 +152,10 @@ int main(int argc, char *argv[])
         return 1;
     }
     TimingData insertTime, deleteTime, findTime, traverseTime;
-    char cmd;
-    while (fin >> cmd)
+    char c;
+    while (fin >> c)
     {
-        if (cmd == 'I')
+        if (c == 'I')
         {
             ll x;
             fin >> x;
@@ -174,7 +173,7 @@ int main(int argc, char *argv[])
                 fout << serialize(root) << tata;
             }
         }
-        else if (cmd == 'D')
+        else if (c == 'D')
         {
             ll x;
             fin >> x;
@@ -192,7 +191,7 @@ int main(int argc, char *argv[])
                 fout << serialize(root) << tata;
             }
         }
-        else if (cmd == 'F')
+        else if (c == 'F')
         {
             ll x;
             fin >> x;
@@ -209,7 +208,7 @@ int main(int argc, char *argv[])
                 fout << "not found" << tata;
             }
         }
-        else if (cmd == 'T')
+        else if (c == 'T')
         {
             vector<ll> v;
             auto a = chrono::steady_clock::now();
