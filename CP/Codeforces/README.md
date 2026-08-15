@@ -1,115 +1,138 @@
 # Codeforces Solution Organization Guide
 
-This directory stores confirmed Codeforces solutions grouped by their primary
-algorithm or technique. Future Codex runs should read this file first and
-follow the workflow below without requiring the original prompt again.
+This directory stores competitive-programming sources grouped by their primary
+algorithm or technique. It contains both officially verified Codeforces
+solutions and a smaller descriptively named practice set whose exact online
+problem could not be verified.
+
+Future Codex runs should read this file first and follow the workflow below.
 
 ## Work completed so far
 
-The initial pass inventoried all 306 source files in `../batch_1/` and
-`../batch_2/` (268 C++ files and 38 C files).
+The initial pass inventoried 306 source files from `../batch_1/` and
+`../batch_2/`:
 
-- Confirmed 268 solutions against official Codeforces problem records.
-- Preserved all 38 unresolved, incomplete, or non-Codeforces files. The 37
-  files from `batch_1/` now live in `Misc/`; `A_curr/307_.cpp`
-  remains in its incoming folder.
-- Added the canonical Codeforces URL as the first line of every confirmed file.
-- Added the exact official title and a concise two-line revision description.
-- Classified each confirmed solution by the primary technique used in that file.
-- Renamed files independently inside each topic folder, starting from `1`.
-- Preserved both `.cpp` and `.c` extensions.
-- Removed 750 unused macro definitions from 70 confirmed files while retaining
-  macros referenced directly or transitively by other retained macros.
-- Verified normalized solution bodies against pre-change hashes; no solution
-  logic was changed.
-- Recorded a pre-change syntax baseline for all 306 files. Two files already
-  failed before organization: `../batch_1/208_Sum_of_Round_Number.c` (now
-  `Math/28_Sum_of_Round_Numbers.c`) and `Misc/149_new.c`. The final
-  syntax sweep produced exactly these same two failures. Do not silently repair
-  them during organization.
+- 268 solutions were matched to official Codeforces problem records.
+- Each verified solution received its canonical Codeforces URL, exact official
+  title, and a concise revision description.
+- Verified solutions were classified by the technique used in the source and
+  numbered independently inside each topic folder.
+- 750 unused macro definitions were removed from 70 verified files while
+  preserving direct and transitive macro dependencies.
+- Normalized pre-change hashes confirmed that no solution logic was changed.
 
-Historical counts immediately after this pass:
+A later pass organized the 37 formerly unresolved files from `Misc/`:
+
+- Every file received a descriptive code-based filename and one primary topic.
+- No Codeforces URL or official-problem header was added to these files.
+- Empty or incomplete sources use `_Draft` or `_Data` in their names.
+- SHA-256 verification confirmed all 37 files remained byte-identical.
+- `Misc/` is now empty.
+- `A_curr/307_.cpp` remains the only pending source.
+
+The syntax baseline contains two pre-existing failures:
+
+- `Math/28_Sum_of_Round_Numbers.c`
+- `Constructive_Algorithms/31_Binary_String_Enumeration_Data.c`
+
+The second file contains raw binary-string data rather than compilable C code.
+Do not silently repair either file during an organization pass.
+
+## Current source counts
 
 | Topic | Files |
 | --- | ---: |
+| Array | 2 |
 | Binary_Search | 1 |
-| Bit_Manipulation | 8 |
-| Brute_Force | 11 |
-| Constructive_Algorithms | 29 |
-| Data_Structures | 5 |
-| Dynamic_Programming | 5 |
+| Bit_Manipulation | 9 |
+| Brute_Force | 12 |
+| Constructive_Algorithms | 32 |
+| Data_Structures | 6 |
+| Dynamic_Programming | 9 |
 | Game_Theory | 13 |
 | Geometry | 8 |
 | Graph | 1 |
 | Greedy | 61 |
-| Hashing | 9 |
-| Implementation | 14 |
-| Math | 44 |
-| Number_Theory | 14 |
-| Prefix_Sum | 6 |
-| Simulation | 3 |
-| Sorting | 11 |
-| String | 23 |
-| Two_Pointers | 2 |
-| **Confirmed total** | **268** |
+| Hashing | 11 |
+| Implementation | 16 |
+| Math | 45 |
+| Number_Theory | 15 |
+| Prefix_Sum | 11 |
+| Simulation | 5 |
+| Sorting | 14 |
+| Stack | 1 |
+| String | 28 |
+| Sweep_Line | 1 |
+| Tree | 1 |
+| Two_Pointers | 3 |
+| **Categorized total** | **305** |
+| A_curr (pending) | 1 |
+| **All sources** | **306** |
 
-The confirmed set contains 235 C++ files and 33 C files. These counts are a
-historical record, not a permanent expectation; always rescan because new
-solutions may have been added.
+These counts are a historical snapshot. Always rescan the filesystem because
+new solutions may have been added.
 
-## Incoming and unresolved solutions
+## Descriptively categorized sources
 
-`Misc/` stores unresolved or non-Codeforces files moved from `../batch_1/`.
-`A_curr/` remains an incoming area for new work. Scan both locations when
-organizing future solutions. A file that cannot be confidently matched to an
-official Codeforces problem must remain pending without an invented title,
-description, link, or classification.
+The following 37 files are organized by implementation technique but are not
+verified as Codeforces problems. Their filenames are descriptive rather than
+official titles, and they intentionally have no Codeforces URL header:
 
-Files intentionally left pending by the initial pass:
+- `Sorting/12_Anagram_Check.cpp`
+- `Stack/1_Balanced_Parentheses.cpp`
+- `Prefix_Sum/7_Breed_Counting_Draft.cpp`
+- `Prefix_Sum/8_Breed_Counting.cpp`
+- `Sorting/13_Parity_Based_Sorting.cpp`
+- `Constructive_Algorithms/30_Cake_Assignment_Draft.cpp`
+- `String/24_Uppercase_Words_Line_by_Line.cpp`
+- `Data_Structures/6_Distinct_Chemicals_in_Reactions.cpp`
+- `Sorting/14_Sort_String_in_Descending_Order.cpp`
+- `Bit_Manipulation/9_Counting_Bits.cpp`
+- `Number_Theory/15_Smallest_Prime_Not_Dividing_All_Elements.cpp`
+- `Hashing/10_Efficient_Frequency_Draft.cpp`
+- `Dynamic_Programming/6_Minimum_Cost_Nondecreasing_Array.cpp`
+- `Implementation/15_Income_Tax_Calculator.c`
+- `Simulation/4_Josephus_Problem_I.cpp`
+- `Constructive_Algorithms/31_Binary_String_Enumeration_Data.c`
+- `String/25_Nth_Digit_of_a_Number.c`
+- `String/26_Palindrome_Number.cpp`
+- `String/27_Palindrome_String.cpp`
+- `Dynamic_Programming/7_Pascals_Triangle_Draft.cpp`
+- `Constructive_Algorithms/32_Partition_by_Maximum_Value.cpp`
+- `String/28_String_Pattern_Detector_Draft.cpp`
+- `Prefix_Sum/9_Subarray_Divisibility.cpp`
+- `Prefix_Sum/10_Subarray_Sums_II.cpp`
+- `Implementation/16_Empty_Test_Template.cpp`
+- `Two_Pointers/3_Trapping_Rain_Water_Draft.cpp`
+- `Dynamic_Programming/8_Tribonacci_Number_Draft.c`
+- `Hashing/11_Triple_Draft.cpp`
+- `Array/1_Three_Consecutive_Equal_Elements.c`
+- `Array/2_Elements_Below_Maximum.cpp`
+- `Tree/1_Absolute_Binary_Tree.cpp`
+- `Brute_Force/12_Being_the_Best_Faculty_Brute_Force.cpp`
+- `Sweep_Line/1_Being_the_Best_Faculty_Sweep_Line.cpp`
+- `Prefix_Sum/11_Reverse_2D_Prefix_Sum.cpp`
+- `Dynamic_Programming/9_Count_Bracket_Subsequences_by_Balance.cpp`
+- `Math/45_Group_Size_Difference.cpp`
+- `Simulation/5_Cyclic_Binary_Swap_Simulation.cpp`
 
-- `Misc/100_g.cpp` - Generic filename; implementation could not be matched confidently to an official Codeforces problem.
-- `Misc/112_Income_tax.c` - Standalone income-tax calculator with prompts; no Codeforces match found.
-- `Misc/120_Josephus_Problem_I.cpp` - Matches CSES Josephus Problem I, not a Codeforces problem.
-- `Misc/149_new.c` - Contains raw binary strings rather than C source code.
-- `Misc/159_num.c` - Standalone digit-index program with prompts; no Codeforces match found.
-- `Misc/166_Pallindrom.cpp` - Matches LeetCode Palindrome Number rather than Codeforces.
-- `Misc/167_pallindro_string.cpp` - Generic palindrome checker with insufficient identifying information.
-- `Misc/168_Pascals_Triangle.cpp` - Empty file with no identifying implementation.
-- `Misc/182_Retaliation.cpp` - Implementation does not match Codeforces 2117D Retaliation; no unique official Codeforces match was found.
-- `Misc/19_b.cpp` - Generic filename and anagram check; no confident official problem match.
-- `Misc/200_string_pattern_detector.cpp` - Empty file with no identifying implementation.
-- `Misc/203_Subarray_divisibility.cpp` - Matches CSES Subarray Divisibility rather than Codeforces.
-- `Misc/204_subarray_sum.cpp` - Matches CSES Subarray Sums II rather than Codeforces.
-- `Misc/215_test.cpp` - Empty test template; it does not represent Codeforces 25E Test.
-- `Misc/223_Trapping_rain_water.cpp` - Empty file; title points to a non-Codeforces problem.
-- `Misc/225_Triadiic_Fibonacci.c` - Incomplete standalone Fibonacci exercise; no Codeforces match found.
-- `Misc/229_Tripple.cpp` - Empty file and ambiguous title.
-- `Misc/230_tripple_four.c` - Standalone consecutive-triples exercise; no Codeforces match found.
-- `Misc/242_below_average.cpp` - Generic filename and implementation do not match the similarly named Codeforces problem.
-- `Misc/245_Absolute_Binary_Tree.cpp` - No official Codeforces problem match found for the title and implementation.
-- `Misc/246_1_Being_the_best_faculty.cpp` - No official Codeforces problem match found.
-- `Misc/247_2_Being_the_best_faculty.cpp` - No official Codeforces problem match found.
-- `Misc/248_Reverse_Prefix_Sum.cpp` - No official Codeforces problem match found.
-- `Misc/249_arko.cpp` - Generic filename; no official Codeforces problem match found.
-- `Misc/250_cfgrouoping.cpp` - Ambiguous filename and no official Codeforces problem match found.
-- `Misc/34_bracket.cpp` - Generic balanced-parentheses checker with multiple test cases; no unique official Codeforces match.
-- `Misc/36_Breed_counting.cpp` - Empty file named after the USACO problem Breed Counting.
-- `Misc/37_breed_counting_2.cpp` - Matches the USACO problem Breed Counting, not a Codeforces problem.
-- `Misc/41_c.cpp` - Generic filename; implementation does not match Codeforces 1368A C+= and no unique match was found.
-- `Misc/43_Cake_Assignment_new.cpp` - Empty file; filename is ambiguous and does not identify a distinct solution.
-- `Misc/48_Capital_baazi.cpp` - Standalone text-uppercase exercise; no confident official Codeforces match.
-- `Misc/49_chemical.cpp` - Incomplete/custom set-counting program; no confident official Codeforces match.
-- `Misc/56_contest.cpp` - Implementation does not match Codeforces 501A Contest; no unique official match found.
-- `Misc/58_Counting_bits.cpp` - LeetCode-style Solution::countBits implementation, not a Codeforces problem.
-- `Misc/62_d.cpp` - Generic filename and prime-divisibility code; no confident official Codeforces match.
-- `Misc/82_efficient_freq.cpp` - Empty file with no identifiable official Codeforces title.
-- `Misc/306_c.cpp` - Generic filename; implementation does not match Codeforces 1368A C+= and its apparent recent contest problem is not in the public problemset.
-- `A_curr/307_.cpp` - Incomplete template with no solution logic; cannot identify a public Codeforces problem.
+## Incoming solutions
 
-## Required problem header
+`A_curr/` is the active incoming area. `Misc/` may be reused temporarily
+when a source cannot yet be identified or classified.
 
-Every confirmed `.cpp` or `.c` solution must begin with its canonical
-problem URL followed immediately by a short revision block:
+If a problem cannot be confidently matched to Codeforces:
+
+- Never invent a Codeforces title, URL, or official problem description.
+- Leave it pending unless the user explicitly requests descriptive
+  classification.
+- When descriptive classification is requested, derive the filename and topic
+  from the implementation and clearly document that it is unverified.
+
+## Required header for verified Codeforces problems
+
+Every officially verified `.cpp` or `.c` solution must begin with its
+canonical problem URL followed immediately by a short revision block:
 
 ```cpp
 // https://codeforces.com/problemset/problem/4/A
@@ -123,19 +146,19 @@ positive parts that both have even weight.
 
 Header rules:
 
-- Use the exact official Codeforces title, including capitalization.
+- Use the exact official Codeforces title and capitalization.
 - Write a concise two- or three-line paraphrase; never copy the full statement.
 - Put the canonical URL on the absolute first line.
 - Do not add a second header when a valid one already exists.
-- If the problem cannot be verified, leave it pending in `Misc/` or its
-  incoming folder.
+- Do not apply this header format to descriptively classified, unverified files.
 
 ## Topic classification
 
-Assign every confirmed solution to exactly one primary-topic folder based on
-the technique actually used in that source file. Reuse these established names:
+Assign each source to exactly one primary-topic folder based on the technique
+actually used in that source. Reuse these established names:
 
 ```text
+Array/
 Binary_Search/
 Bit_Manipulation/
 Brute_Force/
@@ -153,13 +176,16 @@ Number_Theory/
 Prefix_Sum/
 Simulation/
 Sorting/
+Stack/
 String/
+Sweep_Line/
+Tree/
 Two_Pointers/
 ```
 
 Do not create aliases such as `DP/`, `DynamicProgramming/`, or
-`Bit_manipulation/`. Add a new category only when a real solution clearly
-requires a primary technique not represented above.
+`Bit_manipulation/`. Add a category only when a real source clearly requires
+a primary technique not represented above.
 
 ## Filename convention
 
@@ -167,72 +193,78 @@ Each topic folder has an independent contiguous sequence:
 
 ```text
 Bit_Manipulation/
-├── 1_Bitwise_Reversion.cpp
-├── 2_Boneca_Ambalabu.cpp
-└── 3_Boneca_Ambalabu.cpp
+  1_Bitwise_Reversion.cpp
+  2_Boneca_Ambalabu.cpp
+  ...
+  9_Counting_Bits.cpp
 ```
 
-Use:
+Verified Codeforces files use:
 
 ```text
 <serial>_<Exact_Codeforces_Title_With_Underscores>.<cpp-or-c>
 ```
 
+Descriptively classified files use:
+
+```text
+<serial>_<Clear_Code_Based_Title_With_Underscores>.<cpp-or-c>
+```
+
 Filename rules:
 
-- Restart numbering at `1` in each topic folder.
+- Restart numbering at `1` in every topic folder.
 - Keep serials contiguous with no duplicates.
-- Replace title spaces with underscores and preserve official capitalization.
-- Omit a question mark because Windows filenames cannot contain `?`; sanitize
-  any other Windows-forbidden punctuation without changing the title in the
-  in-file header.
-- Preserve the solution language extension.
+- Append new sources after the folder's current highest serial.
+- Preserve the source-language extension.
 - Keep separate files even when they solve the same problem.
-- During a bulk migration, use the original numeric order to assign new serials.
-- When adding one solution later, append it to the selected folder's sequence.
+- Use `_Draft` for empty or incomplete sources and `_Data` for a file that
+  contains data rather than compilable source.
+- During bulk migration, preserve the old numeric order when assigning serials.
+- Sanitize Windows-forbidden punctuation without changing an official title in
+  the verified file's in-source header.
 
 ## Workflow for future Codex runs
 
 1. Read this README and any repository instructions.
-2. Inventory every `.cpp` and `.c` file in `Misc/` and incoming folders.
-3. Inspect existing topic folders for new, misplaced, or conflicting files.
-4. Record the starting source count and a compile/syntax baseline.
-5. Identify each problem from its filename and implementation. Confirm the
-   exact title and URL using official Codeforces records/pages; never rely on
-   an ambiguous filename alone.
-6. Finish a complete classification and collision-free rename plan before
-   creating folders or moving files.
-7. Add the canonical header without altering the solution body.
-8. Remove unused macros only when explicitly requested. Preserve dependency
-   chains when one retained macro refers to another.
-9. Move each confirmed file into one primary-topic folder and normalize serials.
-10. Update the historical summary and pending-file list in this README.
-11. Run all final verification checks and report topic counts plus uncertainties.
+2. Inventory every `.cpp` and `.c` file in `A_curr/`, `Misc/`, and the
+   existing topic folders before editing.
+3. Record the starting source count, file hashes, and syntax baseline.
+4. Identify each problem from its filename and implementation. For a claimed
+   Codeforces solution, verify the exact title and URL using official records.
+5. Complete the classification and collision-free rename plan before moving.
+6. Add the canonical header only to officially verified Codeforces solutions.
+7. Remove unused macros only when explicitly requested, preserving dependency
+   chains between retained macros.
+8. Move each source into one primary-topic folder and keep serials contiguous.
+9. Update this README's counts and unverified-source record.
+10. Verify counts, paths, hashes, headers, numbering, and syntax results.
 
 ## Non-negotiable safety rules
 
-- Never optimize, repair, reformat, or rewrite solution logic during organization.
+- Never optimize, repair, reformat, or rewrite solution logic while organizing.
 - Do not rename variables, functions, classes, or used macros.
-- Never delete, merge, or overwrite a solution.
+- Never delete, merge, or silently overwrite a source.
 - Preserve unrelated files and pre-existing user changes.
-- A compile failure that existed in the baseline is not authorization to fix it.
-- If identification is uncertain, leave the file in its batch folder and explain why.
+- Existing syntax failures are not authorization to fix code.
+- Never represent a descriptive filename as an official problem title.
+- If confidence is insufficient, keep the source pending or label it
+  descriptively only when requested.
 
 ## Final verification checklist
 
 Before reporting completion, confirm:
 
 - Total source count after processing equals the count before processing.
-- Every confirmed source exists at exactly one destination.
+- Every source exists at exactly one destination.
 - No destination was overwritten.
-- Every confirmed source starts with its canonical Codeforces URL.
-- The next block contains the exact official title and a concise description.
-- Solution bodies match their pre-edit contents except explicitly requested
-  unused-macro removals.
-- Macro cleanup leaves no undefined retained dependency or unused definition.
-- Every topic folder uses one-based contiguous serials.
-- `Misc/` and incoming folders contain only unresolved or newly added files.
-- Post-change syntax results introduce no failures beyond the recorded baseline.
+- Every verified Codeforces source starts with its canonical URL and exact title.
+- Unverified descriptive sources do not contain invented Codeforces links.
+- Solution bodies match their pre-edit hashes except explicitly requested
+  macro removals.
+- Every topic folder has one-based contiguous serials.
+- No unexpected syntax failure was introduced.
+- README counts and locations match the filesystem.
 
 Use a final report in this form:
 
@@ -245,6 +277,6 @@ Greedy: ...
 Math: ...
 ...
 
-Uncertain classifications:
-- filename.cpp -> reason
+Unverified descriptive files: N
 ```
+
