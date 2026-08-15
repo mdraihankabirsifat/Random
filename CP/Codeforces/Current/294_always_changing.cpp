@@ -5,11 +5,7 @@ using namespace std;
 #define tata "\n"
 #define vr(v, x) vector<ll> v(x)
 #define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
-#define jora(p, n) pair<ll, ll> p(n)
 #define sajai(x) sort(x.begin(), x.end())
-#define rsort(a) sort(a.begin(), a.end(), greater<>())
-#define ulta(a) reverse(a.begin(), a.end())
-#define mucho(a, j) a.erase(a.begin() + j)
 #define choto(a) *min_element(a.begin(), a.end())
 #define boro(a) *max_element(a.begin(), a.end())
 #define jog(a) accumulate(a.begin(), a.end(), 0LL)
