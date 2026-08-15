@@ -1,10 +1,10 @@
+// https://leetcode.com/problems/minimum-operations-to-transform-binary-string/
 /*
 Problem: Minimum Operations to Transform Binary String
 
 Transform one binary string into another by changing a zero to one or
 changing an adjacent pair of ones to zeros, using as few operations as possible.
 */
-//https://leetcode.com/problems/minimum-operations-to-transform-binary-string/description/
 #include <bits/stdc++.h>
 using namespace std;
 class Solution

@@ -19,6 +19,9 @@ The initial organization pass processed all 31 C++ solutions that were in
 - Later scanned all 33 C++ files under `Leetcode/` for unused macros, removed
   332 unused definitions, retained 60 required definitions, and verified every
   file with `g++ -std=c++17 -fsyntax-only`.
+- Verified canonical LeetCode pages for confirmed solutions, added each problem
+  URL as a first-line comment, and renamed confirmed files from their exact
+  LeetCode titles with spaces replaced by underscores.
 
 Historical counts immediately after that pass:
 
@@ -53,9 +56,11 @@ directory and report it. Never invent a title or description.
 
 ## Required problem header
 
-Every organized `.cpp` solution must begin with this style of comment:
+Every confirmed LeetCode `.cpp` solution must begin with its canonical problem
+URL followed by this style of revision comment:
 
 ```cpp
+// https://leetcode.com/problems/course-schedule/
 /*
 Problem: Course Schedule
 
@@ -69,7 +74,8 @@ Header rules:
 - Use the exact, clean LeetCode title.
 - Write a concise two- or three-line paraphrase for revision.
 - Do not copy the full problem statement.
-- Put the comment at the absolute top of the file.
+- Put the canonical LeetCode URL comment on the absolute first line.
+- Put the problem revision block immediately after the URL.
 - Do not add a second header if a valid one already exists.
 
 ## Topic classification
@@ -108,21 +114,22 @@ Each topic folder has its own independent, contiguous sequence:
 ```text
 Bit_Manipulation/
 ├── 1_Gray_Code.cpp
-└── 2_longest_subsequence_XOR.cpp
+└── 2_Longest_Subsequence_With_Non-Zero_Bitwise_XOR.cpp
 ```
 
 Use this format:
 
 ```text
-<serial>_<existing-descriptive-name>.cpp
+<serial>_<Exact_LeetCode_Title_With_Underscores>.cpp
 ```
 
 Filename rules:
 
 - Restart numbering from `1` in every topic folder.
 - Keep numbering contiguous with no gaps or duplicate serials.
-- Keep the existing descriptive part, capitalization, and spelling unless
-  there is a strong reason to correct it.
+- Use the exact capitalization and punctuation of the official LeetCode title.
+- Replace spaces with underscores; preserve other title punctuation such as
+  hyphens.
 - Keep the `.cpp` extension.
 - During a bulk migration, preserve the old numeric order when assigning the
   new per-folder sequence.
@@ -137,11 +144,12 @@ Filename rules:
    new files.
 4. Record the starting solution count and, when practical, content hashes.
 5. Identify each problem from its filename, class/function signature, and
-   implementation. Use LeetCode or web search when the name is ambiguous or
-   the problem is newly released.
+   implementation. Verify its exact title and canonical URL on LeetCode; use
+   web search when the name is ambiguous or the problem is newly released.
 6. Make a complete classification plan before creating folders or moving
    files.
-7. Add only the required top comment. Do not alter the solution body.
+7. Add the canonical URL as a first-line comment, followed by the required
+   revision block. Do not alter the solution body.
 8. Move each confidently identified solution into one primary-topic folder.
 9. Normalize filenames so every affected topic folder is numbered from `1`
    without gaps.
@@ -169,7 +177,8 @@ Before reporting completion, confirm all of the following:
 - The number of `.cpp` solutions after processing equals the number before.
 - Every expected source file exists at exactly one destination.
 - No destination collision or accidental overwrite occurred.
-- Every organized solution starts with a valid problem header.
+- Every confirmed LeetCode solution starts with its canonical problem URL.
+- Every URL is followed by a valid problem header using the exact title.
 - Every header description is two or three concise lines.
 - Solution logic and all non-requested code match their pre-edit contents.
 - If macro cleanup was requested, no retained macro is left undefined and no

@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/smallest-divisible-digit-product-i/
 /*
 Problem: Smallest Divisible Digit Product I
 
