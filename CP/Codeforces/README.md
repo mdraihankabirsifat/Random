@@ -27,8 +27,6 @@ A later pass organized the 37 formerly unresolved files from `Misc/`:
 - No Codeforces URL or official-problem header was added to these files.
 - Empty or incomplete sources use `_Draft` or `_Data` in their names.
 - SHA-256 verification confirmed all 37 files remained byte-identical.
-- `Misc/` is now empty.
-- `A_curr/307_.cpp` remains the only pending source.
 
 The syntax baseline contains two pre-existing failures:
 
@@ -42,35 +40,33 @@ Do not silently repair either file during an organization pass.
 
 | Topic | Files |
 | --- | ---: |
-| Array | 2 |
-| Binary_Search | 1 |
-| Bit_Manipulation | 9 |
+| Array | 3 |
+| Bit_Manipulation | 8 |
 | Brute_Force | 12 |
-| Constructive_Algorithms | 32 |
+| Constructive_Algorithms | 29 |
 | Data_Structures | 6 |
-| Dynamic_Programming | 9 |
+| Dynamic_Programming | 7 |
 | Game_Theory | 13 |
 | Geometry | 8 |
 | Graph | 1 |
 | Greedy | 61 |
-| Hashing | 11 |
-| Implementation | 16 |
+| Hashing | 9 |
+| Implementation | 15 |
 | Math | 45 |
 | Number_Theory | 15 |
 | Prefix_Sum | 11 |
 | Simulation | 5 |
 | Sorting | 14 |
-| Stack | 1 |
 | String | 28 |
-| Sweep_Line | 1 |
 | Tree | 1 |
-| Two_Pointers | 3 |
-| **Categorized total** | **305** |
+| Two_Pointers | 2 |
+| **Categorized total** | **293** |
 | A_curr (pending) | 1 |
-| **All sources** | **306** |
+| **All source files** | **294** |
 
-These counts are a historical snapshot. Always rescan the filesystem because
-new solutions may have been added.
+The Codeforces directory currently contains **295 files total**: 294 source
+files (258 `.cpp` and 36 `.c`) plus this README. Always rescan the
+filesystem because files may be added or removed later.
 
 ## Descriptively categorized sources
 
@@ -279,4 +275,3 @@ Math: ...
 
 Unverified descriptive files: N
 ```
-
