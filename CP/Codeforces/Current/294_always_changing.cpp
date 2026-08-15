@@ -3,18 +3,6 @@ using namespace std;
 #define ll long long
 #define pb push_back
 #define tata "\n"
-#define vr(v, x) vector<ll> v(x)
-#define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
-#define sajai(x) sort(x.begin(), x.end())
-#define choto(a) *min_element(a.begin(), a.end())
-#define boro(a) *max_element(a.begin(), a.end())
-#define jog(a) accumulate(a.begin(), a.end(), 0LL)
-#define bit(n) __builtin_popcountll(n)
-#define loop(i, j, n) for (ll i = j; i < n; i++)
-#define in(v) loop(i, 0, v.size()) cin >> v[i]
-#define out(v) loop(i, 0, v.size()) cout << v[i] << " "
-#define yes cout << "YES" << tata
-#define no cout << "NO" << tata
 
 int main()
 {
@@ -24,11 +12,50 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, z = 0, o = 0, l = 1, l0 = 0, l1 = 0;
         cin >> n;
-        vr(v, n);
-        in(v);
-        
+        string s;
+        cin >> s;
+        for (int i = 0; i < n; i++)
+        {
+            if (s[i] == '0')
+            {
+                z++;
+            }
+            else
+            {
+                o++;
+            }
+        }
+        if (abs(z - o) > 2)
+        {
+            cout << -1 << tata;
+            continue;
+        }
+        if (s[0] == '0')
+        {
+            l0 = 1;
+        }
+        else
+        {
+            l1 = 1;
+        }
+        for (int i = 1; i < n; i++)
+        {
+            if (s[i] != s[i - 1])
+            {
+                l++;
+                if (s[i] == '0')
+                {
+                    l0++;
+                }
+                else
+                {
+                    l1++;
+                }
+            }
+        }
+        cout << n - l + max(0LL, abs(z - o - l0 + l1) - 1) << tata;
     }
     return 0;
 }
