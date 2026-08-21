@@ -1,14 +1,4 @@
-CSE 208 - Data Structures and Algorithms II Sessional
 Assignment 2: AVL Trees and Interval Scheduling
-
-
-FILES INCLUDED
---------------
-1. AVLTree.cpp
-2. IntervalScheduler.cpp
-3. timing_report.txt
-4. Readme.txt
-
 
 COMPILATION
 -----------
@@ -22,9 +12,6 @@ g++ -std=c++17 IntervalScheduler.cpp -o interval_scheduler
 
 EXECUTION
 ---------
-
-Both programs take the input filename and output filename as command-line
-arguments.
 
 AVL Tree:
 ./avl_tree <input-file> <output-file>
@@ -41,9 +28,6 @@ Example:
 
 OUTPUT AND TIMING
 -----------------
-
-The result of every operation is written to the output file supplied through
-the second command-line argument.
 
 The timing summary is printed separately to the standard output. It can be
 viewed in the terminal or redirected to a text file when preparing
@@ -74,11 +58,3 @@ IntervalScheduler.cpp:
 - Supports ADD, REMOVE, UPDATE, CONFLICT, OVERLAPS, AT, and NEXT.
 - maxEnd is maintained after insertion, deletion, update, and rotation.
 - OVERLAPS and AT use maxEnd-based pruning.
-
-
-NOTES
------
-- The programs require a C++17-compatible compiler.
-- No absolute file path or IDE-specific configuration is used.
-- Executable files, object files, build folders, and test-case files are not
-  included in the submission folder.
