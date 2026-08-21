@@ -17,7 +17,7 @@ AVL Tree:
 ./avl_tree testcase_avl.txt output_avl.txt
 
 Interval Scheduler:
-./interval_scheduler testcase_large_interval.txt output_interval.txt
+./interval_scheduler testcase_basic_interval.txt output_basic_interval.txt
 ./interval_scheduler testcase_edge_interval.txt output_edge_interval.txt
 ./interval_scheduler testcase_large_interval.txt output_large_interval.txt
 
