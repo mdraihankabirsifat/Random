@@ -8,8 +8,8 @@ using namespace std;
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 #define in(v) loop(i, 0, v.size()) cin >> v[i]
 #define out(v) loop(i, 0, v.size()) cout << v[i] << " "
-#define yes cout << "YES" << tata
-#define no cout << "NO" << tata
+#define yes fout << "yes" << tata
+#define no fout << "no" << tata
 
 struct Node
 {
@@ -38,73 +38,182 @@ unordered_map<ll, Event> events;
 
 ll getHeight(Node *node)
 {
-    // TODO
-    return 0;
+    if (node == nullptr)
+    {
+        return 0;
+    }
+    return node->h;
 }
 
 ll getMaxEnd(Node *node)
 {
-    // TODO: return LLONG_MIN for nullptr
-    return LLONG_MIN;
+    if (node == nullptr)
+    {
+        return LLONG_MIN;
+    }
+    return node->maxEnd;
 }
 
 void updateNode(Node *node)
 {
-    // TODO:
-    // update node->height
-    // update node->maxEnd = max(node->end, left maxEnd, right maxEnd)
+    if (node == nullptr)
+    {
+        return;
+    }
+    node->h = 1 + max(getHeight(node->l), getHeight(node->r));
+    node->maxEnd = max(node->end, max(getMaxEnd(node->l), getMaxEnd(node->r)));
 }
 
 ll Balance_dekhao(Node *node)
 {
-    // TODO
-    return 0;
+    if (node == nullptr)
+    {
+        return 0;
+    }
+    return getHeight(node->l) - getHeight(node->r);
 }
 
 bool smaller(ll s1, ll id1, ll s2, ll id2)
 {
-    // TODO: lexicographic compare (start, id)
-    return false;
+    if (s1 != s2)
+    {
+        return s1 < s2;
+    }
+    return id1 < id2;
 }
 
 Node *rotateLeft(Node *node)
 {
-    // TODO
-    return node;
+    Node *rightChild = node->r;
+    Node *majherSubtree = rightChild->l;
+
+    rightChild->l = node;
+    node->r = majherSubtree;
+
+    // updateNode fixes both height and maxEnd.
+    updateNode(node);
+    updateNode(rightChild);
+
+    return rightChild;
 }
 
 Node *rotateRight(Node *node)
 {
-    // TODO
-    return node;
+    Node *leftChild = node->l;
+    Node *majherSubtree = leftChild->r;
+
+    leftChild->r = node;
+    node->l = majherSubtree;
+
+    // updateNode fixes both height and maxEnd.
+    updateNode(node);
+    updateNode(leftChild);
+
+    return leftChild;
 }
 
 Node *rebalance(Node *node)
 {
-    // TODO: same AVL four cases
-    // always keep BOTH height and maxEnd correct
+    if (node == nullptr)
+    {
+        return nullptr;
+    }
+
+    updateNode(node);
+    ll balance = Balance_dekhao(node);
+
+    // Left-heavy subtree: LL or LR case.
+    if (balance > 1)
+    {
+        if (Balance_dekhao(node->l) < 0)
+        {
+            node->l = rotateLeft(node->l);
+        }
+        return rotateRight(node);
+    }
+
+    // Right-heavy subtree: RR or RL case.
+    if (balance < -1)
+    {
+        if (Balance_dekhao(node->r) > 0)
+        {
+            node->r = rotateRight(node->r);
+        }
+        return rotateLeft(node);
+    }
+
     return node;
 }
 
 Node *insertNode(Node *node, ll id, ll start, ll end)
 {
-    // TODO: BST insert using (start, id), then rebalance
-    return node;
+    if (node == nullptr)
+    {
+        return new Node(id, start, end);
+    }
+
+    if (smaller(start, id, node->start, node->id))
+    {
+        node->l = insertNode(node->l, id, start, end);
+    }
+    else
+    {
+        node->r = insertNode(node->r, id, start, end);
+    }
+
+    return rebalance(node);
 }
 
 Node *min_Node(Node *node)
 {
-    // TODO
-    return node;
+    Node *current = node;
+    while (current->l != nullptr)
+    {
+        current = current->l;
+    }
+    return current;
 }
 
 Node *eraseNode(Node *node, ll start, ll id)
 {
-    // TODO:
-    // delete node identified by exact key (start, id)
-    // if two children, copy successor's id/start/end
-    // then delete successor and rebalance
-    return node;
+    if (node == nullptr)
+    {
+        return nullptr;
+    }
+
+    if (smaller(start, id, node->start, node->id))
+    {
+        node->l = eraseNode(node->l, start, id);
+    }
+    else if (smaller(node->start, node->id, start, id))
+    {
+        node->r = eraseNode(node->r, start, id);
+    }
+    else
+    {
+        // Node with zero or one child.
+        if (node->l == nullptr)
+        {
+            Node *temp = node->r;
+            delete node;
+            return temp;
+        }
+        if (node->r == nullptr)
+        {
+            Node *temp = node->l;
+            delete node;
+            return temp;
+        }
+
+        // Node with two children: copy the inorder successor's full event.
+        Node *successor = min_Node(node->r);
+        node->id = successor->id;
+        node->start = successor->start;
+        node->end = successor->end;
+        node->r = eraseNode(node->r, successor->start, successor->id);
+    }
+
+    return rebalance(node);
 }
 
 bool overlap(ll s1, ll e1, ll s2, ll e2)
@@ -114,50 +223,126 @@ bool overlap(ll s1, ll e1, ll s2, ll e2)
 
 bool conflictNode(Node *node, ll qs, ll qe)
 {
-    // TODO:
-    // find any overlap using maxEnd pruning
-    // target O(log n) expected/worst-case as intended by assignment
+    Node *current = node;
+
+    // Only one promising root-to-leaf path is followed.
+    while (current != nullptr)
+    {
+        if (overlap(current->start, current->end, qs, qe))
+        {
+            return true;
+        }
+
+        // The left subtree can contain an overlap only if some interval
+        // in it ends after the query starts.
+        if (current->l != nullptr && current->l->maxEnd > qs)
+        {
+            current = current->l;
+        }
+        else
+        {
+            current = current->r;
+        }
+    }
     return false;
 }
 
 void overlapsNode(Node *node, ll qs, ll qe, vector<ll> &ans)
 {
-    // TODO:
-    // pruned inorder traversal
-    // prune subtree when maxEnd <= qs
-    // maintain increasing (start, id) reporting order
+    if (node == nullptr || node->maxEnd <= qs)
+    {
+        return;
+    }
+
+    overlapsNode(node->l, qs, qe, ans);
+
+    if (overlap(node->start, node->end, qs, qe))
+    {
+        ans.pb(node->id);
+    }
+
+    // All nodes in the right subtree start no earlier than this node.
+    // So start >= qe means that entire right subtree is unnecessary.
+    if (node->start < qe)
+    {
+        overlapsNode(node->r, qs, qe, ans);
+    }
 }
 
 void atNode(Node *node, ll t, vector<ll> &ans)
 {
-    // TODO:
-    // report all nodes where start <= t < end
-    // use maxEnd pruning
-    // inorder order
+    if (node == nullptr || node->maxEnd <= t)
+    {
+        return;
+    }
+
+    atNode(node->l, t, ans);
+
+    if (node->start <= t && t < node->end)
+    {
+        ans.pb(node->id);
+    }
+
+    // Right-subtree starts are >= this node's start.
+    if (node->start <= t)
+    {
+        atNode(node->r, t, ans);
+    }
 }
 
 Node *nextNode(ll t)
 {
-    // TODO:
-    // lower-bound search for smallest (start,id) with start >= t
-    return nullptr;
+    Node *current = root;
+    Node *answer = nullptr;
+
+    while (current != nullptr)
+    {
+        if (current->start >= t)
+        {
+            answer = current;
+            current = current->l;
+        }
+        else
+        {
+            current = current->r;
+        }
+    }
+    return answer;
 }
 
 string serialize(Node *node)
 {
-    // Same nested-parentheses format as AVL,
-    // but node label is ONLY the event id.
-    return "";
+    if (node == nullptr)
+    {
+        return "";
+    }
+
+    string ans = to_string(node->id);
+    if (node->l != nullptr || node->r != nullptr)
+    {
+        ans += "(";
+        ans += serialize(node->l);
+        ans += ",";
+        ans += serialize(node->r);
+        ans += ")";
+    }
+    return ans;
 }
 
 void Tree_mucho(Node *node)
 {
-    // TODO: postorder delete
+    if (node == nullptr)
+    {
+        return;
+    }
+    Tree_mucho(node->l);
+    Tree_mucho(node->r);
+    delete node;
 }
 
 struct TimingData
 {
-    ll count = 0,total_ns = 0;
+    ll count = 0, total_ns = 0;
 };
 
 void time_jog(TimingData &x, ll ns)
@@ -206,10 +391,9 @@ int main(int argc, char *argv[])
             ll s, e;
             fin >> s >> e;
             auto a = chrono::steady_clock::now();
-            // TODO:
-            // ll id = nextId++;
-            // root = insertNode(root, id, s, e);
-            // events[id] = {s, e};
+            ll id = nextId++;
+            root = insertNode(root, id, s, e);
+            events[id] = {s, e};
             auto b = chrono::steady_clock::now();
             time_jog(addTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             fout << serialize(root) << tata;
@@ -219,10 +403,14 @@ int main(int argc, char *argv[])
             ll x;
             fin >> x;
             auto a = chrono::steady_clock::now();
-            // TODO:
-            // if id absent => not found
-            // else remove (oldStart,id) from tree and erase hash entry
             bool y = false;
+            auto it = events.find(x);
+            if (it != events.end())
+            {
+                root = eraseNode(root, it->second.start, x);
+                events.erase(it);
+                y = true;
+            }
             auto b = chrono::steady_clock::now();
             time_jog(removeTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!y)
@@ -239,11 +427,15 @@ int main(int argc, char *argv[])
             ll x, s, e;
             fin >> x >> s >> e;
             auto a = chrono::steady_clock::now();
-            // TODO:
-            // absent id => not found and do not change nextId
-            // otherwise erase old key, insert new interval with same id,
-            // and update hash entry
             bool y = false;
+            auto it = events.find(x);
+            if (it != events.end())
+            {
+                root = eraseNode(root, it->second.start, x);
+                root = insertNode(root, x, s, e);
+                it->second = {s, e};
+                y = true;
+            }
             auto b = chrono::steady_clock::now();
             time_jog(updateTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!y)
