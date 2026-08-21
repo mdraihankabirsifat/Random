@@ -1,16 +1,16 @@
 AVL
 operation,count,total_ns,average_ns
-insert,47,13700,291
-delete,23,7300,317
-find,7,800,114
-traverse,3,9500,3166
+insert,47,15300,325
+delete,23,10100,439
+find,7,1000,142
+traverse,3,13300,4433
 
 Interval Scheduler
 operation,count,total_ns,average_ns
-add,950,1850300,1947
-remove,120,203500,1695
-update,130,241800,1860
-conflict,150,72100,480
-overlaps,150,202400,1349
-at,150,113200,754
-next,150,27800,185
+add,950,1409500,1483
+remove,120,166000,1383
+update,130,243700,1874
+conflict,150,23200,154
+overlaps,150,136500,910
+at,150,113500,756
+next,150,18400,122
