@@ -14,26 +14,17 @@ EXECUTION
 ---------
 
 AVL Tree:
-./avl_tree <input-file> <output-file>
-
-Example:
 ./avl_tree testcase_avl.txt output_avl.txt
 
 Interval Scheduler:
-./interval_scheduler <input-file> <output-file>
-
-Example:
 ./interval_scheduler testcase_large_interval.txt output_interval.txt
+./interval_scheduler testcase_edge_interval.txt output_edge_interval.txt
+./interval_scheduler testcase_large_interval.txt output_large_interval.txt
 
 
 OUTPUT AND TIMING
 -----------------
 
-The timing summary is printed separately to the standard output. It can be
-viewed in the terminal or redirected to a text file when preparing
-timing_report.txt.
-
-Example:
 "AVL" | Set-Content timing_report.txt
 .\avl_tree.exe testcase_avl.txt output_avl.txt | Add-Content timing_report.txt
 
