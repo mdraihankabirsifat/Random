@@ -169,16 +169,16 @@ Node *Node_sorao(Node *node, ll k, bool &y)
     return re_balance(node);
 }
 
-bool key_khujo(ll k)
+bool find(int key)
 {
     Node *current = root;
     while (current != nullptr)
     {
-        if (k == current->key)
+        if (key == current->key)
         {
             return true;
         }
-        if (k < current->key)
+        if (key < current->key)
         {
             current = current->l;
         }
@@ -199,6 +199,27 @@ void in_order(Node *node, vector<ll> &a)
     in_order(node->l, a);
     a.pb(node->key);
     in_order(node->r, a);
+}
+
+bool insert(int key)
+{
+    bool inserted = false;
+    root = node_insert(root, key, inserted);
+    return inserted;
+}
+
+bool erase(int key)
+{
+    bool erased = false;
+    root = Node_sorao(root, key, erased);
+    return erased;
+}
+
+vector<int> traverse()
+{
+    vector<ll> values;
+    in_order(root, values);
+    return vector<int>(values.begin(), values.end());
 }
 
 string serialize(Node *node)
@@ -270,7 +291,7 @@ int main(int argc, char *argv[])
         cerr << "File open error" << tata;
         return 1;
     }
-    T_data ins, del, find, trav;
+    T_data ins, del, findTime, trav;
     char c;
     while (fin >> c)
     {
@@ -280,7 +301,7 @@ int main(int argc, char *argv[])
             fin >> x;
             bool x1 = false;
             auto a = chrono::steady_clock::now();
-            root = node_insert(root, x, x1);
+            x1 = insert(x);
             auto b = chrono::steady_clock::now();
             time_jog(ins, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!x1)
@@ -298,7 +319,7 @@ int main(int argc, char *argv[])
             fin >> x;
             bool e = false;
             auto a = chrono::steady_clock::now();
-            root = Node_sorao(root, x, e);
+            e = erase(x);
             auto b = chrono::steady_clock::now();
             time_jog(del, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!e)
@@ -315,9 +336,9 @@ int main(int argc, char *argv[])
             ll x;
             fin >> x;
             auto a = chrono::steady_clock::now();
-            bool x1 = key_khujo(x);
+            bool x1 = find(x);
             auto b = chrono::steady_clock::now();
-            time_jog(find, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(findTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (x1)
             {
                 fout << "found" << tata;
@@ -329,9 +350,9 @@ int main(int argc, char *argv[])
         }
         else if (c == 'T')
         {
-            vector<ll> v;
+            vector<int> v;
             auto a = chrono::steady_clock::now();
-            in_order(root, v);
+            v = traverse();
             auto b = chrono::steady_clock::now();
             time_jog(trav, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             loop(i, 0, v.size())
@@ -348,7 +369,7 @@ int main(int argc, char *argv[])
     cout << "operation,count,total_ns,average_ns" << tata;
     time_print("insert", ins);
     time_print("delete", del);
-    time_print("find", find);
+    time_print("find", findTime);
     time_print("traverse", trav);
     Tree_mucho(root);
     return 0;
