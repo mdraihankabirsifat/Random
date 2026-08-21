@@ -50,9 +50,14 @@ viewed in the terminal or redirected to a text file when preparing
 timing_report.txt.
 
 Example:
-./avl_tree testcase_avl.txt output_avl.txt > avl_timing.txt
-./interval_scheduler testcase_large_interval.txt output_interval.txt > interval_timing.txt
+"AVL" | Set-Content timing_report.txt
+.\avl_tree.exe testcase_avl.txt output_avl.txt | Add-Content timing_report.txt
 
+"" | Add-Content timing_report.txt
+"Interval Scheduler" | Add-Content timing_report.txt
+.\interval_scheduler.exe testcase_large_interval.txt output_large_interval.txt | Add-Content timing_report.txt
+
+Get-Content timing_report.txt
 
 IMPLEMENTATION SUMMARY
 ----------------------
