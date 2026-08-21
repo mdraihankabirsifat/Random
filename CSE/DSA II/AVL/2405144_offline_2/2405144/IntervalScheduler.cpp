@@ -16,13 +16,13 @@ struct Node
     ll id, start, end;
     ll h, maxEnd;
     Node *l, *r;
-    Node(ll _id, ll _start, ll _end)
+    Node(ll x, ll a, ll b)
     {
-        id = _id;
-        start = _start;
-        end = _end;
+        id = x;
+        start = a;
+        end = b;
         h = 1;
-        maxEnd = _end;
+        maxEnd = b;
         l = r = nullptr;
     }
 };
@@ -34,9 +34,9 @@ struct Event
 
 Node *root = nullptr;
 ll nextId = 1;
-unordered_map<ll, Event> events;
+unordered_map<ll, Event> ev;
 
-ll getHeight(Node *node)
+ll Height_dekhao(Node *node)
 {
     if (node == nullptr)
     {
@@ -45,7 +45,7 @@ ll getHeight(Node *node)
     return node->h;
 }
 
-ll getMaxEnd(Node *node)
+ll maxend_dekhao(Node *node)
 {
     if (node == nullptr)
     {
@@ -54,14 +54,14 @@ ll getMaxEnd(Node *node)
     return node->maxEnd;
 }
 
-void updateNode(Node *node)
+void Node_update(Node *node)
 {
     if (node == nullptr)
     {
         return;
     }
-    node->h = 1 + max(getHeight(node->l), getHeight(node->r));
-    node->maxEnd = max(node->end, max(getMaxEnd(node->l), getMaxEnd(node->r)));
+    node->h = 1 + max(Height_dekhao(node->l), Height_dekhao(node->r));
+    node->maxEnd = max(node->end, max(maxend_dekhao(node->l), maxend_dekhao(node->r)));
 }
 
 ll Balance_dekhao(Node *node)
@@ -70,10 +70,10 @@ ll Balance_dekhao(Node *node)
     {
         return 0;
     }
-    return getHeight(node->l) - getHeight(node->r);
+    return Height_dekhao(node->l) - Height_dekhao(node->r);
 }
 
-bool smaller(ll s1, ll id1, ll s2, ll id2)
+bool choto(ll s1, ll id1, ll s2, ll id2)
 {
     if (s1 != s2)
     {
@@ -84,46 +84,35 @@ bool smaller(ll s1, ll id1, ll s2, ll id2)
 
 Node *rotateLeft(Node *node)
 {
-    Node *rightChild = node->r;
-    Node *majherSubtree = rightChild->l;
-
-    rightChild->l = node;
-    node->r = majherSubtree;
-
-    // updateNode fixes both height and maxEnd.
-    updateNode(node);
-    updateNode(rightChild);
-
-    return rightChild;
+    Node *r_child = node->r;
+    Node *majher_Subtree = r_child->l;
+    r_child->l = node;
+    node->r = majher_Subtree;
+    Node_update(node);
+    Node_update(r_child);
+    return r_child;
 }
 
 Node *rotateRight(Node *node)
 {
-    Node *leftChild = node->l;
-    Node *majherSubtree = leftChild->r;
-
-    leftChild->r = node;
-    node->l = majherSubtree;
-
-    // updateNode fixes both height and maxEnd.
-    updateNode(node);
-    updateNode(leftChild);
-
-    return leftChild;
+    Node *l_child = node->l;
+    Node *majher_Subtree = l_child->r;
+    l_child->r = node;
+    node->l = majher_Subtree;
+    Node_update(node);
+    Node_update(l_child);
+    return l_child;
 }
 
-Node *rebalance(Node *node)
+Node *re_balance(Node *node)
 {
     if (node == nullptr)
     {
         return nullptr;
     }
-
-    updateNode(node);
-    ll balance = Balance_dekhao(node);
-
-    // Left-heavy subtree: LL or LR case.
-    if (balance > 1)
+    Node_update(node);
+    ll bal = Balance_dekhao(node);
+    if (bal > 1)
     {
         if (Balance_dekhao(node->l) < 0)
         {
@@ -131,9 +120,7 @@ Node *rebalance(Node *node)
         }
         return rotateRight(node);
     }
-
-    // Right-heavy subtree: RR or RL case.
-    if (balance < -1)
+    if (bal < -1)
     {
         if (Balance_dekhao(node->r) > 0)
         {
@@ -141,173 +128,150 @@ Node *rebalance(Node *node)
         }
         return rotateLeft(node);
     }
-
     return node;
 }
 
-Node *insertNode(Node *node, ll id, ll start, ll end)
+Node *Node_insert(Node *node, ll id, ll start, ll end)
 {
     if (node == nullptr)
     {
         return new Node(id, start, end);
     }
-
-    if (smaller(start, id, node->start, node->id))
+    if (choto(start, id, node->start, node->id))
     {
-        node->l = insertNode(node->l, id, start, end);
+        node->l = Node_insert(node->l, id, start, end);
     }
     else
     {
-        node->r = insertNode(node->r, id, start, end);
+        node->r = Node_insert(node->r, id, start, end);
     }
-
-    return rebalance(node);
+    return re_balance(node);
 }
 
 Node *min_Node(Node *node)
 {
-    Node *current = node;
-    while (current->l != nullptr)
+    Node *cur = node;
+    while (cur->l != nullptr)
     {
-        current = current->l;
+        cur = cur->l;
     }
-    return current;
+    return cur;
 }
 
-Node *eraseNode(Node *node, ll start, ll id)
+Node *Node_mucho(Node *node, ll st, ll id)
 {
     if (node == nullptr)
     {
         return nullptr;
     }
-
-    if (smaller(start, id, node->start, node->id))
+    if (choto(st, id, node->start, node->id))
     {
-        node->l = eraseNode(node->l, start, id);
+        node->l = Node_mucho(node->l, st, id);
     }
-    else if (smaller(node->start, node->id, start, id))
+    else if (choto(node->start, node->id, st, id))
     {
-        node->r = eraseNode(node->r, start, id);
+        node->r = Node_mucho(node->r, st, id);
     }
     else
     {
-        // Node with zero or one child.
         if (node->l == nullptr)
         {
-            Node *temp = node->r;
+            Node *t = node->r;
             delete node;
-            return temp;
+            return t;
         }
         if (node->r == nullptr)
         {
-            Node *temp = node->l;
+            Node *t = node->l;
             delete node;
-            return temp;
+            return t;
         }
-
-        // Node with two children: copy the inorder successor's full event.
-        Node *successor = min_Node(node->r);
-        node->id = successor->id;
-        node->start = successor->start;
-        node->end = successor->end;
-        node->r = eraseNode(node->r, successor->start, successor->id);
+        Node *succ = min_Node(node->r);
+        node->id = succ->id;
+        node->start = succ->start;
+        node->end = succ->end;
+        node->r = Node_mucho(node->r, succ->start, succ->id);
     }
-
-    return rebalance(node);
+    return re_balance(node);
 }
 
-bool overlap(ll s1, ll e1, ll s2, ll e2)
+bool over_lap(ll s1, ll e1, ll s2, ll e2)
 {
     return s1 < e2 && s2 < e1;
 }
 
-bool conflictNode(Node *node, ll qs, ll qe)
+bool Node_cnflt(Node *node, ll qs, ll qe)
 {
-    Node *current = node;
-
-    // Only one promising root-to-leaf path is followed.
-    while (current != nullptr)
+    Node *cur = node;
+    while (cur != nullptr)
     {
-        if (overlap(current->start, current->end, qs, qe))
+        if (over_lap(cur->start, cur->end, qs, qe))
         {
             return true;
         }
-
-        // The left subtree can contain an overlap only if some interval
-        // in it ends after the query starts.
-        if (current->l != nullptr && current->l->maxEnd > qs)
+        if (cur->l != nullptr && cur->l->maxEnd > qs)
         {
-            current = current->l;
+            cur = cur->l;
         }
         else
         {
-            current = current->r;
+            cur = cur->r;
         }
     }
     return false;
 }
 
-void overlapsNode(Node *node, ll qs, ll qe, vector<ll> &ans)
+void Node_overlap(Node *node, ll qs, ll qe, vector<ll> &a)
 {
     if (node == nullptr || node->maxEnd <= qs)
     {
         return;
     }
-
-    overlapsNode(node->l, qs, qe, ans);
-
-    if (overlap(node->start, node->end, qs, qe))
+    Node_overlap(node->l, qs, qe, a);
+    if (over_lap(node->start, node->end, qs, qe))
     {
-        ans.pb(node->id);
+        a.pb(node->id);
     }
-
-    // All nodes in the right subtree start no earlier than this node.
-    // So start >= qe means that entire right subtree is unnecessary.
     if (node->start < qe)
     {
-        overlapsNode(node->r, qs, qe, ans);
+        Node_overlap(node->r, qs, qe, a);
     }
 }
 
-void atNode(Node *node, ll t, vector<ll> &ans)
+void active_interval(Node *node, ll t, vector<ll> &a)
 {
     if (node == nullptr || node->maxEnd <= t)
     {
         return;
     }
-
-    atNode(node->l, t, ans);
-
+    active_interval(node->l, t, a);
     if (node->start <= t && t < node->end)
     {
-        ans.pb(node->id);
+        a.pb(node->id);
     }
-
-    // Right-subtree starts are >= this node's start.
     if (node->start <= t)
     {
-        atNode(node->r, t, ans);
+        active_interval(node->r, t, a);
     }
 }
 
 Node *nextNode(ll t)
 {
-    Node *current = root;
-    Node *answer = nullptr;
-
-    while (current != nullptr)
+    Node *cur = root;
+    Node *a = nullptr;
+    while (cur != nullptr)
     {
-        if (current->start >= t)
+        if (cur->start >= t)
         {
-            answer = current;
-            current = current->l;
+            a = cur;
+            cur = cur->l;
         }
         else
         {
-            current = current->r;
+            cur = cur->r;
         }
     }
-    return answer;
+    return a;
 }
 
 string serialize(Node *node)
@@ -316,17 +280,16 @@ string serialize(Node *node)
     {
         return "";
     }
-
-    string ans = to_string(node->id);
+    string s = to_string(node->id);
     if (node->l != nullptr || node->r != nullptr)
     {
-        ans += "(";
-        ans += serialize(node->l);
-        ans += ",";
-        ans += serialize(node->r);
-        ans += ")";
+        s += "(";
+        s += serialize(node->l);
+        s += ",";
+        s += serialize(node->r);
+        s += ")";
     }
-    return ans;
+    return s;
 }
 
 void Tree_mucho(Node *node)
@@ -340,27 +303,27 @@ void Tree_mucho(Node *node)
     delete node;
 }
 
-struct TimingData
+struct T_data
 {
-    ll count = 0, total_ns = 0;
+    ll c = 0, t_ns = 0;
 };
 
-void time_jog(TimingData &x, ll ns)
+void time_jog(T_data &x, ll ns)
 {
-    x.count++;
-    x.total_ns += ns;
+    x.c++;
+    x.t_ns += ns;
 }
 
-void time_print(string operation, TimingData x)
+void time_print(string op, T_data x)
 {
-    cout << operation << "," << x.count << "," << x.total_ns << ",";
-    if (x.count == 0)
+    cout << op << "," << x.c << "," << x.t_ns << ",";
+    if (x.c == 0)
     {
         cout << "N/A";
     }
     else
     {
-        cout << x.total_ns / x.count;
+        cout << x.t_ns / x.c;
     }
     cout << tata;
 }
@@ -381,8 +344,8 @@ int main(int argc, char *argv[])
         cerr << "File open error" << tata;
         return 1;
     }
-    TimingData addTime, removeTime, updateTime;
-    TimingData conflictTime, overlapsTime, atTime, nextTime;
+    T_data add, remv, upd;
+    T_data cnflt, ovlp, cur, nxt;
     string c;
     while (fin >> c)
     {
@@ -392,10 +355,10 @@ int main(int argc, char *argv[])
             fin >> s >> e;
             auto a = chrono::steady_clock::now();
             ll id = nextId++;
-            root = insertNode(root, id, s, e);
-            events[id] = {s, e};
+            root = Node_insert(root, id, s, e);
+            ev[id] = {s, e};
             auto b = chrono::steady_clock::now();
-            time_jog(addTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(add, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             fout << serialize(root) << tata;
         }
         else if (c == "REMOVE")
@@ -404,15 +367,15 @@ int main(int argc, char *argv[])
             fin >> x;
             auto a = chrono::steady_clock::now();
             bool y = false;
-            auto it = events.find(x);
-            if (it != events.end())
+            auto it = ev.find(x);
+            if (it != ev.end())
             {
-                root = eraseNode(root, it->second.start, x);
-                events.erase(it);
+                root = Node_mucho(root, it->second.start, x);
+                ev.erase(it);
                 y = true;
             }
             auto b = chrono::steady_clock::now();
-            time_jog(removeTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(remv, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!y)
             {
                 fout << "not found" << tata;
@@ -428,16 +391,16 @@ int main(int argc, char *argv[])
             fin >> x >> s >> e;
             auto a = chrono::steady_clock::now();
             bool y = false;
-            auto it = events.find(x);
-            if (it != events.end())
+            auto it = ev.find(x);
+            if (it != ev.end())
             {
-                root = eraseNode(root, it->second.start, x);
-                root = insertNode(root, x, s, e);
+                root = Node_mucho(root, it->second.start, x);
+                root = Node_insert(root, x, s, e);
                 it->second = {s, e};
                 y = true;
             }
             auto b = chrono::steady_clock::now();
-            time_jog(updateTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(upd, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!y)
             {
                 fout << "not found" << tata;
@@ -452,9 +415,9 @@ int main(int argc, char *argv[])
             ll s, e;
             fin >> s >> e;
             auto a = chrono::steady_clock::now();
-            bool x = conflictNode(root, s, e);
+            bool x = Node_cnflt(root, s, e);
             auto b = chrono::steady_clock::now();
-            time_jog(conflictTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(cnflt, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (x)
             {
                 yes;
@@ -470,9 +433,9 @@ int main(int argc, char *argv[])
             fin >> s >> e;
             vector<ll> v;
             auto a = chrono::steady_clock::now();
-            overlapsNode(root, s, e, v);
+            Node_overlap(root, s, e, v);
             auto b = chrono::steady_clock::now();
-            time_jog(overlapsTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(ovlp, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (v.empty())
             {
                 fout << "none" << tata;
@@ -496,10 +459,9 @@ int main(int argc, char *argv[])
             fin >> t;
             vector<ll> ans;
             auto st = chrono::steady_clock::now();
-            atNode(root, t, ans);
+            active_interval(root, t, ans);
             auto en = chrono::steady_clock::now();
-            time_jog(atTime, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
-
+            time_jog(cur, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
             if (ans.empty())
             {
                 fout << "none" << tata;
@@ -524,7 +486,7 @@ int main(int argc, char *argv[])
             auto st = chrono::steady_clock::now();
             Node *ans = nextNode(t);
             auto en = chrono::steady_clock::now();
-            time_jog(nextTime, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
+            time_jog(nxt, chrono::duration_cast<chrono::nanoseconds>(en - st).count());
             if (ans == nullptr)
             {
                 fout << "none" << tata;
@@ -536,13 +498,13 @@ int main(int argc, char *argv[])
         }
     }
     cout << "operation,count,total_ns,average_ns" << tata;
-    time_print("add", addTime);
-    time_print("remove", removeTime);
-    time_print("update", updateTime);
-    time_print("conflict", conflictTime);
-    time_print("overlaps", overlapsTime);
-    time_print("at", atTime);
-    time_print("next", nextTime);
+    time_print("add", add);
+    time_print("remove", remv);
+    time_print("update", upd);
+    time_print("conflict", cnflt);
+    time_print("overlaps", ovlp);
+    time_print("at", cur);
+    time_print("next", nxt);
     Tree_mucho(root);
     return 0;
 }

@@ -23,7 +23,7 @@ struct Node
 
 Node *root = nullptr;
 
-ll getHeight(Node *node)
+ll Height_dekhao(Node *node)
 {
     if (node == nullptr)
     {
@@ -38,7 +38,7 @@ void updateHeight(Node *node)
     {
         return;
     }
-    node->h = 1 + max(getHeight(node->l), getHeight(node->r));
+    node->h = 1 + max(Height_dekhao(node->l), Height_dekhao(node->r));
 }
 
 ll Balance_dekhao(Node *node)
@@ -47,164 +47,138 @@ ll Balance_dekhao(Node *node)
     {
         return 0;
     }
-    return getHeight(node->l) - getHeight(node->r);
+    return Height_dekhao(node->l) - Height_dekhao(node->r);
 }
 
 Node *rotateLeft(Node *node)
 {
-    Node *rightChild = node->r;
-    Node *majherSubtree = rightChild->l;
-
-    rightChild->l = node;
+    Node *r_child = node->r;
+    Node *majherSubtree = r_child->l;
+    r_child->l = node;
     node->r = majherSubtree;
-
-    // First update the lower node, then the new root.
     updateHeight(node);
-    updateHeight(rightChild);
-
-    return rightChild;
+    updateHeight(r_child);
+    return r_child;
 }
 
 Node *rotateRight(Node *node)
 {
-    Node *leftChild = node->l;
-    Node *majherSubtree = leftChild->r;
-
-    leftChild->r = node;
-    node->l = majherSubtree;
-
-    // First update the lower node, then the new root.
+    Node *l_child = node->l;
+    Node *majher_Subtree = l_child->r;
+    l_child->r = node;
+    node->l = majher_Subtree;
     updateHeight(node);
-    updateHeight(leftChild);
-
-    return leftChild;
+    updateHeight(l_child);
+    return l_child;
 }
 
-Node *rebalance(Node *node)
+Node *re_balance(Node *node)
 {
     if (node == nullptr)
     {
         return nullptr;
     }
-
     updateHeight(node);
     ll balance = Balance_dekhao(node);
-
-    // Left-heavy subtree: LL or LR case.
     if (balance > 1)
     {
         if (Balance_dekhao(node->l) < 0)
         {
-            node->l = rotateLeft(node->l); // LR: first left rotation
+            node->l = rotateLeft(node->l);
         }
-        return rotateRight(node); // LL: right rotation
+        return rotateRight(node);
     }
-
-    // Right-heavy subtree: RR or RL case.
     if (balance < -1)
     {
         if (Balance_dekhao(node->r) > 0)
         {
-            node->r = rotateRight(node->r); // RL: first right rotation
+            node->r = rotateRight(node->r);
         }
-        return rotateLeft(node); // RR: left rotation
+        return rotateLeft(node);
     }
-
     return node;
 }
 
-Node *insert_Node(Node *node, ll key, bool &inserted)
+Node *node_insert(Node *node, ll k, bool &x)
 {
     if (node == nullptr)
     {
-        inserted = true;
-        return new Node(key);
+        x = true;
+        return new Node(k);
     }
-
-    if (key < node->key)
+    if (k < node->key)
     {
-        node->l = insert_Node(node->l, key, inserted);
+        node->l = node_insert(node->l, k, x);
     }
-    else if (key > node->key)
+    else if (k > node->key)
     {
-        node->r = insert_Node(node->r, key, inserted);
+        node->r = node_insert(node->r, k, x);
     }
     else
     {
-        inserted = false;
+        x = false;
         return node;
     }
-
-    return rebalance(node);
+    return re_balance(node);
 }
 
 Node *min_Node(Node *node)
 {
-    Node *current = node;
-    while (current->l != nullptr)
+    Node *cur = node;
+    while (cur->l != nullptr)
     {
-        current = current->l;
+        cur = cur->l;
     }
-    return current;
+    return cur;
 }
 
-Node *Node_sorao(Node *node, ll key, bool &erased)
+Node *Node_sorao(Node *node, ll k, bool &y)
 {
     if (node == nullptr)
     {
         return nullptr;
     }
-
-    if (key < node->key)
+    if (k < node->key)
     {
-        node->l = Node_sorao(node->l, key, erased);
+        node->l = Node_sorao(node->l, k, y);
     }
-    else if (key > node->key)
+    else if (k > node->key)
     {
-        node->r = Node_sorao(node->r, key, erased);
+        node->r = Node_sorao(node->r, k, y);
     }
     else
     {
-        erased = true;
-
-        // No left child: the right child takes this node's place.
+        y = true;
         if (node->l == nullptr)
         {
-            Node *temp = node->r;
+            Node *t = node->r;
             delete node;
-            return temp;
+            return t;
         }
-
-        // No right child: the left child takes this node's place.
         if (node->r == nullptr)
         {
-            Node *temp = node->l;
+            Node *t = node->l;
             delete node;
-            return temp;
+            return t;
         }
-
-        // Two children: copy the inorder successor, then remove it.
-        Node *successor = min_Node(node->r);
-        node->key = successor->key;
-        bool dummy = false;
-        node->r = Node_sorao(node->r, successor->key, dummy);
+        Node *succ = min_Node(node->r);
+        node->key = succ->key;
+        bool d = false;
+        node->r = Node_sorao(node->r, succ->key, d);
     }
-
-    // Deletion can unbalance several ancestors, so rebalance every
-    // node while recursion returns toward the root.
-    return rebalance(node);
+    return re_balance(node);
 }
 
-bool key_khujo(ll key)
+bool key_khujo(ll k)
 {
     Node *current = root;
     while (current != nullptr)
     {
-        if (key == current->key)
+        if (k == current->key)
         {
             return true;
         }
-        if (key < current->key)
+        if (k < current->key)
         {
             current = current->l;
         }
@@ -216,15 +190,15 @@ bool key_khujo(ll key)
     return false;
 }
 
-void inorder(Node *node, vector<ll> &ans)
+void in_order(Node *node, vector<ll> &a)
 {
     if (node == nullptr)
     {
         return;
     }
-    inorder(node->l, ans);
-    ans.pb(node->key);
-    inorder(node->r, ans);
+    in_order(node->l, a);
+    a.pb(node->key);
+    in_order(node->r, a);
 }
 
 string serialize(Node *node)
@@ -233,20 +207,16 @@ string serialize(Node *node)
     {
         return "";
     }
-
-    string ans = to_string(node->key);
-
-    // Parentheses are printed only for a non-leaf node. Both child
-    // positions are kept, even if one of them is empty.
+    string s = to_string(node->key);
     if (node->l != nullptr || node->r != nullptr)
     {
-        ans += "(";
-        ans += serialize(node->l);
-        ans += ",";
-        ans += serialize(node->r);
-        ans += ")";
+        s += "(";
+        s += serialize(node->l);
+        s += ",";
+        s += serialize(node->r);
+        s += ")";
     }
-    return ans;
+    return s;
 }
 
 void Tree_mucho(Node *node)
@@ -260,27 +230,27 @@ void Tree_mucho(Node *node)
     delete node;
 }
 
-struct TimingData
+struct T_data
 {
-    ll count = 0, total_ns = 0;
+    ll c = 0, t_ns = 0;
 };
 
-void time_jog(TimingData &x, ll ns)
+void time_jog(T_data &x, ll ns)
 {
-    x.count++;
-    x.total_ns += ns;
+    x.c++;
+    x.t_ns += ns;
 }
 
-void time_print(string operation, TimingData x)
+void time_print(string op, T_data x)
 {
-    cout << operation << "," << x.count << "," << x.total_ns << ",";
-    if (x.count == 0)
+    cout << op << "," << x.c << "," << x.t_ns << ",";
+    if (x.c == 0)
     {
         cout << "N/A";
     }
     else
     {
-        cout << x.total_ns / x.count;
+        cout << x.t_ns / x.c;
     }
     cout << tata;
 }
@@ -300,7 +270,7 @@ int main(int argc, char *argv[])
         cerr << "File open error" << tata;
         return 1;
     }
-    TimingData insertTime, deleteTime, findTime, traverseTime;
+    T_data ins, del, find, trav;
     char c;
     while (fin >> c)
     {
@@ -310,9 +280,9 @@ int main(int argc, char *argv[])
             fin >> x;
             bool x1 = false;
             auto a = chrono::steady_clock::now();
-            root = insert_Node(root, x, x1);
+            root = node_insert(root, x, x1);
             auto b = chrono::steady_clock::now();
-            time_jog(insertTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(ins, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!x1)
             {
                 fout << "duplicate" << tata;
@@ -330,7 +300,7 @@ int main(int argc, char *argv[])
             auto a = chrono::steady_clock::now();
             root = Node_sorao(root, x, e);
             auto b = chrono::steady_clock::now();
-            time_jog(deleteTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(del, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (!e)
             {
                 fout << "not found" << tata;
@@ -347,7 +317,7 @@ int main(int argc, char *argv[])
             auto a = chrono::steady_clock::now();
             bool x1 = key_khujo(x);
             auto b = chrono::steady_clock::now();
-            time_jog(findTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(find, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             if (x1)
             {
                 fout << "found" << tata;
@@ -361,9 +331,9 @@ int main(int argc, char *argv[])
         {
             vector<ll> v;
             auto a = chrono::steady_clock::now();
-            inorder(root, v);
+            in_order(root, v);
             auto b = chrono::steady_clock::now();
-            time_jog(traverseTime, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
+            time_jog(trav, chrono::duration_cast<chrono::nanoseconds>(b - a).count());
             loop(i, 0, v.size())
             {
                 if (i)
@@ -376,10 +346,10 @@ int main(int argc, char *argv[])
         }
     }
     cout << "operation,count,total_ns,average_ns" << tata;
-    time_print("insert", insertTime);
-    time_print("delete", deleteTime);
-    time_print("find", findTime);
-    time_print("traverse", traverseTime);
+    time_print("insert", ins);
+    time_print("delete", del);
+    time_print("find", find);
+    time_print("traverse", trav);
     Tree_mucho(root);
     return 0;
 }
