@@ -60,7 +60,7 @@ private:
     };
     vector<list<pair<Key, Value>>> chain;
     vector<Slot> table;
-    ll tableSize = size;
+    ll tableSize = ::size;
     ll elements = 0;
     ll collisions = 0;
     ll insertedAfterExpansion = 0;
@@ -207,11 +207,11 @@ private:
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-        if (tableSize != size &&
+        if (tableSize != ::size &&
             (double)elements / tableSize < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(size, previousPrime(tableSize / 2));
+            ll newSize = max(::size, previousPrime(tableSize / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -359,7 +359,7 @@ public:
     }
 };
 
-vector<string> generateWords(ll total, ll length)
+vector<string> Word_banao(ll total, ll length)
 {
     const string letters = "abcdefghijklmnopqrstuvwxyz";
     mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -384,7 +384,7 @@ vector<string> generateWords(ll total, ll length)
 struct Result
 {
     ll collisions;
-    double averageHits;
+    double avg_hit;
 };
 
 Result runExperiment(int method, int hashNumber, const vector<string> &words, const vector<ll> &sample)
@@ -407,7 +407,7 @@ Result runExperiment(int method, int hashNumber, const vector<string> &words, co
     return {hashTable.collisionCount(), (double)totalHits / sample.size()};
 }
 
-void printReport(Result ans[3][2])
+void dekhao(Result ans[3][2])
 {
     vector<string> s = {"Chaining Method", "Double Hashing", "Custom Probing"};
     cout << left << setw(20) << "Method"
@@ -420,9 +420,9 @@ void printReport(Result ans[3][2])
     {
         cout << setw(20) << s[i]
              << setw(18) << ans[i][0].collisions
-             << setw(15) << ans[i][0].averageHits
+             << setw(15) << ans[i][0].avg_hit
              << setw(18) << ans[i][1].collisions
-             << ans[i][1].averageHits << tata;
+             << ans[i][1].avg_hit << tata;
     }
 }
 
@@ -430,8 +430,8 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    const ll TOTAL_WORDS = 10000;
-    const ll TOTAL_SEARCHES = 1000;
+    const ll w = 10000;
+    const ll search = 1000;
     ll l;
     cin >> l; // Enter 10 for the required report.
     if (l < 3)
@@ -439,11 +439,11 @@ int main()
         cout << "Length must be at least 3 for 10000 unique words." << tata;
         return 0;
     }
-    vector<string> words = generateWords(TOTAL_WORDS, l);
-    vector<ll> indices(TOTAL_WORDS);
-    iota(indices.begin(), indices.end(), 0);
-    shuffle(indices.begin(), indices.end(), mt19937(random_device{}()));
-    vector<ll> sample(indices.begin(), indices.begin() + TOTAL_SEARCHES);
+    vector<string> words = Word_banao(w, l);
+    vector<ll> id(w);
+    iota(id.begin(), id.end(), 0);
+    shuffle(id.begin(), id.end(), mt19937(random_device{}()));
+    vector<ll> sample(id.begin(), id.begin() + search);
     Result ans[3][2];
     loop(method, 0, 3)
     {
@@ -452,6 +452,6 @@ int main()
             ans[method][hashNumber - 1] = runExperiment(method, hashNumber, words, sample);
         }
     }
-    printReport(ans);
+    dekhao(ans);
     return 0;
 }
