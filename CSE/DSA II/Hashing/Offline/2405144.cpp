@@ -5,6 +5,7 @@ using namespace std;
 #define tata "\n"
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 using ull = unsigned long long;
+using uc = unsigned char;
 const ll INITIAL_SIZE = 13;
 const double MAX_LOAD = 0.50;
 const double MIN_LOAD = 0.25;
@@ -24,7 +25,7 @@ bool isPrime(ll n)
     }
     return true;
 }
-ll nextPrime(ll n)
+ll porer_prime(ll n)
 {
     n++;
     while (!isPrime(n))
@@ -33,7 +34,7 @@ ll nextPrime(ll n)
     }
     return n;
 }
-ll previousPrime(ll n)
+ll ager_prime(ll n)
 {
     n--;
     while (!isPrime(n))
@@ -43,41 +44,41 @@ ll previousPrime(ll n)
     return n;
 }
 template <typename Key>
-string keyToString(const Key &key)
+string key_theke_string(const Key &key)
 {
     stringstream ss;
     ss << key;
     return ss.str();
 }
 // Two standard hash functions: DJB2 and SDBM.
-ull hash1(const string &s)
+ull h1(const string &s)
 {
     ull h = 5381;
-    for (unsigned char c : s)
+    for (uc c : s)
     {
         h = h * 33 + c;
     }
     return h;
 }
-ull hash2(const string &s)
+ull h2(const string &s)
 {
     ull h = 0;
-    for (unsigned char c : s)
+    for (uc c : s)
     {
         h = c + (h << 6) + (h << 16) - h;
     }
     return h;
 }
 template <typename Key>
-ll primaryHash(const Key &key, int hashNumber, ll tableSize)
+ll primaryHash(const Key &key, int hash_Num, ll tableSize)
 {
-    string s = keyToString(key);
-    return (hashNumber == 1 ? hash1(s) : hash2(s)) % tableSize;
+    string s = key_theke_string(key);
+    return (hash_Num == 1 ? h1(s) : h2(s)) % tableSize;
 }
 ull auxHash(const string &s, ll tableSize)
 {
     ull h = 0;
-    for (unsigned char c : s)
+    for (uc c : s)
     {
         h = h * 37 + c;
     }
@@ -127,7 +128,7 @@ private:
         if ((double)elements / tableSize > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(nextPrime(2 * tableSize));
+            rehash(porer_prime(2 * tableSize));
             insertedAfterExpansion = 0;
         }
     }
@@ -138,7 +139,7 @@ private:
             (double)elements / tableSize < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, previousPrime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -222,7 +223,7 @@ private:
     ll probe(const Key &key, ll i) const
     {
         ull h = primaryHash(key, hashNumber, tableSize);
-        ull step = auxHash(keyToString(key), tableSize);
+        ull step = auxHash(key_theke_string(key), tableSize);
         return (h + i * step) % tableSize;
     }
     void makeTable()
@@ -268,7 +269,7 @@ private:
         if ((double)elements / tableSize > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(nextPrime(2 * tableSize));
+            rehash(porer_prime(2 * tableSize));
             insertedAfterExpansion = 0;
         }
     }
@@ -279,11 +280,12 @@ private:
             (double)elements / tableSize < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, previousPrime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
     }
+
 public:
     DoubleHashTable(int selectedHash)
     {
@@ -401,7 +403,7 @@ private:
     ll probe(const Key &key, ll i) const
     {
         ull h = primaryHash(key, hashNumber, tableSize);
-        ull step = auxHash(keyToString(key), tableSize);
+        ull step = auxHash(key_theke_string(key), tableSize);
         return (h + C1 * i * step + C2 * i * i) % tableSize;
     }
     void makeTable()
@@ -446,7 +448,7 @@ private:
         if ((double)elements / tableSize > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(nextPrime(2 * tableSize));
+            rehash(porer_prime(2 * tableSize));
             insertedAfterExpansion = 0;
         }
     }
@@ -457,7 +459,7 @@ private:
             (double)elements / tableSize < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, previousPrime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
