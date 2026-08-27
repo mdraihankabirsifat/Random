@@ -6,7 +6,7 @@ using namespace std;
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 using ull = unsigned long long;
 using uc = unsigned char;
-const ll INITIAL_SIZE = 13;
+const ll size = 13;
 const double MAX_LOAD = 0.50;
 const double MIN_LOAD = 0.25;
 const ll C1 = 1, C2 = 1;
@@ -93,7 +93,7 @@ class ChainingHashTable
 {
 private:
     vector<list<pair<Key, Value>>> tb;
-    ll sz = INITIAL_SIZE, elmnt = 0, cols = 0, insertedAfterExpansion = 0, deletedAfterCompaction = 0;
+    ll sz = size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
     int hashNumber;
     ll getIndex(const Key &key) const
     {
@@ -105,39 +105,39 @@ private:
         vector<pair<Key, Value>> items;
         for (auto &b : tb)
         {
-            for (auto &item : b)
+            for (auto &i : b)
             {
-                items.pb(item);
+                items.pb(i);
             }
         }
         sz = news;
         tb.clear();
         tb.resize(sz);
-        for (auto &item : items)
+        for (auto &i : items)
         {
-            tb[getIndex(item.first)].push_back(item);
+            tb[getIndex(i.first)].push_back(i);
         }
     }
     void checkExpansion()
     {
         ll need = (elmnt + 1) / 2;
         if ((double)elmnt / sz > MAX_LOAD &&
-            insertedAfterExpansion >= need)
+            ins_exp >= need)
         {
             rehash(porer_prime(2 * sz));
-            insertedAfterExpansion = 0;
+            ins_exp = 0;
         }
     }
     void checkCompaction()
     {
         ll need = (elmnt + 1) / 2;
-        if (sz != INITIAL_SIZE &&
+        if (sz != size &&
             (double)elmnt / sz < MIN_LOAD &&
-            deletedAfterCompaction >= need)
+            del_com >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
+            ll newSize = max(size, ager_prime(sz / 2));
             rehash(newSize);
-            deletedAfterCompaction = 0;
+            del_com = 0;
         }
     }
 
@@ -162,7 +162,7 @@ public:
         cols += tb[index].size();
         tb[index].push_back({key, value});
         elmnt++;
-        insertedAfterExpansion++;
+        ins_exp++;
         checkExpansion();
         return true;
     }
@@ -189,7 +189,7 @@ public:
             {
                 tb[index].erase(it);
                 elmnt--;
-                deletedAfterCompaction++;
+                del_com++;
                 checkCompaction();
                 return true;
             }
@@ -210,7 +210,7 @@ class DoubleHashTable
 private:
     vector<pair<Key, Value>> table;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll sz = INITIAL_SIZE;
+    ll sz = size;
     ll elements = 0;
     ll collisions = 0;
     ll insertedAfterExpansion = 0;
@@ -272,11 +272,11 @@ private:
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-        if (sz != INITIAL_SIZE &&
+        if (sz != size &&
             (double)elements / sz < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
+            ll newSize = max(size, ager_prime(sz / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -390,7 +390,7 @@ class CustomHashTable
 private:
     vector<pair<Key, Value>> table;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll sz = INITIAL_SIZE;
+    ll sz = size;
     ll elements = 0;
     ll collisions = 0;
     ll insertedAfterExpansion = 0;
@@ -451,11 +451,11 @@ private:
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-        if (sz != INITIAL_SIZE &&
+        if (sz != size &&
             (double)elements / sz < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
+            ll newSize = max(size, ager_prime(sz / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
