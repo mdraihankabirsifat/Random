@@ -93,7 +93,7 @@ class ChainingHashTable
 {
 private:
     vector<list<pair<Key, Value>>> tb;
-    ll sz = size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
+    ll sz = ::size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
     int hashNumber;
     ll getIndex(const Key &key) const
     {
@@ -118,7 +118,7 @@ private:
             tb[getIndex(i.first)].push_back(i);
         }
     }
-    void checkExpansion()
+    void Exp_chk()
     {
         ll need = (elmnt + 1) / 2;
         if ((double)elmnt / sz > MAX_LOAD &&
@@ -128,14 +128,14 @@ private:
             ins_exp = 0;
         }
     }
-    void checkCompaction()
+    void com_chk()
     {
         ll need = (elmnt + 1) / 2;
-        if (sz != size &&
+        if (sz != ::size &&
             (double)elmnt / sz < MIN_LOAD &&
             del_com >= need)
         {
-            ll newSize = max(size, ager_prime(sz / 2));
+            ll newSize = max(::size, ager_prime(sz / 2));
             rehash(newSize);
             del_com = 0;
         }
@@ -163,10 +163,10 @@ public:
         tb[index].push_back({key, value});
         elmnt++;
         ins_exp++;
-        checkExpansion();
+        Exp_chk();
         return true;
     }
-    bool search(const Key &key, Value &value, ll &hits) const
+    bool search(const Key &key, Value &x, ll &hits) const
     {
         hits = 0;
         for (auto &item : tb[getIndex(key)])
@@ -174,7 +174,7 @@ public:
             hits++;
             if (item.first == key)
             {
-                value = item.second;
+                x = item.second;
                 return true;
             }
         }
@@ -190,13 +190,13 @@ public:
                 tb[index].erase(it);
                 elmnt--;
                 del_com++;
-                checkCompaction();
+                com_chk();
                 return true;
             }
         }
         return false;
     }
-    ll collisionCount() const
+    ll cols_count() const
     {
         return cols;
     }
@@ -208,13 +208,9 @@ template <typename Key, typename Value>
 class DoubleHashTable
 {
 private:
-    vector<pair<Key, Value>> table;
+    vector<pair<Key, Value>> tb;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll sz = size;
-    ll elements = 0;
-    ll collisions = 0;
-    ll insertedAfterExpansion = 0;
-    ll deletedAfterCompaction = 0;
+    ll sz = ::size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
     int hashNumber;
     ll probe(const Key &key, ll i) const
     {
@@ -222,10 +218,10 @@ private:
         ull step = aux_Hash(key_theke_string(key), sz);
         return (h + i * step) % sz;
     }
-    void makeTable()
+    void table_banao()
     {
-        table.clear();
-        table.resize(sz);
+        tb.clear();
+        tb.resize(sz);
         state.assign(sz, 0);
     }
     void place(const Key &key, const Value &value)
@@ -235,7 +231,7 @@ private:
             ll index = probe(key, i);
             if (state[index] != 1)
             {
-                table[index] = {key, value};
+                tb[index] = {key, value};
                 state[index] = 1;
                 return;
             }
@@ -249,36 +245,36 @@ private:
         {
             if (state[i] == 1)
             {
-                items.pb(table[i]);
+                items.pb(tb[i]);
             }
         }
         sz = newSize;
-        makeTable();
+        table_banao();
         for (auto &item : items)
         {
             place(item.first, item.second);
         }
     }
-    void checkExpansion()
+    void Exp_chk()
     {
-        ll need = (elements + 1) / 2;
-        if ((double)elements / sz > MAX_LOAD &&
-            insertedAfterExpansion >= need)
+        ll need = (elmnt + 1) / 2;
+        if ((double)elmnt / sz > MAX_LOAD &&
+            ins_exp >= need)
         {
             rehash(porer_prime(2 * sz));
-            insertedAfterExpansion = 0;
+            ins_exp = 0;
         }
     }
-    void checkCompaction()
+    void com_chk()
     {
-        ll need = (elements + 1) / 2;
-        if (sz != size &&
-            (double)elements / sz < MIN_LOAD &&
-            deletedAfterCompaction >= need)
+        ll need = (elmnt + 1) / 2;
+        if (sz != ::size &&
+            (double)elmnt / sz < MIN_LOAD &&
+            del_com >= need)
         {
-            ll newSize = max(size, ager_prime(sz / 2));
+            ll newSize = max(::size, ager_prime(sz / 2));
             rehash(newSize);
-            deletedAfterCompaction = 0;
+            del_com = 0;
         }
     }
 
@@ -286,7 +282,7 @@ public:
     DoubleHashTable(int selectedHash)
     {
         hashNumber = selectedHash;
-        makeTable();
+        table_banao();
     }
     bool insert(const Key &key, const Value &value)
     {
@@ -296,12 +292,12 @@ public:
             ll index = probe(key, i);
             if (state[index] == 1)
             {
-                if (table[index].first == key)
+                if (tb[index].first == key)
                 {
-                    table[index].second = value;
+                    tb[index].second = value;
                     return false;
                 }
-                collisions++;
+                cols++;
             }
             else if (state[index] == 2)
             {
@@ -316,22 +312,22 @@ public:
                 {
                     index = deletedIndex;
                 }
-                table[index] = {key, value};
+                tb[index] = {key, value};
                 state[index] = 1;
-                elements++;
-                insertedAfterExpansion++;
-                checkExpansion();
+                elmnt++;
+                ins_exp++;
+                Exp_chk();
                 return true;
             }
         }
         // This is used only when the probe saw a tombstone but no empty slot.
         if (deletedIndex != -1)
         {
-            table[deletedIndex] = {key, value};
+            tb[deletedIndex] = {key, value};
             state[deletedIndex] = 1;
-            elements++;
-            insertedAfterExpansion++;
-            checkExpansion();
+            elmnt++;
+            ins_exp++;
+            Exp_chk();
             return true;
         }
         return false;
@@ -347,9 +343,9 @@ public:
             {
                 return false;
             }
-            if (state[index] == 1 && table[index].first == key)
+            if (state[index] == 1 && tb[index].first == key)
             {
-                value = table[index].second;
+                value = tb[index].second;
                 return true;
             }
         }
@@ -364,21 +360,21 @@ public:
             {
                 return false;
             }
-            if (state[index] == 1 && table[index].first == key)
+            if (state[index] == 1 && tb[index].first == key)
             {
                 // A tombstone keeps the probe path valid for later searches.
                 state[index] = 2;
-                elements--;
-                deletedAfterCompaction++;
-                checkCompaction();
+                elmnt--;
+                del_com++;
+                com_chk();
                 return true;
             }
         }
         return false;
     }
-    ll collisionCount() const
+    ll cols_count() const
     {
-        return collisions;
+        return cols;
     }
 };
 // ------------------------------------------------------------
@@ -388,13 +384,13 @@ template <typename Key, typename Value>
 class CustomHashTable
 {
 private:
-    vector<pair<Key, Value>> table;
+    vector<pair<Key, Value>> tb;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll sz = size;
-    ll elements = 0;
-    ll collisions = 0;
-    ll insertedAfterExpansion = 0;
-    ll deletedAfterCompaction = 0;
+    ll sz = ::size;
+    ll elmnt = 0;
+    ll cols = 0;
+    ll ins_exp = 0;
+    ll del_com = 0;
     int hashNumber;
     ll probe(const Key &key, ll i) const
     {
@@ -402,10 +398,10 @@ private:
         ull step = aux_Hash(key_theke_string(key), sz);
         return (h + C1 * i * step + C2 * i * i) % sz;
     }
-    void makeTable()
+    void table_banao()
     {
-        table.clear();
-        table.resize(sz);
+        tb.clear();
+        tb.resize(sz);
         state.assign(sz, 0);
     }
     void place(const Key &key, const Value &value)
@@ -415,7 +411,7 @@ private:
             ll index = probe(key, i);
             if (state[index] != 1)
             {
-                table[index] = {key, value};
+                tb[index] = {key, value};
                 state[index] = 1;
                 return;
             }
@@ -428,36 +424,36 @@ private:
         {
             if (state[i] == 1)
             {
-                items.pb(table[i]);
+                items.pb(tb[i]);
             }
         }
         sz = newSize;
-        makeTable();
+        table_banao();
         for (auto &item : items)
         {
             place(item.first, item.second);
         }
     }
-    void checkExpansion()
+    void Exp_chk()
     {
-        ll need = (elements + 1) / 2;
-        if ((double)elements / sz > MAX_LOAD &&
-            insertedAfterExpansion >= need)
+        ll need = (elmnt + 1) / 2;
+        if ((double)elmnt / sz > MAX_LOAD &&
+            ins_exp >= need)
         {
             rehash(porer_prime(2 * sz));
-            insertedAfterExpansion = 0;
+            ins_exp = 0;
         }
     }
-    void checkCompaction()
+    void com_chk()
     {
-        ll need = (elements + 1) / 2;
-        if (sz != size &&
-            (double)elements / sz < MIN_LOAD &&
-            deletedAfterCompaction >= need)
+        ll need = (elmnt + 1) / 2;
+        if (sz != ::size &&
+            (double)elmnt / sz < MIN_LOAD &&
+            del_com >= need)
         {
-            ll newSize = max(size, ager_prime(sz / 2));
+            ll newSize = max(::size, ager_prime(sz / 2));
             rehash(newSize);
-            deletedAfterCompaction = 0;
+            del_com = 0;
         }
     }
 
@@ -465,7 +461,7 @@ public:
     CustomHashTable(int selectedHash)
     {
         hashNumber = selectedHash;
-        makeTable();
+        table_banao();
     }
     bool insert(const Key &key, const Value &value)
     {
@@ -475,12 +471,12 @@ public:
             ll index = probe(key, i);
             if (state[index] == 1)
             {
-                if (table[index].first == key)
+                if (tb[index].first == key)
                 {
-                    table[index].second = value;
+                    tb[index].second = value;
                     return false;
                 }
-                collisions++;
+                cols++;
             }
             else if (state[index] == 2)
             {
@@ -495,21 +491,21 @@ public:
                 {
                     index = deletedIndex;
                 }
-                table[index] = {key, value};
+                tb[index] = {key, value};
                 state[index] = 1;
-                elements++;
-                insertedAfterExpansion++;
-                checkExpansion();
+                elmnt++;
+                ins_exp++;
+                Exp_chk();
                 return true;
             }
         }
         if (deletedIndex != -1)
         {
-            table[deletedIndex] = {key, value};
+            tb[deletedIndex] = {key, value};
             state[deletedIndex] = 1;
-            elements++;
-            insertedAfterExpansion++;
-            checkExpansion();
+            elmnt++;
+            ins_exp++;
+            Exp_chk();
             return true;
         }
         return false;
@@ -525,9 +521,9 @@ public:
             {
                 return false;
             }
-            if (state[index] == 1 && table[index].first == key)
+            if (state[index] == 1 && tb[index].first == key)
             {
-                value = table[index].second;
+                value = tb[index].second;
                 return true;
             }
         }
@@ -542,20 +538,20 @@ public:
             {
                 return false;
             }
-            if (state[index] == 1 && table[index].first == key)
+            if (state[index] == 1 && tb[index].first == key)
             {
                 state[index] = 2;
-                elements--;
-                deletedAfterCompaction++;
-                checkCompaction();
+                elmnt--;
+                del_com++;
+                com_chk();
                 return true;
             }
         }
         return false;
     }
-    ll collisionCount() const
+    ll cols_count() const
     {
-        return collisions;
+        return cols;
     }
 };
 vector<string> Word_banao(ll total, ll length)
@@ -597,7 +593,7 @@ Result Exp_chalao(int hashNumber, const vector<string> &words, const vector<ll> 
         hashTable.search(words[index], value, hits);
         totalHits += hits;
     }
-    return {hashTable.collisionCount(), (double)totalHits / sample.size()};
+    return {hashTable.cols_count(), (double)totalHits / sample.size()};
 }
 void dekhao(Result ans[3][2])
 {
