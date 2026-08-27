@@ -70,12 +70,12 @@ ull h2(const string &s)
     return h;
 }
 template <typename Key>
-ll primaryHash(const Key &key, int hash_Num, ll tableSize)
+ll pri_hash(const Key &key, int hash_Num, ll sz)
 {
     string s = key_theke_string(key);
-    return (hash_Num == 1 ? h1(s) : h2(s)) % tableSize;
+    return (hash_Num == 1 ? h1(s) : h2(s)) % sz;
 }
-ull auxHash(const string &s, ll tableSize)
+ull aux_Hash(const string &s, ll sz)
 {
     ull h = 0;
     for (uc c : s)
@@ -83,7 +83,7 @@ ull auxHash(const string &s, ll tableSize)
         h = h * 37 + c;
     }
     // For a prime table size, every value from 1 to N-1 is coprime with N.
-    return 1 + h % (tableSize - 1);
+    return 1 + h % (sz - 1);
 }
 // ------------------------------------------------------------
 // 1. Separate Chaining
@@ -92,54 +92,50 @@ template <typename Key, typename Value>
 class ChainingHashTable
 {
 private:
-    vector<list<pair<Key, Value>>> table;
-    ll tableSize = INITIAL_SIZE;
-    ll elements = 0;
-    ll collisions = 0;
-    ll insertedAfterExpansion = 0;
-    ll deletedAfterCompaction = 0;
+    vector<list<pair<Key, Value>>> tb;
+    ll sz = INITIAL_SIZE, elmnt = 0, cols = 0, insertedAfterExpansion = 0, deletedAfterCompaction = 0;
     int hashNumber;
     ll getIndex(const Key &key) const
     {
-        return primaryHash(key, hashNumber, tableSize);
+        return pri_hash(key, hashNumber, sz);
     }
     // Rehashing moves old items without counting new collisions.
     void rehash(ll newSize)
     {
         vector<pair<Key, Value>> items;
-        for (auto &bucket : table)
+        for (auto &b : tb)
         {
-            for (auto &item : bucket)
+            for (auto &item : b)
             {
                 items.pb(item);
             }
         }
-        tableSize = newSize;
-        table.clear();
-        table.resize(tableSize);
+        sz = newSize;
+        tb.clear();
+        tb.resize(sz);
         for (auto &item : items)
         {
-            table[getIndex(item.first)].push_back(item);
+            tb[getIndex(item.first)].push_back(item);
         }
     }
     void checkExpansion()
     {
-        ll need = (elements + 1) / 2;
-        if ((double)elements / tableSize > MAX_LOAD &&
+        ll need = (elmnt + 1) / 2;
+        if ((double)elmnt / sz > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(porer_prime(2 * tableSize));
+            rehash(porer_prime(2 * sz));
             insertedAfterExpansion = 0;
         }
     }
     void checkCompaction()
     {
-        ll need = (elements + 1) / 2;
-        if (tableSize != INITIAL_SIZE &&
-            (double)elements / tableSize < MIN_LOAD &&
+        ll need = (elmnt + 1) / 2;
+        if (sz != INITIAL_SIZE &&
+            (double)elmnt / sz < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -149,12 +145,12 @@ public:
     ChainingHashTable(int selectedHash)
     {
         hashNumber = selectedHash;
-        table.resize(tableSize);
+        tb.resize(sz);
     }
     bool insert(const Key &key, const Value &value)
     {
         ll index = getIndex(key);
-        for (auto &item : table[index])
+        for (auto &item : tb[index])
         {
             if (item.first == key)
             {
@@ -163,9 +159,9 @@ public:
             }
         }
         // Every old item in this bucket collides with the new key.
-        collisions += table[index].size();
-        table[index].push_back({key, value});
-        elements++;
+        cols += tb[index].size();
+        tb[index].push_back({key, value});
+        elmnt++;
         insertedAfterExpansion++;
         checkExpansion();
         return true;
@@ -173,7 +169,7 @@ public:
     bool search(const Key &key, Value &value, ll &hits) const
     {
         hits = 0;
-        for (auto &item : table[getIndex(key)])
+        for (auto &item : tb[getIndex(key)])
         {
             hits++;
             if (item.first == key)
@@ -187,12 +183,12 @@ public:
     bool erase(const Key &key)
     {
         ll index = getIndex(key);
-        for (auto it = table[index].begin(); it != table[index].end(); it++)
+        for (auto it = tb[index].begin(); it != tb[index].end(); it++)
         {
             if (it->first == key)
             {
-                table[index].erase(it);
-                elements--;
+                tb[index].erase(it);
+                elmnt--;
                 deletedAfterCompaction++;
                 checkCompaction();
                 return true;
@@ -202,7 +198,7 @@ public:
     }
     ll collisionCount() const
     {
-        return collisions;
+        return cols;
     }
 };
 // ------------------------------------------------------------
@@ -214,7 +210,7 @@ class DoubleHashTable
 private:
     vector<pair<Key, Value>> table;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll tableSize = INITIAL_SIZE;
+    ll sz = INITIAL_SIZE;
     ll elements = 0;
     ll collisions = 0;
     ll insertedAfterExpansion = 0;
@@ -222,19 +218,19 @@ private:
     int hashNumber;
     ll probe(const Key &key, ll i) const
     {
-        ull h = primaryHash(key, hashNumber, tableSize);
-        ull step = auxHash(key_theke_string(key), tableSize);
-        return (h + i * step) % tableSize;
+        ull h = pri_hash(key, hashNumber, sz);
+        ull step = aux_Hash(key_theke_string(key), sz);
+        return (h + i * step) % sz;
     }
     void makeTable()
     {
         table.clear();
-        table.resize(tableSize);
-        state.assign(tableSize, 0);
+        table.resize(sz);
+        state.assign(sz, 0);
     }
     void place(const Key &key, const Value &value)
     {
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] != 1)
@@ -249,14 +245,14 @@ private:
     void rehash(ll newSize)
     {
         vector<pair<Key, Value>> items;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             if (state[i] == 1)
             {
                 items.pb(table[i]);
             }
         }
-        tableSize = newSize;
+        sz = newSize;
         makeTable();
         for (auto &item : items)
         {
@@ -266,21 +262,21 @@ private:
     void checkExpansion()
     {
         ll need = (elements + 1) / 2;
-        if ((double)elements / tableSize > MAX_LOAD &&
+        if ((double)elements / sz > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(porer_prime(2 * tableSize));
+            rehash(porer_prime(2 * sz));
             insertedAfterExpansion = 0;
         }
     }
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-        if (tableSize != INITIAL_SIZE &&
-            (double)elements / tableSize < MIN_LOAD &&
+        if (sz != INITIAL_SIZE &&
+            (double)elements / sz < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -295,7 +291,7 @@ public:
     bool insert(const Key &key, const Value &value)
     {
         ll deletedIndex = -1;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] == 1)
@@ -343,7 +339,7 @@ public:
     bool search(const Key &key, Value &value, ll &hits) const
     {
         hits = 0;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             hits++;
@@ -361,7 +357,7 @@ public:
     }
     bool erase(const Key &key)
     {
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] == 0)
@@ -394,7 +390,7 @@ class CustomHashTable
 private:
     vector<pair<Key, Value>> table;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
-    ll tableSize = INITIAL_SIZE;
+    ll sz = INITIAL_SIZE;
     ll elements = 0;
     ll collisions = 0;
     ll insertedAfterExpansion = 0;
@@ -402,19 +398,19 @@ private:
     int hashNumber;
     ll probe(const Key &key, ll i) const
     {
-        ull h = primaryHash(key, hashNumber, tableSize);
-        ull step = auxHash(key_theke_string(key), tableSize);
-        return (h + C1 * i * step + C2 * i * i) % tableSize;
+        ull h = pri_hash(key, hashNumber, sz);
+        ull step = aux_Hash(key_theke_string(key), sz);
+        return (h + C1 * i * step + C2 * i * i) % sz;
     }
     void makeTable()
     {
         table.clear();
-        table.resize(tableSize);
-        state.assign(tableSize, 0);
+        table.resize(sz);
+        state.assign(sz, 0);
     }
     void place(const Key &key, const Value &value)
     {
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] != 1)
@@ -428,14 +424,14 @@ private:
     void rehash(ll newSize)
     {
         vector<pair<Key, Value>> items;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             if (state[i] == 1)
             {
                 items.pb(table[i]);
             }
         }
-        tableSize = newSize;
+        sz = newSize;
         makeTable();
         for (auto &item : items)
         {
@@ -445,21 +441,21 @@ private:
     void checkExpansion()
     {
         ll need = (elements + 1) / 2;
-        if ((double)elements / tableSize > MAX_LOAD &&
+        if ((double)elements / sz > MAX_LOAD &&
             insertedAfterExpansion >= need)
         {
-            rehash(porer_prime(2 * tableSize));
+            rehash(porer_prime(2 * sz));
             insertedAfterExpansion = 0;
         }
     }
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-        if (tableSize != INITIAL_SIZE &&
-            (double)elements / tableSize < MIN_LOAD &&
+        if (sz != INITIAL_SIZE &&
+            (double)elements / sz < MIN_LOAD &&
             deletedAfterCompaction >= need)
         {
-            ll newSize = max(INITIAL_SIZE, ager_prime(tableSize / 2));
+            ll newSize = max(INITIAL_SIZE, ager_prime(sz / 2));
             rehash(newSize);
             deletedAfterCompaction = 0;
         }
@@ -474,7 +470,7 @@ public:
     bool insert(const Key &key, const Value &value)
     {
         ll deletedIndex = -1;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] == 1)
@@ -521,7 +517,7 @@ public:
     bool search(const Key &key, Value &value, ll &hits) const
     {
         hits = 0;
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             hits++;
@@ -539,7 +535,7 @@ public:
     }
     bool erase(const Key &key)
     {
-        loop(i, 0, tableSize)
+        loop(i, 0, sz)
         {
             ll index = probe(key, i);
             if (state[index] == 0)
