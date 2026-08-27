@@ -13,28 +13,38 @@ const ll C1 = 1, C2 = 1;
 bool isPrime(ll n)
 {
     if (n < 2)
+    {
         return false;
+    }
     if (n % 2 == 0)
+    {
         return n == 2;
-
+    }
     for (ll i = 3; i * i <= n; i += 2)
+    {
         if (n % i == 0)
+        {
             return false;
-
+        }
+    }
     return true;
 }
 
 ll nextPrime(ll n)
 {
     while (!isPrime(++n))
+    {
         ;
+    }
     return n;
 }
 
 ll previousPrime(ll n)
 {
     while (!isPrime(n))
+    {
         n--;
+    }
     return n;
 }
 
@@ -48,7 +58,6 @@ private:
         Value value;
         int state = 0; // 0 = empty, 1 = occupied, 2 = deleted
     };
-
     vector<list<pair<Key, Value>>> chain;
     vector<Slot> table;
     ll tableSize = size;
@@ -71,7 +80,9 @@ private:
     {
         ull h = 5381;
         for (unsigned char c : s)
+        {
             h = h * 33 + c;
+        }
         return h;
     }
 
@@ -79,7 +90,9 @@ private:
     {
         ull h = 0;
         for (unsigned char c : s)
+        {
             h = c + (h << 6) + (h << 16) - h;
+        }
         return h;
     }
 
@@ -87,7 +100,9 @@ private:
     {
         ull h = 0;
         for (unsigned char c : s)
+        {
             h = h * 37 + c;
+        }
         return 1 + h % (tableSize - 1);
     }
 
@@ -104,7 +119,9 @@ private:
         ull step = auxHash(text(key));
 
         if (method == 1)
+        {
             return (h + i * step) % tableSize;
+        }
 
         return (h + C1 * i * step + C2 * i * i) % tableSize;
     }
@@ -150,29 +167,37 @@ private:
         if (method == 0)
         {
             for (auto &bucket : chain)
+            {
                 for (auto &item : bucket)
+                {
                     items.pb(item);
+                }
+            }
         }
         else
         {
             for (auto &slot : table)
+            {
                 if (slot.state == 1)
+                {
                     items.pb({slot.key, slot.value});
+                }
+            }
         }
 
         tableSize = newSize;
         Table_banao();
 
         for (auto &item : items)
+        {
             place(item.first, item.second);
+        }
     }
 
     void checkExpansion()
     {
         ll need = (elements + 1) / 2;
-
-        if ((double)elements / tableSize > MAX_LOAD &&
-            insertedAfterExpansion >= need)
+        if ((double)elements / tableSize > MAX_LOAD && insertedAfterExpansion >= need)
         {
             rehash(nextPrime(2 * tableSize));
             insertedAfterExpansion = 0;
@@ -182,7 +207,6 @@ private:
     void checkCompaction()
     {
         ll need = (elements + 1) / 2;
-
         if (tableSize != size &&
             (double)elements / tableSize < MIN_LOAD &&
             deletedAfterCompaction >= need)
@@ -222,35 +246,36 @@ public:
         else
         {
             ll deletedIndex = -1;
-
             loop(i, 0, tableSize)
             {
-                ll index = probe(key, i);
-
-                if (table[index].state == 1)
+                ll idx = probe(key, i);
+                if (table[idx].state == 1)
                 {
-                    if (table[index].key == key)
+                    if (table[idx].key == key)
                     {
-                        table[index].value = value;
+                        table[idx].value = value;
                         return false;
                     }
                     collisions++;
                 }
-                else if (table[index].state == 2)
+                else if (table[idx].state == 2)
                 {
                     if (deletedIndex == -1)
-                        deletedIndex = index;
+                    {
+                        deletedIndex = idx;
+                    }
                 }
                 else
                 {
                     if (deletedIndex != -1)
-                        index = deletedIndex;
-                    table[index] = {key, value, 1};
+                    {
+                        idx = deletedIndex;
+                    }
+                    table[idx] = {key, value, 1};
                     break;
                 }
             }
         }
-
         elements++;
         insertedAfterExpansion++;
         checkExpansion();
@@ -260,7 +285,6 @@ public:
     bool search(const Key &key, Value &value, ll &hits) const
     {
         hits = 0;
-
         if (method == 0)
         {
             for (auto &item : chain[primaryHash(key)])
@@ -274,15 +298,14 @@ public:
             }
             return false;
         }
-
         loop(i, 0, tableSize)
         {
             ll index = probe(key, i);
             hits++;
-
             if (table[index].state == 0)
+            {
                 return false;
-
+            }
             if (table[index].state == 1 && table[index].key == key)
             {
                 value = table[index].value;
@@ -315,10 +338,10 @@ public:
         loop(i, 0, tableSize)
         {
             ll index = probe(key, i);
-
             if (table[index].state == 0)
+            {
                 return false;
-
+            }
             if (table[index].state == 1 && table[index].key == key)
             {
                 table[index].state = 2; // Tombstone keeps probe path valid.
@@ -330,7 +353,6 @@ public:
         }
         return false;
     }
-
     ll collisionCount() const
     {
         return collisions;
@@ -370,7 +392,9 @@ Result runExperiment(int method, int hashNumber, const vector<string> &words, co
     HashTable<string, ll> hashTable(method, hashNumber);
 
     loop(i, 0, (ll)words.size())
+    {
         hashTable.insert(words[i], i + 1);
+    }
 
     ll totalHits = 0, value;
     for (ll index : sample)
