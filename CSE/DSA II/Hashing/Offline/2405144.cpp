@@ -100,7 +100,7 @@ private:
         return pri_hash(key, hashNumber, sz);
     }
     // Rehashing moves old items without counting new collisions.
-    void rehash(ll newSize)
+    void rehash(ll news)
     {
         vector<pair<Key, Value>> items;
         for (auto &b : tb)
@@ -110,7 +110,7 @@ private:
                 items.pb(item);
             }
         }
-        sz = newSize;
+        sz = news;
         tb.clear();
         tb.resize(sz);
         for (auto &item : items)
