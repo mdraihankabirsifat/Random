@@ -121,8 +121,7 @@ private:
     void Exp_chk()
     {
         ll need = (elmnt + 1) / 2;
-        if ((double)elmnt / sz > MAX_LOAD &&
-            ins_exp >= need)
+        if ((double)elmnt / sz > MAX_LOAD && ins_exp >= need)
         {
             rehash(porer_prime(2 * sz));
             ins_exp = 0;
@@ -131,9 +130,7 @@ private:
     void com_chk()
     {
         ll need = (elmnt + 1) / 2;
-        if (sz != ::size &&
-            (double)elmnt / sz < MIN_LOAD &&
-            del_com >= need)
+        if (sz != ::size && (double)elmnt / sz < MIN_LOAD && del_com >= need)
         {
             ll newSize = max(::size, ager_prime(sz / 2));
             rehash(newSize);
@@ -554,21 +551,17 @@ public:
         return cols;
     }
 };
-vector<string> Word_banao(ll total, ll length)
+vector<string> Word_banao(ll total, ll l)
 {
-    const string letters = "abcdefghijklmnopqrstuvwxyz";
-    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-    uniform_int_distribution<int> randomLetter(0, 25);
     unordered_set<string> used;
     vector<string> words;
-    while ((ll)words.size() < total)
+    while (words.size() < total)
     {
-        string word;
-        loop(i, 0, length)
+        string word = "";
+        loop(i, 0, l)
         {
-            word += letters[randomLetter(rng)];
+            word += char('a' + rand() % 26);
         }
-        // unordered_set::insert returns false when the word is a duplicate.
         if (used.insert(word).second)
         {
             words.pb(word);
@@ -618,6 +611,7 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
+    srand(time(0));
     ll w = 10000, search = 1000, l;
     cin >> l; // Enter 10 for the assignment report.
     if (l < 3)
