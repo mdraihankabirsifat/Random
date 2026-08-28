@@ -547,16 +547,26 @@ public:
 };
 vector<string> Word_banao(ll total, ll l)
 {
-    unordered_set<string> used;
     vector<string> words;
-    while (words.size() < total)
+    while ((ll)words.size() < total)
     {
         string word = "";
         loop(i, 0, l)
         {
             word += char('a' + rand() % 26);
         }
-        if (used.insert(word).second)
+
+        bool duplicate = false;
+        for (auto &x : words)
+        {
+            if (x == word)
+            {
+                duplicate = true;
+                break;
+            }
+        }
+
+        if (!duplicate)
         {
             words.pb(word);
         }
@@ -606,17 +616,19 @@ int main()
     cin.tie(nullptr);
     srand(time(0));
     ll w = 10000, search = 1000, l;
-    cin >> l; // Enter 10 for the assignment report.
+    cin >> l;
     if (l < 3)
     {
         cout << "Length must be at least 3 for 10000 unique words." << tata;
         return 0;
     }
     vector<string> words = Word_banao(w, l);
-    // Shuffle indices, then use the first 1000 as successful search samples.
     vector<ll> id(w);
     iota(id.begin(), id.end(), 0);
-    shuffle(id.begin(), id.end(), mt19937(random_device{}()));
+    for (ll i = w - 1; i > 0; i--)
+    {
+        swap(id[i], id[rand() % (i + 1)]);
+    }
     vector<ll> sample(id.begin(), id.begin() + search);
     Result ans[3][2];
     loop(hashNumber, 1, 3)
