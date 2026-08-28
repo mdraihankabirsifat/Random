@@ -93,10 +93,10 @@ class ChainingHashTable
 private:
     vector<list<pair<Key, Value>>> tb;
     ll sz = ::size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
-    int hashNumber;
+    int hash_num;
     ll getIndex(const Key &key) const
     {
-        return pri_hash(key, hashNumber, sz);
+        return pri_hash(key, hash_num, sz);
     }
     void rehash(ll news)
     {
@@ -139,7 +139,7 @@ private:
 public:
     ChainingHashTable(int selectedHash)
     {
-        hashNumber = selectedHash;
+        hash_num = selectedHash;
         tb.resize(sz);
     }
     bool insert(const Key &key, const Value &value)
@@ -205,10 +205,10 @@ private:
     vector<pair<Key, Value>> tb;
     vector<int> state; // 0 = empty, 1 = occupied, 2 = deleted
     ll sz = ::size, elmnt = 0, cols = 0, ins_exp = 0, del_com = 0;
-    int hashNumber;
+    int hash_num;
     ll probe(const Key &key, ll i) const
     {
-        ull h = pri_hash(key, hashNumber, sz);
+        ull h = pri_hash(key, hash_num, sz);
         ull step = aux_Hash(key_theke_string(key), sz);
         return (h + i * step) % sz;
     }
@@ -274,12 +274,12 @@ private:
 public:
     DoubleHashTable(int selectedHash)
     {
-        hashNumber = selectedHash;
+        hash_num = selectedHash;
         table_banao();
     }
     bool insert(const Key &key, const Value &value)
     {
-        ll deletedIndex = -1;
+        ll del_idx = -1;
         loop(i, 0, sz)
         {
             ll index = probe(key, i);
@@ -294,16 +294,16 @@ public:
             }
             else if (state[index] == 2)
             {
-                if (deletedIndex == -1)
+                if (del_idx == -1)
                 {
-                    deletedIndex = index;
+                    del_idx = index;
                 }
             }
             else
             {
-                if (deletedIndex != -1)
+                if (del_idx != -1)
                 {
-                    index = deletedIndex;
+                    index = del_idx;
                 }
                 tb[index] = {key, value};
                 state[index] = 1;
@@ -313,10 +313,10 @@ public:
                 return true;
             }
         }
-        if (deletedIndex != -1)
+        if (del_idx != -1)
         {
-            tb[deletedIndex] = {key, value};
-            state[deletedIndex] = 1;
+            tb[del_idx] = {key, value};
+            state[del_idx] = 1;
             elmnt++;
             ins_exp++;
             Exp_chk();
@@ -382,10 +382,10 @@ private:
     ll cols = 0;
     ll ins_exp = 0;
     ll del_com = 0;
-    int hashNumber;
+    int hash_num;
     ll probe(const Key &key, ll i) const
     {
-        ull h = pri_hash(key, hashNumber, sz);
+        ull h = pri_hash(key, hash_num, sz);
         ull step = aux_Hash(key_theke_string(key), sz);
         return (h + C1 * i * step + C2 * i * i) % sz;
     }
@@ -451,12 +451,12 @@ private:
 public:
     CustomHashTable(int selectedHash)
     {
-        hashNumber = selectedHash;
+        hash_num = selectedHash;
         table_banao();
     }
     bool insert(const Key &key, const Value &value)
     {
-        ll deletedIndex = -1;
+        ll del_idx = -1;
         loop(i, 0, sz)
         {
             ll index = probe(key, i);
@@ -471,16 +471,16 @@ public:
             }
             else if (state[index] == 2)
             {
-                if (deletedIndex == -1)
+                if (del_idx == -1)
                 {
-                    deletedIndex = index;
+                    del_idx = index;
                 }
             }
             else
             {
-                if (deletedIndex != -1)
+                if (del_idx != -1)
                 {
-                    index = deletedIndex;
+                    index = del_idx;
                 }
                 tb[index] = {key, value};
                 state[index] = 1;
@@ -490,10 +490,10 @@ public:
                 return true;
             }
         }
-        if (deletedIndex != -1)
+        if (del_idx != -1)
         {
-            tb[deletedIndex] = {key, value};
-            state[deletedIndex] = 1;
+            tb[del_idx] = {key, value};
+            state[del_idx] = 1;
             elmnt++;
             ins_exp++;
             Exp_chk();
@@ -575,9 +575,9 @@ vector<string> Word_banao(ll total, ll l)
 }
 using Result = pair<ll, double>; // {collisions, average hits}
 template <typename Table>
-Result Exp_chalao(int hashNumber, const vector<string> &words, const vector<ll> &sample)
+Result Exp_chalao(int hash_num, const vector<string> &words, const vector<ll> &sample)
 {
-    Table hashTable(hashNumber);
+    Table hashTable(hash_num);
     loop(i, 0, (ll)words.size())
     {
         hashTable.insert(words[i], i + 1);
@@ -631,11 +631,11 @@ int main()
     }
     vector<ll> sample(id.begin(), id.begin() + search);
     Result ans[3][2];
-    loop(hashNumber, 1, 3)
+    loop(hash_num, 1, 3)
     {
-        ans[0][hashNumber - 1] = Exp_chalao<ChainingHashTable<string, ll>>(hashNumber, words, sample);
-        ans[1][hashNumber - 1] = Exp_chalao<DoubleHashTable<string, ll>>(hashNumber, words, sample);
-        ans[2][hashNumber - 1] = Exp_chalao<CustomHashTable<string, ll>>(hashNumber, words, sample);
+        ans[0][hash_num - 1] = Exp_chalao<ChainingHashTable<string, ll>>(hash_num, words, sample);
+        ans[1][hash_num - 1] = Exp_chalao<DoubleHashTable<string, ll>>(hash_num, words, sample);
+        ans[2][hash_num - 1] = Exp_chalao<CustomHashTable<string, ll>>(hash_num, words, sample);
     }
     dekhao(ans);
     return 0;
