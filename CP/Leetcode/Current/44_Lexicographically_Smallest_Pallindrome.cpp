@@ -1,39 +1,75 @@
-// 3720
+// 3734
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define pb push_back
 #define tata "\n"
-#define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
-#define sajai(x) sort(x.begin(), x.end())
 #define loop(i, j, n) for (ll i = j; i < n; i++)
-#define in(v) loop(i, 0, v.size()) cin >> v[i]
-#define out(v) loop(i, 0, v.size()) cout << v[i] << " "
-#define yes cout << "YES" << tata
-#define no cout << "NO" << tata
 
 class Solution
 {
 public:
-    string lexGreaterPermutation(string s, string p)
+    string lexPalindromicPermutation(string s, string p)
     {
-        string ans;
+        string ans, mid;
         int n = s.size(), i = 0;
+        int m = n / 2;
         vector<int> v(26);
         for (int j = 0; j < n; j++)
         {
             v[s[j] - 'a']++;
         }
-        while (i < n && v[p[i] - 'a'])
+        if (n % 2)
+        {
+            int c1 = 0;
+            for (int i = 0; i < 26; i++)
+            {
+                if (v[i] % 2)
+                {
+                    c1++;
+                    mid += char(i + 'a');
+                }
+                v[i] /= 2;
+            }
+            if (c1 != 1)
+            {
+                return "";
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 26; i++)
+            {
+                if (v[i] % 2)
+                {
+                    return "";
+                }
+                else
+                {
+                    v[i] /= 2;
+                }
+            }
+        }
+        while (i < m && v[p[i] - 'a'])
         {
             ans += p[i];
             v[p[i] - 'a']--;
             i++;
         }
+        if (i == m)
+        {
+            string s1 = ans;
+            reverse(s1.begin(), s1.end());
+            s1 = ans + mid + s1;
+            if (s1 > p)
+            {
+                return s1;
+            }
+        }
         // cout << ans << tata;
         while (true)
         {
-            if (i < n)
+            if (i < m)
             {
                 for (ll c = p[i] - 'a' + 1; c < 26; c++)
                 {
@@ -49,6 +85,9 @@ public:
                                 ans += char('a' + j);
                             }
                         }
+                        string s1 = ans;
+                        reverse(s1.begin(), s1.end());
+                        ans += mid + s1;
                         return ans;
                     }
                 }
@@ -70,9 +109,9 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     vector<int> v = {};
-    string s1 = "leet", s2 = "code";
+    string s1 = "baba", s2 = "abba";
     ll n;
     Solution sol;
-    cout << sol.lexGreaterPermutation(s1, s2);
+    cout << sol.lexPalindromicPermutation(s1, s2);
     return 0;
 }
