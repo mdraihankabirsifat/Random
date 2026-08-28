@@ -22,7 +22,7 @@ bool isPrime(ll n)
         {
             return false;
         }
-    }
+    }   
     return true;
 }
 ll porer_prime(ll n)
