@@ -50,7 +50,7 @@ string key_theke_string(const Key &key)
     ss << key;
     return ss.str();
 }
-// Two standard hash functions: DJB2 and SDBM.
+// DJB2 and SDBM.
 ull h1(const string &s)
 {
     ull h = 5381;
@@ -82,7 +82,6 @@ ull aux_Hash(const string &s, ll sz)
     {
         h = h * 37 + c;
     }
-    // For a prime table size, every value from 1 to N-1 is coprime with N.
     return 1 + h % (sz - 1);
 }
 // ------------------------------------------------------------
@@ -99,7 +98,6 @@ private:
     {
         return pri_hash(key, hashNumber, sz);
     }
-    // Rehashing moves old items without counting new collisions.
     void rehash(ll news)
     {
         vector<pair<Key, Value>> items;
@@ -155,7 +153,6 @@ public:
                 return false;
             }
         }
-        // Every old item in this bucket collides with the new key.
         cols += tb[index].size();
         tb[index].push_back({key, value});
         elmnt++;
@@ -234,7 +231,6 @@ private:
             }
         }
     }
-    // Rehashing removes tombstones and recomputes every index.
     void rehash(ll newSize)
     {
         vector<pair<Key, Value>> items;
@@ -317,7 +313,6 @@ public:
                 return true;
             }
         }
-        // This is used only when the probe saw a tombstone but no empty slot.
         if (deletedIndex != -1)
         {
             tb[deletedIndex] = {key, value};
@@ -359,7 +354,6 @@ public:
             }
             if (state[index] == 1 && tb[index].first == key)
             {
-                // A tombstone keeps the probe path valid for later searches.
                 state[index] = 2;
                 elmnt--;
                 del_com++;
@@ -570,7 +564,6 @@ vector<string> Word_banao(ll total, ll l)
     return words;
 }
 using Result = pair<ll, double>; // {collisions, average hits}
-// The same experiment works for each of the three hash-table classes.
 template <typename Table>
 Result Exp_chalao(int hashNumber, const vector<string> &words, const vector<ll> &sample)
 {
