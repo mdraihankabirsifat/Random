@@ -6,12 +6,12 @@ using namespace std;
 #define loop(i, j, n) for (ll i = j; i < n; i++)
 struct Node
 {
-    ll key, degree;
+    ll k, d;
     Node *parent, *child, *sibling;
     Node(ll x)
     {
-        key = x;
-        degree = 0;
+        k = x;
+        d = 0;
         parent = child = sibling = NULL;
     }
 };
@@ -20,7 +20,7 @@ class BinomialHeap
 public:
     Node *head;
     ll heapSize;
-    unordered_map<ll, Node *> position;
+    unordered_map<ll, Node *> pos;
     BinomialHeap()
     {
         head = NULL;
@@ -31,92 +31,92 @@ public:
         child->parent = parent;
         child->sibling = parent->child;
         parent->child = child;
-        parent->degree++;
+        parent->d++;
     }
     Node *mergeRootLists(Node *a, Node *b)
     {
-        Node d(0), *tail = &d;
+        Node d(0), *t = &d;
         while (a && b)
         {
-            if (a->degree <= b->degree)
+            if (a->d <= b->d)
             {
-                tail->sibling = a;
+                t->sibling = a;
                 a = a->sibling;
             }
             else
             {
-                tail->sibling = b;
+                t->sibling = b;
                 b = b->sibling;
             }
-            tail = tail->sibling;
+            t = t->sibling;
         }
-        tail->sibling = a ? a : b;
+        t->sibling = a ? a : b;
         return d.sibling;
     }
-    void consolidate(bool show = false)
+    void Heap_comb(bool show = false)
     {
         if (!head)
         {
             return;
         }
-        Node *previous = NULL;
+        Node *prev = NULL;
         Node *cur = head;
-        Node *next = cur->sibling;
-        while (next)
+        Node *nxt = cur->sibling;
+        while (nxt)
         {
-            if (cur->degree != next->degree || (next->sibling && next->sibling->degree == cur->degree))
+            if (cur->d != nxt->d || (nxt->sibling && nxt->sibling->d == cur->d))
             {
-                previous = cur;
-                cur = next;
+                prev = cur;
+                cur = nxt;
             }
-            else if (cur->key <= next->key)
+            else if (cur->k <= nxt->k)
             {
                 if (show)
                 {
-                    cout << "Link: B" << cur->degree << " + B" << next->degree << " -> B" << cur->degree + 1 << tata;
+                    cout << "Link: B" << cur->d << " + B" << nxt->d << " -> B" << cur->d + 1 << tata;
                 }
-                cur->sibling = next->sibling;
-                linkTree(next, cur);
+                cur->sibling = nxt->sibling;
+                linkTree(nxt, cur);
             }
             else
             {
                 if (show)
                 {
-                    cout << "Link: B" << cur->degree << " + B" << next->degree << " -> B" << cur->degree + 1 << tata;
+                    cout << "Link: B" << cur->d << " + B" << nxt->d << " -> B" << cur->d + 1 << tata;
                 }
-                if (!previous)
+                if (!prev)
                 {
-                    head = next;
+                    head = nxt;
                 }
                 else
                 {
-                    previous->sibling = next;
+                    prev->sibling = nxt;
                 }
-                linkTree(cur, next);
-                cur = next;
+                linkTree(cur, nxt);
+                cur = nxt;
             }
-            next = cur->sibling;
+            nxt = cur->sibling;
         }
     }
     void unite(BinomialHeap &other, bool show = false)
     {
         head = mergeRootLists(head, other.head);
         heapSize += other.heapSize;
-        for (auto p : other.position)
+        for (auto p : other.pos)
         {
-            position[p.first] = p.second;
+            pos[p.first] = p.second;
         }
         other.head = NULL;
         other.heapSize = 0;
-        other.position.clear();
-        consolidate(show);
+        other.pos.clear();
+        Heap_comb(show);
     }
-    void insertKey(ll key)
+    void key_boshao(ll k)
     {
         BinomialHeap one;
-        one.head = new Node(key);
+        one.head = new Node(k);
         one.heapSize = 1;
-        one.position[key] = one.head;
+        one.pos[k] = one.head;
         unite(one);
     }
     ll findMin()
@@ -124,33 +124,33 @@ public:
         ll answer = LLONG_MAX;
         for (Node *root = head; root; root = root->sibling)
         {
-            answer = min(answer, root->key);
+            answer = min(answer, root->k);
         }
         return answer;
     }
     ll extractMin()
     {
-        Node *minimum = head, *minimumPrevious = NULL;
-        Node *previous = NULL;
-        for (Node *root = head; root; root = root->sibling)
+        Node *Min = head, *min_prev = NULL;
+        Node *prev = NULL;
+        for (Node *r = head; r; r = r->sibling)
         {
-            if (root->key < minimum->key)
+            if (r->k < Min->k)
             {
-                minimum = root;
-                minimumPrevious = previous;
+                Min = r;
+                min_prev = prev;
             }
-            previous = root;
+            prev = r;
         }
-        if (!minimumPrevious)
+        if (!min_prev)
         {
-            head = minimum->sibling;
+            head = Min->sibling;
         }
         else
         {
-            minimumPrevious->sibling = minimum->sibling;
+            min_prev->sibling = Min->sibling;
         }
         Node *children = NULL;
-        Node *child = minimum->child;
+        Node *child = Min->child;
         while (child)
         {
             Node *next = child->sibling;
@@ -162,34 +162,34 @@ public:
         BinomialHeap childHeap;
         childHeap.head = children;
         head = mergeRootLists(head, childHeap.head);
-        consolidate();
-        ll answer = minimum->key;
-        position.erase(answer);
+        Heap_comb();
+        ll answer = Min->k;
+        pos.erase(answer);
         heapSize--;
-        delete minimum;
+        delete Min;
         return answer;
     }
     void decreaseKey(ll oldKey, ll newKey)
     {
-        Node *cur = position[oldKey];
-        position.erase(oldKey);
-        cur->key = newKey;
-        position[newKey] = cur;
-        while (cur->parent && cur->key < cur->parent->key)
+        Node *cur = pos[oldKey];
+        pos.erase(oldKey);
+        cur->k = newKey;
+        pos[newKey] = cur;
+        while (cur->parent && cur->k < cur->parent->k)
         {
             Node *parent = cur->parent;
-            swap(cur->key, parent->key);
-            position[cur->key] = cur;
-            position[parent->key] = parent;
+            swap(cur->k, parent->k);
+            pos[cur->k] = cur;
+            pos[parent->k] = parent;
             cur = parent;
         }
     }
-    void removeKey(ll key)
+    void removeKey(ll k)
     {
-        decreaseKey(key, LLONG_MIN);
+        decreaseKey(k, LLONG_MIN);
         extractMin();
     }
-    void printHeap(ll heapNumber, ostream &out)
+    void Heap_dekhao(ll heapNumber, ostream &out)
     {
         out << "Printing Binomial Heap H" << heapNumber << tata;
         out << "Heap size: " << heapSize << tata;
@@ -200,42 +200,42 @@ public:
         }
         for (Node *root = head; root; root = root->sibling)
         {
-            out << "Binomial Tree, B" << root->degree << tata;
+            out << "Binomial Tree, B" << root->d << tata;
             queue<Node *> q;
             q.push(root);
             ll level = 0;
             while (!q.empty())
             {
                 ll n = q.size();
-                vector<ll> keys;
+                vector<ll> ks;
                 while (n--)
                 {
                     Node *cur = q.front();
                     q.pop();
-                    keys.pb(cur->key);
+                    ks.pb(cur->k);
                     for (Node *child = cur->child; child; child = child->sibling)
                     {
                         q.push(child);
                     }
                 }
-                sort(keys.begin(), keys.end());
+                sort(ks.begin(), ks.end());
                 out << "Level " << level++ << ":";
-                for (ll key : keys)
+                for (ll k : ks)
                 {
-                    out << " " << key;
+                    out << " " << k;
                 }
                 out << tata;
             }
         }
     }
-    void drawTree(Node *node, string space, bool last, ll minimum)
+    void Tree_dekhao(Node *node, string space, bool last, ll minimum)
     {
-        cout << space << (last ? "`-- " : "|-- ") << node->key;
-        if (node->key == minimum)
+        cout << space << (last ? "`-- " : "|-- ") << node->k;
+        if (node->k == minimum)
         {
             cout << " [MIN]";
         }
-        cout << " (degree " << node->degree << ")" << tata;
+        cout << " (degree " << node->d << ")" << tata;
         vector<Node *> children;
         for (Node *child = node->child; child; child = child->sibling)
         {
@@ -243,7 +243,7 @@ public:
         }
         loop(i, 0, (ll)children.size())
         {
-            drawTree(children[i], space + (last ? "    " : "|   "), i + 1 == (ll)children.size(), minimum);
+            Tree_dekhao(children[i], space + (last ? "    " : "|   "), i + 1 == (ll)children.size(), minimum);
         }
     }
     void visualize(ll heapNumber)
@@ -258,8 +258,8 @@ public:
         ll minimum = findMin();
         for (Node *root = head; root; root = root->sibling)
         {
-            cout << "B" << root->degree << ", root = " << root->key << tata;
-            drawTree(root, "", true, minimum);
+            cout << "B" << root->d << ", root = " << root->k << tata;
+            Tree_dekhao(root, "", true, minimum);
         }
     }
 };
@@ -267,69 +267,69 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-    ifstream input("input.txt");
-    ofstream output("output.txt");
+    ifstream in("input.txt");
+    ofstream out("output.txt");
     BinomialHeap heap[3];
-    string command;
-    while (input >> command)
+    string com;
+    while (in >> com)
     {
-        if (command == "I")
+        if (com == "I")
         {
             ll h, x;
-            input >> h >> x;
-            heap[h].insertKey(x);
+            in >> h >> x;
+            heap[h].key_boshao(x);
         }
-        else if (command == "F")
+        else if (com == "F")
         {
             ll h;
-            input >> h;
+            in >> h;
             ll answer = heap[h].findMin();
             cout << "Find Min returned: " << answer << tata;
-            output << "Find Min returned: " << answer << tata;
+            out << "Find Min returned: " << answer << tata;
         }
-        else if (command == "E")
+        else if (com == "E")
         {
             ll h;
-            input >> h;
+            in >> h;
             ll answer = heap[h].extractMin();
             cout << "Extract Min returned: " << answer << tata;
-            output << "Extract Min returned: " << answer << tata;
+            out << "Extract Min returned: " << answer << tata;
         }
-        else if (command == "D")
+        else if (com == "D")
         {
             ll h, x, y;
-            input >> h >> x >> y;
+            in >> h >> x >> y;
             heap[h].decreaseKey(x, y);
         }
-        else if (command == "R")
+        else if (com == "R")
         {
             ll h, x;
-            input >> h >> x;
+            in >> h >> x;
             heap[h].removeKey(x);
         }
-        else if (command == "U")
+        else if (com == "U")
         {
             ll h1, h2;
-            input >> h1 >> h2;
+            in >> h1 >> h2;
             heap[h1].unite(heap[h2]);
         }
-        else if (command == "P")
+        else if (com == "P")
         {
             ll h;
-            input >> h;
-            heap[h].printHeap(h, cout);
-            heap[h].printHeap(h, output);
+            in >> h;
+            heap[h].Heap_dekhao(h, cout);
+            heap[h].Heap_dekhao(h, out);
         }
-        else if (command == "V")
+        else if (com == "V")
         {
             ll h;
-            input >> h;
+            in >> h;
             heap[h].visualize(h);
         }
-        else if (command == "W")
+        else if (com == "W")
         {
             ll h1, h2;
-            input >> h1 >> h2;
+            in >> h1 >> h2;
             cout << "Before Union" << tata;
             heap[h1].visualize(h1);
             heap[h2].visualize(h2);
