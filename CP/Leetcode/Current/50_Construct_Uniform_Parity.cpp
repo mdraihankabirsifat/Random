@@ -1,4 +1,4 @@
-// 3875
+// 3876
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -15,9 +15,26 @@ using namespace std;
 class Solution
 {
 public:
-    bool uniformArray(vector<int> &nums1)
+    bool uniformArray(vector<int> &v)
     {
-        return true;
+        int n = v.size(), c = 0, m1 = INT_MAX, m2 = INT_MAX;
+        for (int i = 0; i < n; i++)
+        {
+            if (v[i] % 2 == 0)
+            {
+                c++;
+                m1 = min(m1, v[i]);
+            }
+            else
+            {
+                m2 = min(m2, v[i]);
+            }
+        }
+        if (m2 < m1 || c == n || c == 0)
+        {
+            return true;
+        }
+        return false;
     }
 };
 
