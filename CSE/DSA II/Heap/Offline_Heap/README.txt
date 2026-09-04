@@ -1,14 +1,11 @@
 README - Binomial Heap Assignment Student ID: 2405144
-
-======================================== 1. Compilation Instruction
-========================================
+1. Compilation Instruction
 
 Compile the program using g++ compiler:
 
 g++ 2405144.cpp -o 2405144
 
-======================================== 2. Running Instruction
-========================================
+2. Running Instruction
 
 Run the executable:
 
@@ -16,9 +13,8 @@ Run the executable:
 
 The program takes commands from input.txt and generates output.txt
 automatically.
-
-======================================== 3. input.txt and output.txt
-Usage ========================================
+3. input.txt and output.txt
+Usage
 
 input.txt: - Contains the sequence of Binomial Heap commands. - Each
 command should be written in a separate line.
@@ -26,8 +22,7 @@ command should be written in a separate line.
 output.txt: - The program writes all operation results into this file. -
 It is generated automatically after execution.
 
-======================================== 4. Heap Visualization Command
-========================================
+4. Heap Visualization Command
 
 Command format:
 
@@ -42,8 +37,7 @@ V 1
 This displays the structure of heap H1 including: - Binomial tree
 hierarchy - Node keys - Degree of each node - Minimum node information
 
-======================================== 5. Visualized Union Command
-========================================
+5. Visualized Union Command
 
 Command format:
 
@@ -58,8 +52,7 @@ W 1 2
 This performs union of heap H1 and H2 and displays the resulting
 binomial heap structure.
 
-======================================== 6. Extra Visualization Feature
-========================================
+6. Extra Visualization Feature
 
 Additional visualization features implemented:
 
@@ -70,8 +63,7 @@ Additional visualization features implemented:
 -   Helps to understand the shape and properties of the binomial heap
     after operations.
 
-======================================== Implemented Operations
-========================================
+Implemented Operations
 
 The program supports:
 
@@ -82,5 +74,3 @@ The program supports:
 5.  Decrease Key
 6.  Delete Key
 7.  Heap Visualization
-
-========================================
