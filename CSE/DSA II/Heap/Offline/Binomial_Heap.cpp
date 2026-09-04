@@ -267,8 +267,9 @@ int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-    ifstream in("input.txt");
-    ofstream out("output.txt");
+    string File = "test_00";
+    ifstream in(File + "/input.txt");
+    ofstream out(File + "/output_mine.txt");
     BinomialHeap heap[3];
     string com;
     while (in >> com)
