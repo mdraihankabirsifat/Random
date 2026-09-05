@@ -15,32 +15,26 @@ using namespace std;
 class Solution
 {
 public:
-    int firstStableIndex(vector<int> &v, int k)
+    int firstStableIndex(vector<int> &nums, int k)
     {
-        int n = v.size();
-        int ans = INT_MAX, y = -1, f = 0;
-        vector<int> p;
+        int n = nums.size();
+        vector<int> mini(n, 0), maxi(n, 0);
+        maxi[0] = nums[0];
+        for (int i = 1; i < n; i++)
+        {
+            maxi[i] = max(nums[i], maxi[i - 1]);
+        }
+        mini[n - 1] = nums[n - 1];
+        for (int i = n - 2; i >= 0; i--)
+        {
+            mini[i] = min(nums[i], mini[i + 1]);
+        }
         for (int i = 0; i < n; i++)
         {
-            int Max = *max_element(v.begin(), v.begin() + i + 1);
-            int Min = *min_element(v.begin() + i, v.end());
-            cout << i << ": " << Max << " " << Min << tata;
-            if (Max - Min <= k && Max - Min >= 0)
+            if (maxi[i] - mini[i] <= k)
             {
-                int temp = ans;
-                ans = min(ans, Max - Min);
-                // cout << temp << " " << ans << tata;
-                if (temp > ans)
-                {
-                    p.pb(i);
-                    f = 1;
-                }
+                return i;
             }
-        }
-        if (f)
-        {
-            sajai(p);
-            return p[0];
         }
         return -1;
     }
@@ -50,10 +44,9 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    vector<int> v = {6, 1, 4};
-    // cout << *max(v.begin(), v.begin() + 2);
+    vector<int> v = {5, 0, 1, 4};
     string s = "";
-    ll n = 5;
+    ll n = 3;
     Solution sol;
     cout << sol.firstStableIndex(v, n);
     return 0;
