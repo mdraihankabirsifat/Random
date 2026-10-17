@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2252/B
+/*
+Problem: Always Changing
+
+Delete characters in strictly alternating binary order to make the remaining
+string alternating, using as few deletions as possible.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

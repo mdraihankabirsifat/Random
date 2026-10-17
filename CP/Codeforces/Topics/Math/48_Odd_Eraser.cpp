@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2258/A
+/*
+Problem: Odd Eraser
+
+Maximize the GCD of the array that remains after repeatedly deleting the
+middle element among any odd-sized choice of positions.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -23,22 +30,11 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n, s = 0;
+        ll n;
         cin >> n;
         vector<ll> v(n);
         in(v);
-        for (int i = 0; i < n; i++)
-        {
-            if (i % 2)
-            {
-                s -= v[i];
-            }
-            else
-            {
-                s += v[i];
-            }
-        }
-        cout << s << tata;
+        cout << gcd(v[0],v[n-1])<< tata;
     }
     return 0;
 }

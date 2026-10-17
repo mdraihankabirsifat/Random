@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2257/D
+/*
+Problem: Bermuda Rectangle
+
+For each query rectangle, count the cells that can lie inside some
+integer-sided rectangle of the specified area.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

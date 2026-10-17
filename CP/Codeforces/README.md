@@ -28,13 +28,20 @@ A later pass organized the 37 formerly unresolved files from `Misc/`:
 - Empty or incomplete sources use `_Draft` or `_Data` in their names.
 - SHA-256 verification confirmed all 37 files remained byte-identical.
 
-The syntax baseline contains two pre-existing failures:
+The October 2026 pass organized all 12 sources then present in `Current/`:
 
-- `Math/28_Sum_of_Round_Numbers.c`
-- `Constructive_Algorithms/31_Binary_String_Enumeration_Data.c`
+- All 12 were matched to official Codeforces problem records.
+- Canonical headers were added and the files were appended to their primary
+  topic folders without renumbering existing sources.
+- The active tree now contains 305 categorized sources and no pending source.
+- A fresh inventory found 26 of the earlier descriptive sources still present;
+  the manifest below is authoritative for the current filesystem.
 
-The second file contains raw binary-string data rather than compilable C code.
-Do not silently repair either file during an organization pass.
+The syntax baseline contains one pre-existing failure:
+
+- `Topics/Math/28_Sum_of_Round_Numbers.c`
+
+Do not silently repair this file during an organization pass.
 
 ## Current source counts
 
@@ -43,78 +50,68 @@ Do not silently repair either file during an organization pass.
 | Array | 3 |
 | Bit_Manipulation | 8 |
 | Brute_Force | 12 |
-| Constructive_Algorithms | 29 |
+| Constructive_Algorithms | 30 |
 | Data_Structures | 6 |
-| Dynamic_Programming | 7 |
+| Dynamic_Programming | 8 |
 | Game_Theory | 13 |
 | Geometry | 8 |
-| Graph | 1 |
-| Greedy | 61 |
-| Hashing | 9 |
+| Graph | 2 |
+| Greedy | 62 |
+| Hashing | 10 |
 | Implementation | 15 |
-| Math | 45 |
-| Number_Theory | 15 |
+| Math | 48 |
+| Number_Theory | 17 |
 | Prefix_Sum | 11 |
 | Simulation | 5 |
-| Sorting | 14 |
+| Sorting | 15 |
 | String | 28 |
-| Tree | 1 |
+| Tree | 2 |
 | Two_Pointers | 2 |
-| **Categorized total** | **293** |
-| A_curr (pending) | 1 |
-| **All source files** | **294** |
+| **Categorized total** | **305** |
+| Current (pending) | 0 |
+| **All source files** | **305** |
 
-The Codeforces directory currently contains **295 files total**: 294 source
-files (258 `.cpp` and 36 `.c`) plus this README. Always rescan the
+The Codeforces directory currently contains **306 content files**: 305
+source files (269 `.cpp` and 36 `.c`) plus this README. Empty incoming
+directories are not included. Always rescan the
 filesystem because files may be added or removed later.
 
 ## Descriptively categorized sources
 
-The following 37 files are organized by implementation technique but are not
+The following 26 files are organized by implementation technique but are not
 verified as Codeforces problems. Their filenames are descriptive rather than
 official titles, and they intentionally have no Codeforces URL header:
 
-- `Sorting/12_Anagram_Check.cpp`
-- `Stack/1_Balanced_Parentheses.cpp`
-- `Prefix_Sum/7_Breed_Counting_Draft.cpp`
-- `Prefix_Sum/8_Breed_Counting.cpp`
-- `Sorting/13_Parity_Based_Sorting.cpp`
-- `Constructive_Algorithms/30_Cake_Assignment_Draft.cpp`
-- `String/24_Uppercase_Words_Line_by_Line.cpp`
-- `Data_Structures/6_Distinct_Chemicals_in_Reactions.cpp`
-- `Sorting/14_Sort_String_in_Descending_Order.cpp`
-- `Bit_Manipulation/9_Counting_Bits.cpp`
-- `Number_Theory/15_Smallest_Prime_Not_Dividing_All_Elements.cpp`
-- `Hashing/10_Efficient_Frequency_Draft.cpp`
-- `Dynamic_Programming/6_Minimum_Cost_Nondecreasing_Array.cpp`
-- `Implementation/15_Income_Tax_Calculator.c`
-- `Simulation/4_Josephus_Problem_I.cpp`
-- `Constructive_Algorithms/31_Binary_String_Enumeration_Data.c`
-- `String/25_Nth_Digit_of_a_Number.c`
-- `String/26_Palindrome_Number.cpp`
-- `String/27_Palindrome_String.cpp`
-- `Dynamic_Programming/7_Pascals_Triangle_Draft.cpp`
-- `Constructive_Algorithms/32_Partition_by_Maximum_Value.cpp`
-- `String/28_String_Pattern_Detector_Draft.cpp`
-- `Prefix_Sum/9_Subarray_Divisibility.cpp`
-- `Prefix_Sum/10_Subarray_Sums_II.cpp`
-- `Implementation/16_Empty_Test_Template.cpp`
-- `Two_Pointers/3_Trapping_Rain_Water_Draft.cpp`
-- `Dynamic_Programming/8_Tribonacci_Number_Draft.c`
-- `Hashing/11_Triple_Draft.cpp`
-- `Array/1_Three_Consecutive_Equal_Elements.c`
-- `Array/2_Elements_Below_Maximum.cpp`
-- `Tree/1_Absolute_Binary_Tree.cpp`
-- `Brute_Force/12_Being_the_Best_Faculty_Brute_Force.cpp`
-- `Sweep_Line/1_Being_the_Best_Faculty_Sweep_Line.cpp`
-- `Prefix_Sum/11_Reverse_2D_Prefix_Sum.cpp`
-- `Dynamic_Programming/9_Count_Bracket_Subsequences_by_Balance.cpp`
-- `Math/45_Group_Size_Difference.cpp`
-- `Simulation/5_Cyclic_Binary_Swap_Simulation.cpp`
+- `Topics/Array/1_Three_Consecutive_Equal_Elements.c`
+- `Topics/Array/2_Elements_Below_Maximum.cpp`
+- `Topics/Bit_Manipulation/8_Counting_Bits.cpp`
+- `Topics/Brute_Force/12_Being_the_Best_Faculty_Brute_Force.cpp`
+- `Topics/Constructive_Algorithms/29_Partition_by_Maximum_Value.cpp`
+- `Topics/Data_Structures/6_Distinct_Chemicals_in_Reactions.cpp`
+- `Topics/Dynamic_Programming/6_Minimum_Cost_Nondecreasing_Array.cpp`
+- `Topics/Dynamic_Programming/7_Count_Bracket_Subsequences_by_Balance.cpp`
+- `Topics/Implementation/15_Income_Tax_Calculator.c`
+- `Topics/Math/45_Group_Size_Difference.cpp`
+- `Topics/Number_Theory/15_Smallest_Prime_Not_Dividing_All_Elements.cpp`
+- `Topics/Prefix_Sum/8_Breed_Counting.cpp`
+- `Topics/Prefix_Sum/9_Subarray_Divisibility.cpp`
+- `Topics/Prefix_Sum/10_Subarray_Sums_II.cpp`
+- `Topics/Prefix_Sum/11_Reverse_2D_Prefix_Sum.cpp`
+- `Topics/Simulation/4_Josephus_Problem_I.cpp`
+- `Topics/Simulation/5_Cyclic_Binary_Swap_Simulation.cpp`
+- `Topics/Sorting/12_Anagram_Check.cpp`
+- `Topics/Sorting/13_Parity_Based_Sorting.cpp`
+- `Topics/Sorting/14_Sort_String_in_Descending_Order.cpp`
+- `Topics/String/24_Uppercase_Words_Line_by_Line.cpp`
+- `Topics/String/25_Nth_Digit_of_a_Number.c`
+- `Topics/String/26_Palindrome_Number.cpp`
+- `Topics/String/27_Palindrome_String.cpp`
+- `Topics/String/28_Balanced_Parentheses.cpp`
+- `Topics/Tree/1_Absolute_Binary_Tree.cpp`
 
 ## Incoming solutions
 
-`A_curr/` is the active incoming area. `Misc/` may be reused temporarily
+`Current/` is the active incoming area. `Misc/` may be created temporarily
 when a source cannot yet be identified or classified.
 
 If a problem cannot be confidently matched to Codeforces:
@@ -192,7 +189,7 @@ Bit_Manipulation/
   1_Bitwise_Reversion.cpp
   2_Boneca_Ambalabu.cpp
   ...
-  9_Counting_Bits.cpp
+  8_Counting_Bits.cpp
 ```
 
 Verified Codeforces files use:
@@ -223,8 +220,8 @@ Filename rules:
 ## Workflow for future Codex runs
 
 1. Read this README and any repository instructions.
-2. Inventory every `.cpp` and `.c` file in `A_curr/`, `Misc/`, and the
-   existing topic folders before editing.
+2. Inventory every `.cpp` and `.c` file in `Current/`, `Misc/` (if present),
+   and `Topics/` before editing.
 3. Record the starting source count, file hashes, and syntax baseline.
 4. Identify each problem from its filename and implementation. For a claimed
    Codeforces solution, verify the exact title and URL using official records.

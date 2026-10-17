@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2274/B
+/*
+Problem: Prefix
+
+Choose whether to add or subtract each preceding prefix sum from the next
+array element so the final maximum element is as large as possible.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

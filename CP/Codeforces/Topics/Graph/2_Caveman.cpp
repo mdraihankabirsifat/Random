@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2276/D
+/*
+Problem: Caveman
+
+Classify the number of red-blue graph colorings in which every vertex has a
+neighbor of the opposite color as zero, one, two, or many.
+*/
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2254/A
+/*
+Problem: Riptide
+
+Find how many rounds pass before two of three token counts become equal when
+the largest pile repeatedly gives one token to the smallest.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

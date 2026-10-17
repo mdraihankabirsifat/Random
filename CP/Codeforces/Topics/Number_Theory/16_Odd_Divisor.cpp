@@ -1,8 +1,15 @@
+// https://codeforces.com/problemset/problem/1475/A
+/*
+Problem: Odd Divisor
+
+Determine whether the given integer has an odd divisor greater than one.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define pb push_back
 #define tata "\n"
+#define vr(v, x) vector<ll> v(x)
 #define vrr(v, x, y) vector<vector<ll>> v(x, vector<ll>(y))
 #define sajai(x) sort(x.begin(), x.end())
 #define choto(a) *min_element(a.begin(), a.end())
@@ -23,11 +30,21 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
+        ll n, m = 0;
         cin >> n;
-        vector<ll> v(n);
-        in(v);
-        cout << gcd(v[0],v[n-1])<< tata;
+        for (int i = 0; i < 48; i++)
+        {
+            if (pow(2, i) == n)
+            {
+                no;
+                m = 1;
+                break;
+            }
+        }
+        if (!m)
+        {
+            yes;
+        }
     }
     return 0;
 }

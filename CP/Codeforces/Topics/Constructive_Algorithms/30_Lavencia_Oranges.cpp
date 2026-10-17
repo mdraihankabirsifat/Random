@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2273/A
+/*
+Problem: Lavencia Oranges
+
+Construct an assignment of oranges to bags that minimizes the largest number
+of oranges confiscated from bags having an equal size.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

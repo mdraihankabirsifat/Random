@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2257/C
+/*
+Problem: Spying on the Beaver
+
+Place the minimum number of cameras on a rooted tree so the Beaver's chosen
+dam can always be uniquely identified.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long

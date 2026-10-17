@@ -1,3 +1,10 @@
+// https://codeforces.com/problemset/problem/2257/A
+/*
+Problem: Creating Abbreviations
+
+Determine whether every given abbreviation can be formed from the initial
+words and the abbreviations created earlier in some valid order.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
